@@ -1,0 +1,104 @@
+---
+title: "Déployer le module de création des métadonnées PIVOT"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+  <p>Déploiement du module de génération des métadonnées PIVOT dans le serveur de production 163.9.41.45</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Administrateur, développeur du SI SNO-T</p>
+  <p>Connaissance environnement linux</p>
+</div>
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy('')
+```
+
+# Configuration et déploiement
+
+Le module est compilé dans `Developpement/SI/app_snot/PivotMetadata` et le programme s'appelle : `jax-d-swarm.jar`. Le module est relancé automatiquement à chaque redémarrage du serveur 163.9.41.45 grâce à la configuration du /etc/crontab :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+@reboot         tomcat    /opt/default-jdk/bin/java -jar /home/tomcat/devel/metadata/jax-d-swarm.jar
+``` 
+
+Dans le cas d'une modification du code, il sera nécessaire de :
+
+1. Configurer plusieurs fichiers avant la compilation,
+2. Tuer l'instance en cours avant de lancer le processus,
+3. Lancer le programme en tâche de fond.
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**Important**</h4>
+  <p>Jax-d-swarm.jar ne peut pas être lancé plusieurs fois sur le même port. Tuer le processus en cours avant de lancer le programme</p>
+</div>
+
+## Configuration du module
+
+Il est nécessaire de modifier les paramètres de connexion vers la base de données en production. Il faut s'appuyer sur le fichier `~/devel/conf/Main.java`. `Service.java` est également à modifier pour changer le répertoire des fichiers csv utilisés :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+cp ~/devel/conf/Main.java  ~/devel/prod/Developpement/SI/app_snot/PivotMetadata/src/main/java/entry/Main.java
+cp ~/devel/conf/Service.java ~/devel/prod/Developpement/SI/app_snot/PivotMetadata/src/main/java/moulinette/Service.java
+```
+
+## Compilation du module
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+cd ~/devel/prod/Developpement/SI/app_snot/PivotMetadata/
+
+mvn clean install 
+```
+
+### Suppression des instances en cours
+
+Avant de lancer l'application, il est nécessaire de supprimer l'instance en cours : 
+
+- Scanner le port 8081 et supprimer l'instance en cours :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+lsof -i:8081
+```
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+kill -9 <pid>
+```
+
+### Lancement du service
+
+**Copier/coller le jar dans son répertoire de lancement**
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+cp ~/devel/prod/Developpement/SI/app_snot/PivotMetadata/target/jax-d-swarm.jar /home/tomcat/devel/metadata/
+```
+
+**Executer le jar**
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+nohup java -jar /home/tomcat/devel/metadata/jax-d-swarm.jar &
+```
+
+### En cas de problème
+
+Vous pouvez vérifier le fonctionnement en interrogeant le service web
+
+1. Lancer le jar en visible :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+java -jar /home/tomcat/devel/metadata/jax-d-swarm.jar
+```
+
+2. Dans un autre terminal, lancer une commande curl. Des messages d'erreur apparaîtront dans le terminal où le jar est lancé
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+curl http://localhost:8081/rest/resources/pivot?codes_jeu=lgt-meteosol-meteosol
+```
+
+

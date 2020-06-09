@@ -1,0 +1,4 @@
+code_profondeur;description
+1;profondeur ou altitude la plus proche de la surface du sol
+2;profondeur ou altitude suivante (plus profond ou plus haut que 1)
+3;profondeur ou altitude suivante (plus profond ou plus haut que 2)

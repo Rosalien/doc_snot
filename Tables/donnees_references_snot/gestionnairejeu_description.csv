@@ -1,0 +1,8 @@
+Nom de la colonne;Signification;Unique;Obligatoire
+code_jeu;code du jeu de données [code_site]-[code_theme]-[code_typedonnees];Oui;Oui
+nom;Nom du gestionnaire;Non;Oui
+prenom;Prénom du gestionnaire;Non;Oui
+email;Adresse email du gestionnaire ;Oui;Oui
+responsabilite;Responsabilité du gestionnaire (“principal_investigator”,“data_manager”) ;Oui;Oui
+dateDebut;Date de début de la prise de responsabilité (JJ/MM/AAAA);Non;Oui
+dateFin;Date de fin de la responsabilité (JJ/MM/AAAA) (vide si toujours en poste);Non;Oui

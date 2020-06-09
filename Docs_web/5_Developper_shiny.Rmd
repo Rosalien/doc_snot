@@ -1,0 +1,149 @@
+---
+title: "Guide de développement des applications Shiny"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+  <p>Organisation générale et guide de développement des applications Shiny</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Administrateur, développeur du SI SNO-T</p>
+  <p>Connaissance environnement linux et R</p>
+</div>
+
+# Les applications Shiny
+
+2 applications Shiny sont développées : 
+
+- data-access : application grand public pour visualiser et extraire les données du SI SNOT. Adresse : [https://data-snot.cnrs.fr/data-access/](https://data-snot.cnrs.fr/data-access/). Cette application a également une version de développement : [https://data-snot.cnrs.fr/data-access-snapshot/](https://data-snot.cnrs.fr/data-access-snapshot/)
+- dataset-archive : application pour extraires des archives au format Theia/OZCAR et ZENODO. Diffusée à cette adresse [https://data-snot.cnrs.fr/dataset-archive/](https://data-snot.cnrs.fr/dataset-archive/)
+
+# Organisation des applications
+
+## Arborescence de travail
+
+Pour le moment, ces applications sont développées au sein 3 modules constitués de nombreuses dépendances. Pour faciliter la maintenance de l'application, cette organisation sera amenée à évoluer. A terme, les 3 gros modules seront éclatés en plusieurs sous-modules et l'ensemble de l'application sera créé dans un paquet R.
+
+Voici l'arborescence actuelle de l'application :
+
+```
+.
+├── app.R
+├── confConnexion.R
+├── datatype_couleur.csv
+├── dependanciesCSS.R
+├── dependanciesGraph.R
+├── dependanciesQuery.R
+├── dependancies.R
+├── Fig
+├── mod_amelioration.R
+├── mod_carto.R
+├── mod_extractiondataset.R
+├── mod_extraction.R
+├── sous_module
+├── sql
+├── translation
+└── www
+```
+
+avec :
+
+- app.R : Fichier principal contenant le lancement des modules et dépendances
+- mod_amelioration.R : Module pour rajouter améliorer l'application sur la forge
+- mod_carto.R : Module "Welcome" pour présenter la cartographie des sites, des stations et les données disponibles
+- mod_extractiondataset.R : Module pour extraire les jeux de données selon le standard PIVOT/OZCAR
+- mod_extraction.R : Module pour visualiser et extraire les données. *Ce module devra être eclaté en plusieurs sous-modules pour faciliter sa maintenance*
+- confConnexion.R : Paramètres de connexion vers les bases de données *Fichier sensible, ne pas versionner*
+- dependanciesCSS : Dépendances sur des aspects de styles pour l'appli (pour les figures, pour l'appli...)
+- dependanciesGraph : Ensemble de fonctions associées à la création des graphiques dans l'application
+- dependanciesQuery : Ensemble de fonctions pour lancer des requêtes vers la bdd
+- dependanciesData : Ensemble des fonctions pour manipuler les données
+- dependancies : Chargement de toutes les dépendances
+- sous_module : Répertoire contenant les sous-modules du module mod_extraction.R (*en cours de développement, non utilisé*)
+- sql : Répertoire contenant les requêtes sql pour construire les vues matérialisées utilisées 
+- translation : Répertoire contenant le fichier csv pour internationaliser l'application avec [Shiny.i18n](https://github.com/Appsilon/Shiny.i18n)
+- www : Répertoire contenant les figures, les fichiers markdown, les csv, les css...
+
+## Modules des applications 
+
+L'application data-access est consituée du module `mod_extraction.R` et du module `mod_carto.R`.
+L'application dataset-archive est seulement constituée du module `mod_extractiondataset.R`.
+
+# Fonctionnement générale
+
+## Connexion à la base de données de `snotbdprod`
+
+Les données visualisées dans l'application proviennent de la base de données postgresQL en production (`snotbdprod`) administrée avec l'application `data-snot.cnrs.fr`.
+
+Les paramètres de connexion sont dans le fichier `confConnexion.R` et les requêtes vers `snotbdprod` sont réalisées dans les fonctions stockées dans `dependanciesQuery.R`. Le paquet `RPostgreSQL` est utilisé pour les connexions vers la base.
+
+Pour accroitre la réactivité de l'application, 2 vues matérialisées ont été créées dans `snotbdprod` : 
+
+- carac_data_sensor_prod : caractérisation des jeux de données, des données, des instruments et des méthodes
+- data_infraj_prod : valeurs pour une timestamp (30min ou 1h), un site et une variable donnée,
+
+Les requêtes pour générer ces vues matérialisées sont stockées dans `sql/`. La mise à jour de ces vues matérialisées est réalisée avec des fonctions triggers stockées également dans le répertoire `sql/`. Plus d'infos sur ces fonctions dans la [documentation sur la base de données](https://sourcesup.renater.fr/www/si-snot/5_Administrer_PostgresQL.html).
+
+## 3 modules
+
+L'application est organisée sur 3 modules indépendants :
+
+- mod_carto.R : Partie "Welcome" de l'appli `data-access` avec la présentation des sites et des données disponibles
+- mod_extraction.R : Partie "Access Data" de l'appli `data-access` avec la visualisation et le téléchargement des données
+- mod_extractiondataset.R : Application `dataset-archive` pour le téléchargement des archives pour Theia/OZCAR et ZENODO.
+
+Un dernier module comprend la partie "a propos" : `mod_about.R`
+
+## Internationalisation
+
+L'application est pour le moment en anglais mais à terme il sera possible de basculer en français. L'internationalisation s'appuie sur le package [Shiny.i18n](https://github.com/Appsilon/Shiny.i18n) et le fichier pour basculer de `en` à `fr` est stocké dans `translation/translation_en.csv`.
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Pour info**</h4>
+  <p>Actuellement, la configuration en anglais est manuelle, elle pourra à terme être dynamique via un bouton...</p>
+</div>
+
+## Principaux paquets R utilisés 
+
+### Figures
+
+La création des figures s'appuie sur plusieurs fonctions stockées dans `dependenciesGraph.R`.
+Les figures sont réalisées en statique avec [ggplot2](https://ggplot2.tidyverse.org/) et en dynamique avec [plotly](https://plot.ly/r/reference/#layout-legend).
+Pour les times-series, [dy_graph](https://rstudio.github.io/dygraphs/) est exploité.
+La représentation des données spatiales est réalisée avec [leaflet](https://rstudio.github.io/leaflet/).
+
+*Les paquets `wesanderson` et `RcolorBrewer` sont utilisés pour les couleurs des graphiques.*
+
+### Gestion des données et tables
+
+Les tables sont dans la plupart du temps transformées au format [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html).
+La relation vers la base de données est réalisée avec `RPostgreSQL`.
+Les tables sont visualisées avec [DT](https://rstudio.github.io/DT/).
+
+### Pour l'application Shiny
+
+L'application Shiny s'appuie sur plusieurs paquets spécifiques :
+
+- [rintrojs](https://carlganz.github.io/rintrojs/) : pour une aide en ligne qui exploite `introjs`.
+- [Shinyalert](https://github.com/daattali/Shinyalert) : Pour les messages d'alertes sous forme de popup. Utilisé par exemple pour la fenêtre de téléchargement.
+- [Shinythemes](https://rstudio.github.io/Shinythemes/) : pour le thème css tout fait.
+- [Shinycssloaders](https://github.com/andrewsali/Shinycssloaders) : pour mettre un spinner lors du chargement des graphiques.
+- [Shinyjs](https://deanattali.com/Shinyjs/) : Pour contrôler l'activation des boutons en fonction de certains critères (par exemple : bouton grisé si l'utilisateur n'a pas coché "j'accepte les conditions")
+- [ShinyWidgets](http://Shinyapps.dreamrs.fr/ShinyWidgets/) : Plusieurs widgets améliorés (exemple avec dropdownButton)
+- [Shiny.i18n](https://github.com/Appsilon/Shiny.i18n) : pour l'internationalisation de l'application
+- [esquisse](http://shinyapps.dreamrs.fr/esquisse/) : pour la génération de graphiques ggplot2 personnalisé
+
+### Autres
+ 
+- suncalc est très pratique pour calculer les paramètres jour/nuit en fonction d'un timestamp et de coordonnées géographiques
+
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">**Attention**</h4>
+  <p>Le paquet lubridate pose de gros problèmes dans le déploiement de l'application. Ne pas utiliser.</p>
+</div>

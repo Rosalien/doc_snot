@@ -1,0 +1,6 @@
+code_etape;nom_etape;description
+1;1_collecte;Collecte des données brutes provenant d’un instrument ou d’une station du SNO-T et stockage dans le serveur FTP SRV-SO
+2;2_traitement;Ensemble des traitements réalisés sur les données brutes
+3;3_integration;Intégration du fichier traité dans la BDD de l'application web data-snot.cnrs.fr
+4;4_diffusion;Diffusion et extraction du fichier traité depuis l'application web data-snot.cnrs.fr
+5;5_archivage;Archivage des fichiers brutes en fin de cycle (étape pas encore définie)

@@ -1,0 +1,21 @@
+---
+title: "Extraction des données dans data-snot.cnrs.fr"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+  <p>Décrire la procédure d'extraction des données d'observation dans data-snot.cnrs.fr.</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Tout public</p>
+  <p>Pas de pré-requis spécifiques</p>
+</div>
+
+
+

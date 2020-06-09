@@ -1,0 +1,241 @@
+code_var;description;code_typedonnees;type_variable;code_typefichier;code_unite;traitement
+FCH4cc;Concentration en CH4 en ppmv avec la date et le temps de la mesure de l’échange net de l’écosystème;chambrech4;auxiliaire;Brute_chambrech4;ppmv;
+FCH4cPa;Pression de l'air dans la chambre lors de la mesure de l'échange net de l'écosystème;chambrech4;auxiliaire;Brute_chambrech4;;
+FCH4cTa;Température de l'air dans la chambre lors de la mesure de l'échange net de l'écosystème;chambrech4;auxiliaire;Brute_chambrech4;°C;
+FCH4cV;Volume de mesure de l'échange net de l'écosystème;chambrech4;auxiliaire;Brute_chambrech4;;
+FCH4cWV;"Hygrométrie dans la chambre lors de la mesure de l'échange net de l'écosystème; si disponible";chambrech4;auxiliaire;Brute_chambrech4;;
+FCH4c;Concentration en CH4 en ppmv avec la date et le temps (précision à la seconde) de la mesure de l'échange net de l'écosystème;chambrech4;cible;SNOT_chambrech4;ppmv;
+NEEcPa;Pression de l'air dans la chambre transparente lors de la mesure de l'échange net de l'écosystème;chambreco2;auxiliaire;Brute_chambreco2;;Capteur
+NEEcV;Volume de mesure de l'échange net de l'écosystème dans la chambre transparente;chambreco2;auxiliaire;Brute_chambreco2;;Capteur
+NEEcc;Concentration en CO2 en ppmv avec la date et le temps de la mesure de l'échange net de l'écosystème;chambreco2;auxiliaire;Brute_chambreco2;;Capteur
+NEEcWV;Hygrométrie dans la chambre transparente lors de la mesure de l'échange net de l'écosystème, si disponible;chambreco2;auxiliaire;Brute_chambreco2;;Capteur
+NEEcTa;Température de l'air dans la chambre transparente lors de la mesure de l'échange net de l'écosystème;chambreco2;auxiliaire;Brute_chambreco2;°C;Capteur
+REcc;Concentration en CO2  en ppmv avec la date et le temps (précision à la seconde) de la mesure de l'échange net de l'écosystème;chambreco2;auxiliaire;Brute_chambreco2;ppmv;Capteur
+REcPa;Pression de l'air dans la chambre opaque lors de la mesure de l'échange net de l'écosystème;chambreco2;auxiliaire;Brute_chambreco2;kPa;Capteur
+REcTa;Température de l'air dans la chambre opaque lors de la mesure de l'échange net de l'écosystème;chambreco2;auxiliaire;Brute_chambreco2;°C;Capteur
+REcV;Volume de mesure de l'échange net de l'écosystème dans la chambre opaque;chambreco2;auxiliaire;Brute_chambreco2;;Capteur
+REcWV;"Hygrométrie dans la chambre opaque lors de la mesure de l'échange net de l'écosystème; si disponible";chambreco2;auxiliaire;Brute_chambreco2;;Capteur
+GPP;Production primaire brute dans la chambre d’accumulation;chambreco2;cible;SNOT_chambreco2;μmol/m2/s;Calculé à partir des variables NEEc et REc
+NEE;Echange Net de l’écosystème dans la chambre d’accumulation;chambreco2;cible;SNOT_chambreco2;μmol/m2/s;Calculé à partir des variables NEEcPa, NEEcV, NEEcc, NEEcWV, NEEcTa
+ER;Respiration de l’écosystème dans la chambre d’accumulation;chambreco2;cible;SNOT_chambreco2;μmol/m2/s;Calculé à partir des variables REcc, REcPa, REcTa, REcV, REcWV
+WTD;Water table depth;chambreco2;cible;SNOT_chambreco2;m;
+TS;Température du sol;chambreco2;cible;SNOT_chambreco2;°C;
+CO2;Concentration en CO2 en ppmv avec la date et le temps de la mesure de l'échange net de l'écosystème;chambreco2;auxiliaire;Brute_chambreco2;;Capteur
+RH;"Hygrométrie dans la chambre transparente lors de la mesure de l'échange net de l'écosystème; si disponible";chambreco2;auxiliaire;Brute_chambreco2;;Capteur
+T;Température de l'air dans la chambre transparente lors de la mesure de l'échange net de l'écosystème;chambreco2;auxiliaire;Brute_chambreco2;°C;Capteur
+Qm;Débit manuel à l'éxutoire;debitmanuel;cible;SNOT_debitmanuel ;;Estimation par une courbe de tarage (relation entre le niveau de l’eau à l’exutoire et le débit) et la mesure à haute fréquence du niveau de l’eau à l’exutoire
+ETR;Evapotranspiration réelle par eddy-covariance;eddycovariance;cible;SNOT_eddycovariance;mm/h;Calcul des flux de GES semi-automatisé avec EddyPro
+FC;Flux de CO2 par eddy-covariance;eddycovariance;cible;SNOT_eddycovariance;μmolCO2/m2/s;Calcul des flux de GES semi-automatisé avec EddyPro
+FCH4;Flux de CH4 par eddy-covariance;eddycovariance;cible;SNOT_eddycovariance;μmol/m2/s;Calcul des flux de GES semi-automatisé avec EddyPro
+H;Flux de chaleur sensible;eddycovariance;cible;SNOT_eddycovariance;W/m2;Calcul des flux de GES semi-automatisé avec EddyPro
+LE;Flux de chaleur latente;eddycovariance;cible;SNOT_eddycovariance;W/m2;Calcul des flux de GES semi-automatisé avec EddyPro
+WDx;Direction du vent 3D - x;eddycovariance;auxiliaire;SNOT_eddycovariance;°;
+WDy;Direction du vent 3D - y;eddycovariance;auxiliaire;SNOT_eddycovariance;°;
+WDz;Direction du vent 3D - z;eddycovariance;auxiliaire;SNOT_eddycovariance;°;
+WSx;Vitesse du vent 3D - x;eddycovariance;auxiliaire;SNOT_eddycovariance;m/s;
+WSy;Vitesse du vent 3D - y;eddycovariance;auxiliaire;SNOT_eddycovariance;m/s;
+WSz;Vitesse du vent 3D - z;eddycovariance;auxiliaire;SNOT_eddycovariance;m/s;
+Aux 1 - U (m/s);Vitesse du vent 3D - composante horizontale;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Aux 2 - V (m/s);Vitesse du vent 3D - composante latérale;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Aux 3 - W (m/s);Vitesse du vent 3D - composante verticale;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Aux 4 - Ts (C);A faire;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Average Signal Strength;Moyenne de la force du signal;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Block Temperature (C);Température dans l’analyseur de gaz;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Box Pressure (kPa);Pression de la boîte contenant l'enregistreur et l'électronique;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Cell Temperature (C);Température de la cellule de mesure;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+CH4 (mmol/m^3);Concentration en CH4;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+CH4 (umol/mol);Fraction molaire de CH4 dans l’air sec;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+CH4 Diagnostic Value ;Valeur diagnostique de la mesure du CH4;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+CH4 Drop Rate (%);Pourcentage d’analyse à 1000 hz abandonnées;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+CH4 Nanoseconds;Nanosecondes depuis le début de la seconde;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+CH4 Pressure;Pression de la cellule;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+CH4 Seconds;Secondes depuis la date de référence;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+CH4 Signal Strength;Force du signal du CH4;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+CH4 Temperature;Température de la cellule;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+CHK;Vérification de l’intégrité des données;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Chopper Cooler Voltage (V);Voltage du s;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+CHOPPER_COOLER_V;Voltage du s;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+CO2 (mg/m^3);Densité de masse du CO2;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+CO2 (mmol/m^3);Densité de la concentration en CO2;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+CO2 (umol/mol);Fraction molaire de CO2 dans l’air humide;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+CO2 Absorptance;Absorbance du CO2;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+CO2 dry(umol/mol);Fraction molaire de CO2 dans l’air sec;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+CO2 Reference;CO2 raw power in the reference wavelength ;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+CO2 Sample;Mesure brute du CO2;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+CO2 Signal Strength;Force du signal du CO2;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Cooler Voltage (V);Tension du détecteur de refroidissement;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Date;Date (YY-MM-DD);eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Delta Signal Strength;Différence entre la force du signal de deux gaz;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Dew Point (C);Température sonique;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Diagnostic Value;Valeurs diagnostiques du capteur;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Diagnostic Value 2;Valeurs diagnostiques du capteur en binaire;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Flow Drive (%);Entraînement de l’entrée de la pompe;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Flow Power (V);Tension appliquée au moteur;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Flow Pressure (kPa);Pression du débit du capteur;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Flow Rate (lpm);Débit du capteur;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Flow Rate (slpm);Débit dans la ligne d'échantillonnage normalisé pour la température et la pression;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+H2O (g/m^3);Densité de masse de H2O;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+H2O (mmol/m^3);Densité de concentration de H2O;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+H2O (mmol/mol);Fraction molaire de H2O dans l’aire humide;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+H2O Absorptance;Absorbance de H20;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+H2O dry(mmol/mol);Fraction molaire de H2O dans l’air sec;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+H2O Reference;H2O raw power in the reference wavelength ;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+H2O Sample;Mesure brute de H2O;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+H2O Signal Strength;Force du signal de le H2O;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Head Pressure (kPa);Différence de pression entre la cellule et la boite;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+HIT Power (W);Puissance fournie dans le tube de chauffe;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Nanoseconds;Nanosecondes depuis le début de la seconde;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Seconds;Secondes depuis la date de référence;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Sequence Number;Indice de valeur (incrémente toutes les 3.3 ms);eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Temperature In (C);Température de la cellule à l’entrée de l’échantillon;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Temperature Out (C);Température de la cellule à la sortie de l’échantillon;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Time;Temps (HH:MM:SS.ss);eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Total Pressure (kPa);Pression dans la cellule de mesure;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Vin HIT (V);Energie fournie dans le tube de chauffe;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+Vin SmartFlux (V);Tension du système SmartFlux;eddycovariance;auxiliaire;LICOR_eddycovariance;;
+AUX4;;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+AVERAGE_STR;Moyenne de la force du signal;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+CH4;Fraction molaire de CH4 dans l’air sec;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+CH4_CONC;Concentration en CH4;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+CH4_DIAG_VALUE;Valeur diagnostique de la mesure du CH4;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+CH4_DR;Pourcentage d’analyse à 1000 hz abandonnées;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+CH4_NS;Nanosecondes depuis le début de la seconde;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+CH4_PRESSURE;Pression de la cellule;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+CH4_S;Secondes depuis la date de référence;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+CH4_STR;Force du signal du CH4;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+CH4_T;Température de la cellule;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+CO2 ;Fraction molaire de CO2 dans l’air humide;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+CO2_ABS ;Absorbance du CO2;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+CO2_CONC ;Densité de la concentration en CO2;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+CO2_DRY ;Fraction molaire de CO2 dans l’air sec;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+CO2_MASS ;Densité de masse du CO2;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+CO2_POW_REF ;CO2 raw power in the reference wavelength ;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+CO2_POW_SAM ;Mesure brute du CO2;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+CO2_STR ;Force du signal du CO2;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+COOLER_V;Tension du détecteur de refroidissement;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+DELTA_STR ;Différence entre la force du signal de deux gaz;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+DIAG2;Valeurs diagnostiques du capteur en binaire;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+FLOW_PRESS ;Pression du débit du capteur;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+FLOW_PUMPDRIVE ;Entraînement de l’entrée de la pompe;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+FLOW_STDRATE ;Débit dans la ligne d'échantillonnage normalisé pour la température et la pression;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+FLOW_VOLRATE ;Débit du capteur;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+FP;Tension appliquée au moteur;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+GA_CHKSUM ;Vérification de l’intégrité des données;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+GA_DIAG_CODE ;Valeurs diagnostiques du capteur;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+GA_TUBE_HEAT ;Puissance fournie dans le tube de chauffe;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+GA_TUBE_HEAT_V ;Energie fournie dans le tube de chauffe;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+H2O ;Fraction molaire de H2O dans l’aire humide;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+H2O_ABS ;Absorbance de H20;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+H2O_CONC ;Densité de concentration de H2O;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+H2O_DRY ;Fraction molaire de H2O dans l’air sec;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+H2O_MASS ;Densité de masse de H2O;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+H2O_POW_REF ;H2O raw power in the reference wavelength ;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+H2O_POW_SAM ;Mesure brute de H2O;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+H2O_STR ;Force du signal de le H2O;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+NA;Date (YY-MM-DD);eddycovariance;auxiliaire;ICOS_eddycovariance;;
+NA;Temps (HH:MM:SS.ss);eddycovariance;auxiliaire;ICOS_eddycovariance;;
+PRESS_BOX ;Pression de la boîte contenant l'enregistreur et l'électronique;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+PRESS_CELL ;Pression dans la cellule de mesure;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+PRESS_DELTA ;Différence de pression entre la cellule et la boite;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+SQ;Indice de valeur (incrémente toutes les 3.3 ms);eddycovariance;auxiliaire;ICOS_eddycovariance;;
+T_CELL ;Température de la cellule de mesure;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+T_CELL_IN ;Température de la cellule à l’entrée de l’échantillon;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+T_CELL_OUT ;Température de la cellule à la sortie de l’échantillon;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+T_GA ;Température dans l’analyseur de gaz;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+T_SONIC ;Température sonique;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+TIMESTAMP ;Temps (format YYYYMMDDHHMMSS.ss);eddycovariance;auxiliaire;ICOS_eddycovariance;;
+TIMESTAMP_DLNS ;Nanosecondes depuis le début de la seconde;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+TIMESTAMP_DLSS ;Secondes depuis la date de référence;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+U ;Vitesse du vent 3D - composante horizontale;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+V ;Vitesse du vent 3D - composante latérale;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+V_SMART_FLUX;Tension du système SmartFlux;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+W ;Vitesse du vent 3D - composante verticale;eddycovariance;auxiliaire;ICOS_eddycovariance;;
+Date;Date (YYYYMMJJHHMMSS);meteosol;cible;Brute_meteosol;Date;
+Aref;Altitude du point de référence;meteosol;auxiliaire;Brute_meteosol;m;
+EC;Bulk Electrical Conductivity;meteosol;auxiliaire;Brute_meteosol;;
+Esen;Coefficient correcteur;meteosol;auxiliaire;Brute_meteosol;;
+G_qf;Quality flag;meteosol;cible;Brute_meteosol;;
+h;Distance entre le capteur et le haut de la nappe d’eau;meteosol;auxiliaire;Brute_meteosol;m;
+l;Distance entre le point de référence sur une borne et le capteur de pression;meteosol;auxiliaire;Brute_meteosol;m;
+P_rain;Précipitation sous forme de pluie;meteosol;cible;Brute_meteosol;mm;
+Pe;Permittivité électrique;meteosol;auxiliaire;Brute_meteosol;;
+PPFD;Photosynthetic photon flux density;meteosol;cible;Brute_meteosol;μmol/m2/s;
+Pr;Period Average;meteosol;auxiliaire;Brute_meteosol;;
+raw_P_rain;Bascule de l’auget;meteosol;auxiliaire;Brute_meteosol;;
+RH;Humidité relative de l’air;meteosol;cible;Brute_meteosol;%;
+SWC;Teneur en eau du sol;meteosol;cible;Brute_meteosol;%;
+Ta;Température de l’air;meteosol;cible;Brute_meteosol;°C;
+Tgwl;Température de l'eau dans le piézo;meteosol;auxiliaire;Brute_meteosol;°C;
+Ts;Température du sol;meteosol;cible;Brute_meteosol;°C;
+Tswc;Température du capteur en eau;meteosol;auxiliaire;Brute_meteosol;°C;
+VR;Voltage ratio;meteosol;auxiliaire;Brute_meteosol;V;
+WD;Direction du vent;meteosol;cible;Brute_meteosol;°;
+WS;Vitesse du vent;meteosol;cible;Brute_meteosol;m/s;
+WS_qf;Flag de la vitesse du vent;meteosol;cible;Brute_meteosol;;
+SWin;Ondes courtes entrantes;meteosol;cible;Brute_meteosol;W/m2;
+SWout;Ondes courtes sortantes;meteosol;cible;Brute_meteosol;W/m2;
+LWin;Ondes longues entrantes;meteosol;cible;Brute_meteosol;W/m2;
+LWout;Ondes longues sortantes;meteosol;cible;Brute_meteosol;W/m2;
+TIMESTAMP;Time in the form YYYYMMDDHHMMSS.ss;meteosol;cible;ICOS_meteosol;Date;Capteur
+TIMESTAMP_DLSS;Seconds since the epoch reference date;meteosol;cible;ICOS_meteosol;Secondes;Capteur
+TIMESTAMP_DLNS;Nanoseconds from the beginning of the second;meteosol;cible;ICOS_meteosol;Nanosecondes;Capteur
+TS;Température du sol;meteosol;cible;ICOS_meteosol;°C;Capteur
+SWC;Teneur en eau du sol;meteosol;cible;ICOS_meteosol;%;Capteur
+G;Flux de chaleur dans le sol;meteosol;cible;ICOS_meteosol;W/m2;Capteur
+G_SF;Calibration/sensitivity factor of G;meteosol;cible;ICOS_meteosol;μV/(W/m2 );Capteur
+G_ISCAL;Calibration flag for G (without digits);meteosol;cible;ICOS_meteosol;Sans unité;Capteur
+WCP;Water column pressure (for WTD calculation);meteosol;cible;ICOS_meteosol;Pa;Expertise
+WTD;Water table depth;meteosol;cible;ICOS_meteosol;m;Expertise
+TA;Température de l’air;meteosol;cible;ICOS_meteosol;°C;Capteur
+PA;Pression atmosphérique;meteosol;cible;ICOS_meteosol;hPa;Capteur
+RH;Humidité relative de l’air;meteosol;cible;ICOS_meteosol;%;Capteur
+LW_T_BODY;Body temperature of LW sensor;meteosol;cible;ICOS_meteosol;°C;Capteur
+SW_T_BODY;Body temperature of SW sensor (when measured);meteosol;cible;ICOS_meteosol;°C;Capteur
+SW_IN;Ondes courtes entrantes;meteosol;cible;ICOS_meteosol;W/m2;Capteur
+SW_OUT;Ondes courtes sortantes;meteosol;cible;ICOS_meteosol;W/m2;Capteur
+LW_IN;Ondes longues entrantes;meteosol;cible;ICOS_meteosol;W/m2;Capteur
+LW_OUT;Ondes longues sortantes;meteosol;cible;ICOS_meteosol;W/m2;Capteur
+PPFD_IN;Photosynthetic photon flux density;meteosol;cible;ICOS_meteosol;μmol/m2/s;Capteur
+PPFD_OUT;Photosynthetic photon flux density outgoing;meteosol;cible;ICOS_meteosol;μmol/m2/s;Capteur
+PPFD_DIF;Photosynthetic photon flux density diffuse;meteosol;cible;ICOS_meteosol;μmol/m2/s;Capteur
+PPFD_BC_IN;PPFD below canopy incoming;meteosol;cible;ICOS_meteosol;μmol/m2/s;Capteur
+PPFD_BC_OUT;PPFD below canopy outgoing;meteosol;cible;ICOS_meteosol;μmol/m2/s;Capteur
+P;Précipitation sous forme de pluie;meteosol;cible;ICOS_meteosol;mm;Capteur
+GWD;Niveau de la nappe d’eau par rapport au haut des sphaignes;meteosol;cible;ICOS_meteosol;m;Capteur
+WS;Vitesse du vent;meteosol;cible;ICOS_meteosol;m/s;Capteur
+WD;Direction du vent;meteosol;cible;ICOS_meteosol;°;Capteur
+G;Flux de chaleur dans le sol;meteosol;cible;SNOT_meteosol;W/m2;Capteur
+LW_IN;Ondes longues entrantes;meteosol;cible;SNOT_meteosol;W/m2;Capteur
+LW_OUT;Ondes longues sortantes;meteosol;cible;SNOT_meteosol;W/m2;Capteur
+P;Précipitation sous forme de pluie;meteosol;cible;SNOT_meteosol;mm;Capteur
+PA;Pression atmosphérique;meteosol;cible;SNOT_meteosol;hPa;Capteur
+PPFD_IN;Photosynthetic photon flux density;meteosol;cible;SNOT_meteosol;μmol/m2/s;Capteur
+RH;Humidité relative de l’air;meteosol;cible;SNOT_meteosol;%;Capteur
+SW_IN;Ondes courtes entrantes;meteosol;cible;SNOT_meteosol;W/m2;Capteur
+SW_OUT;Ondes courtes sortantes;meteosol;cible;SNOT_meteosol;W/m2;Capteur
+SWC;Teneur en eau du sol;meteosol;cible;SNOT_meteosol;%;Capteur
+TA;Température de l’air;meteosol;cible;SNOT_meteosol;°C;Capteur
+TS;Température du sol;meteosol;cible;SNOT_meteosol;°C;Capteur
+WD;Direction du vent;meteosol;cible;SNOT_meteosol;°;Capteur
+WS;Vitesse du vent;meteosol;cible;SNOT_meteosol;m/s;Capteur
+dref;Distance entre le haut du piézomètre et le haut des sphaignes;piezo;auxiliaire;SNOT_piezo;;Constante qui varie avec le temps
+L_GWD;Distance entre le haut du piézomètre et le capteur de pression;piezo;auxiliaire;SNOT_piezo;;Constante qui varie avec le temps
+Q;Débit à l'éxutoire;debit;cible;SNOT_doc;m3/s;Estimation par une courbe de tarage (relation entre le niveau de l’eau à l’exutoire et le débit) et la mesure à haute fréquence du niveau de l’eau à l’exutoire
+code_ngf;Altitude moyenne du site pour calculer GWL;piezo;auxiliaire;SNOT_piezo;;Constante qui varie avec le temps
+GWL;Altitude de la nappe;piezo;auxiliaire;SNOT_piezo;;Calculée par la soustraction de l’altitude d’un point de référence noté Aref par la distance entre le capteur de pression () et le point de référence (L) et en y ajoutant l’épaisseur de la lame d’eau mesurée entre le capteur et le haut de la nappe (H)
+WTD;Water table depth;piezo;cible;SNOT_piezo;m;
+TW;Température de l’eau dans le piézomètre;piezo;cible;SNOT_piezo;°C;
+GWLm;Niveau manuel piézométrique;piezomanuel;auxiliaire;SNOT_piezomanuel ;;Calculée par la soustraction de l’altitude d’un point de référence noté Aref par la distance entre le capteur de pression () et le point de référence (L) et en y ajoutant l’épaisseur de la lame d’eau mesurée entre le capteur et le haut de la nappe (H)
+especes;Nom de l’espèce en latin;rec;auxiliaire;Brute_rec;;
+Rec;Pourcentage de recouvrement de l’espèce dans la strate pour un réplicat donné;rec;cible;SNOT_rec;;
+replicat;Numéro du réplicat (1 à 10);rec;auxiliaire;Brute_rec;;
+strate;Numéro de la strate (1 à 3);rec;auxiliaire;Brute_rec;;
+FDOC;Flux de carbone organique dissous à l'exutoire;doc;cible;SNOT_doc;mg/L;
+FPOC;Flux de carbone organique particulaire à l'exutoire;poc;cible;SNOT_doc;;
+pHm;pH manuel à l’exutoire;biogeo;cible;SNOT_biogeo;;
+FDOM;Fluorescence de la matière organique dissoute pour le calcul de FDOC;biogeo;auxiliaire;Brute_biogeo;;
+fDOM;Fluorescence de la matière organique dissoute;biogeo;auxiliaire;Brute_biogeo;;
+Turb;Turbidité pour le calcul de FPOX;biogeo;auxiliaire;Brute_biogeo;UTN;
+Cond;Conductivité à l’exutoire;biogeo;auxiliaire;Brute_biogeo;;
+DOCm;Mesure manuelle du carbone organique dissous ;biogeo;auxiliaire;Brute_biogeo;;
+Condm;Conductivité à l'exutoire;biogeo;auxiliaire;Brute_biogeo;;

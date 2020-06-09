@@ -1,0 +1,5 @@
+nom_key;nom_fr;nom_en;description_fr;description_en
+ges;Gaz à effet de serre;Greenhouse gas;Données de flux de gaz à effet de serre provenant des stations eddy-covariance et des chambres d’accumulation;Greenhouse gas data from eddy-covariance station and assimilation chamber
+meteosol;Météorologie et physique du sol;Meteorological & physical soil;Données météorologiques et physiques du sol provenant des stations météo-sol;Meteorological and physical soil from biometeorological station
+hydrocarto;Données hydrologiques;Hydrological data;Données hydrologiques;Hydrological data
+biogeo;Données biogéochimiques;Biogeochemical data;Données biogéochimiques;Biogeochemical data

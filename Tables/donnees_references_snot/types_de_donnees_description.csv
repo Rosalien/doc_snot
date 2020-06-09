@@ -1,0 +1,5 @@
+Nom de la colonne; Signification ;Unique;Obligatoire
+nom_fr;Nom français du type de données;oui;oui
+nom_en;Nom anglais du type de données;non;non
+définition_fr;Définition (description) du type de données en français;non;non
+définition_en;Définition (description) du type de données en anglais;non;non

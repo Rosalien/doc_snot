@@ -1,0 +1,220 @@
+---
+title: "Administration et installation de l'application Shiny"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+  <p>Administration et installation des application Shiny</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Administrateur du SI SNO-T</p>
+  <p>Connaissance environnement linux et R</p>
+</div>
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy('')
+```
+
+Des applications Shiny sont développées pour faciliter l'accès aux données intégrer dans [https://data-snot.cnrs.fr/](https://data-snot.cnrs.fr/). Les applications Shiny sont diffusées grâce à shiny-server installé sur la même VM que le serveur tomcat de l'application data-snot.cnrs.fr. Son IP est `163.9.41.45` et il est accessible avec l'utilisateur tomcat en ssh avec cette commande :
+
+```
+ssh tomcat@163.9.41.45
+```
+
+# Installation et configuration de l'application Shiny
+
+## Installation
+
+Shiny-server ainsi que les paquets R nécessaires pour faire tourner les applications shiny ont été installés avec les commandes suivantes :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+# Selon https://www.rstudio.com/products/shiny/download-server/
+# Installation de r et de quelques dépendances
+sudo apt-get install r-base libfontconfig1-dev libcairo2-dev libxml2-dev
+
+# Installation dans R de plusieurs librairies
+sudo su - \
+-c "R -e \"install.packages('shiny', repos='https://cran.rstudio.com/')\""
+
+sudo su - \
+-c "R -e \"install.packages(c('rmarkdown','RPostgreSQL','DT','xts','dygraphs','pool','leaflet','stringr','sp','data.table','anytime','curl','dplyr','shinyjs','shinycssloaders','shinyWidgets','plotly','reshape','shinythemes','shinydashboard','tableHTML','gridExtra','grid','shiny.i18n','RColorBrewer','shinyalert','gsubfn','suncalc','rintrojs','wesanderson','esquisse','officer','rvg'), repos='https://cran.rstudio.com/')\""
+
+# Installation de shiny-server
+
+sudo apt-get install gdebi-core
+wget https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.9.923-amd64.deb
+sudo gdebi shiny-server-1.5.9.923-amd64.deb
+```
+
+## Droits pour l'utilisateur `tomcat`
+
+Les droits d'accès sont donnés à l'utilisateur tomcat pour les différentes instances de Shiny :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+sudo chown -R tomcat:tomcat /etc/shiny-server/
+sudo chmod -R 775 /etc/shiny-server/
+
+sudo chown -R tomcat:tomcat /srv/shiny-server/
+sudo chmod -R 775 /srv/shiny-server/
+
+sudo chown -R tomcat:tomcat /opt/shiny-server/
+sudo chmod -R 775 /opt/shiny-server/
+
+sudo chown tomcat:tomcat /usr/bin/shiny-server
+sudo chmod 775 /usr/bin/shiny-server
+
+sudo chown -R tomcat:tomcat /var/log/shiny-server/
+sudo chmod -R 775 /var/log/shiny-server/
+
+sudo chown -R shiny:shiny /usr/local/lib/R/site-library/
+sudo chmod -R 775 /usr/local/lib/R/site-library/
+
+```
+
+Les droits pour lancer les commandes systemctl sont également modifiés dans `/etc/sudoers.d/`
+
+```
+%tomcat ALL = NOPASSWD: /bin/systemctl start shiny-server, /bin/systemctl restart shiny-server, /bin/systemctl stop shiny-server
+```
+
+## Configuration de shiny-server
+
+La configuration de shiny-server se fait dans le fichier `/etc/shiny-server/shiny-server.conf`. La configuration ci-dessous permet de diffuser des applications sur différents ports :
+
+- Applications sur le port **3939** : ensemble des applications internes. Elles sont lancées par l'utilisateur *tomcat* dans le répertoire `~/ShinyApps/nom_repertoire` et auront comme url cette logique : `http://data-snot.cnrs.fr:3838/tomcat/nom_repertoire/`.
+- Applications sur le port **3838** : Applications dédiées au grand public. Pour le moment, il s'agit de l'application `data-access` et de sa version de développement `data-access-snapshot` (pour visualiser et extraire les données du SNOT). Les applications sont stockées dans `/srv/shiny-server/nom_repertoire` et auront ce type d'url `http://data-snot.cnrs.fr:3838/nom_repertoire/`. 
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+# Define a server that listens on port 3838
+# Pour conserver l'application active lors des téléchargements longs, 600s (par défaut, c'est 45s )
+http_keepalive_timeout 600;
+
+server {
+  run_as :HOME_USER:;
+  listen 3939;
+
+  # Define a location at the base URL
+  location / {
+    # Allow users to host their own apps in ~/ShinyApps
+    user_dirs; 
+  }
+}
+
+# Define a server that listens on port 3939
+server {
+  run_as tomcat;
+  listen 3838;
+
+  # Define a location at the base URL
+  location /data-access {
+
+    site_dir /srv/shiny-server/data-access;
+    log_dir /var/log/shiny-server/;
+  }
+
+  location /data-access-snapshot {
+    site_dir /srv/shiny-server/data-access-snapshot;
+    log_dir /var/log/shiny-server/;
+  }
+
+  location /dataset-archive {
+    site_dir /srv/shiny-server/dataset-archive;
+    log_dir /var/log/shiny-server/;
+  }
+
+# Pour éviter les problèmes avec Kaspersky
+disable_protocols websocket xdr-polling xdr-streaming xhr-streaming iframe-eventsource iframe-htmlfile;
+sanitize_errors off;
+
+}
+```
+
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">**Important**</h4>
+  <p>Des soucis ont été rencontrés avec Kaspersky (blocage de la page). Pour cette raison, les websockets ont été désactivés</p>
+</div>
+
+Puis relancer shiny-server
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+sudo systemctl restart shiny-server
+```
+
+## Proxy et sécurité
+
+Pour des raisons de sécurité, un proxy est utilisé pour rediriger les applications du port 3939 vers le port 443 d'apache ([plus d'infos](https://chrisbeeley.net/?p=1077),[Voir aussi](https://stackoverflow.com/questions/55460620/how-to-redirect-traffic-to-multiple-shiny-apps-using-apache-and-https) et [ça](https://support.rstudio.com/hc/en-us/articles/213733868-Running-Shiny-Server-with-a-Proxy)).
+Voir aussi cette [doc](https://technique.arscenic.org/lamp-linux-apache-mysql-php/apache-le-serveur-http/modules-complementaires/article/mod_proxy-rediriger-en-tout).
+
+### Chargement des modules 
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+sudo a2enmod proxy proxy_http rewrite headers
+sudo systemctl restart apache2
+```
+
+### Configuration du serveur apache
+
+Backup du fichier de configuration
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+# Copie du fichier de configuration 
+sudo cp /etc/apache2/mods-enabled/jk.conf /etc/apache2/mods-enabled/jk.conf.old
+```
+
+Ajouter ces lignes pour rediriger l'appli `http://data-snot.cnrs.fr:3838/data-access` vers [https://data-snot.cnrs.fr/data-access/](https://data-snot.cnrs.fr/data-access/) et `http://data-snot.cnrs.fr:3939/tomcat/dataset-archive` vers [https://data-snot.cnrs.fr/dataset-archive/](https://data-snot.cnrs.fr/dataset-archive/).
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+<Proxy *>
+  Allow from localhost
+</Proxy>
+
+# Règle de redirection pour l'application dataset-archive
+
+RedirectMatch permanent ^/dataset-archive$ /dataset-archive/
+RewriteEngine on
+RewriteCond %{HTTP:Upgrade} =websocket
+RewriteRule /dataset-archive/(.*) ws://localhost:3838/dataset-archive/$1 [P,L]
+RewriteCond %{HTTP:Upgrade} !=websocket
+RewriteRule /dataset-archive/(.*) http://localhost:3838/dataset-archive/$1 [P,L]
+ProxyPass /dataset-archive/ http://localhost:3838/dataset-archive/
+ProxyPassReverse /dataset-archive/ http://localhost:3838/dataset-archive/
+Header edit Location ^/ /dataset-archive/
+
+# Règle de redirection pour l'application data-access
+RedirectMatch permanent ^/data-access$ /data-access/
+RewriteEngine on
+RewriteCond %{HTTP:Upgrade} =websocket
+RewriteRule /data-access/(.*) ws://localhost:3838/data-access/$1 [P,L]
+RewriteCond %{HTTP:Upgrade} !=websocket
+RewriteRule /data-access/(.*) http://localhost:3838/data-access/$1 [P,L]
+ProxyPass /data-access/ http://localhost:3838/data-access/
+ProxyPassReverse /data-access/ http://localhost:3838/data-access/
+Header edit Location ^/ /data-access/
+
+# Règle de redirection pour l'application data-access-snapshot
+RedirectMatch permanent ^/data-access-snapshot$ /data-access-snapshot/
+RewriteEngine on
+RewriteCond %{HTTP:Upgrade} =websocket
+RewriteRule /data-access-snapshot/(.*) ws://localhost:3838/data-access-snapshot/$1 [P,L]
+RewriteCond %{HTTP:Upgrade} !=websocket
+RewriteRule /data-access-snapshot/(.*) http://localhost:3838/data-access-snapshot/$1 [P,L]
+ProxyPass /data-access-snapshot/ http://localhost:3838/data-access-snapshot/
+ProxyPassReverse /data-access-snapshot/ http://localhost:3838/data-access-snapshot/
+Header edit Location ^/ /data-access-snapshot/
+```
+
+Puis recharger le fichier de configuration
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+sudo systemctl restart apache2
+```
+
+## Administration de shiny-server
+
+Le guide complet pour l'administration de shiny-server est accessible à cette [adresse](https://docs.rstudio.com/shiny-server/)

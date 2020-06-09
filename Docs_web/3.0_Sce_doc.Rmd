@@ -1,0 +1,87 @@
+---
+title: "Le type de données du Carbone Organique Dissous `doc`"
+---
+
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectifs et contenu**</h4>
+  <p>Décrire le cycle de vie général du type de données Carbone Organique Dissous `doc`</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Thématiciens et gestionnaires des données biogéochimiques,</p>
+  <p>Connaissance générale de l'organisation des données du SI SNO-T.</p>
+</div>
+
+# Le type de données `doc`
+
+```{r,evaL=TRUE,echo=FALSE}
+# Ici, nommer le code du type de données pour automatiser le nommage. Cette variable est également utilisée dans les tableaux pour filtrer par type de données
+v_tdo <- "doc"
+```
+
+Le type de données `doc` (pour Dissolved Organic Carbon) correspond aux données de flux de carbone organique dissous calculé à l'exutoire des tourbières du SNO-T.
+
+# Étapes du cycle de vie
+
+![](`r repfigures`/Diagramme_doc.png)
+
+Les principales étapes du cycle de vie du type de données `doc` sont présentées ci-dessous. La table complète avec d'autres attributs est accessible à cette [adresse.](https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_srvso/Caracteristiques_typedefichiers.csv)
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/Caracteristiques_typedefichiers.csv",sep=""),sep=";",colClasses = "character")
+colonneIn <- c("nom_etape","description","frequence","duree")
+metatable <- metatable[metatable$code_typedonnees %in% v_tdo,names(metatable)%in%colonneIn]
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling() %>%
+scroll_box(width = "100%", height = "300px")
+#kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+# Arborescence de stockage dans le serveur FTP `SRV-SO`
+
+## Spécificité du type de données `doc`
+
+Le calcul des flux de DOC nécessite l'acquisition de plusieurs types de données collectés à l'exutoire de la tourbière. Ces données sont également nécessaires pour le calcul du flux du carbone organique particulaire (FPOC). Pour faciliter la gestion de ces données, une gestion par station de mesure est privilégiée : 
+
+- les données du cycle de vie du doc sont stockées dans le répertoire `doc`,
+- les données associées à la fluorescence de la matière organique sont stockées dans le répertoire `fluo`,
+- les données de débit à l'exutoire sont stockées dans le répertoire `debit`.
+
+Voici un exemple d'arborescence du stockage dans le serveur FTP `SRV-SO` du type de données `doc` et des types de données complémentaires `fluo` et `debit` pour la station multiparamètres `sm_exutoire` de la tourbière de la Guette.
+Le nom du répertoire est organisé selon le numéro de l'étape du cycle de vie et du type de fichier.
+
+```
+lgt
+└── sm_exutoire
+    └── doc
+        ├── 1_BRUTE_doc
+        │   ├── 1_BRUTE_fDOM
+        │   ├── 1_BRUTE_hauteurEau
+        │   └── 1_BRUTE_jaugeage
+        ├── 2_TRAITEMENT_doc
+        └── 3_SNOT_doc
+```
+
+Avec :
+
+- lgt : Le code du site de La Guette
+- sm_exutoire : le code de la station multiparamètre ([rappel sur la logique de construction](https://sourcesup.renater.fr/si-snot/2_SRVSO_Arborescence.html))
+- doc : le code du type de données `doc`
+- 1_BRUTE_doc (*recommandé*) : Fichiers bruts regroupant toutes les fichiers en provenance de la station sm_exutoire. Ce répertoire contient les différents types de données utilisés pour construire les variables cible
+- 2_TRAITEMENT_doc (*recommandé*) : Traitement des Fichiers bruts
+- 3_SNOT_doc (*obligatoire*) : Stockage des fichiers au format du SNOT pour intégration dans le SI SNO-T.
+
+&nbsp;
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**Rappel sur la constuction de l'arborescence et des codes**</h4>
+  <p>Pour plus de détails sur la logique de construction de l'arborescence du serveur FTP `SRV-SO`, consultez cette `r linkAlertCSS("page","https://sourcesup.renater.fr/si-snot/2_SRVSO_Arborescence.html")`.</p>
+</div>
+
+

@@ -1,0 +1,76 @@
+---
+title: "Utilisation du dépôt `Git`"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+  <p>Présentation rapide du dépôt `Git` pour le développement et la maintenance du SI.</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Développeurs et administrateur du SI SNO-T.</p>
+</div>
+
+# Le dépôt de fichiers `Git` du SI SNO-Tourbières
+
+Tous les fichiers de développement et la documentation du projet sont stockés et versionnés dans un dépôt de fichier `Git`. De nombreuses documentations existent pour faciliter l'utilisation de git. Parmi celles-ci, ce [tutoriel](https://openclassrooms.com/courses/gerez-vos-codes-source-avec-git) présente bien les concepts associés à `Git` et guide l'utilisateur pour son utilisation sur windows et linux. Pour une vision complète, consultez la [documentation officielle](https://git-scm.com/book/fr/v2).
+
+## Caractéristiques
+
+Le dépôt `Git` du projet est hébergé sur la [forge Redmine de l'OSUC](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/) : 
+L'adresse du dépôt est la suivante :
+
+- **Adresse du dépôt** : `https://forge-osuc.cnrs-orleans.fr/git/sie-sno-tourbiere`
+
+## Importation du dépôt en local et fonctionnalités
+
+`git clone https://forge-osuc.cnrs-orleans.fr/git/sie-sno-tourbiere`
+
+# Règle d'organisation du dépôt
+
+## Arborescence du dépôt
+
+La racine du dépôt présente 3 répertoires :
+
+- **Data :** Répertoire pour stocker les données test. L'arborescence de ce répertoire reproduit l'arborescence type qui devra être présente sur le serveur FTP SRV-SO. Ce répertoire stocke également quelques données fictives pour présenter les fichiers types.
+- **Developpement :** Fichiers de développement des applications web et des scripts R
+- **Documentation :** Documentation du projet
+
+```{r,eval=FALSE,echo=TRUE}
+.
+├── Data
+│   ├── bdz
+│   ├── [code_site]
+│   ├── frn
+│   ├── ldm
+│   ├── lgt
+│   └── scripts
+├── Developpement
+│   ├── Readme.md
+│   ├── Scripts
+│   └── SI
+├── Documentation
+│   ├── Docs_ICOS
+│   ├── Docs_metier
+│   ├── Docs_OZCAR
+│   ├── Docs_qualite
+│   ├── Docs_SNOT
+│   ├── Figures
+│   ├── Procedures
+│   ├── Readme.md
+│   └── Tables
+└── Readme.md
+```
+
+## Règles et convention de nommage
+
+Le dépôt est organisé selon une arborescence qui respecte les règles suivantes :
+
+- chaque nœud de l'arborescence contient un fichier Readme.md (en [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)) qui présente brièvement les répertoires,
+- le nom des répertoires est le plus explicite possible et ne contient pas d'accents et d'espaces (remplacer par un souligné),
+- l'encodage des fichiers textes et des tables (type .csv) est en **UTF-8**.

@@ -1,0 +1,125 @@
+---
+title: "Etape 1 : Collecte et stockage des données brutes météo-sol"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectifs et contenu**</h4>
+  <p>Décrire la collecte et le stockage des données brutes en provenance des stations météo-sol. Ces données brutes sont nommées `Brute_meteosol`</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Thématiciens et gestionnaire des données météo-sol,</p>
+  <p>Connaissance générale de l'organisation des données du SI SNO-T.</p>
+</div>
+
+```{r,evaL=TRUE,echo=FALSE}
+# Ici, nommer le code du type de données pour automatiser le nommage. Cette variable est également utilisée dans les tableaux pour filtrer par type de données
+v_tdo <- "meteosol"
+```
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**Avant propos**</h4>
+  <p>Les éléments ci-dessous sont des recommandations pour harmoniser les Fichiers bruts des stations météo-sol en vue de faciliter leur traitement. Les caractéristiques présentées ici sont basées sur le protocole mis en place pour le site de La Guette. Ce document ne reflète donc pas la diversité des situations rencontrées sur les autres sites du SNO-T.</p>
+</div>
+
+# Protocole d'acquisition
+
+Le protocole d'acquisition des données brutes `meteosol` est décrit dans le **chapitre 3** du protocole d'acquisition du SNO-T à cette [adresse](https://github.com/Rosalien/doc_snot/raw/master/Docs_metier/Protocole_acquisition_SNOT/protocole_SNO_tourbieres.pdf).
+
+# Caractéristiques de l'acquisition
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/srvso_acquisition.csv",sep=""),sep=";",colClasses = "character")
+metatable <- metatable[metatable$code_typedonnees %in% v_tdo,names(metatable)!="code_themedonnees" & names(metatable)!="code_typedonnees",]
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+# Description du fichier type `Brute_meteosol`
+
+Le fichier en sortie des stations météo-sol est nommé `Brute_meteosol`. Le nom du fichier est construit selon la logique suivante :
+
+FR_[code_site]_[code_station_old]_[code_annees]_[code_jour]_0000.csv
+
+avec : 
+
+- [code_site] : FRN = Frasne,  LGT = La Guette, LDM = Landemarais, BDZ = Bernadouze
+- [code_station_old] : ancien code de station météosol, 001 = station météo classique + physique du sol 1, 002 = station météo-sol 2, 003 = station météo-sol 3
+- [code_annees] : YY
+- [code_jour] : jour de l’année
+
+# Description des données du fichier type `Brute_meteosol`
+
+Pour le moment (**juin 2019**), les fichiers `Brute_meteosol` ne sont pas harmonisés à l'échelle du SNO-T. Un script de traitement automatique des fichiers `Brute_meteosol` a été mis en place pour les données collectées dans la tourbière de La Guette. A terme, pour profiter de ce script, il conviendra de respecter les recommandations ci-dessous.
+
+## Convention de nommage des variables
+
+Le nommage des variables de type `Brute_meteosol` s'appuie sur 4 éléments séparés par un "tiret du 8" `_` :
+
+```
+[code_variable]_[code_profil]_[code_profondeur] ou [code_subplot]
+```
+
+### Code des variables `Brute_meteosol` [Code_variable]
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/srvso_variables.csv",sep=""),sep=";",colClasses = "character")
+metatable <- metatable[metatable$code_typefichier %in% "Brute_meteosol" & metatable$type_variable %in% "cible",names(metatable) %in% c("code_var","description","code_unite")] 
+DT::datatable(metatable,rownames = FALSE)
+```
+
+### Code des profils de mesures [Code_profil]
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/srvso_profil.csv",sep=""),sep=";",colClasses = "character")
+kable(metatable, "html") %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+### Code de la profondeur de la mesure [code_profondeur]
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/srvso_profondeur.csv",sep=""),sep=";",colClasses = "character")
+kable(metatable, "html") %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+### Numéro du subplot de la mesure [code_subplot]
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/srvso_subplot.csv",sep=""),sep=";",colClasses = "character")
+kable(metatable, "html") %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+# Stockage dans le serveur FTP `STV-SO`
+
+## Caractéristique de l'envoi des fichiers
+
+### Automatique 
+
+Pour la tourbière de la Guette, les Fichiers bruts en sortie des stations météo-sol sont intégrés et stockés automatiquement sur le serveur FTP `SRV-SO` via un protocole GPRS : 
+
+- **Fréquence d'envoi** : 1 fois par jour
+- **Nombre de fichier par jour**: variable
+- **Taille** : environ 550 ko
+
+### Manuel
+
+A définir pour les autres sites du SNO-T
+ 
+## Emplacement du stockage
+
+Les Fichiers bruts en sortie des stations météo-sol sont stockés selon le chemin suivant :
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/Caracteristiques_typedefichiers.csv",sep=""),sep=";",colClasses = "character")
+metatable <- metatable[metatable$code_typedonnees %in% v_tdo & metatable$nom_etape %in% "1_Collecte",c("code_typefichier","extension","stockage")]
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```

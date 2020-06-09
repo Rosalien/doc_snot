@@ -1,0 +1,3 @@
+Nom de la colonne;Signification;Unique;Obligatoire
+code  de l'instrument;code de l’instrument;non;oui
+DOI de la référence;DOI de la référence associée à l'instrument ou URL de la documentation de l’instrument;non;oui

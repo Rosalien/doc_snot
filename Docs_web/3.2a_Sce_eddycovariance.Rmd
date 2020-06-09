@@ -1,0 +1,120 @@
+---
+title: "Etape 2a : Formatage et stockage du fichier type `ICOS_eddycovariance`"
+---
+
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+```{r,evaL=TRUE,echo=FALSE}
+# Ici, nommer le code du type de données pour automatiser le nommage. Cette variable est également utilisée dans les tableaux pour filtrer par type de données
+v_tdo <- "eddycovariance"
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectifs et contenu**</h4>
+  <p>Décrire la création des Fichiers bruts au format ICOS. Ce type de fichier est nommé `ICOS_eddycovariance`</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Sites associés ou labellisés ICOS Europe,</p>
+  <p>Thématiciens et gestionnaires des données sur les données eddy-covariance,</p>
+  <p>Connaissance générale de l'organisation des données du SI SNO-T.</p>
+</div>
+
+En fonction des sites du SNO-T, l'étape 2a consiste à décompresser et formater le fichier des données brutes pour l'envoyer à ICOS. Il s'agit du **.data** du type de Fichier brut `LICOR_eddycovariance`. L'objectif de cette mise en forme est de respecter les recommandations de ce [document ICOS](http://www.europe-fluxdata.eu/icos/documents/instructions/ecform) datant du 10/08/2018 (**Attention**, les recommandations sont régulièrement mises à jour).
+
+Ces modifications sont réalisées automatiquement avec un script et le type de fichier généré est nommé `ICOS_eddycovariance`. La mise en forme comprend le changement du nom du fichier ainsi que le changement du nom des variables.
+
+# Format et encodage
+
+Les fichiers doivent être au format `.csv` siteInstru()avec les caractéristiques suivantes :
+
+  - Séparateur de colonne : `;`
+  - Séparateur de décimal : `.`
+  - Encodage du fichier : `UTF-8`
+
+# Convention de nommage
+
+Le fichier d'échange respectent la convention de nommage ICOS basée sur la règle suivante :
+
+```
+[code_pays]-[code_site]_[code_station]_[AAAAMMDDHHMM]_L[LN]_F[FN].csv
+```
+
+avec :
+
+  - [code_pays] : FR pour la France,
+  - [code_station] : Le code la station. Ici, la mesure est réalisée avec les stations eddy-covariance, le code est **EC**.
+  - [AAAAMMDDHHMM] : la date à laquelle **la mesure s'est terminée**,
+  - [LN] : 2 chiffres, numéro du logger (chaque logger doit être identifié par un numéro unique),
+  - [FN] : 2 chiffres, numéro du fichier généré par le logger (dans le cas où plusieurs fichiers sont générés dans le même logger, chaque fichier doit être identifié par un numéro unique).
+
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">**Attention**</h4>
+  <p>Toutes les données collectées doivent être enregistrées sur le fuseau horaire UTC+1</p>
+</div>
+
+Les codes ci-dessus sont définis selon les règles suivantes :
+
+## Nomenclature du code des sites [code_site]
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/srvso_site.csv",sep=""),sep=";")
+metatable <- metatable[metatable$type_site %in% "Site",]
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+## Nomenclature du code des stations [code_station]
+
+Ancien et nouveaux codes des stations pour le SNO-T
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/srvso_stations.csv",sep=""),sep=";",colClasses = "character")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+## Exemple de nommage du fichier d'entrée `ICOS_eddycovariance`
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple**</h4>
+  <p>Le fichier des données eddy-covariance collectées à haute fréquence entre 14h00 et 14h30 le 12/04/2018 sur la station de la Guette et enregistré dans le logger 1 sous la forme d'un seul fichier est nommé de la manière suivante :</p>
+  <p>FR-Lgt_EC_20180412_L01_F01.csv</p>
+</div>  
+
+# Description des données du fichier type `ICOS_eddycovariance`
+
+## Code des variables
+
+Le code des variables du fichier type ICOS_eddycovariance est présenté ci-dessous. Il est accessible à cette [adresse](https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_srvso/srvso_variables.csv).
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/srvso_variables.csv",sep=""),sep=";")
+metatable <- metatable[metatable$code_typedonnees %in% v_tdo & metatable$code_typefichier %in% "ICOS_eddycovariance",names(metatable) %in% c("code_var","description","code_unite")] 
+DT::datatable(metatable,rownames = FALSE)
+```
+
+# Exemple d'un fichier `ICOS_eddycovariance`
+
+Exemple d'un fichier type [ICOS_eddycovariance](https://github.com/Rosalien/doc_snot/raw/master/Data/eddycovariance/3_ICOS_eddycovariance/Fr-Lgt_EC_20180412_L01_F01.csv).
+
+# Stockage du fichier `ICOS_eddycovariance`
+
+Les fichiers sont stockés dans l'arborescence selon les paramètres suivants :
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/Caracteristiques_typedefichiers.csv",sep=""),sep=";",colClasses = "character")
+metatable <- metatable[metatable$code_typedonnees %in% v_tdo & metatable$nom_etape %in% "2a_Traitement",c("code_typefichier","extension","stockage")]
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+# Création automatique du fichier `ICOS_eddycovariance`
+
+A venir, présentation du script pour transformer automatiquement les fichiers LICOR_eddycovariance au format `ICOS_eddycovariance`
+
+

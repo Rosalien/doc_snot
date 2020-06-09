@@ -1,0 +1,8 @@
+code_themedonnees;code_typedonnees;frequence_acquisition_Hz;duree_acquisition_min;duree_campagne;frequence_envoi_SRV_SO
+ges;eddycovariance;20;30;continue;1 fois par jour
+meteosol;meteosol;0.033;1440;continue;1 fois par jour
+hydrocarto;piezo;0.0002777778;NA;continue;variable
+ges;chambreco2;0.2;5;1 fois par saison;
+ges;chambrech4;0.2;5;1 fois par saison;
+bioveg;bioveg_rec;NA;NA;variable;
+bioveg;bioveg_gai;NA;NA;variable;

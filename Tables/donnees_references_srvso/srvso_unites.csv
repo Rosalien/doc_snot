@@ -1,0 +1,59 @@
+code_var,code_typedonnees,code_typefichier,code_unite,nom_unite
+CO2 ,eddycovariance,SNOT_eddycovariance,?molCO2 mol-1 ,micromole de CO2 par mole
+CO2_CONC ,eddycovariance,SNOT_eddycovariance,mmolCO2 m-3 ,millimole de CO2 par mètre cube
+CO2_DRY ,eddycovariance,SNOT_eddycovariance,?molCO2 mol-1 ,micromole de CO2 par mole
+CO2_POW_REF ,eddycovariance,SNOT_eddycovariance,-,sans unité
+CO2_POW_SAM ,eddycovariance,SNOT_eddycovariance,-,sans unité
+FLOW_PRESS ,eddycovariance,SNOT_eddycovariance,kPa ,kilopascal
+FLOW_VOLRATE ,eddycovariance,SNOT_eddycovariance,l min-1,litre par minute
+GA_DIAG_CODE ,eddycovariance,SNOT_eddycovariance,-,sans unité
+GA_TUBE_HEAT ,eddycovariance,SNOT_eddycovariance,W ,watt
+GA_TUBE_HEAT_V ,eddycovariance,SNOT_eddycovariance,V ,volt
+H2O ,eddycovariance,SNOT_eddycovariance,mmolH2O mol-1 ,millimole de H2O par mole
+H2O_CONC ,eddycovariance,SNOT_eddycovariance,mmolH2O m-3 ,millimole de H2O par mètre cube
+H2O_DRY ,eddycovariance,SNOT_eddycovariance,mmolH2O mol-1 ,millimole de H2O par mole
+H2O_POW_REF ,eddycovariance,SNOT_eddycovariance,-,sans unité
+H2O_POW_SAM ,eddycovariance,SNOT_eddycovariance,-,sans unité
+PRESS_CELL ,eddycovariance,SNOT_eddycovariance,kPa ,kilopascal
+PRESS_DELTA ,eddycovariance,SNOT_eddycovariance,kPa ,kilopascal
+SA_DIAG_TYPE ,eddycovariance,SNOT_eddycovariance,-,sans unité
+SA_DIAG_VALUE ,eddycovariance,SNOT_eddycovariance,valeur hexadecimale,valeur hexadecimale
+T_CELL ,eddycovariance,SNOT_eddycovariance,°C,degré Celsius
+T_CELL_IN ,eddycovariance,SNOT_eddycovariance,°C,degré Celsius
+T_CELL_OUT ,eddycovariance,SNOT_eddycovariance,°C,degré Celsius
+T_SONIC ,eddycovariance,SNOT_eddycovariance,K ,Kelvin
+TIMESTAMP ,eddycovariance,SNOT_eddycovariance,date ,
+TIMESTAMP_DLNS ,eddycovariance,SNOT_eddycovariance,ns,nanosecondes
+TIMESTAMP_DLSS ,eddycovariance,SNOT_eddycovariance,s,secondes
+CO2_ABS ,eddycovariance,SNOT_eddycovariance,-,sans unité
+CO2_MASS ,eddycovariance,SNOT_eddycovariance,mgCO2 m-3,milligramme de CO2 par mètre cube
+CO2_STR ,eddycovariance,SNOT_eddycovariance,-,sans unité
+DELTA_STR ,eddycovariance,SNOT_eddycovariance,-,sans unité
+FLOW_PUMPDRIVE ,eddycovariance,SNOT_eddycovariance,%,pourcentage
+FLOW_STDRATE ,eddycovariance,SNOT_eddycovariance,l min-1,litre par minute
+GA_CHKSUM ,eddycovariance,SNOT_eddycovariance,-,sans unité
+H2O_ABS ,eddycovariance,SNOT_eddycovariance,-,sans unité
+H2O_MASS ,eddycovariance,SNOT_eddycovariance,g m-3,gramme par mètre cube
+H2O_STR ,eddycovariance,SNOT_eddycovariance,-,sans unité
+PRESS_BOX ,eddycovariance,SNOT_eddycovariance,kPa ,kilopascal
+T_GA ,eddycovariance,SNOT_eddycovariance,°C,degré Celsius
+CH4_CONC,eddycovariance,SNOT_eddycovariance,mmol/m^3,
+CH4,eddycovariance,SNOT_eddycovariance,?molCO2 mol-1 ,
+CH4_DIAG_VALUE,eddycovariance,SNOT_eddycovariance,-,sans unité
+CH4 Drop Rate (%),eddycovariance,SNOT_eddycovariance,%,Pourcentage
+CH4 Nanoseconds,eddycovariance,SNOT_eddycovariance,ns,nanosecondes
+CH4 Pressure,eddycovariance,SNOT_eddycovariance,,
+CH4 Seconds,eddycovariance,SNOT_eddycovariance,s,secondes
+CH4 Signal Strength,eddycovariance,SNOT_eddycovariance,-,sans unité
+CH4 Temperature,eddycovariance,SNOT_eddycovariance,°C,degré Celsius
+especes,rec,,-,sans unité
+replicat,rec,,-,sans unité
+strate,rec,,-,sans unité
+Rec,rec,,%,pourcentage
+FC,eddycovariance,full_output,umolCO2 m-2 s-1,
+FCH4,eddycovariance,full_output,nmol m-2 s-1,
+H,eddycovariance,full_output,W m-2,
+LE,eddycovariance,full_output,W m-2,
+NEEc,chambreCO2,SNOT_chambreCO2,?molCO2 m-2 s-1,
+REc,chambreCO2,SNOT_chambreCO2,?molCO2 m-2 s-1,
+GPPc,chambreCO2,SNOT_chambreCO2,?molCO2 m-2 s-1,

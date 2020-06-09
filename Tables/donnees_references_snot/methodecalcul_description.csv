@@ -1,0 +1,6 @@
+Nom de la colonne;Signification;Unique;Obligatoire
+code;Code de la méthode;oui;oui
+libellé_fr;Libellé (description brève) en français;non;non
+libellé_en;Libellé (description brève) en anglais;non;non
+description_fr;Description sommaire de la méthode (en français);non;non
+description_en;Description sommaire de la méthode (en anglais);non;non

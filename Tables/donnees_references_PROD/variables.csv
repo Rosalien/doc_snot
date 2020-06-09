@@ -1,0 +1,66 @@
+nom;definition_fr;definition_en;theiacategories
+ETR;Evapotranspiration réelle par eddy-covariance;Actual evapotranspiration by eddy-covariance;https://w3id.org/ozcar-theia/atmosphericChemistry
+FC;Flux de CO2 par eddy-covariance;CO2 flux measurements by eddy-covariance;https://w3id.org/ozcar-theia/atmosphericChemistry
+FCH4;Flux de CH4 par eddy-covariance;CH4 flux measurements by eddy-covariance;https://w3id.org/ozcar-theia/atmosphericChemistry
+H;Flux de chaleur sensible;Sensitive heat flow by eddy-covariance;https://w3id.org/ozcar-theia/atmosphericChemistry
+LE;Flux de chaleur latente;Latent heat flow by eddy-covariance;https://w3id.org/ozcar-theia/atmosphericChemistry
+LW_IN_1_1_1;Ondes longues entrantes pour la position 1_1_1;LongWave incoming radiation (corrected for T_BODY) for profil 1_1_1;https://w3id.org/ozcar-theia/atmosphericRadiation
+LW_OUT_1_1_1;Ondes longues sortantes pour la position 1_1_1;LongWave outgoing radiation (corrected for T_BODY) for profil 1_1_1;https://w3id.org/ozcar-theia/atmosphericRadiation
+P_1_1_1;Précipitation;Precipitation;https://w3id.org/ozcar-theia/liquidPrecipitation
+PA_1_1_1;Pression atmosphérique;Air pressure;https://w3id.org/ozcar-theia/atmosphericPressure
+PPFD_IN_1_1_1;Photosynthetic photon flux density entrant pour la position 1_1_1;Photosynthetic photon flux density incoming for profil 1_1_1;https://w3id.org/ozcar-theia/surfaceFluxes
+PPFD_OUT_1_1_1;Photosynthetic photon flux density sortant pour la position 1_1_1;Photosynthetic photon flux density outgoing for profil 1_1_1;https://w3id.org/ozcar-theia/surfaceFluxes
+SW_IN_1_1_1;Ondes courtes entrantes pour la position 1_1_1;ShortWave incoming radiation for profil 1_1_1;https://w3id.org/ozcar-theia/atmosphericRadiation
+SW_OUT_1_1_1;Ondes courtes sortantes pour la position 1_1_1;ShortWave outgoing radiation for profil 1_1_1;https://w3id.org/ozcar-theia/atmosphericRadiation
+SW_IN_2_1_1;Ondes courtes entrantes pour la position 2_1_1;ShortWave incoming radiation for profil 2_1_1;https://w3id.org/ozcar-theia/atmosphericRadiation
+SW_OUT_2_1_1;Ondes courtes sortantes pour la position 2_1_1;ShortWave outgoing radiation for profil 2_1_1;https://w3id.org/ozcar-theia/atmosphericRadiation
+LW_OUT_2_1_1;Ondes longues sortantes pour la position 2_1_1;LongWave outgoing radiation (corrected for T_BODY) for profil 2_1_1;https://w3id.org/ozcar-theia/atmosphericRadiation
+LW_IN_2_1_1;Ondes longues entrantes pour la position 2_1_1;LongWave incoming radiation (corrected for T_BODY) for profil 2_1_1;https://w3id.org/ozcar-theia/atmosphericRadiation	
+SWC_1_1_1;Teneur en eau du sol pour la position 1_1_1;Soil water content for profil 1_1_1 (depth 2 cm);https://w3id.org/ozcar-theia/soilWaterMeasurements
+SWC_1_2_1;Teneur en eau du sol pour la position 1_2_1;Soil water content for profil 1_2_1 (depth 5 cm);https://w3id.org/ozcar-theia/soilWaterMeasurements
+SWC_1_3_1;Teneur en eau du sol pour la position 1_3_1;Soil water content for profil 1_3_1 (depth 10 cm);https://w3id.org/ozcar-theia/soilWaterMeasurements
+SWC_1_1_2;Teneur en eau du sol pour la position 1_1_2;Soil water content for profil 1_1_2 (depth 2 cm);https://w3id.org/ozcar-theia/soilWaterMeasurements
+WTD;Niveau de la nappe d’eau;Water table depth;https://w3id.org/ozcar-theia/hydrogeologicalMeasurements
+TA_1_1_1;Température de l’air;Air temperature;https://w3id.org/ozcar-theia/atmosphericTemperature
+TS_1_1_1;Température du sol pour la position 1_1_1;Soil temperature for profil 1_1_1 (depth 2 cm);https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_1_1_2;Température du sol pour la position 1_1_2;Soil temperature for profil 1_1_2 (depth 2 cm);https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_1_2_1;Température du sol pour la position 1_2_1;Soil temperature for profil 1_2_1 (depth 5 cm);https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_1_2_2;Température du sol pour la position 1_2_2;Soil temperature for profil 1_2_2 (depth 5 cm);https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_1_3_1;Température du sol pour la position 1_3_1;Soil temperature for profil 1_3_1 (depth 10 cm);https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_1_3_2;Température du sol pour la position 1_3_2;Soil temperature for profil 1_3_2 (depth 10 cm);https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_1_4_1;Température du sol pour la position 1_4_1;Soil temperature for profil 1_4_1 (depth 25 cm);https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_1_5_1;Température du sol pour la position 1_5_1;Soil temperature for profil 1_5_1 (depth 60 cm);https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_2_1_1;Température du sol pour la position 2_1_1;Soil temperature for profil 2_1_1 (depth 2 cm);https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_2_1_2;Température du sol pour la position 2_1_2;Soil temperature for profil 2_1_2 (depth 2 cm);https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_2_2_1;Température du sol pour la position 2_2_1;Soil temperature for profil 2_2_1 (depth 5 cm);https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_2_2_2;Température du sol pour la position 2_2_2;Soil temperature for profil 2_2_2 (depth 5 cm);https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_2_3_1;Température du sol pour la position 2_3_1;Soil temperature for profil 2_3_1 (depth 10 cm);https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_2_4_1;Température du sol pour la position 2_4_1;Soil temperature for profil 2_4_1 (depth 25 cm);https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_2_5_1;Température du sol pour la position 2_5_1;Soil temperature for profil 2_5_1 (depth 60 cm);https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_2_6_1;Température du sol pour la position 2_6_1;Soil temperature for profil 2_6_1 (depth 80 cm);https://w3id.org/ozcar-theia/soilThermalMeasurements
+SWC_2_1_1;Teneur en eau du sol pour la position 2_1_1;Soil water content for profil 2_1_1 (depth 2 cm);https://w3id.org/ozcar-theia/soilWaterMeasurements
+SWC_2_1_2;Teneur en eau du sol pour la position 2_1_2;Soil water content for profil 2_1_2 (depth 2 cm);https://w3id.org/ozcar-theia/soilWaterMeasurements
+SWC_2_2_1;Teneur en eau du sol pour la position 2_2_1;Soil water content for profil 2_2_1 (depth 5 cm);https://w3id.org/ozcar-theia/soilWaterMeasurements
+SWC_2_3_1;Teneur en eau du sol pour la position 2_3_1;Soil water content for profil 2_3_1 (depth 10 cm);https://w3id.org/ozcar-theia/soilWaterMeasurements
+G_2_1_1;Flux de chaleur dans le sol pour la position 2_1_1;Soil heat flux for profil 2_1_1 (depth 2 cm);https://w3id.org/ozcar-theia/surfaceFluxes
+G_2_1_2;Flux de chaleur dans le sol pour la position 2_1_2;Soil heat flux for profil 2_1_2 (depth 2 cm);https://w3id.org/ozcar-theia/surfaceFluxes
+G_1_1_1;Flux de chaleur dans le sol pour la position 1_1_1;Soil heat flux for profil 1_1_1 (depth 2 cm);https://w3id.org/ozcar-theia/surfaceFluxes
+G_1_1_2;Flux de chaleur dans le sol pour la position 1_1_2;Soil heat flux for profil 1_1_2 (depth 2 cm);https://w3id.org/ozcar-theia/surfaceFluxes
+RH_1_1_1;Humidité relative de l’air;Relative humidity for profil 1_1_1;https://w3id.org/ozcar-theia/atmosphericWaterVapor
+WS_1_1_1;Vitesse du vent;Wind speed;https://w3id.org/ozcar-theia/wind
+WD_1_1_1;Direction du vent;Wind direction;https://w3id.org/ozcar-theia/wind
+FDOC;Flux du carbone organique dissous;Flux of dissolved organic carbon;https://w3id.org/ozcar-theia/surfaceWaterGlobalIndices
+TW;Température de l'eau;Water temperature;https://w3id.org/ozcar-theia/hydrogeologicalMeasurements
+GPP;Production primaire brute;Gross primary production;https://w3id.org/ozcar-theia/surfaceFluxes
+NEE;Echange Net de l'écosystème;Net ecosystem respiration;https://w3id.org/ozcar-theia/surfaceFluxes
+ER;Respiration de l'écosystème;Ecosystem respiration;https://w3id.org/ozcar-theia/surfaceFluxes
+TS_1_6_1;Température du sol pour la position 1_6_1;Soil temperature for profil 1_6_1;https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_1_7_1;Température du sol pour la position 1_7_1;Soil temperature for profil 1_7_1;https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_1_8_1;Température du sol pour la position 1_8_1;Soil temperature for profil 1_8_1;https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_1_9_1;Température du sol pour la position 1_9_1;Soil temperature for profil 1_9_1;https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_1_10_1;Température du sol pour la position 1_10_1;Soil temperature for profil 1_10_1;https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_1_11_1;Température du sol pour la position 1_11_1;Soil temperature for profil 1_11_1;https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_1_12_1;Température du sol pour la position 1_12_1;Soil temperature for profil 1_12_1;https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_1_13_1;Température du sol pour la position 1_13_1;Soil temperature for profil 1_13_1;https://w3id.org/ozcar-theia/soilThermalMeasurements
+TS_1_14_1;Température du sol pour la position 1_14_1;Soil temperature for profil 1_14_1;https://w3id.org/ozcar-theia/soilThermalMeasurements
+

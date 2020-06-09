@@ -1,0 +1,148 @@
+name: SNO-T
+navbar:
+  title: Doc SNO-T
+  href: index.html
+  icon: fa-home
+  left:
+  - text: Les données du SNO-T
+    icon: fa-database
+    menu:
+    - text: Découverture du SI SNO-T
+    - text: Organisation des données 
+      href: 1_Decouverte_OrganisationDonnees.html
+    - text: Les variables du SI SNO-T
+      href: 1_Decouverte_DonneesDiffusees.html
+    - text: '---------'
+    - text: Stockage des données brutes
+    - text: Arborescence du serveur de stockage SRV-SO 
+      href: 2_SRVSO_Arborescence.html  
+    - text: Les données de référence du SRV-SO
+      href: 2_SRVSO_DonneesReferences.html  
+    - text: '---------'
+    - text: Stockage et diffusion des données cibles
+    - text: Les données de référence du SI SNO-T
+      href: 2_BDD_SNOT_DonneesReference.html
+  - text: GES & météo-sol
+    icon: fa-book
+    menu:
+    - text: Type de données eddy-covariance  
+    - text: Cycle de vie des données eddy-covariance
+      href: 3.0_Sce_eddycovariance.html
+    - text: 1. Collecte des données brutes
+      href: 3.1_Sce_eddycovariance.html
+    - text: 2a. Formatage au format ICOS
+      href: 3.2a_Sce_eddycovariance.html
+    - text: 2b. Calcul des flux de GES
+      href: 3.2b_Sce_eddycovariance.html
+    - text: 3. Intégration dans data-snot.cnrs.fr
+      href: 3.3_Sce_eddycovariance.html
+    - text: '---------'
+    - text: Données des chambres CO2
+    - text: Cycle de vie des données des chambres CO2
+      href: 3.0_Sce_chambreco2.html
+    - text: 1. Collecte des données brutes
+      href: 3.1_Sce_chambreco2.html
+    - text: 3. Intégration dans data-snot.cnrs.fr
+      href: 3.3_Sce_chambreco2.html
+    - text: '---------'
+    - text: Type de données météo-sol
+    - text: Cycle de vie des données météo-sol
+      href: 3.0_Sce_meteosol.html
+    - text: 1. Collecte des données brutes
+      href: 3.1_Sce_meteosol.html
+    - text: 2a. Formatage au format ICOS
+      href: 3.2a_Sce_meteosol.html
+    - text: 2b. Traitement des données météosol
+      href: 3.2b_Sce_meteosol.html
+    - text: 3. Intégration dans data-snot.cnrs.fr
+      href: 3.3_Sce_meteosol.html
+  - text: Hydro & Biogéochimie
+    icon: fa-book
+    menu:
+    - text: Type de données provenant des piézomètres
+    - text: Cycle de vie des données des piézomètres
+      href: 3.0_Sce_piezo.html
+    - text: 1. Collecte des données brutes
+      href: 3.1_Sce_piezo.html
+    - text: 3. Intégration dans data-snot.cnrs.fr
+      href: 3.3_Sce_piezo.html
+    - text: '---------'
+    - text: Type de données Carbone Organique Dissous (DOC)
+    - text: Cycle de vie des données DOC
+      href: 3.0_Sce_doc.html
+    - text: 1. Collecte des données brutes
+      href: 3.1_Sce_doc.html
+    - text: 3. Intégration dans data-snot.cnrs.fr
+      href: 3.3_Sce_doc.html
+  - text: Aide 
+    icon: fa-hand-o-right
+    menu:
+    - text: Utiliser data-snot.cnrs.fr
+    - text: Gestion des données de référence
+      href: 4_AdminDonnees.html
+    - text: Intégration des données d'observation
+      href: 4_IntegrationDonnees.html
+    - text: Comment intégrer une nouvelle donnée ?
+      href: 4_IntegrationNvelleDonnees.html
+    - text: '---------'    
+    - text: Démarche suite
+    - text: Les jeux de données et les DOI
+      href: 4_JeuxDonneesDOI.html    
+    - text: L'échange avec le SI Theia/OZCAR
+      href: 4_Echange_SITheiaOzcar.html   
+    - text: '---------'
+    - text: Améliorer data-snot.cnrs.fr
+    - text: Utilisation de la Forge SNOT
+      href: 4_Forge.html
+  - text: Procédures techniques
+    icon: fa fa-gears
+    menu:
+    - text: Prendre en main le SI SNOT
+    - text: Architecture du SI
+      href: 5_Architecture_SI-SNOT.html
+    - text: Le Dépôt Git
+      href: 5_MO_VersionnementGit.html
+    - text: Administrer le FTP SRV-SO
+      href: 5_Administrer_SRVSO.html
+    - text: Serveur de base de données
+      href: 5_Administrer_PostgresQL.html
+    - text: Mise à jour de la documentation
+      href: 5_Creation_documentation.html
+    - text: '---------'    
+    - text: Administrer l'application data-snot.cnrs.fr
+    - text: Guide de développement
+      href: 5_Developper_appliSOERE.html
+    - text: Déployer data-snot.cnrs.fr
+      href: 5_Deploiement_appliSOERE.html
+    - text: Maintenance de data-snot.cnrs.fr
+      href: 5_Gestion_appliSOERE.html
+    - text: '---------'    
+    - text: Administrer les applications Shiny
+    - text: Installer et administrer les applications Shiny
+      href: 5_Administrer_shiny.html
+    - text: Développer les applications Shiny
+      href: 5_Developper_shiny.html
+    - text: Déployer les applications Shiny
+      href: 5_Deploiement_shiny.html
+    - text: Quoi faire en cas de problème sur les applications Shiny
+      href: 5_Probleme_shiny.html
+    - text: '---------'    
+    - text: Métadonnées PIVOT (SI Theia/OZCAR)
+    - text: Développer le module de création des métadonnées PIVOT
+      href: 5_Developper_MetadataPivot.html
+    - text: Déployer le module de création des métadonnées PIVOT
+      href: 5_Deploiement_MetadataPivot.html
+    
+output:
+  html_document:
+    toc: true
+    number_sections: yes
+    toc_float:
+      collapsed: false
+    toc_depth: 3
+    highlight: zenburn
+    lib_dir: libs
+    theme: flatly
+    #keep_md: true
+    always_allow_html: yes
+output_dir: _site

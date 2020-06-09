@@ -1,0 +1,10 @@
+code_themedonnees;code_typedonnees;description
+biogeo;doc;Types de données sur le carbone organique dissous
+bioveg;gai;Type de données issues du calcul du Green Area Index (protocole par encore défini)
+bioveg;rec;Type de données issues de l’estimation du taux de recouvrement de la végétation
+ges;chambrech4;Types de données issues des chambres d’accumulation pour la mesure de flux de CH4
+ges;chambreco2;Types de données issues des chambres d’accumulation pour la mesure de flux de CO2
+ges;eddycovariance;Flux de gaz à effet de serre calculés à partir des données collectées dans les stations eddycovariance. Les flux sont calculés à partir d’une fréquence d’acquisition de 20hz.
+hydrocarto;piezo;Données collectées par les piézomètres automatiques en dehors de l’emprise des stations météo-sol
+hydrocarto;debit;Débit à l'exutoire de la tourbière
+meteosol;meteosol;Types de données liés aux données collectées sur les stations météo-sol

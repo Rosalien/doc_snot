@@ -1,0 +1,210 @@
+\babel@toc {french}{}
+\contentsline {chapter}{\numberline {1}Typologie des variables}{11}{chapter.1}
+\contentsline {section}{\numberline {1.1}\'El\'ements de contexte et objectifs}{11}{section.1.1}
+\contentsline {section}{\numberline {1.2}Cat\'egorie et modes d'acquisition}{12}{section.1.2}
+\contentsline {section}{\numberline {1.3}Les variables cibles obligatoires}{14}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}D\'efinition et degr\'e d'\'elaboration}{14}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Liste des variables cibles}{14}{subsection.1.3.2}
+\contentsline {section}{\numberline {1.4}Organisation des \'equipements d'acquisition automatique}{15}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}Stations m\'et\'eo-sol}{15}{subsection.1.4.1}
+\contentsline {subsection}{\numberline {1.4.2}Station Eddy Covariance (EC)}{17}{subsection.1.4.2}
+\contentsline {subsection}{\numberline {1.4.3}Fluorim\`etre de terrain \`a l'exutoire}{17}{subsection.1.4.3}
+\contentsline {subsection}{\numberline {1.4.4}Sondes pi\'ezom\'etrique hors profil "m\'et\'eo-sol"}{17}{subsection.1.4.4}
+\contentsline {subsection}{\numberline {1.4.5}Stations d'acquisitions suppl\'ementaires}{18}{subsection.1.4.5}
+\contentsline {section}{\numberline {1.5}Organisation des campagnes d'acquisition manuelle}{19}{section.1.5}
+\contentsline {subsection}{\numberline {1.5.1}Mesure de flux par chambre d'accumulation}{19}{subsection.1.5.1}
+\contentsline {subsection}{\numberline {1.5.2}Chimie et physique de l'eau}{20}{subsection.1.5.2}
+\contentsline {subsection}{\numberline {1.5.3}D\'ebit \`a l'\'exutoire}{20}{subsection.1.5.3}
+\contentsline {subsection}{\numberline {1.5.4}Niveau d'eau}{21}{subsection.1.5.4}
+\contentsline {subsection}{\numberline {1.5.5}Equipements suppl\'ementaires}{21}{subsection.1.5.5}
+\contentsline {section}{\numberline {1.6}Format des noms de fichiers}{22}{section.1.6}
+\contentsline {section}{\numberline {1.7}La variable "temps"}{25}{section.1.7}
+\contentsline {section}{\numberline {1.8}Nom des variables "m\'et\'eo-sol" - stations \#001, \#002 et \#003}{26}{section.1.8}
+\contentsline {subsection}{\numberline {1.8.1}En-t\^etes}{26}{subsection.1.8.1}
+\contentsline {subsection}{\numberline {1.8.2}Fr\'equence d'acquisition}{28}{subsection.1.8.2}
+\contentsline {subsection}{\numberline {1.8.3}R\'epartition des variables m\'et\'eo-sol}{28}{subsection.1.8.3}
+\contentsline {section}{\numberline {1.9}Nom des variables "eddy-covariance" - station \#004)}{29}{section.1.9}
+\contentsline {subsection}{\numberline {1.9.1}En-t\^etes}{29}{subsection.1.9.1}
+\contentsline {subsection}{\numberline {1.9.2}Fr\'equence d'acquisition}{30}{subsection.1.9.2}
+\contentsline {subsection}{\numberline {1.9.3}R\'epartition des variables eddy covariance}{30}{subsection.1.9.3}
+\contentsline {section}{\numberline {1.10}Nom des variables "biog\'eochimie de l'eau" - station \#005)}{31}{section.1.10}
+\contentsline {subsection}{\numberline {1.10.1}En-t\^etes}{31}{subsection.1.10.1}
+\contentsline {subsection}{\numberline {1.10.2}Fr\'equence d'acquisition}{32}{subsection.1.10.2}
+\contentsline {section}{\numberline {1.11}Nom des variables "hydro" - stations \#006 \`a \#020}{33}{section.1.11}
+\contentsline {subsection}{\numberline {1.11.1}En-t\^etes}{33}{subsection.1.11.1}
+\contentsline {subsection}{\numberline {1.11.2}Fr\'equence d'acquisition}{34}{subsection.1.11.2}
+\contentsline {section}{\numberline {1.12}Nom des variables "GHG" - \'equipements \#101 \`a \#105}{35}{section.1.12}
+\contentsline {subsection}{\numberline {1.12.1}En-t\^etes}{35}{subsection.1.12.1}
+\contentsline {subsection}{\numberline {1.12.2}Fr\'equence d'acquisition}{36}{subsection.1.12.2}
+\contentsline {section}{\numberline {1.13}Nom des variables "GHG", "Biog\'eo" et "Hydro" acquisent manuellement - \'equipements \#106 \`a \#113}{37}{section.1.13}
+\contentsline {subsection}{\numberline {1.13.1}En-t\^etes}{37}{subsection.1.13.1}
+\contentsline {subsection}{\numberline {1.13.2}Fr\'equence d'acquisition}{38}{subsection.1.13.2}
+\contentsline {chapter}{\numberline {2}Le syst\`eme d'information en environnement - SIE}{39}{chapter.2}
+\contentsline {section}{\numberline {2.1}Cadre et objectif du SIE}{39}{section.2.1}
+\contentsline {section}{\numberline {2.2}R\^ole des diff\'erents \'el\'ements du SIE SNO Tourbi\`eres}{41}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Le serveur "SRV-SO"}{41}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}L'int\'egrateur de donn\'ees Talend}{41}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}La base de donn\'ees}{41}{subsection.2.2.3}
+\contentsline {section}{\numberline {2.3}Les flux de donn\'ees}{42}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Des capteurs vers le serveur SRV-SO}{42}{subsection.2.3.1}
+\contentsline {paragraph}{Cas 1 : donn\'ees acquises \`a haute fr\'equences et t\'el\'e-transmises}{42}{section*.5}
+\contentsline {paragraph}{Cas 2 : donn\'ees acquises \`a haute fr\'equences et charg\'ees par un op\'erateur}{43}{section*.6}
+\contentsline {paragraph}{Cas 3 : donn\'ees acquises \`a basse fr\'equences et charg\'ees par un op\'erateur}{44}{section*.7}
+\contentsline {subsection}{\numberline {2.3.2}L'arborescence du serveur SRV-SO}{45}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}De SRV-SO \`a la base de donn\'ees par Talend}{47}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.4}De la base de donn\'ees au public}{48}{subsection.2.3.4}
+\contentsline {subsection}{\numberline {2.3.5}Intervention de l'expert sur les donn\'ees}{48}{subsection.2.3.5}
+\contentsline {paragraph}{Cas 1.}{48}{section*.8}
+\contentsline {paragraph}{Cas 2.}{48}{section*.9}
+\contentsline {paragraph}{Cas 3.}{49}{section*.10}
+\contentsline {paragraph}{Cas 4.}{49}{section*.11}
+\contentsline {paragraph}{Cas 5.}{49}{section*.12}
+\contentsline {section}{\numberline {2.4}Flux des m\'etadonn\'ees}{50}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Sur les capteurs}{50}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Sur les variables g\'en\'er\'ees par les capteurs ou les \'equipements}{50}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Sur les variables cacul\'ees}{51}{subsection.2.4.3}
+\contentsline {section}{\numberline {2.5}Gestion de l'acc\`es au serveur SRV-SO}{52}{section.2.5}
+\contentsline {section}{\numberline {2.6}Gestion des t\'el\'echargement des donn\'ees}{53}{section.2.6}
+\contentsline {chapter}{\numberline {3}Variables m\'et\'eorologique et physique du sol}{54}{chapter.3}
+\contentsline {section}{\numberline {3.1}Cadre et objectif des mesures}{54}{section.3.1}
+\contentsline {section}{\numberline {3.2}Organisation des \'equipements}{56}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Nombre de station d'acquisition}{56}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Installation des stations}{56}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Les variables: mesures, nomenclature, et capteurs}{57}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Les capteurs}{57}{subsection.3.3.1}
+\contentsline {section}{\numberline {3.4}Pression atmosph\'erique - Pa - PTU300}{59}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Principe de mesure et unit\'e}{59}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Positionnement du capteur}{59}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Maintenance du capteur}{59}{subsection.3.4.3}
+\contentsline {subsection}{\numberline {3.4.4}Elaboration de la variable cible}{59}{subsection.3.4.4}
+\contentsline {paragraph}{Calibration et d\'erive du capteur}{59}{section*.13}
+\contentsline {paragraph}{Calcul de la variable cible et autres variables}{59}{section*.14}
+\contentsline {section}{\numberline {3.5}Pluviom\'etrie - P\_rain - ARG100}{60}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Principe de mesure et unit\'e}{60}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}Positionnement du capteur}{60}{subsection.3.5.2}
+\contentsline {subsection}{\numberline {3.5.3}Maintenance du capteur}{60}{subsection.3.5.3}
+\contentsline {subsection}{\numberline {3.5.4}Calibration et d\'erive du capteur}{61}{subsection.3.5.4}
+\contentsline {section}{\numberline {3.6}Les mesures de rayonnement - SWin, SWout, LWin, LWout - CNR4 }{63}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}Principe de mesure et unit\'e}{63}{subsection.3.6.1}
+\contentsline {subsection}{\numberline {3.6.2}Positionnement du capteur}{64}{subsection.3.6.2}
+\contentsline {subsection}{\numberline {3.6.3}Maintenance du capteur}{64}{subsection.3.6.3}
+\contentsline {subsection}{\numberline {3.6.4}Calibration et d\'erive du capteur}{64}{subsection.3.6.4}
+\contentsline {subsection}{\numberline {3.6.5}Informations compl\'ementaires}{64}{subsection.3.6.5}
+\contentsline {section}{\numberline {3.7}Densit\'e du flux de photons photosynth\'etiques - PPFD - SKP215}{65}{section.3.7}
+\contentsline {subsection}{\numberline {3.7.1}Principe de mesure et unit\'e}{65}{subsection.3.7.1}
+\contentsline {subsection}{\numberline {3.7.2}Positionnement du capteur}{65}{subsection.3.7.2}
+\contentsline {subsection}{\numberline {3.7.3}Maintenance du capteur}{65}{subsection.3.7.3}
+\contentsline {subsection}{\numberline {3.7.4}Calibration et d\'erive du capteur}{65}{subsection.3.7.4}
+\contentsline {section}{\numberline {3.8}Vitesse du vent - WS - WindSonic}{66}{section.3.8}
+\contentsline {subsection}{\numberline {3.8.1}Principe de mesure et unit\'e}{66}{subsection.3.8.1}
+\contentsline {subsection}{\numberline {3.8.2}Positionnement du capteur}{67}{subsection.3.8.2}
+\contentsline {subsection}{\numberline {3.8.3}Maintenance du capteur}{68}{subsection.3.8.3}
+\contentsline {subsection}{\numberline {3.8.4}Calibration et d\'erive du capteur}{68}{subsection.3.8.4}
+\contentsline {section}{\numberline {3.9}Direction du vent - WD - Windsonic}{69}{section.3.9}
+\contentsline {subsection}{\numberline {3.9.1}Principe de mesure et unit\'e}{69}{subsection.3.9.1}
+\contentsline {subsection}{\numberline {3.9.2}Positionnement du capteur}{69}{subsection.3.9.2}
+\contentsline {subsection}{\numberline {3.9.3}Maintenance du capteur}{69}{subsection.3.9.3}
+\contentsline {subsection}{\numberline {3.9.4}Calibration et d\'erive du capteur}{70}{subsection.3.9.4}
+\contentsline {subsection}{\numberline {3.9.5}Informations compl\'ementaires}{70}{subsection.3.9.5}
+\contentsline {section}{\numberline {3.10}Humidit\'e relative de l'air - RH - HUMICAP(r) (HMP155A)}{71}{section.3.10}
+\contentsline {subsection}{\numberline {3.10.1}Principe de mesure et unit\'e}{71}{subsection.3.10.1}
+\contentsline {subsection}{\numberline {3.10.2}Positionnement du capteur}{71}{subsection.3.10.2}
+\contentsline {subsection}{\numberline {3.10.3}Maintenance du capteur}{71}{subsection.3.10.3}
+\contentsline {subsection}{\numberline {3.10.4}Calibration et d\'erive du capteur}{71}{subsection.3.10.4}
+\contentsline {section}{\numberline {3.11}Temp\'erature de l'air - Ta - Pt100 (HMP155A)}{73}{section.3.11}
+\contentsline {subsection}{\numberline {3.11.1}Principe de mesure et unit\'e}{73}{subsection.3.11.1}
+\contentsline {subsection}{\numberline {3.11.2}Positionnement du capteur}{74}{subsection.3.11.2}
+\contentsline {subsection}{\numberline {3.11.3}Maintenance de la sonde}{74}{subsection.3.11.3}
+\contentsline {subsection}{\numberline {3.11.4}Calibration et d\'erive du capteur}{74}{subsection.3.11.4}
+\contentsline {subsection}{\numberline {3.11.5}Informations diverses}{75}{subsection.3.11.5}
+\contentsline {section}{\numberline {3.12}Temp\'erature du sol - Ts - 107}{76}{section.3.12}
+\contentsline {subsection}{\numberline {3.12.1}Principe de mesure et unit\'e}{76}{subsection.3.12.1}
+\contentsline {subsection}{\numberline {3.12.2}Positionnement du capteur}{77}{subsection.3.12.2}
+\contentsline {subsection}{\numberline {3.12.3}Maintenance du capteur}{77}{subsection.3.12.3}
+\contentsline {subsection}{\numberline {3.12.4}Calibration et d\'erive du capteur}{77}{subsection.3.12.4}
+\contentsline {section}{\numberline {3.13}Teneur en eau du sol - SWC - CS650}{78}{section.3.13}
+\contentsline {subsection}{\numberline {3.13.1}Principe de mesure et unit\'e}{78}{subsection.3.13.1}
+\contentsline {subsection}{\numberline {3.13.2}Variable de sortie}{78}{subsection.3.13.2}
+\contentsline {subsection}{\numberline {3.13.3}Positionnement du capteur}{79}{subsection.3.13.3}
+\contentsline {subsection}{\numberline {3.13.4}Maintenance du capteur}{79}{subsection.3.13.4}
+\contentsline {subsection}{\numberline {3.13.5}Calibration}{79}{subsection.3.13.5}
+\contentsline {subsection}{\numberline {3.13.6}Informations diverses}{80}{subsection.3.13.6}
+\contentsline {section}{\numberline {3.14}Flux de chaleur dans le sol - G - Hukseflux}{81}{section.3.14}
+\contentsline {subsection}{\numberline {3.14.1}Principe de mesure et unit\'e}{81}{subsection.3.14.1}
+\contentsline {subsection}{\numberline {3.14.2}Positionnement du capteur}{81}{subsection.3.14.2}
+\contentsline {subsection}{\numberline {3.14.3}Maintenance du capteur}{81}{subsection.3.14.3}
+\contentsline {subsection}{\numberline {3.14.4}Calibration et d\'erive du capteur}{81}{subsection.3.14.4}
+\contentsline {section}{\numberline {3.15}Niveau de la nappe d'eau - GWL - CS451}{82}{section.3.15}
+\contentsline {subsection}{\numberline {3.15.1}Principe de mesure et unit\'e}{82}{subsection.3.15.1}
+\contentsline {subsection}{\numberline {3.15.2}Positionnement du capteur}{82}{subsection.3.15.2}
+\contentsline {subsection}{\numberline {3.15.3}Maintenance du capteur}{82}{subsection.3.15.3}
+\contentsline {subsection}{\numberline {3.15.4}Calibration et d\'erive du capteur}{82}{subsection.3.15.4}
+\contentsline {section}{\numberline {3.16}Positionnement des capteurs}{83}{section.3.16}
+\contentsline {subsection}{\numberline {3.16.1}Mesures dans le sol}{83}{subsection.3.16.1}
+\contentsline {subsection}{\numberline {3.16.2}Mesures dans l'atmosph\`ere}{84}{subsection.3.16.2}
+\contentsline {section}{\numberline {3.17}Bibliographie}{85}{section.3.17}
+\contentsline {chapter}{\numberline {4}Hydrologie}{86}{chapter.4}
+\contentsline {section}{\numberline {4.1}Cadre et objectif des mesures}{86}{section.4.1}
+\contentsline {section}{\numberline {4.2}Organisation des \'equipements}{87}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Nombre de stations d'acquisition}{87}{subsection.4.2.1}
+\contentsline {paragraph}{Stations intra-tourbi\`ere}{87}{section*.15}
+\contentsline {paragraph}{Stations exutoire}{87}{section*.16}
+\contentsline {section}{\numberline {4.3}Les variables}{87}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Liste et abr\'eviations des variables cibles}{87}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}D\'efinition}{87}{subsection.4.3.2}
+\contentsline {paragraph}{Le niveau de la nappe d'eau}{87}{section*.17}
+\contentsline {paragraph}{La profondeur de la nappe d'eau}{88}{section*.18}
+\contentsline {paragraph}{Le d\'ebit \`a l'\'exutoire}{89}{section*.19}
+\contentsline {section}{\numberline {4.4}Le capteur de pression}{89}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Mod\`eles de capteurs}{89}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Principe de mesure et unit\'e}{90}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}Positionnement du capteur}{90}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.4}Maintenance du capteur}{91}{subsection.4.4.4}
+\contentsline {section}{\numberline {4.5}Elaboration des variables cibles}{91}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Ground Water Level - GWL}{91}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Ground Water Depth - GWD}{92}{subsection.4.5.2}
+\contentsline {subsection}{\numberline {4.5.3}D\'ebit \`a l'\'exutoire - Q}{92}{subsection.4.5.3}
+\contentsline {chapter}{\numberline {5}Mesures de flux de carbone par eddy-covariance}{95}{chapter.5}
+\contentsline {section}{\numberline {5.1}Cadre et objectif des mesures}{95}{section.5.1}
+\contentsline {section}{\numberline {5.2}Organisation des \'equipements}{96}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Nombre de station d'acquisition}{96}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}installation des stations}{96}{subsection.5.2.2}
+\contentsline {section}{\numberline {5.3}Les variables: mesures, nomenclature, et capteurs}{97}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Nombre et fr\'equence}{97}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Nomenclature et codes}{97}{subsection.5.3.2}
+\contentsline {section}{\numberline {5.4}Mesures de la vitesse et direction du vent en 3D}{98}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Principe de mesure et unit\'e}{98}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Positionnement du capteur}{98}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.3}Calibration et d\'erive du capteur}{98}{subsection.5.4.3}
+\contentsline {section}{\numberline {5.5}Mesure des flux de CO$_{2}$}{99}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Principe de mesure et unit\'e}{99}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Positionnement du capteur}{99}{subsection.5.5.2}
+\contentsline {subsection}{\numberline {5.5.3}Calibration et d\'erive du capteur}{99}{subsection.5.5.3}
+\contentsline {section}{\numberline {5.6}Mesure des flux de CH$_{4}$}{100}{section.5.6}
+\contentsline {subsection}{\numberline {5.6.1}Principe de mesure et unit\'e}{100}{subsection.5.6.1}
+\contentsline {subsection}{\numberline {5.6.2}Positionnement du capteur}{100}{subsection.5.6.2}
+\contentsline {subsection}{\numberline {5.6.3}Calibration et d\'erive du capteur}{100}{subsection.5.6.3}
+\contentsline {section}{\numberline {5.7}Mesure des flux d'H$_{2}$O}{101}{section.5.7}
+\contentsline {subsection}{\numberline {5.7.1}Principe de mesure et unit\'e}{101}{subsection.5.7.1}
+\contentsline {subsection}{\numberline {5.7.2}Positionnement du capteur}{101}{subsection.5.7.2}
+\contentsline {subsection}{\numberline {5.7.3}Calibration et d\'erive du capteur}{101}{subsection.5.7.3}
+\contentsline {section}{\numberline {5.8}Maintenance de la station}{102}{section.5.8}
+\contentsline {subsection}{\numberline {5.8.1}LI-7200RS (CO$_2$ et H$_2$O)}{102}{subsection.5.8.1}
+\contentsline {subsubsection}{Toutes les 2 semaines}{102}{section*.20}
+\contentsline {subsubsection}{Chaque mois}{103}{section*.21}
+\contentsline {subsubsection}{Chaque 6 mois}{103}{section*.22}
+\contentsline {subsubsection}{Chaque ann\'ee}{103}{section*.23}
+\contentsline {subsubsection}{Tous les 2 ans}{103}{section*.24}
+\contentsline {subsubsection}{Nettoyage du parcours optique}{103}{section*.25}
+\contentsline {subsubsection}{nettoyage du filtre Swagelook FW-2}{104}{section*.26}
+\contentsline {subsubsection}{Fusible}{105}{section*.27}
+\contentsline {subsubsection}{Remplacement des thermocouples}{105}{section*.28}
+\contentsline {subsubsection}{Nettoyer la prise d'air et le filtre}{105}{section*.29}
+\contentsline {subsection}{\numberline {5.8.2}LI-7700 (CH$_4$)}{106}{subsection.5.8.2}
+\contentsline {subsubsection}{Changement du dessicant}{106}{section*.30}
+\contentsline {subsubsection}{Les miroirs}{106}{section*.31}
+\contentsline {subsubsection}{Thermocouples}{107}{section*.32}
+\contentsline {subsubsection}{Le fusible}{107}{section*.33}
+\contentsline {subsection}{\numberline {5.8.3}LI-7200-101 (module de flux pour le LI7200)}{107}{subsection.5.8.3}
+\contentsline {subsubsection}{Le fusible}{107}{section*.34}
+\contentsline {subsubsection}{Le filtre}{107}{section*.35}

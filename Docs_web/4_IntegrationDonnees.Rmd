@@ -1,0 +1,87 @@
+---
+title: "Intégration des données d'observation dans data-snot.cnrs.fr"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+  <p>Décrire l'intégration et la gestion des données d'observation dans l'application web data-snot.cnrs.fr.</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Fournisseur de données du SI SNO-T</p>
+  <p>Pas de pré-requis spécifiques</p>
+</div>
+
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">**Attention**</h4>
+  <p>Avant d'intégrer des données d'observation, il est nécessaire d'ajouter les données de référence associées dans l'application `r linkAlertCSS("data-snot.cnrs.fr","https://data-snot.cnrs.fr/")`. Plus d'infos : </p>
+  <p>`r linkAlertCSS("Liste des données de référence","https://sourcesup.renater.fr/si-snot/2_BDD_SNOT_DonneesReference.html")`</p>
+  <p>`r linkAlertCSS("Gérer les données de référence","https://sourcesup.renater.fr/si-snot/4_AdminDonnees.html")`</p>
+</div>
+
+# Les données d'observation
+
+Les données d'observation représentent les données qui sont intégrées dans la base de données du SI SNO-T. L'application propose une interface pour la gestion de ces données en allant de la vérification du format du fichier d'échange au dépôt du fichier d’échange de données jusqu’à la publication des données du fichier en base.
+
+# Accès à l'interface de gestion des données d'observation
+
+* **Action 1** : Cliquer sur le sous menu « Gestion des données d'observation» du menu «Administration de données» pour faire apparaitre l'interface de gestion de données d'observation de data-snot.cnrs.fr.
+
+* **Action 2** : Dérouler l'arborescence des données proposée dans l'espace de choix situé à gauche et choisir un site d'étude, une station, et un type de données pour voir vos choix apparaître dans le tableau. 
+
+![](`r repfigures`/CaptureSI_donneesexperimentales_1.png)
+
+Cette interface permet à un utilisateur de déposer des fichiers de données pour le type de données choisi dans une zone de dépôt gérée par le système.
+
+# Déposer un fichier de données
+
+Passer votre curseur sur le bouton [dépôt de fichier], une infobulle apparaitra puis faites un clic sur la souris pour voir apparaitre la fenêtre de dépôt de fichiers.
+
+Un clic sur le bouton [ajouter un fichier] fait apparaître un explorateur vous permettant de parcourir vos dossiers afin de sélectionner le fichier d'échange à insérer dans le système d’information.
+
+Le fichier d’échange doit être de type « nom_fichier.csv », les noms et le nombre de colonnes du fichier d’échange sont variables suivant les types de données considérés.
+
+Une convention de nommage existe, renseignez-vous auprès de la personne responsable du type de données.
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Remarque**</h4>
+  <p>Vous pouvez déposer plusieurs fichiers ayant le même nom (plusieurs versions d'un même fichier). </p>
+</div>
+
+Une fois les fichiers de données déposés sur le système, on accède à l'interface permettant de voir les différents jeux de données pour le type de données choisi.
+
+# Accès aux différentes versions d'une donnée
+
+* Clic sur chaque ligne du tableau de jeux de données permet de voir apparaître  dans un nouveau tableau la liste de versions associées au jeu de données.
+
+Pour chaque jeu de données sélectionné, on peut voir la liste de versions associées dans le tableau Version du jeu de données. On peut publier une version par jeu de données, supprimer ou télécharger une version du jeu de données.
+Un clic sur un jeu de données permet de voir dans le tableau version du jeu de données toutes les versions déposées par les utilisateurs pour un même fichier.
+La colonne publication du tableau du tableau Version du jeu de données permet à l'utilisateur de voir la version du jeu de données publiée en base.
+
+Plusieurs actions possibles à partir du tableau Versions d'un jeu de données sont listées ci-dessous :
+
+* Publier une version un jeu de données : permet d'insérer les données en base
+* Télécharger une version d'un jeu de données : permet de télécharger les données publiées ou non publiées en base.
+* Supprimer une version d'un jeu de données : permet de supprimer les données publiées ou non publiées.
+
+# Publier une version de données d'observation
+
+* Cocher la case localisée dans la colonne publication en face de la version souhaitée du jeu de données.
+
+Cette action permet la publication de la version actuelle en base pour publier la nouvelle version.
+
+# Télécharger un fichier de données d'observation
+
+Cliquer sur le bouton [Télécharger] localisé dans la dernière colonne du tableau Version du jeu de données.
+
+# Supprimer un fichier de données d'observation
+
+* Cliquer sur le bouton [Supprimer] localisé dans la dernière colonne du tableau Version du jeu de données.
+
+Cette action permet une suppression complète de la version choisie de la base de données et du système. Si l'action est lancée sur une version déjà publiée en base et dans le cas contraire cela entraine une suppression de la version choisie du système.
+

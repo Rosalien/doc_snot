@@ -1,0 +1,135 @@
+\documentclass[]{article}
+\usepackage[frenchb]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{natbib}
+\usepackage{multicol}
+%pour liens hypertexte
+\usepackage{hyperref}
+\newcommand{\mhref}[3][blue]{\href{#2}{\color{#1}{#3}}}%
+
+\usepackage{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
+
+% Pour les tables de matières
+%\usepackage{shorttoc}
+
+%pour les tableaux
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{ctable}
+\usepackage{bm}
+\newcolumntype{M}[1]{>{\arraybackslash}m{#1}}
+
+%% The amsthm package provides extended theorem environments
+\usepackage{amsthm}
+\usepackage{numprint}
+
+%\graphicspath{{../Fig/}}
+
+%%Pour les algorithmes
+\usepackage{algorithmic}
+\usepackage{algorithm}
+
+\usepackage{natbib}
+\usepackage{bibentry}
+\title{Plan de gestion de la qualité des données du Service~National~d'Observation~Tourbières (SNO-T)}
+\author{Jean-Baptiste Paroissien, Sébastien Gogo, Fatima Laggoun}
+
+%ON peut imaginer ce document comme une procédure générale renvoyant vers des modes opératoires et des modèles de fichiers. L'objectif étant d'avoir une vision claire des enjeux associés à ces données et les contraintes liées en therme de format de fichier, vocabulaire, format d'échange, dictionnaire de données. Ces points finalement sont abordés au sein des différents étapes du cycle de vie de la donnée, de l'acquisition à leur diffusion.
+\begin{document}
+\maketitle
+\section{Introduction}
+%ET la traçabilité
+Le Service National d'Observation des Tourbières (SNO-T) a acquis, acquière et va acquérir un nombre important et varié de données provenant à la fois de site et d'équipes de recherches différentes. Son objectif est d'observer sur le long terme les flux de gaz à effet de serre et ses variables explicatives pour comprendre les effets du changement climatique sur le fonctionnement des tourbières et les modéliser. La pérennité, l'accessibilité, la compréhension et l'interopérabilité des données avec d'autres système d'information sont des notions qui doivent être respectées tout au long du cycle de vie des données du SNO-T. Pour parvenir à cet objectif, un ensemble de documents \og{} métiers \fg{} accompagne la vie des données du SNO-T durant ces principales étapes :
+%LA qualité des donnnées doit accompagner les différentes étapes du cycle de vie des données, pour ce faire, il est important d'identifier le cycle de vie de chacune des variables collectées dans le SNOT
+%ICI, proposer un schéma global du cycle de vie d'une données du SNO-T
+
+
+Nota : Ce document s'appuie sur la trame du plan de gestion de la qualité des données 
+https://dmp.opidor.fr
+
+
+\begin{description}
+	\item[Acquisition] L'acquisition des données correspond à l'étape
+	\item[Traitement et modélisation] Le traitement et la modélisation des données du SNO-T
+	\item[Diffusion] La diffusion des données représente l'étape ...
+	\item[Maintenance et mise à jour] Ici, il faudra prendre en compte l'évolution du SI SNO-T à travers un ensemble de mode opératoire pour maintenir le SI à jour et assurer son évolution (ajout d'un nouveau site, nouveaux instruments, nouveaux types de variables...)
+\end{description}
+
+\section{Description des données collectées dans le SNO Tourbières}
+
+\subsection{Résumé descriptif des données}
+
+La collecte des données du SNO~Tourbières a pour objectif de répondre à plusieurs questions scientifiques :
+
+Estimer le bilan de carbone et hydrologique dans les Tourbières : les sites du SNO Tourbières sont équipés d’instruments de mesures qui collectent à un pas de temps de 30 minutes les émissions de GES, la concentrations en carbone organique dissous à l’exutoire, les varaibles hydrologiques et des données environnementales permettant l’établissement à l’échelle de l’écosystème du bilan de carbone et d’eau,
+
+Mettre en évidence la mise en place de rétroactions entre le changement climatique et les émissions de GES dans les tourbières  : En étant représentatif de différents contextes climatiques, les données collectées du SNO Tourbières permettront de modéliser les émissions de GES et d’alimenter et affiner les modèles de changement climatiques globaux. En évaluant les effets du changement du climat sur les tourbières et les effets de ces changements sur le climat, le SNO Tourbières se propose de déterminer quelles rétroactions vont se mettre en place,
+Développer des expérimentations : le SNO Tourbières a pour vocation à accueillir des dispositifs expérimentaux portés sur l’étude des forçages climatiques et anthropiques, qu’ils soient in situ ou au laboratoire. Ces expérimentations sont réalisées dans le cadre de projet.
+
+Les données collectées brutes seront stockées au format csv (séparateur de colonne virgule, séparateur décimal point et encodage en UTF-8)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%ICi, mettre en avant les contraintes liés à la fois à ICOS et à pluralité des données acquises (différents sites, différents types de données). Dans cette partie, présenter les différents types de documents pour guider l'utilisateur sur l'acquisition des données
+
+L'acquisition des données du SNO-Tourbières est réalisée à travers un ensemble d'instruments collectant des données de natures différentes (météorologie, hydrologie, chimie \dots). Un protocole d'acquisition des données a été rédigé pour guider les gestionnaires des différents sites du SNO-T dans l'acquisition de ces données avec pour objectif d'harmoniser l'acquisition des données.
+
+\subsection{Protocole d'acquisition des données}
+
+L'objectif de ce document est de synthétiser l'organisation générale de la collecte des données environnementales sur les sites du SNO-Tourbières. Il précise l'organisation des équipement d'acquisition (automatique, manuelle) ainsi que la gouvernance et les responsabilités des acteurs intervenant dans le SNO-Tourbières.
+
+Le document est accessible à cette adresse :
+
+\subsection{Les scénarios d'échanges}
+
+Les scénarios d'échanges sont des documents qui détaillent les modalités d'échange (format, extension de fichiers \dots) des données issues de la collecte (automatique ou manuelle) des données réalisées sur les sites du SNO-Tourbières. 
+Ces documents sont élaborés pour chaque type de données, à savoir :
+\begin{description}
+	\item[Météo-sol] Description
+	\item[Hydro/carto] Description
+	\item[GES] Description
+	\item[Biogéo] Description
+	\item[Bioveg] Description
+\end{description}
+
+\subsection{Protocoles ICOS}
+
+
+Dans cette partie, on pourra recenser l'ensemble de la documentation ICOS déjà existante.
+
+
+L'acquisition des données du SNO-Tourbières comporte de 
+
+\subsubsection{Modes opératoires}
+
+Voir pour le développement de modes opératoires BADM
+
+\section{Traitement et modélisation}
+	
+	
+\section{Diffusion}
+	
+	
+\end{document}	

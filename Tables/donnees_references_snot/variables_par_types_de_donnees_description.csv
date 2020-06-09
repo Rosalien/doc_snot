@@ -1,0 +1,9 @@
+Nom de la colonne;Signification ;Unique;Obligatoire
+code_jeu;Code du jeu de données [code_site]-[code_theme]-[code_typedonnees];oui;oui
+nom du site;[code_site]/[code_station];oui;oui
+nom du type de donnéées;[code_typedonnees];oui;oui
+nom de la variable;Nom de la variable;non;oui
+code de l'unité;Code de l'unité;non;oui
+min;Valeur minimale de la variable pour ce type de données;non;oui
+max;Valeur maximale de la variable pour ce type de données;non;oui
+missingvalue;Caractère utilisé pour les valeurs nulles : -9999;non;oui

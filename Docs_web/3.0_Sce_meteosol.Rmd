@@ -1,0 +1,73 @@
+---
+title: "Le type de données `meteosol`"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+  <p>Décrire le cycle de vie général du type de données `meteosol`</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Thématiciens et gestionnaire des données météo-sol,</p>
+  <p>Connaissance approfondie du type de données.</p>
+</div>
+
+# Le type de données `meteosol`
+
+```{r,evaL=TRUE,echo=FALSE}
+# Ici, nommer le code du jeu de données pour automatiser le nommage. Cette variable est également utilisée dans les tableaux pour filtrer par type de données
+v_jdd <- "meteosol"
+v_tdo <- "meteosol"
+```
+
+Le type de données `meteosol` correspond à l'ensemble des données collectées sur les stations météo-sol du SNO-T.
+
+# Étape du cycle de vie
+
+![](`r repfigures`/Diagramme_meteo_sol.png)
+
+Les étapes du cycle de vie du type de données `meteosol` sont présentées ci-dessous. La table complète avec d'autres attributs est accessible à cette [adresse.](https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_srvso/Caracteristiques_typedefichiers.csv)
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/Caracteristiques_typedefichiers.csv",sep=""),sep=";",colClasses = "character")
+colonneIn <- c("nom_etape","description","frequence","duree")
+metatable <- metatable[metatable$code_typedonnees %in% v_tdo,names(metatable)%in%colonneIn]
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling() %>%
+scroll_box(width = "100%", height = "400px")
+#kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+# Arborescence de stockage dans le serveur FTP `SRV-SO`
+
+Les données `meteosol` sont stockées dans le serveur FTP `SRV-SO` selon l'arborescence ci-dessous. Celle-ci est organisée selon les différentes étapes du cycle de vie de la donnée et porte le nom du type de fichier à stocker dans le répertoire. Le nom du répertoire est organisé selon le numéro de l'étape du cycle de vie et du type de fichier.
+
+```
+.
+├── 1_BRUTE_meteosol
+├── 2_TRAITEMENT_meteosol
+├── 3_SNOT_meteosol
+├── 3_ICOS_meteosol
+```
+
+Avec : 
+
+- 1_BRUTE_meteosol: Stockage des Fichiers bruts d'un type de données (**NE JAMAIS MODIFIER CES FICHIERS**),
+- 2_TRAITEMENT_meteosol : Stockage des traitements associés aux Fichiers bruts. Ce répertoire peut contenir différents sous-répertoires pour le stockage des scripts de traitements ou des tableurs ainsi que les stockages des fichiers pré-traités,
+- 3_SNOT_meteosol : Stockage des fichiers prêts à être intégrés dans la BDD du SI SNO-T. Ils respectent le format d'échange demandé et les critères qualités,
+- 3_ICOS_meteosol : Stockage des fichiers prêts à être envoyé à ICOS (**uniquement pour la Guette)
+
+
+Pour plus de détails sur la logique construction de l'arborescence du serveur FTP `SRV-SO`, consultez cette [page](https://sourcesup.renater.fr/si-snot/2_SRVSO_Arborescence.html).
+
+# Pour aller plus loin
+
+Consulter les étapes du cycle de vie du type de données `meteosol` :
+
+* **[Collecte des données brutes](https://sourcesup.renater.fr/www/si-snot/3.1_Sce_meteosol.html)**
+* **[Intégration des données dans le SI SNO-T](https://sourcesup.renater.fr/www/si-snot/3.3_Sce_meteosol.html)**

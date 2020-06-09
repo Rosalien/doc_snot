@@ -1,0 +1,4 @@
+Nom de la colonne;Signification ;Unique;Obligatoire
+Nom du site et de la station;Code du site/station;non;oui
+Nom du thème;Nom français du thème;non;oui
+Nom du type de données;Nom français du type de données;non;oui

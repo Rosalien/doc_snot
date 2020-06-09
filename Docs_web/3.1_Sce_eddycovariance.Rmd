@@ -1,0 +1,94 @@
+---
+title: "Etape 1 : Collecte et stockage des données brutes eddy-covariance"
+---
+
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectifs et contenu**</h4>
+  <p>Décrire la collecte et le stockage des données brutes en provenance des stations eddy-covariance LICOR. Ces données brutes sont nommées `LICOR_eddycovariance`</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Thématiciens et gestionnaires des données eddy-covariance,</p>
+  <p>Connaissance générale de l'organisation des données du SI SNO-T.</p>
+</div>
+
+```{r,evaL=TRUE,echo=FALSE}
+# Ici, nommer le code du type de données pour automatiser le nommage. Cette variable est également utilisée dans les tableaux pour filtrer par type de données
+v_tdo <- "eddycovariance"
+```
+
+# Protocole d'acquisition
+
+Le protocole d'acquisition des données brutes provenant des stations eddy-covariance est décrit dans le **chapitre 5** du protocole d'acquisition du SNO-T accessible à cette [adresse](https://github.com/Rosalien/doc_snot/raw/master/Docs_metier/Protocole_acquisition_SNOT/protocole_SNO_tourbieres.pdf).
+
+# Caractéristiques de l'acquisition
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/srvso_acquisition.csv",sep=""),sep=";",colClasses = "character")
+metatable <- metatable[metatable$code_typedonnees %in% v_tdo,names(metatable)!="code_themedonnees" & names(metatable)!="code_typedonnees",]
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+# Description du fichier type `LICOR_eddycovariance`
+
+Le fichier en sortie des stations eddy-covariance est nommé `LICOR_eddycovariance`. Il se présente sous la forme d'un fichier compressé au format `ghg` comportant un fichier de données et un fichier de métadonnées : 
+
+- aaaa-mm-jj.data : Contenu des données
+- aaaa-mm-jj.metadata : Données descriptives
+
+Le nom du fichier est construit selon la logique suivante :
+
+aaaa-mm-jjT[code interne qui s'incrémente +3000]_AIU-1729.ghg
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple**</h4>
+  <p>Les données brutes du 12 avril 2018 provenant d'une station LICOR :
+    2018-04-12T140000_AIU-1729.ghg</p>
+</div>
+
+# Description des données du fichier type `LICOR_eddycovariance`
+
+## Code des variables du fichier type `LICOR_eddycovariance`
+
+La signification des variables du fichier type `LICOR_eddycovariance` est présentée ci-dessous. Le tableau est accessible à cette [adresse](https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_srvso/srvso_variables.csv).
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/srvso_variables.csv",sep=""),sep=";",colClasses = "character")
+metatable <- metatable[metatable$code_typedonnees %in% v_tdo & metatable$code_typefichier %in% "LICOR_eddycovariance",names(metatable) %in% c("code_var","description")] 
+DT::datatable(metatable,rownames = FALSE)
+```
+
+# Stockage dans le serveur FTP `SRV-SO`
+
+## Caractéristique de l'envoi des fichiers
+
+### Automatique 
+
+Pour la tourbière de la Guette, les Fichiers bruts en sortie de la station eddy-covariance sont intégrés et stockés automatiquement sur le serveur FTP `SRV-SO` via un protocole GPRS : 
+
+- Fréquence d'envoi : Toutes les 30 minutes
+- Nombre de fichier par jour: 48
+- Taille : environ 144 mo
+
+### Manuel
+
+A définir pour les autres sites du SNO-T
+
+
+## Emplacement du stockage
+
+Les Fichiers bruts en sortie des stations eddy-covariance sont stockés selon le chemin suivant :
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/Caracteristiques_typedefichiers.csv",sep=""),sep=";",colClasses = "character")
+metatable <- metatable[metatable$code_typedonnees %in% v_tdo & metatable$nom_etape %in% "1_Collecte",c("code_typefichier","extension","stockage")]
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```

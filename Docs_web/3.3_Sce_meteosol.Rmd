@@ -1,0 +1,159 @@
+---
+title: "Etape 3 : Formatage et intégration dans data-snot.cnrs.fr"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+```{r,evaL=TRUE,echo=FALSE}
+# Ici, nommer le code du jeu de données pour automatiser le nommage. Cette variable est également utilisée dans les tableaux pour filtrer par type de données
+v_jdd <- "meteosol"
+v_tdo <- "meteosol"
+f_type <- "SNOT_meteosol"
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectifs et contenu**</h4>
+  <p>Décrire le format de fichier pour intégrer les données météosol dans l'application web du SI SNO-T : `r linkAlertCSS("data-snot.cnrs.fr","https://data-snot.cnrs.fr/")`. Ce type de fichier est nommé `SNOT_meteosol`</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple pour gagner du temps**</h4>
+  <p>Voici un exemple de fichier type `SNOT_meteosol` pour la station météo-sol 1 de La Guette pour la période du 03-02-2016 au 31-12-2016 (données fictives) : `r linkAlertCSS("lgt-bm1_meteosol_infraj_03-02-2016_31-12-2016.csv","https://github.com/Rosalien/doc_snot/raw/master/Data/lgt/bm1/meteosol/3_SNOT_meteosol/lgt-bm1_meteosol_infraj_03-02-2016_31-12-2016.csv")`
+  </p>
+</div>
+
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">**Attention**</h4>
+  <p>Avant d'intégrer des données d'observation comme le type `meteosol`, il est nécessaire d'ajouter les données de référence associées dans l'application `r linkAlertCSS("data-snot.cnrs.fr","https://data-snot.cnrs.fr/")`. Plus d'infos : </p>
+  <p>`r linkAlertCSS("Liste des données de référence","https://sourcesup.renater.fr/si-snot/2_BDD_SNOT_DonneesReference.html")`</p>
+  <p>`r linkAlertCSS("Gérer les données de référence","https://sourcesup.renater.fr/si-snot/4_AdminDonnees.html")`</p>
+</div>
+
+
+# Description du fichier `SNOT_meteosol`
+
+## Format, encodage et convention de nommage
+
+Les fichiers d'entrée dans le SI SNO-T doivent être au format `.csv` siteInstru()avec les caractéristiques suivantes :
+
+  - Séparateur de colonne : `;`
+  - Séparateur de décimal : `.`
+  - Encodage du fichier : `UTF-8`
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**Important**</h4>
+  <p>L'encodage du fichier en **UTF-8** est très important. Il faudra veiller à respecter cet encodage au risque de rencontrer des difficultés pour intégrer les fichiers d'entrée</p>
+</div>
+
+La convention de nommage du fichier respecte la logique suivante :
+
+```
+[code_site]-[code_station]_[code_typedonnees]_[code_frequence]_[datedebut]_[datefin].csv 
+```
+avec :
+
+  - [code_site] : le code du site du SNO-T en **minuscule**,
+  - [code_station] : le code de la station de mesure en **minuscule**,
+  - [code_typedonnees] : le code du type de données, ici il s'agit de **meteosol**,
+  - [code_frequence] :
+    - **infraj** : fréquence infra-journalier.
+  - [datedebut] : la date de début de la mesure au format jj-mm-aaaa,
+  - [datedebut] : la date de fin de la mesure au format jj-mm-aaaa.
+
+## Exemple de nommage d'un fichier
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple**</h4>
+  <p>Les données météosol à la fréquence infra-journalière provenant de la station météo-sol 1 de La Guette du 03-02-2016 au 31-12-2016 sont stockées dans le fichier portant le nom suivant :</p>
+  <p>lgt-bm1_meteosol_infraj_03-02-2016_31-12-2016.csv</p>
+</div>  
+
+# Description du contenu du fichier `SNOT_meteosol`
+
+## En-tête de contextualisation
+
+Un en-tête apportant des informations sur le contexte des données est présent sur les 7 premières lignes du fichier :
+
+- ligne 1 : le [code_site] et sur la colonne suivante le [code_station] (*obligatoire*)
+- ligne 2 : le [code_typedonnees] (*obligatoire*),
+- ligne 3 : la fréquence, ici **infra-journalier** (*obligatoire*),
+- ligne 4 : la date de début jj/mm/aaaa (*obligatoire*),
+- ligne 5 : la date de fin jj/mm/aaaa (*obligatoire*),
+- ligne 6 : un complément d'information sur le fichier (*facultatif*),
+- ligne 7 : saut de ligne (*obligatoire*).
+
+## En-tête de données
+
+Ensuite, un en-tête décrivant les données est ajouté sur 3 lignes
+
+- ligne 8 : description des variables (*facultatif*),
+- ligne 9 : champs **date** (dd/mm/yyyy) et **time** (hh:mm:ss) et ensuite les [code_variables] du type de données (*obligatoire*),
+- ligne 10 : saut de ligne (*obligatoire*).
+
+## Données
+
+### Liste des variables
+
+Les variables cibles `meteosol` retenues pour être intégrées dans le SI SNO-T sont les suivantes :
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/srvso_variables.csv",sep=""),sep=";")
+metatable <- metatable[metatable$code_typefichier %in% f_type & metatable$type_variable%in% "cible",names(metatable)%in%c("code_var","description","code_unite")]
+DT::datatable(metatable,rownames = FALSE)
+```
+
+La valeur **-9999** indique une donnée manquante.
+
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">**Attention**</h4>
+  <p>La date de début commence à l'heure 00:00 et la date de fin se termine à 23:30. L'heure donnée correspond à la fin de la demi-heure de flux calculé.</p>
+  <p>L'heure doit être calée sur l’heure **UTC+1** (heure française en hiver, pas de changement d’heure en été)</p>
+</div>
+
+### Construction du code des variables
+
+La construction des variables meteosol s'appuie la règle suivante :
+
+```
+[code_variable]_[code_profil]_[code_vertical]_[code_subplot]
+```
+
+#### Code des profils de mesures [Code_profil] {-} 
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/srvso_profil.csv",sep=""),sep=";",colClasses = "character")
+kable(metatable, "html") %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+#### Code de la position verticale [code_vertical] {-} 
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/srvso_profondeur.csv",sep=""),sep=";",colClasses = "character")
+kable(metatable, "html") %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+#### Numéro du subplot de la mesure [code_subplot] {-} 
+
+Correspond au réplicat de la mesure
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/srvso_subplot.csv",sep=""),sep=";",colClasses = "character")
+kable(metatable, "html") %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+#### Exemple de nommage d'une variable météo-sol {-} 
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple**</h4>
+  <p>La température du sol provenant du profil numéro 2 à la troisième profondeur et du premier subplot s'écriera ainsi :</p>
+  <p>TS_2_3_1</p>
+</div>  
+
+# Intégration du fichier dans [data-snot.cnrs.fr](https://data-snot.cnrs.fr)
+
+L'intégration manuelle des données peut être réalisée dans l'application web du SI SNO-T [data-snot.cnrs.fr](https://data-snot.cnrs.fr) à travers cette [aide en ligne](https://sourcesup.renater.fr/si-snot/4_IntegrationDonnees.html).

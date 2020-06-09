@@ -1,0 +1,88 @@
+---
+title: "Gestion des données de référence dans data-snot.cnrs.fr"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+  <p>Décrire la gestion des données de référence dans l'application web data-snot.cnrs.fr.</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Fournisseurs de données du SI SNO-T</p>
+</div>
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**Important**</h4>
+  <p>La gestion des données de référence est une étape préalable avant d'ajouter un nouveau type de données dans data-snot.cnrs.fr. Pour plus d'infos sur les données de référence, consultez [cette page](https://sourcesup.renater.fr/si-snot/2_BDD_SNOT_DonneesReference.html)</p>
+</div>
+
+# Les données de référence
+
+Les données de référence sont des données qui pré-existent par rapport aux données d'observation collectées dans le SNO-T. Elles permettent de les décrire, de les définir, de les comprendre et **surtout** de les organiser. Une interface permet de gérer (ajouter, modifier et supprimer) ces données de référence : "Gestion des données de référence"
+
+# Accès à l'interface des gestion de données de référence
+	
+* **Action 1** : Cliquer sur le sous-menu « Gestion des données de référence » du menu « Administration des données » pour faire apparaitre l'interface de gestion de données de référence ci-dessous :
+
+![](`r repfigures`/CaptureSI_GestionDDR.png)
+
+* **Action 2** : Choisir une donnée de référence de la liste proposée à gauche. La liste des données qui y sont associées est présentée sous forme de tableau à droite. Chaque ligne de ce tableau est une donnée associée à la donnée de référence sélectionnée.
+
+![](`r repfigures`/CaptureSI_donneesreferences_1.png)
+
+Un ensemble de boutons sur cette interface permet de réaliser les actions suivantes :
+
+* **Télécharger** : téléchargement dans un répertoire de son choix des données de référence choisies,
+* **Edition massive de fichier :** ajouter et modifier les données de référence avec un fichier,
+* **Cliquez pour éditer :** modification donnée par donnée. Après chaque édition, une action de sauvegarde est indispensable pour la prise en compte de la modification.
+* **Sauvegarde :** sauvegarde suite à une modification d'une donnée. 
+* **Ajouter une nouvelle ligne de données :** le bouton plus + dans la dernière colonne du tableau n°2 permet d'ajouter une nouvelle ligne dans le tableau n°2.
+
+# Télécharger un fichier de données de référence
+
+A partir de l'affichage ci-dessus, le téléchargement d'un fichier des données de référence se fait en réalisant l'action ci-dessous :
+
+* **Action** : Cliquer sur le bouton [télécharger] situé en haut à droite.
+
+Une fenêtre de téléchargement apparaitra pour vous guider dans la suite de l'action à réaliser. Le fichier téléchargé est du type « données_de_references.csv ».
+les noms et nombres de colonnes des fichiers téléchargés sont fixes et sont variables selon les données de référence.
+
+# Edition massive d'un fichier de données de référence
+
+Toujour à partir de cet affichage, l'édition massive de données de référence se fait en :
+
+* **Action** : Cliquer sur le bouton [Edition massive par fichier] situé en haut à droite du tableau n°2.
+
+* **Action** : Cliquer sur le bouton [Ajouter un fichier] .
+
+Un explorateur apparaitra pour vous permettre de parcourir vos dossiers afin de sélectionner le fichier à insérer dans le système d’information, il faut ensuite lancer l'insertion du fichier en base ou le supprimer.
+
+# Modifier une donnée de référence
+
+A partir de l’affichage ci-dessus, l'édition une donnée de référence se fait en réalisant l'action ci-dessous :
+
+* **Action** : Passer votre curseur sur une case non grisée, une infobulle `cliquez pour éditer` apparaitra puis faites un clic sur la souris.
+
+Vous pouvez alors apporter la modification dans le champ de saisi puis fermez la fenêtre à l'aide de la petite croix rouge. Le bouton [Sauvegarder] situé en haut à droite passe en surbrillance. Cette action doit être compléter par l'action sauvegarde ci-dessous pour la prise en compte de votre modification.
+
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">**Important**</h4>
+  <p>L'action `cliquez pour éditer` ne fonctionne que pour les données du tableau qui sont non grisées.</p>
+</div>
+
+# Sauvegarder la modification
+
+* **Action** : Cliquer sur le bouton [Sauvegarder] puis confirmer votre action.
+
+Votre modification est validée, elle est intégrée dans la base de données.
+
+# Ajouter une nouvelle ligne de données de référence
+
+* **Action** : Passer votre curseur sur le bouton plus `+` localisé dans la dernière colonne du tableau d'édition des données de référence. Une infobulle `cliquer pour ajouter une nouvelle entrée au tableau` apparaitra puis faites un clic sur la souris.
+
+Vous pouvez alors saisir toute la description de la nouvelle donnée en veillant aux informations obligatoires.

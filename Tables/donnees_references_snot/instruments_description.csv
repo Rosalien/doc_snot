@@ -1,0 +1,10 @@
+Nom de la colonne; Signification ;Unique;Obliga
+code;Code de l'instrument;oui;oui
+libellé_fr;Libellé (description brève) en français;non;non
+libellé_en;Libellé (description brève) en anglais;non;non
+Informations de calibration_fr;Informations de calibration (en français);non;non
+Informations de calibration_en;Informations de calibration (en anglais);non;non
+fabricant_fr;Informations sur le fabriquant (en français);non;non
+fabricant_en;Informations sur le fabricant (en anglais);non;non
+description_fr;Description sommaire de l'instrument (en français);non;non
+description_en;Description sommaire de l'instrument (en anglais);non;non

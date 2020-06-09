@@ -1,0 +1,18 @@
+\begin {longtable}{@{}ll>{\hsize =\vhAuthorColWidth }X>{\hsize =\vhChangeColWidth }X@{}}
+\textbf {\vhversionname }
+ & \textbf {\vhdatename }
+ & \textbf {\vhauthorname }
+ & \textbf {\vhchangename }\\[1ex]
+1.0
+ & 22.01.04
+ & \listset {JPW|KW}
+ & created\\
+1.1
+ & 23.01.04
+ & \listset {DP|JPW}
+ & correction\\
+1.2
+ & 03.02.04
+ & \listset {DP|JPW}
+ & revised after review\\
+\end {longtable}

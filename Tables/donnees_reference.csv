@@ -1,0 +1,85 @@
+Donnees_de_reference;Type;Nom;description;Obligatoire;Utilisation
+jeu;table;jeu;Table décrivant le thème de donnée par site. Utilisé pour la construction des fiches de métadonnée;;BDD-SI
+gestionnairejeu;table;gestionnairejeu;Gestionnaire des jeux de données;;BDD-SI
+site;table;site;Table décrivant les caractéristiques des sites du SNO-T;;SNO-T
+theme;table;theme;Table décrivant la thématique scientifique de la donnée;;SNO-T
+type de données;table;type de données;Table décrivant le type de données;;SNO-T
+site-theme-type de donnees;table;site-theme-type de donnees;Type de donnée par site et par thème;;BDD-SI
+variable;table;variable;Variable intégrée dans la BDD-SI;;BDD-SI
+unite;table;unite;Unité des variables intégrée dans la BDD-SI;;BDD-SI
+variables_par_types_de_donnees;table;variables_par_types_de_donnees;Variable par type de données;;BDD-SI
+instrument;table;instrument;Instrument du SNO-T;;SNO-T
+methodecalcul;table;methodecalcul;;;BDD-SI
+methode_calcul_reference;table;methode_calcul_reference;;;BDD-SI
+instrument_reference;table;instrument_reference;;;BDD-SI
+caracteristiques_typedonnees;table;Arborescence_typededonnees;Caractéristiques des types de données par étapes du cycle de vie;;SRV-SO
+nomenclature_caracteristiquestypedonnees;table;Nomenclature_caracteristiquestypededonnees;Description de la table Caracteristiques_typededonnees;;SRV-SO
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+jeu;colonne;code;Code du jeu de données ([code_site]_[code_theme]);Oui;
+jeu;colonne;code_site;Code du site associé au jeu;Oui;
+jeu;colonne;code_theme;Code du thème associé au jeu;Oui;
+jeu;colonne;description;Description du jeu de données;Oui;
+jeu;colonne;objectif;Objectif scientifique du jeu de données;Oui;
+jeu;colonne;genealogie;Explication de la construction du jeu de données;Oui;
+site;colonne;code;Code en trois lettres du site du SNO-T;Oui;
+site;colonne;nom;Nom complet du site de la tourbière;Oui;
+site;colonne;description_fr;Description en français du site;Oui;
+site;colonne;description_en;Description en anglais du site;Non;
+site;colonne;type_bbox;Type d’étendue;Oui;
+site;colonne;coordonnees_bbox;Coordonnées géographiques de l’étendue du site de la tourbière au format GEOJSON en EPSG 2154. Pour établir la bbox, voir https://boundingbox.klokantech.com/;Oui;
+site;colonne;surface;Surface en ha du site de la tourbière;Oui;
+site;colonne;altitude;Altitude en m du site de la tourbière;Oui;
+site;colonne;climat;Type de climat selon la nomenclature;Oui;
+site;colonne;geologie;Type de géologie selon la nomenclature;Oui;
+site;colonne;dir_vent_fr;Direction principale du vent en français;Non;
+site;colonne;dir_vent_en;Direction principale du vent en anglais;Non;
+site;colonne;pays_fr;Nom français du pays où se situe le site;Oui;
+site;colonne;pays_en;Nom anglais du pays où se situe le site;Oui;
+theme;colonne;nom_key;A Définir;Oui;
+theme;colonne;nom_fr;Nom du thème en français;Oui;
+theme;colonne;nom_en;Nom du thème en anglais;Non;
+theme;colonne;definition_fr;Description  du thème en français;Non;
+theme;colonne;definition_en;Description  du thème en anglais;Non;
+type de données;colonne;nom_fr;Nom français du type de données;Oui;
+type de données;colonne;nom_en;Nom anglais du type de données;Non;
+type de données;colonne;definition_fr;Description du type de données en français;Non;
+type de données;colonne;definition_en;Description du type de données en anglais;Non;
+site-theme-type de donnees;colonne;nom du site;Code du site;Oui;
+site-theme-type de donnees;colonne;nom du thème;Nom en français du thème;Oui;
+site-theme-type de donnees;colonne;nom du type de données;Nom en français du type de données;Oui;
+variable;colonne;nom;Nom de la variable;Oui;
+variable;colonne;définition_fr;Description en français de la variable;Non;
+variable;colonne;définition_en;Description en anglais de la variable;Non;
+unite;colonne;code;Code de l'unité;Oui;
+unite;colonne;définition_fr;Définition de l’unité en français;Non;
+unite;colonne;définition_en;Définition de l’unité en anglais;Non;
+variables_par_types_de_donnees;colonne;nom du type de données;Nom français du type de données;Oui;
+variables_par_types_de_donnees;colonne;nom de la variable;Nom de la variable;Oui;
+variables_par_types_de_donnees;colonne;nom de l'unité;Code de l'unité;Oui;
+variables_par_types_de_donnees;colonne;min;Valeur minimale de la variable pour ce type de données;Non;
+variables_par_types_de_donnees;colonne;max;Valeur maximale de la variable pour ce type de données;Non;
+instrument;colonne;code;Code de l'instrument;Oui;
+instrument;colonne;libellé_fr;Libellé (description brève) en français;Non;
+instrument;colonne;libellé_en;Libellé (description brève) en anglais;Non;
+instrument;colonne;informations de calibration_fr;Informations de calibration (en français);Non;
+instrument;colonne;informations de calibration_en;Informations de calibration (en anglais);Non;
+instrument;colonne;fabriquant_fr;Informations sur le fabriquant (en français);Non;
+instrument;colonne;fabriquant_en;Informations sur le fabriquant (en anglais);Non;
+instrument;colonne;description_fr;Description sommaire de l'instrument (en français);Non;
+instrument;colonne;description_en;Description sommaire de l'instrument (en anglais);Non;
+methodecalcul;colonne;code;Code de la méthode;Oui;
+methodecalcul;colonne;libellé_fr;Libellé (description brève) en français;Non;
+methodecalcul;colonne;libellé_en;Libellé (description brève) en anglais;Non;
+methodecalcul;colonne;description_fr;Description sommaire de la méthode (en français);Non;
+methodecalcul;colonne;description_en;Description sommaire de la méthode (en anglais);Non;
+methode_calcul_reference;colonne;code de la méthode de calcul;Code de la méthode de calcul;Oui;
+methode_calcul_reference;colonne;doi de la référence;DOI de la référence associée à la méthode;Oui;
+instrument_reference;colonne;code de l’instrument;Code de l’instrument;Oui;
+instrument_reference;colonne;Doi de la référence;DOI de la référence associée à l’instrument;Oui;

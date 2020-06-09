@@ -1,0 +1,56 @@
+---
+title: "Etape 4 : Extraction au format Theia/OZCAR (en construction)"
+---
+
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+```{r,evaL=TRUE,echo=FALSE}
+# Ici, nommer le code du type de données pour automatiser le nommage. Cette variable est également utilisée dans les tableaux pour filtrer par type de données
+v_tdo <- "eddycovariance"
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectifs et contenu**</h4>
+  <p>Décrire l'extraction des fichiers pour le partage avec le SI Theia/OZCAR</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Thématiciens et gestionnaires des données sur les données eddy-covariance,</p>
+  <p>Connaissance générale de l'organisation des données du SI SNO-T.</p>
+</div>
+   
+# Description du fichier `SNOT_OZCAR`
+
+
+# Description du contenu des fichiers `SNOT_OZCAR`
+
+## En-tête de contextualisation
+
+## Données
+
+
+# Création des fichiers `SNOT_OZCAR`
+
+## Création automatique
+
+
+## Modèle de fichier `SNOT_OZCAR`
+
+# Stockage du fichier dans l'arborescence du FTP `SRV-SO`
+
+Les fichiers prêts à être intégrés dans le SI SNO-T sont stockés dans le serveur FTP `SRV-SO` dans l'arborescence suivante :
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/Caracteristiques_typedefichiers.csv",sep=""),sep=";",colClasses = "character")
+metatable <- metatable[metatable$code_typedonnees %in% v_tdo & metatable$nom_etape %in% "4_Extraction",c("code_typefichier","extension","stockage")]
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+# Envoi du fichier `SNOT_OZCAR` dans le SI Theia/OZCAR
+
+

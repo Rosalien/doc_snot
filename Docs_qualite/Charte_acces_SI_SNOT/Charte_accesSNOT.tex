@@ -1,0 +1,180 @@
+\documentclass[]{article}
+\usepackage[frenchb]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{natbib}
+\usepackage{multicol}
+%pour liens hypertexte
+\usepackage{hyperref}
+\newcommand{\mhref}[3][blue]{\href{#2}{\color{#1}{#3}}}%
+
+\usepackage{geometry}
+%\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
+
+% Pour les tables de matières
+%\usepackage{shorttoc}
+
+%pour les tableaux
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{ctable}
+\usepackage{bm}
+\newcolumntype{M}[1]{>{\arraybackslash}m{#1}}
+\newcommand{\SNOT}{{SNO~Tourbières }}
+
+%% The amsthm package provides extended theorem environments
+\usepackage{amsthm}
+\usepackage{numprint}
+
+%\graphicspath{{../Fig/}}
+
+%%Pour les algorithmes
+\usepackage{algorithmic}
+\usepackage{algorithm}
+
+\usepackage{natbib}
+\usepackage{bibentry}
+\title{Charte d'accès aux données de Data-SNOT}
+\date{}
+
+%Pour la personnalisation du nom des sections (https://tex.stackexchange.com/questions/136527/section-numbering-without-numbers))
+\makeatletter
+% we use \prefix@<level> only if it is defined
+\renewcommand{\@seccntformat}[1]{%
+	\ifcsname prefix@#1\endcsname
+	\csname prefix@#1\endcsname
+	\else
+	\csname the#1\endcsname\quad
+	\fi}
+% define \prefix@section
+\newcommand\prefix@section{Article \thesection: }
+\makeatother
+
+
+\begin{document}
+	\maketitle
+	
+\section{Préambule}
+
+La présente charte a pour objectif de faire connaître les règles d'accès et d'utilisation des données disponibles du Service National d'Observation des Tourbières (SNO-T) en ligne à travers l’application web \mhref{https://data-snot.cnrs.fr/}{data-snot.cnrs.fr} nommé ci-après \og{}Data-SNOT\fg{}.
+
+\section{Nature des données}
+
+Data-SNOT a pour vocation de permettre la gestion et la mise à disposition des données collectées sur les sites du SNO-T.
+
+Le SNO-T est une infrastructure opérationnelle sur le long terme basée sur l’observation et la modélisation du fonctionnement des tourbières tempérées soumises aux perturbations climatiques et anthropiques. Le dispositif d’observation est centré sur l'acquisition de données pour comprendre le cycle du carbone dans les tourbières. Les données présentes dans le système d’information recouvrent ainsi des variables météorologiques, atmosphériques, hydrologiques et de biodiversité.\\
+
+L’ensemble des métadonnées et des données disponibles sont consultables sur l'application Data-SNOT. \mhref{https://sourcesup.renater.fr/si-snot/}{Une documentation en ligne} est disponible pour comprendre l'organisation des données dans le système d'information et appréhender les fonctionnalités de l'application web. 
+
+\section{Définitions}
+
+\begin{description}
+	\item[Data-SNOT] désigne l’ensemble de la base de données du SNO-T et de l'application informatique qui gère et met à disposition les dites données. Le système d’information est mis à disposition de l’Utilisateur en vertu des présentes Conditions Générales d’Utilisation (CGU). Il contient les Données et des Données dérivées. 
+	
+	\item[Base de Données SNO-T]: désigne l’ensemble des données du SNO-T gérées par les différents membres du réseau.
+	
+	\item[CGU]: désigne les conditions générales d’utilisation de Data-SNOT.
+	
+	\item[Données]: désigne tout ou partie des données contenues dans Data-SNOT et leurs partenaires sont producteurs et/ou dépositaires, et qui bénéficient de la protection prévue par le Code de la propriété intellectuelle. 
+	
+	\item[Données dérivées]: désignent toute donnée ayant une relation évidente avec les Données de Data-SNOT y compris toute traduction, adaptation, arrangement, modification de la Base de Données. Les Données dérivées sont soumises aux mêmes conditions des CGU que les Données. 
+	
+	\item[Droits de propriété intellectuelle]: désigne l’ensemble des droits relatifs aux travaux de création, d’utilisation et d’exploitation intellectuelle.
+	 
+	\item[L’Utilisateur]: désigne l’utilisateur ayant accepté les présentes conditions générales d’utilisation ou qui a obtenu l’autorisation expresse d’exercer les droits prévus par les présentes CGU. Lorsqu’ils sont au singulier, ces termes incluent le pluriel et inversement. 
+\end{description}
+
+\section{Propriété intellectuelle}
+
+Les Données sont protégées au titre du droit d’auteur. A ce titre, le(s) propriétaire(s) des Données détiennent l’ensemble des droits moraux et patrimoniaux y afférents.
+
+Les présentes CGU n’entraînent aucun transfert de propriété. Les droits d’utilisation des Données octroyés au titre de l’article 6 sont expressément soumis au respect des présentes CGU. Tout manquement de l’Utilisateur sera considéré comme une violation grave des présentes CGU.\\
+
+Au titre des droits moraux détenus par les membres du réseau du SNO-T et leurs partenaires sur les données, l’Utilisateur s’engage à mentionner l’origine des Données sur tout support de communication ou toute forme de réutilisation, indépendamment de la mention de ses droits d’auteur, de la façon suivante :
+
+\begin{quotation}
+	\og{}Le Service National d'Observation des Tourbières (https://www.sno-tourbieres.cnrs.fr/) a été mis en place grâce à un financement incitatif du CNRS-INSU. La continuité et la pérennité des mesures reposent sur les financements accordés sans discontinuité par le CNRS-INSU depuis 2008.\fg{}
+\end{quotation}
+
+L'Utilisateur est propriétaire des droits afférents aux travaux ayant permis la dérivation.
+
+\section{Modalité d'obtention des données et d'utilisation du système d'information}
+
+\subsection{Conditions d'accès}
+
+Toutes les données de Data-SNOT sont accessibles gratuitement aux Utilisateurs ayant fait une demande d'inscription et accepter les présentes CGU.
+
+\subsection{Inscription}
+
+Le téléchargement des données requiert une authentification de l’Utilisateur. Les Utilisateurs sont donc tenus de faire une demande d'inscription au préalable.
+Il est nécessaire pour cela de remplir un formulaire en ligne dans lequel seront précisées l'identité et l'affiliation du demandeur. Il est nécessaire d'accepter la présente charte d’utilisation des données. La validation des inscriptions publiques est \textbf{automatique} et \textbf{immédiate}.
+
+\section{Droits et obligations}
+
+\subsection{Droits et obligations de Data-SNOT}
+
+Dès lors que l’Utilisateur a créé son compte et accepté les présentes CGU conformément à l’article 5 desdites CGU, l’Utilisateur aura à sa disposition les Données demandées sur la période demandée, via un compte (login mot de passe) permettant un accès aux modules d’extraction par type de données.
+
+Cette mise à disposition ouvre à l’Utilisateur un droit d’utilisation des Données gratuit, non exclusif, non transférable, non cessible, pour toute utilisation ou réutilisation autre que son exploitation commerciale ou industrielle.\\
+
+Les membres du SNO-T et leurs partenaires s’engagent à mettre en \oe{}uvre les moyens à leur disposition pour constituer et mettre à jour la Base de Données ainsi que les modules d’extraction. En aucun cas, une obligation de résultat ne saurait être recherchée à son encontre.
+En vue du respect de la vie privée, les membres du SNO-T et leurs partenaires s’engagent à ce que la collecte et le traitement d’informations personnelles soient effectués conformément à la loi n°78-17 du 6 janvier 1978 relative à l’informatique, aux fichiers et aux libertés, dite Loi \og{}Informatique et Libertés \fg{}. A ce titre, elles feront l’objet d’une déclaration auprès de la CNIL.
+
+\subsection{Droits et obligations de l'Utilisateur}
+
+\begin{enumerate}
+\item L’Utilisateur est autorisé à utiliser le système d’information et sa Base de Données ainsi que les Données dérivées pour ses besoins propres, à l’exclusion de tout autre droit. Il peut changer ou modifier les Données qu’il aura extraites afin de produire des travaux dérivés.
+\item L’Utilisateur a pris connaissance et accepte les contraintes et modalités de délivrance des Données.
+\item L’Utilisateur prend l’entière responsabilité de l’usage qu’il fait de la Base de Données et des
+Données dérivées.
+\item L’Utilisateur déclare qu’il ne fera pas d’exploitation commerciale ou industrielle directe ou indirecte de la Base de Données et des Données dérivées.
+\item Dans le cadre de la publication de ses résultats ou de toute communication, l’Utilisateur s’engage à citer l’origine des données conformément à l’article 3 des présentes CGU.
+\item Si l’Utilisateur constate la moindre anomalie sur les Données extraites ou dans les modules d’extraction, il s’engage à en informer immédiatement le responsable scientifique du SNO-T qui lui fournira dans la mesure du possible les réponses nécessaires pour une bonne utilisation des Données.
+\item L’Utilisateur est personnellement responsable en cas de non-respect des présentes dispositions
+\end{enumerate}	
+
+\section{Responsabilité}
+
+Il est expressément spécifié que les Données sont mises à disposition en l’état. Les membres du réseau SNO-T et leurs partenaires se réservent le droit, à tout moment et sans préavis, de modifier et d’apporter des corrections aux Données. Les membres du réseau SNO-T et leurs partenaires déclinent toute responsabilité relative à la qualité, l’exactitude, l’exhaustivité de la Base de Données notamment lorsque les Données viennent de tiers.\\
+
+Par conséquent la responsabilité des membres du réseau SNO-T et leurs partenaires ne saurait en aucun cas être recherchée, ni par l’Utilisateur téléchargeant les Données, ni par des tiers, du fait du contenu ou des caractéristiques des Données communiquées, du fait de l’absence ou de l’imprécision de ces Données, ou du fait de l’utilisation et de l’exploitation qui seront faites de ces Données.\\
+
+Les membres du réseau SNO-T et leurs partenaires ne se portent pas garant en cas de violation de droits de tiers et se réservent le droit de demander réparation en cas de préjudice du fait du non respect des CGU lors de l’utilisation des Données de base ou dérivées.
+Les membres du réseau SNO-T et leurs partenaires ne seront pas tenus pour responsables ou coresponsables des conséquences, accidents et/ou dommages immatériels comme la perte de profit, perte de production, diminution du chiffre d’affaires, perte de Données ou d’informations, perte de jouissance de droits, interruption partielle ou totale d’activité par tout Utilisateur des Données de base ou dérivées.\\
+
+Les membres du réseau SNO-T et leurs partenaires ne seront pas considérés comme défaillants pour tout manquement à leurs obligations nées des présentes CGU dès lors que le dit manquement est la conséquence manifeste d’un fait imputable à la Force majeure, telle que définie sous les Articles 607, 1148, 1302, 1348, 1722 du code civil, ou de tout fait indépendant de sa volonté qui ne peut être empêché malgré ses efforts raisonnablement possibles, tels que les dysfonctionnements techniques.\\
+
+L’Utilisateur exploite les Données, conformément aux termes des CGU, sous sa seule responsabilité et à ses seuls risques. Il demeure responsable de l’utilisation et de l’exploitation qu’il fait des Données.
+
+\section{Droit applicable et attribution de juridiction}
+
+Les présentes CGU sont régies par le droit français et interprétées conformément aux dispositions de celui-ci. L’Utilisateur et le CNRS et ses producteurs associés s’efforceront de résoudre à l’amiable les contestations qui pourraient surgir de l’interprétation ou de l’exécution des clauses des CGU.
+
+En cas de désaccord persistant, il est fait attribution de compétence aux juridictions compétentes du ressort du siège social du CNRS.
+
+\section{Contact et condition spécifiques}
+
+Toute autre utilisation du système d’information que celle définie dans les présentes doit être adressée au responsable scientifique du SNO-T à sebastien.gogo@univ-orleans.fr.
+
+Si le responsable scientifique du SNO-T ne répond pas expressément à la demande dans un délai de trente (30) jours, alors la demande est par défaut considérée comme refusée.
+\end{document}
+
+
+%\section{Article 3: Règles}
+%
+%\subsection{Conditions d'accès}
+%
+%Toutes les données sont accessibles gratuitement à tous les Utilisateurs enregistrés dans la base de données.
+%
+%\subsection{Inscription}
+%
+%Le téléchargement des données requiert une authentification de l’Utilisateur, quel que soit le statut des données recherchées. Les Utilisateurs sont donc tenus de faire une demande d'inscription au préalable.
+%Il est nécessaire pour cela de remplir un formulaire en ligne dans lequel seront précisées l'identité et l'affiliation du demandeur. Il est nécessaire d'accepter la présente charte d’utilisation des données. La validation des inscriptions publiques est automatique et immédiate.
+
+

@@ -1,0 +1,57 @@
+---
+title: "Documentation du SI SNO-Tourbières (SNO-T)"
+date: "Dernière mise à jour le `r format(Sys.Date(), format='%d %B %Y')`"
+output:
+  html_document:
+    toc: false
+
+---
+
+Cette documentation s'adresse à tous les utilisateurs qui souhaitent comprendre l'organisation des données et utiliser les fonctionnalités des applications web du SI SNO-T [data-snot.cnrs.fr](https://data-snot.cnrs.fr/) et [data-access](https://data-snot.cnrs.fr/data-access). Elle est constituée des éléments suivants :
+
+* **Les données du SNO-T** *(Tout public)* Organisation générale des données et leurs lieux de stockage :
+	* **[Organisation des données](https://sourcesup.renater.fr/si-snot/1_Decouverte_OrganisationDonnees.html)**
+	* **[Les données d'observation diffusées](https://sourcesup.renater.fr/si-snot/1_Decouverte_DonneesDiffusees.html)**
+	* **[Le stockage dans le serveur FTP SRV-SO](https://sourcesup.renater.fr/si-snot/2_SRVSO_Arborescence.html)**
+	* **[Les données de référence du serveur FTP SRV-SO](https://sourcesup.renater.fr/si-snot/2_SRVSO_DonneesReferences.html)**
+	* **[Les données de référence de l'application web data-snot.cnrs.fr](https://sourcesup.renater.fr/si-snot/2_BDD_SNOT_DonneesReference.html)**	
+	
+* **Documents métiers** *(Fournisseurs de données)* Description du format d'échange et du cycle de vie des données : 
+	* **[Les données eddy-covariance](https://sourcesup.renater.fr/si-snot/3.0_Sce_eddycovariance.html)**
+	* **[Les données météo-sol](https://sourcesup.renater.fr/si-snot/3.0_Sce_meteosol.html)**
+	* **[Les données provenant des piézomètres](https://sourcesup.renater.fr/si-snot/3.0_Sce_piezo.html)**
+	* **[Les données des chambres CO2](https://sourcesup.renater.fr/si-snot/3.0_Sce_chambreco2.html)**
+	* **[Les données DOC](https://sourcesup.renater.fr/si-snot/3.0_Sce_doc.html)**
+
+* **Aide** *(Tout public)* Ensemble de modes opératoires pour utiliser [data-snot.cnrs.fr](https://data-snot.cnrs.fr/snot/) et la [Forge SNOT](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/) :
+	* **[Administration des données de référence](https://sourcesup.renater.fr/si-snot/4_AdminDonnees.html)**
+	* **[Intégration des données d'observation](https://sourcesup.renater.fr/si-snot/4_IntegrationDonnees.html)**
+	* **[Comment intégrer une nouvelle donnée dans data-snot.cnrs.fr](https://sourcesup.renater.fr/si-snot/4_IntegrationNvelleDonnees.html)**
+	* **[Créer un DOI et/ou mettre à jour un jeu de données](https://sourcesup.renater.fr/si-snot/4_JeuxDonneesDOI.html)**
+	* **[Déposer une archive pour le SI Theia/OZCAR](https://sourcesup.renater.fr/si-snot/4_Echange_SITheiaOzcar.html)**
+	* **[Améliorer data-snot.cnrs.fr avec la Forge SNOT](https://sourcesup.renater.fr/si-snot/4_Forge.html)**
+
+* **Procédures** *(Administrateur)* Ensemble de procédures techniques pour la maintenance du SI
+	* **[Prendre en main le SI](https://sourcesup.renater.fr/www/si-snot/5_Architecture_SI-SNOT.html)**
+	* **[Administrer l'application data-snot.cnrs.fr](https://sourcesup.renater.fr/si-snot/5_Developper_appliSOERE.html)**
+	* **[Administrer les applications Shiny](https://sourcesup.renater.fr/si-snot/5_Administrer_shiny.html)**
+	* **[Déployer l'application de génération de métadonnées PIVOT](https://sourcesup.renater.fr/si-snot/5_Administrer_MetadataPivot.html)**
+	* **[Mettre à jour la documentation](https://sourcesup.renater.fr/www/si-snot/5_Creation_documentation.html)**
+
+<div class="alert alert-warning" style="font-weight: bold;">  <p>La documentation est en cours de développement. La structuration et le contenu du site sont amenés à évoluer.</p>
+  <p>Si vous constatez des incohérences et/ou si vous avez des suggestions d'amélioration, n'hésitez pas à les signaler à travers la `r linkAlertCSS("Forge SNOT","https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere")` ou à nous contacter : `r linkAlertCSS("contact.sno-tourbieres@cnrs-orleans.fr","mailto:contact.sno-tourbieres@cnrs-orleans.fr")`.</p>
+</div>
+
+## Licence & remerciement {-}
+
+Une partie de cette documentation s'appuie sur le code d'[Analyse-R](http://larmarange.github.io/analyse-R/), merci à Joseph Larmarange et à tous les contributeurs de ce projet.
+
+La documentation est propulsée par R, R Markdown, knitr et pandoc. Hébergée par [Renater](https://sourcesup.renater.fr/projects/si-snot/).
+
+Le contenu de ce site est diffusé sous licence 
+*[Creative Commons Attribution - Pas d'utilisation commerciale - Partage dans les mêmes conditions](https://creativecommons.org/licenses/by-nc-sa/3.0/fr/)*.
+
+<center><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></center>
+
+
+

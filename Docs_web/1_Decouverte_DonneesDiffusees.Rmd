@@ -1,0 +1,44 @@
+---
+title: "Les variables diffusées dans le SNO-T"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+# Les variables cibles diffusées dans le SI SNO-T
+
+A terme, **36** variables environnementales du SNO-T seront diffusées et accessibles. L'intégration du type de données est réalisée au fur et à mesure et les types de données disponibles sur [data-snot.cnrs.fr](https://data-snot.cnrs.fr/snot/login.jsf) sont marqués en vert dans le tableau ci-dessous.
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"/donnees_references_srvso/srvso_variables.csv",sep=""),sep=";",colClasses = "character")
+datatypeSNOT <- c("SNOT_eddycovariance","SNOT_meteosol","SNOT_piezo","SNOT_biogeo","SNOT_chambrech4","SNOT_chambreco2")
+
+# Liste des datatypes et de la couleur associée actuellement disponible 
+datatypeOK <- c("eddycovariance","meteosol","piezo")
+colorOk <- rep('#54C571',length(datatypeOK))
+
+# Liste des datatypes et de la couleur associée non-disponible 
+datatypeNo <- c("chambrech4","chambreco2","biogeo")
+colorNo <- rep('white',length(datatypeNo))
+metatable <- metatable[metatable$code_typefichier %in% datatypeSNOT & metatable$type_variable %in% "cible",c("code_var","code_typedonnees","description")] 
+
+datatable(metatable,rownames= FALSE,options = list(
+  pageLength = 36, autoWidth = TRUE)) %>% formatStyle('code_typedonnees',target = 'row',backgroundColor = styleEqual(c(datatypeOK, datatypeNo), c(colorOk, colorNo))
+)
+```
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**Pour aller plus loin**</h4>
+  <p>Vous pouvez visualiser les données disponibles également sur l'application `r linkAlertCSS("https://data-snot.cnrs.fr/data-access/","https://data-snot.cnrs.fr/data-access/")`.</p>
+</div>
+
+# Toutes les variables du SNO-T (auxilliaires & cibles)
+
+L'ensemble des variables mobilisée dans le SNO-T est consultable à cette [adresse](https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_srvso/srvso_variables.csv) et interrogeable dans la table ci-dessous :
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"/donnees_references_srvso/srvso_variables.csv",sep=""),sep=";",colClasses = "character")
+metatable <- unique(metatable[,colnames(metatable) %in% c("code_var","description","type_variable")]) 
+DT::datatable(metatable,rownames = FALSE,filter = 'top')
+```

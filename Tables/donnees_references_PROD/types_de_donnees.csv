@@ -1,0 +1,4 @@
+nom_key;nom_fr;nom_en;description_key;description_fr;description_en
+eddycovariance_sh;Flux de GES par Eddy-covariance;Greenhouse gas flux by Eddy-covariance;Flux atmosphérique semi-horaire des GES provenant d'une station eddycovariance;Flux atmosphérique semi-horaire des GES provenant d'une station eddycovariance_sh;Atmospheric semi-hourly greenhouse gas flux from Eddy-covariance station
+meteosol_j;meteosol_j;Weather d;Météo et physique du sol journalière;Météo et physique du sol journalière;Daily weather
+meteosol_sh;Météo et physique du sol;Weather and soil physic;Météo et physique du sol semi-horaire;Météo et physique du sol semi-horaire;Weather and soil physic

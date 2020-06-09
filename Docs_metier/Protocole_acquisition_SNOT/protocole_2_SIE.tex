@@ -1,0 +1,415 @@
+
+%---------------------- %   Chapitre 2   %--------------------- %
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%																%	
+%			 SNO Tourbières - Système d'information 			%
+%																%	
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+
+
+
+
+\chapter{Le système d'information en environnement - SIE}
+
+Mofification volontaire S. Gogo, ...
+
+\section{Cadre et objectif du SIE}
+
+Les activités d'observations génèrent un grand nombre de données qu'il s'agit de collecter, stocker et traiter. Le système d'information en environnement (SIE) du SNO Tourbières est l'outil informatique qui permettra la gestion des données. Il est composé d'un serveur (SRV-SO), d'un intégrateur de données, Talend, d'une base de données en MySQL et d'une interface web (sur le site : http://www.sno-tourbieres.cnrs.fr/). Afin d'augmenter la diffusion des résultats et des données acquises, il est prévu de rédiger une version en anglais du site internet.
+
+
+Le SIE est basé à l'OSUC, où convergent les données du SNO Tourbières et il a pour but de:
+
+\
+
+\begin{itemize}
+		\item \textbf{collecter et stocker les données "obligatoires" acquises à haute fréquence et télé-transmises par les stations d'acquisition des différents sites du réseau,}
+
+\
+
+		\item \textbf{collecter et stocker les données "obligatoires" acquises à haute fréquence par d'autres appareils de mesures, mais non télé-transmises (envoi par opérateur),}
+
+\
+
+		\item \textbf{collecter et stocker les données "obligatoires" acquises ponctuellement par un opérateur,}
+
+\
+
+		\item \textbf{intégrer les données dans une base de données,}
+
+\
+
+		\item \textbf{réaliser des traitements de données: "flaguer" les données en fonction de seuils et produire des données calculées,}
+
+\
+
+		\item \textbf{permettre, via une interface web, aux responsables de sites de réaliser le contrôle des données,}
+
+\
+
+		\item \textbf{permettre, via une interface web, aux public de voir les observations réalisées par le SNO Tourbières,}
+
+\
+
+		\item \textbf{permettre, via une interface web, le téléchargement de données.}
+\end{itemize}
+
+\newpage
+
+\section{Rôle des différents éléments du SIE SNO Tourbières}
+
+\subsection{Le serveur "SRV-SO"}
+
+Le serveur "SRV-SO" est le lieu où convergent les fichiers contenant les données des différents sites. Le nom des fichiers est définie dans le chapitre 1. Les fichiers sont dans des dossiers classés par site. Ceci permettra de mettre en place un accès limité aux dossiers : chaque responsable de site aura accès au dossier de son site et pas aux autres. C'est dans le SRV-SO que l'intégrateur de données Talend viendra "récupérer" les données.
+
+\subsection{L'intégrateur de données Talend}
+
+Talend est un éditeur de logiciel au code source ouvert. Il permet la création de routine pour l'intégration des données dans la base : formatage, réalisation de tests déterminés par l'analyse de données déjà validées (e.g. calcul de la déviation standard et de l'intervalle +/- 95 \%) et de "flaguer" les données validées par le traitement et celles non validées nécessitant la validation par un expert.
+
+
+\subsection{La base de données}
+
+La base de données est un outils qui permet de stocker des données et de les mettre en relation en fonction d'un modèle. Ce modèle définit les relations possibles entre les différentes tables. Ces tables contiennent les données acquises par les capteurs, mais également des variables calculées à partir des données brutes, les informations concernant la gestion des accès aux données et les métadonnées (information sur les capteurs, sur les évènements affectant le monitoring). La base de données peut être interrogée par une interface web pour la visualisation et le téléchargement des données sélectionnées en ligne. Elle est également interopérables, c'est à dire qu'elle peut être interrogée par une autre base de données.
+
+La base de données sera localisée sur une autre support physique que le SRV-SO. La sauvegarde séparée d'une copie de l'ensemble des données limitera les risques de perte de données en cas de problèmes techniques.
+
+\newpage
+
+
+
+\section{Les flux de données}
+
+Différentes étapes se succèdent dans différents contextes, depuis la génération de la donnée par un capteur sur le terrain, jusqu'à sa mise en disposition par une interface web. Tout d'abord, les données peuvent être injectées sur le SRV-SO de différentes façons:
+
+\begin{itemize}
+	\item automatiquement par une machine quand la télé-tranmission est possible,
+	
+
+	\item par un opérateur humain qui est allé récupérer les données sur un datalogger,
+	
+	
+	\item par un opérateur humain qui a fait la mesure lui même sur le terrain ou au laboratoire après un prélèvement sur le site.
+\end{itemize}
+
+Ensuite, l'intégrateur de données Talend prend les données du SRV-SO et peut réaliser différents formatages et calculs avant d'envoyer les données dans la base de données (Fig. 2.1). Ces tests et calculs doivent être définis. Enfin, la base de données peut être intérogée via une interface web pour visualiser et/ou télécharger les données (Fig. 2.1). Ceci doit s'accompagner de différentes actions (comptage des téléchargements de chaque variable, message d'information pour la citation dans des articles).
+Il faut également souligner qu'en plus de tous les fichiers de données, des fichiers de métadonnées sont générés récapitulant l'historique des capteurs pour chaque variables et les opérations des différentes personnes impliquées dans le suivi au jour le jour des sites. Le flux des métadonnées doit également être définis.
+
+\
+
+
+	\begin{figure}[h] 
+		\centering
+		\includegraphics[width=12cm]{sie_0.jpg}
+		\caption{Schéma global des flux de données et de métadonnées.}
+		\label{Fig.1}
+	\end{figure}
+
+
+\subsection{Des capteurs vers le serveur SRV-SO}
+
+\paragraph{Cas 1 : données acquises à haute fréquences et télé-transmises}
+
+\
+
+Les données acquises à haute fréquence et télé-transmises proviennent des 2 (ou 3) stations météo-sol (\#001, \#002, \#003) et de la tour eddy covariance (\#004). Les variables mesurées sur le sites du SNO Tourbières sont les mêmes dans tous les sites. Cependant, suivant les circonstances particulières à chaque site, la répartition de l'ensemble des capteurs, et donc des données qui en résultent, peut être différente entre les sites. Par conséquent, le programme des stations peuvent être différents (Fig. 2.2). Entre les sites, les fichiers générés par les stations ne sont donc pas exactement les mêmes en ce qui concerne l'ordre des variables. Chaque fichier a un nom et des entêtes de colonnes qui respectent obligatoirement la nomenclature décrite dans le premier chapitre. De cette manière, quelque soit l'ordre des variables, Talend est capable de reconnaître le site, la station d'acquisition, les variables et les paramètres de celles-ci. Pour chaque site, les fichiers de données en sortie de capteur sont envoyés dans le dossier "data" correspondant se trouvant sur le serveur SRV-SO localisés à l'OSUC.
+
+	\begin{figure}[h] 
+		\centering
+		\includegraphics[width=12cm]{sie_1.jpg}
+		\caption{Flux de données des \textbf{capteurs} vers \textbf{SRV-SO} des variables acquises  à \textbf{haute fréquence}, régulièrement et \textbf{télé-transmises}.}
+		\label{Fig.2}
+	\end{figure}
+
+
+
+\paragraph{Cas 2 : données acquises à haute fréquences et chargées par un opérateur}
+
+\
+
+Les données acquises à haute fréquence et transmises sur le SRV-SO par un opérateur proviennent du fluorimètre à l'éxutoire (station \#005)  et des sondes de niveau de la nappe d'eau (station de \#006 à \#020). Ces stations d'acquisition sont visitées à intervalles réguliers par un opérateur qui, en plus de récupérer les données, assure la maintenance de ces équipements. Avec un ordinateur de terrain, l'opérateur se connecte sur la sonde avec un cable adapté et récupère 1 à plusieurs fichiers. Ces fichiers ne sont pas nécessairement au format recommandés (voir chapitre 1). Il est du ressort de l'opérateur/expert de formater les fichiers sans faire aucun traitement sur les données (données en sortie de capteur) et de les déposer dans le dossier "data" correspondant sur le seveur SRV-SO, de manières à être visibles et traitables par Talend .
+
+	\begin{figure}[h] 
+		\centering
+		\includegraphics[width=12cm]{sie_2.jpg}
+		\caption{Flux de données des \textbf{capteurs} vers \textbf{SRV-SO} des variables acquises  à \textbf{haute fréquence}, régulièrement et \textbf{transmises par un opérateur}.}
+		\label{Fig.3}
+	\end{figure}
+
+
+
+\paragraph{Cas 3 : données acquises à basse fréquences et chargées par un opérateur}
+
+\
+
+Les données acquises à basse fréquence et transmises sur le SRV-SO par un opérateur proviennent des mesures de flux de C par les chambres d'accumulation et des variables associées (équipements de \#101 à \#109), les mesures biogéochimiques (équipements de \#110 à \#112) et les mesures manuelles de niveau d'eau (équipement \#113). L'opérateur/expert formate les données en suivant les recommandations spécifiées. Les informations concernant le(s) opérateur(s) et expert(s), les équipements, les méthode de mesures, d'analyse et/ou de traitements des données seront précisées dans les métadonnées. L'opérateur/expert déposera les données dans le dossier correspondant sur le serveur SRV-SO (Fig. 2.4)
+
+
+
+	\begin{figure}[h] 
+		\centering
+		\includegraphics[width=12cm]{sie_3.jpg}
+		\caption{Flux de données \textbf{capteur - SRV-SO} des variables acquises  à \textbf{basse fréquence}, irrégulièrement (mesures manuelles sur le terrain ou au laboratoire) et \textbf{transmises par un opérateur}.}
+		\label{Fig.4}
+	\end{figure}
+
+	
+
+\subsection{L'arborescence du serveur SRV-SO}
+
+Sur le serveur SRV-SO se trouve un dossier "data" qui contient toute les données à inclure dans le SIE. A l'intérieur de ce dossier se trouve 4 dossiers correspondant aux 4 sites du SNO Tourbières. L'accès à ces données qui doit être régulé. Pour chaque site, 3 dossiers sont présents: "data brutes" correspondant aux données avec un état d'élaboration le moins développé (souvent data en sortie de capteur, cf subsection 1.3.1), "data échec" et "data corrigées. Le dossiers "data brutes" contient les fichiers de données brutes provenant des stations d'acquisitions et des mesures manuelles (si ces dernières subissent un traitement, il devra être précisé dans les métadonnées). Les données des stations de \#001 à \#004 sont transmises tous les jours et toutes les autres sont transmises annuellement. Le dossiers "data échec" contient les fichiers de données n'ayant pas passé les tests réalisés par Talend. Le dossiers "data corrigées" contient les fichiers de données corrigées après analyses des données flaguées lors des tests. Les modifications devront êtres consignées dans les métadonnées.
+
+	\begin{figure}[h] 
+		\centering
+		\includegraphics[width=14cm]{arbo_srv_so_1.pdf}
+		\caption{Arborescence du SRV-SO. Les types de données et les stations/équipement concernés sont précisés}
+		\label{Fig.5}
+	\end{figure}
+
+
+Les fichiers journaliers correspondent aux données acquises à hautes fréquences et télétransmises tous les jours (stations de 001 à 005). Les fichiers annuels correspondent aux données acquises soit à hautes (stations de 005 à 020) ou à basses fréquences (équipements de 101 à 110), mais dans les 2 cas transmises par un opérateur/expert avec une fréquence minimale d'au moins une fois par an. Pour chaque fichier de données brutes dans lesquels des échecs ont été observés, un fichier .csv sera généré avec un "nv" pour "non-validé" listant les données ne passant pas les tests. Pour chaque fichier de données en échec (xxx\_nv.csv), un fichier xxx\_ co.csv sera produit par l'expert avec "co" pour "corrigé" listant les données corrigées.
+
+\subsection{De SRV-SO à la base de données par Talend}
+
+Avant d'être intégrés dans la base, Talend réalise des tests sur les données. Il va chercher les données brutes sur SRV-SO (Fig 2.6). Grâce au nom des fichiers, il est capable de situé le jeu de données dans l'espace et le temps. Avec les entêtes de colonnes, Talend est capable de connaître la variables et sa localisation dans le profil. En parallèle, il extrait de la base des données déjà validées. Il calcul à partir de ces données une dispersion autour de la moyenne (e.g. déviation standard) et un intervalle + ou - 95\%. Il confronte les données non-validées à cette intervalle. Talend flague les données tombant dans l'intervalle comme valide avec un "v" et les données hors de l'intervalle comme non-valide "nv". Un fichier avec un "nv" ajouté au nom du fichier brut est généré regroupant les données non valides et envoyé dans le dossier "échec" du SRV-SO (Fig 2.6). Les fichiers de données contiendront un "co" pour corrigé dans leur nom et les données corrigées seront flaguées avec "v" pour validés.
+
+	\begin{figure}[h] 
+		\centering
+		\includegraphics[width=9cm]{sie_4.jpg}
+		\caption{Flux de données liés à l'intégrateur de données Talend (réalisé à partir du schéma proposé par A. Hertout).}
+		\label{Fig.6}
+	\end{figure}
+	
+
+
+
+\subsection{De la base de données au public}
+
+Les données brutes, corrigées et calculées pourront être visualisées et téléchargées par tout le monde à partir de l'interface web de la base de données, accéssible sur le site web du SNO Tourbières: \url{http://www.sno-tourbieres.cnrs.fr/spip.php?article4}.
+
+
+\subsection{Intervention de l'expert sur les données}
+
+L'intervention sur les données par un expert se produit dans différents cas de figures:
+
+\
+
+	\begin{itemize}
+		\item 1. données flaguées non-valide par Taland nécessitant une correction
+		
+		\
+		
+		\item 2. données flaguées non-valide par Talend ne nécessitant pas de correction
+		
+		\
+		
+		\item 3. données flaguées valide par talend nécessitant une correction
+		
+		\
+		
+		\item 4. données nécessitant un ajustement à cause d'une dérive
+		
+		\
+		
+		\item 5. calcul de nouvelles variables à partir des données corrigées
+	\end{itemize}
+	
+\
+\paragraph{Cas 1.}	
+Une fois le traitement Talend effectué, l'expert analyse les données qui ont été répertoriées dans le fichier échec. Les données flaguées non-valide sont effectivement incorrectes. L'expert réalise les corrections et déposent les données dans le fichier "data corrigées" et les données sont traitées de nouveau par Talend. Les fichiers log correspondant (cf section flux des métadonnées) devront être renseignés.
+
+\paragraph{Cas 2.}	
+Une fois le traitement Talend effectué, l'expert analyse les données qui ont été répertoriées dans le fichier échec. Les données flaguées non-valide sont en fait correctes. Elles correspondent soit aux extrémas de la loi normale, soit à des évènements particuliers qui sorte de la loi normale. L'expert ne réalise pas de corrections et il doit être en mesure de changer le flag de données particulières via l'interface web. Les fichiers log correspondant (cf section flux des métadonnées) devront être renseignés.
+
+\paragraph{Cas 3.}	
+Une fois le traitement Talend effectué, l'expert visualise sur l'interface web les données qui ont été flaguées comme valides. Des données flaguées valide peuvent se révéler être incorrecte. Elles peuvent correspondre à des données entrant dans l'intervalle, mais irréaliste (exemple: température de l'air à -1°C au mois de juillet pendant une mesure). L'expert réalise les corrections et déposent les données dans le fichier "data corrigées" et les données sont traitées de nouveau par Talend. Les fichiers log correspondant (cf section flux des métadonnées) devront être renseignés.
+
+\paragraph{Cas 4.}
+Certain capteur peuvent dériver. Quand un suivi de la dérive est réalisé (e.g. capteur de pluviométrie) ou quand un capteur similaire de secours est disponible (e.g. capteur de luminosité à la tourbière des Landes à 10 km de La Guette), un calcul de dérive est possible. Ces calculs n'étant par définition pas prévisible, il est difficile d'automatiser ces procédures. L'expert réalise donc lui même la procédure de dérive et dépose les données corrigées dans le dossier "data corrigées".  Les fichiers log correspondant (cf section flux des métadonnées) devront être renseignés.
+
+\paragraph{Cas 5.}
+L'expert peut calculer des nouvelles variables d'intérêt à partir des variable déjà enregistrées sur le base de données, comme par exemple l'évapotranspiration potentielle. Si possible, ces calculs seront automatisés par l'intégrateur de données Talend. Si ce n'est pas possible, l'expert devra être capable de rentrer les données calculées à partir de la base de données. Les fichiers log correspondant (cf section flux des métadonnées) devront être renseignés.
+
+\newpage
+
+\section{Flux des métadonnées}
+
+\subsection{Sur les capteurs}
+Une fiche de métadonnées doit être remplie pour chaque capteur installé ayant ou en train de générer des données. Les renseignements devront être les suivant:
+
+	\begin{itemize}
+		\item modèle (avec numéro de série si possible)
+
+		\item variable(s) mesurée(s)
+
+		\item précision, justesse de la (des) mesure(s)
+
+		\item site(s) d'installation et point GPS	
+		
+		\item date de la première mesure
+		
+		\item date de la dernière mesure si capteur HS		
+		
+		\item installateur(s)
+				
+		\item personne(s) en charge de la maintenance
+		
+		\item expert(s) de la (des) variable(s) générée(s) par le capteur
+		
+		\item historiques des évènement intervenu sur ce capteur
+	\end{itemize}
+	
+
+\subsection{Sur les variables générées par les capteurs ou les équipements}
+Une fiche de métadonnées doit être remplie pour chaque variable ayant été mesurée ou en cours de mesure sur le terrain ou au laboratoire. Les renseignements devront être les suivant:
+
+
+	\begin{itemize}
+		\item nom de la variable
+
+		\item code
+
+		\item modèle du capteur (avec numéro de série si possible) pour chaque période de mesure
+		
+		\item période d'acquisition pour chaque capteur si plusieurs capteurs ont été utilisé
+		
+		\item calcul de la variable réalisée par la sonde si réalisé
+		
+		\item post-traitement 1 : test Talend et résultats
+		
+		\item post-traitement 2 : calcul de calibration, toutes informations sur la calibration
+
+		\item expert(s) en charge de valider la variable
+	\end{itemize}
+	
+\subsection{Sur les variables caculées}
+Une fiche de métadonnées doit être remplie pour chaque variable calculée à partir des données générées par les capteurs (e.g. é). Les renseignements devront être les suivant:
+
+
+	\begin{itemize}
+		\item nom de la variable
+
+		\item code
+
+		\item nom des variables utilisées pour les calculs
+		
+		\item détails des calculs
+		
+		\item post-traitement 1 : test Talend et résultats
+		
+		\item post-traitement 2 : calcul de calibration, toutes informations sur la calibration
+
+		\item expert(s) en charge de validé la variable
+	\end{itemize}
+	
+
+\newpage
+
+\section{Gestion de l'accès au serveur SRV-SO}
+
+L'accès au serveur SRV-SO sera pour tout ou partie accordé à un nombre restreint de membres du SNO Tourbières. Les personnes ayant accès à tout le serveur sont:
+
+	\begin{itemize}
+		
+		\item \textbf{Laurent Catherine} - informaticien OSUC
+		
+		
+		\item \textbf{Yohan Brossard} - informaticien OSUC
+		
+		
+		
+		\item \textbf{Laurent Perdereau} - acquisition et transmission des données
+		
+		
+		
+		\item \textbf{Stéphane Binet} - hydrologie des sites du SNO Tourbières
+		
+		
+		
+		\item \textbf{Fatima Laggoun} - coordinatrice du SNO Tourbières et responsable du site "La Guette"
+		
+		
+		
+		\item \textbf{Sébastien Gogo} - coordinateur du SNO Tourbières et responsable du site "La Guette"
+	\end{itemize}
+	
+\
+	
+Les personnes ayant accès aux dossiers du site de Bernadouze sont:
+
+	\begin{itemize}
+		\item \textbf{Didier Galop}
+		
+		
+		
+		\item \textbf{Laure Gandois}
+				
+				
+				
+		\item \textbf{Emilie Lerigoleur}
+				
+				
+				
+		\item \textbf{Gaël Leroux}
+	\end{itemize}
+	
+\
+	
+Les personnes ayant accès aux dossiers du site de Frasne sont:
+
+	\begin{itemize}
+		\item \textbf{Daniel Gilbert}
+		
+		
+		
+		\item \textbf{Marie-Laure Toussaint}
+		
+		
+		
+		\item \textbf{Catherine Bertrand}	
+	\end{itemize}
+	
+\
+	
+Les personnes ayant accès aux dossiers du site de Landemarais sont:
+
+	\begin{itemize}
+		\item \textbf{André-Jean Francez}
+		
+		
+		
+		\item \textbf{Guillaume Bouger}
+		
+		
+		\item \textbf{Laurent Jeanneau}
+	\end{itemize}
+	
+\
+
+D'autres personnes pourront avoir accès au fichiers sur demande auprès des informaticiens de l'OSUC et validation par les coordinateurs. 
+	
+\newpage
+
+%\section{Gestion de l'interaction avec la base de donnée par l'interface web}
+
+%\newpage
+
+\section{Gestion des téléchargement des données}
+
+Les données doivent être le plus librement accessibles au public, scientifique ou non. Elles pourront être téléchargeable à partir de l'interface web de la base de données. Les informations suivantes devront être renseignées dans un formulaire:
+
+	\begin{itemize}
+		\item site
+		\item date de début
+		\item date de fin
+		\item variables(s)
+		\item données pas encore validées avec log des variables et capteurs correspondant
+		\item données validées avec log log des variables, des capteurs et des corrections correspondant
+	\end{itemize}
+	
+Après la première ligne du fichier téléchargé contenant les codes des variables, seront indiqués dans une deuxième ligne les unités.
+	
+Une fois que l'internaute aura rempli le formulaire et validé sa demande, une fenêtre d'information lui indiquera qu'il pourra librement utiliser les données à condition d'inclure le SNO Tourbières dans les remerciements des articles scientifiques dont les données téléchargées seront le support et si possible de prévenir les coordinateurs du SNO Tourbières de la publication de ces articles. Une fois cochée la case : "j'ai pris connaissance de la condition requise pour utiliser les données", les données seront directement mise à disposition au format .csv (fenêtre d'enregistrement classique) sans le besoin d'une validation de la demande par un responsable du SNO Tourbières. Aucun courriel, ni nom, ni organismes seront demandés et par conséquent enregistrés. Aucune demande à la CNIL ne sera nécessaire. Les informations enregistrées seront juste les suivantes: nombre des visites de l'interface web, nombre de fichiers de données téléchargé avec les variables demandées.
+

@@ -1,0 +1,153 @@
+---
+title: "Etape 3 : Formatage et intégration dans data-snot.cnrs.fr"
+---
+
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+```{r,evaL=TRUE,echo=FALSE}
+# Ici, nommer le code du type de données pour automatiser le nommage. Cette variable est également utilisée dans les tableaux pour filtrer par type de données
+v_tdo <- "eddycovariance"
+f_type <- "SNOT_eddycovariance"
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectifs et contenu**</h4>
+  <p>Décrire le format de fichier pour intégrer les données de flux de GES par eddycovariance dans l'application web du SI SNO-T : `r linkAlertCSS("https://data-snot.cnrs.fr","https://data-snot.cnrs.fr")`</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple pour gagner du temps**</h4>
+  <p>Voici un exemple de fichier type `SNOT_eddycovariance` pour la station eddy-covariance 1 de la Guette pour la période du 20-01-2017 au 31-12-2017 (données fictives) : `r linkAlertCSS("lgt-ec1_eddycovariance_sh_01-07-2017_31-07-2017.csv","https://github.com/Rosalien/doc_snot/raw/master/Data/lgt/ec1/eddycovariance/3_SNOT_eddycovariance/lgt-ec1_eddycovariance_sh_20-01-2017_31-12-2017.csv")`
+  </p>
+</div>
+
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">**Attention**</h4>
+  <p>Avant d'intégrer des données d'observation comme le type `eddycovariance`, il est nécessaire d'ajouter les données de référence associées dans l'application data-snot.cnrs.fr. Plus d'infos : </p>
+  <p> `r linkAlertCSS("Liste des données de référence","https://sourcesup.renater.fr/si-snot/2_BDD_SNOT_DonneesReference.html")`</p>
+  <p> `r linkAlertCSS("Gérer les données de référence","https://sourcesup.renater.fr/si-snot/4_AdminDonnees.html")`</p>
+</div>
+
+# Description du fichier `SNOT_eddycovariance`
+
+## Format, encodage et convention de nommage
+
+Les fichiers d'entrée dans le SI SNO-T doivent être au format `.csv` siteInstru()avec les caractéristiques suivantes :
+
+  - Séparateur de colonne : `;`
+  - Séparateur de décimal : `.`
+  - Encodage du fichier : `UTF-8`
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**Important**</h4>
+  <p>L'encodage du fichier en **UTF-8** est très important. Il faudra veiller à respecter cet encodage au risque de rencontrer des difficultés pour intégrer les fichiers d'entrée</p>
+</div>
+
+La convention de nommage du fichier respecte la logique suivante :
+
+```
+[code_site]-[code_station]_[code_typedonnees]_[code_frequence]_[datedebut]_[datefin].csv 
+```
+avec :
+
+  - [code_site] : le code du site du SNO-T en **minuscule**,
+  - [code_station] : le code de la station de mesure en **minuscule**,
+  - [code_typedonnees] : le code du type de données, ici il s'agit de **eddycovariance**,
+  - [code_frequence] :
+    - **sh** : fréquence semi-horaire.
+  - [datedebut] : la date de début de la mesure au format jj-mm-aaaa,
+  - [datedebut] : la date de fin de la mesure au format jj-mm-aaaa.
+
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">**Attention**</h4>
+  <p>La date de début commence à l'heure 00:00 et la date de fin se termine à 23:30. L'heure donnée correspond à la fin de la demi-heure de flux calculé.</p>
+</div>
+    
+&nbsp;
+
+## Exemple de nommage d'un fichier
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple**</h4>
+  <p>Les flux de GES calculés à la fréquence semi-horaire provenant des données eddy-covariance collectées à haute fréquence entre le 20/01/2017 à minuit et le 31/07/2017 à 23h30 sur la station eddy-covariance de la Guette sont stockés dans le fichier portant le nom suivant :</p>
+  <p>lgt-ec1_eddycovariance_sh_20-01-2017_31-12-2017.csv</p>
+</div>  
+
+
+# Description du contenu du fichier `SNOT_eddycovariance`
+
+## En-tête de contextualisation
+
+Un en-tête apportant des informations sur le contexte des données est présent sur les 7 premières lignes du fichier :
+
+- ligne 1 : le [code_site] et sur la colonne suivante le [code_station] (*obligatoire*)
+- ligne 2 : le [code_typedonnees] (*obligatoire*),
+- ligne 3 : la fréquence, ici **semi-horaire** (*obligatoire*),
+- ligne 4 : la date de début jj/mm/aaaa (*obligatoire*),
+- ligne 5 : la date de fin jj/mm/aaaa (*obligatoire*),
+- ligne 6 : un complément d'information sur le fichier (*facultatif*),
+- ligne 7 : saut de ligne (*obligatoire*).
+
+## En-tête de données
+
+Ensuite, un en-tête décrivant les données est ajouté sur 3 lignes
+
+- ligne 8 : description des variables (*facultatif*),
+- ligne 9 : champs **date** (dd/mm/yyyy) et **time** (hh:mm:ss) et ensuite les [code_variables] du type de données (*obligatoire*),
+- ligne 10 : saut de ligne (*obligatoire*).
+
+## Données
+
+Les variables cibles retenues pour être intégrées dans le SI SNO-T sont disposées à partir de la **ligne 11 à la ligne n** :
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/srvso_variables.csv",sep=""),sep=";")
+metatable <- metatable[metatable$code_typefichier %in% f_type, names(metatable) %in% c("code_var","description","code_unite")]
+DT::datatable(metatable,rownames = FALSE)
+```
+
+La valeur **-9999** indique une donnée manquante.
+
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">**Attention**</h4>
+  <p>La date de début commence à l'heure 00:00 et la date de fin se termine à 23:30. L'heure donnée correspond à la fin de la demi-heure de flux calculé.</p>
+  <p>L'heure doit être calée sur l’heure **UTC+1** (heure française en hiver, pas de changement d’heure en été)</p>
+</div>
+
+# Création du fichier `SNOT_eddycovariance`
+
+Il est recommandé de s'appuyer sur un exemple pour générer un fichier type `SNOT_eddycovariance` manuellement : 
+
+  - [lgt-ec1_eddycovariance_sh_01-07-2017_31-07-2017.csv](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_snot/src/test/resources/org/cnrs/osuc/snot/fichiers/dataset_for_tests/flux/semi-horaire/lgt-ec1_eddycovariance_sh_01-07-2017_31-07-2017.csv)
+
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">**Attention**</h4>
+  <p>Il est très important d'ouvrir ce fichier et de l'enregistrer en respectant l'encodage **UTF-8**</p>
+</div> 
+
+# Stockage du fichier dans l'arborescence du FTP `SRV-SO`
+
+Les fichiers prêts à être intégrés dans le SI SNO-T sont stockés dans le serveur FTP `SRV-SO` dans l'arborescence suivante :
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/Caracteristiques_typedefichiers.csv",sep=""),sep=";",colClasses = "character")
+metatable <- metatable[metatable$code_typedonnees %in% v_tdo & metatable$nom_etape %in% "3a_Integration",c("code_typefichier","extension","stockage")]
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+# Intégration du fichier dans [data-snot.cnrs.fr](https://data-snot.cnrs.fr)
+
+## Intégration manuelle
+
+L'intégration manuelle des données est réalisée dans l'application web du SI SNO-T [data-snot.cnrs.fr](https://data-snot.cnrs.fr).
+Une aide en ligne est disponible [ici](https://sourcesup.renater.fr/si-snot/4_IntegrationDonnees.html) pour effectuer cette opération.
+
+## Intégration automatique
+
+Pour le moment, il n'y a pas d'intégration automatique compte tenu des besoins de correction à réaliser sur les flux de GES calculés avec EddyPro.
+
+

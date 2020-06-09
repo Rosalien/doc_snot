@@ -1,0 +1,39 @@
+---
+title: "Architecture globale pour prendre en main le SI SNO-T"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+  <p>Présentation globale de l'architecture du SI SNO-T pour prendre en main le projet</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Administrateur du SI SNO-T</p>
+  <p>Connaissance environnement linux</p>
+</div>
+
+# Cycle de vie des données et architecture associée
+
+L'architecture du SI SNO-T est en fonction du cycle de vie des données comme illustrée ci-dessous :
+
+![](`r repfigures`/Diagramme_archifonctionnelle_complet.png)
+
+Elle se compose de plusieurs éléments à prendre en main dans l'ordre suivant :
+
+1. [Le dépôt de versionnement des fichiers de développement git](https://sourcesup.renater.fr/www/si-snot/5_MO_VersionnementGit.html)
+2. [Le serveur FTP SRV-SO](https://sourcesup.renater.fr/www/si-snot/5_Administrer_SRVSO.html)
+3. [L'application data-snot.cnrs.fr](https://sourcesup.renater.fr/www/si-snot/5_Developper_appliSOERE.html)
+4. [La base de données postgresQL](https://sourcesup.renater.fr/www/si-snot/5_Administrer_PostgresQL)
+5. [Les applications shiny](https://sourcesup.renater.fr/www/si-snot/5_Administrer_shiny.html)
+6. [La création des DOI dans ZENODO et les relations avec le SI Theia/OZCAR](https://sourcesup.renater.fr/www/si-snot/4_JeuxDonneesDOI.html)
+7. [La documentation et la Forge SNO-T](https://sourcesup.renater.fr/www/si-snot/5_Creation_documentation.html)
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**Important**</h4>
+  <p>Tous les identifiants et mots de passe sont stockés dans un keepass. Le code du keepass est à demander à l'administrateur système de l'OSUC.</p>
+</div>

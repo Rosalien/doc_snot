@@ -1,0 +1,5 @@
+Nom de la colonne; Signification ;Unique;Obligatoire
+nom_fr;Nom du thème en français;oui;oui
+nom_en;Nom du thème en anglais;non;non
+définition_fr;Définition (description)  du thème en français;non;non
+définition_en;Définition (description) du thème en anglais;non;non

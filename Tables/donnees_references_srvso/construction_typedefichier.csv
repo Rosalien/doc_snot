@@ -1,0 +1,4 @@
+nom_etape;code_typefichier
+1_collecte;[nom_instrument]”_”[code_typedonnees]
+2_traitement;[nom_traitement]”_”[code_typedonnees]
+3_integration;“SNOT_”[code_typedonnees]

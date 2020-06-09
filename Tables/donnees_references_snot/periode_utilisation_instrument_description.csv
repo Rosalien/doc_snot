@@ -1,0 +1,6 @@
+Nom de la colonne;Signification;Unique;Obligatoire
+Nom du Site-Thème-Type de données-Variable;[code_site/code_station]-[code_theme]-[code_typedonnees]-[code_variable];non;oui
+Code_jeu;[code_jeu];non;oui
+Code de l'instrument;[code_instrument];non;oui
+Date de début;Date de début d’utilisation de l’instrument (JJ/MM/AAAA);non;oui
+Date de fin;Date de fin d’utilisation de l’instrument (JJ/MM/AAAA) (Vide si toujours en place);non;non

@@ -1,0 +1,57 @@
+---
+title: "Création et évolution de la documentation"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+  <p>Procédure de création et de déploiement de la documentation en ligne du SI SNO-T</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Administrateur du SI SNO-T,</p>
+  <p>Connaissance de R+Markdown</p>
+</div>
+
+# Présentation de la documentation 
+
+La documentation est accessible à cette [https://sourcesup.renater.fr/www/si-snot/](https://sourcesup.renater.fr/www/si-snot/).
+
+Elle est construite en `R+markdown` (ou **Rmd**) et encodée en `UTF-8`. Il s'agit d'un langage en balisage léger qui offre une syntaxe facile à lire et à écrire (comme le langage wiki) et permet d'y inclure le code R. Pour plus d'informations, [voir](https://rstudio-pubs-static.s3.amazonaws.com/32239_0956f02cef24443abd9525551368ef12.html#1) cette présentation. 
+
+# Création et mise à jour de la documentation
+
+## Mise à jour de la documentation 
+
+Une fois une partie ajoutée et/ou modifiée, il est nécessaire de mettre à jour le fichier `index.Rmd` et le fichier `_site`.
+
+## Les tables du site web
+
+Un ensemble de tables (extension `csv`, séparateur `;`, encodage `UTF-8`) est utilisé pour la construction du site. Elles sont accessibles dans ce [répertoire](https://sourcesup.renater.fr/plugins/scmgit/cgip-bin/gitweb.cgi?p=si-snot.git;a=tree;f=Documentation/Tables/donnees_references_srvso;hb=e9631a2deb3f59b336a367411b7dc38fe12c4646)
+
+## Génération des fichiers
+
+Le script **R** `verification_installation_dependances.R` permet de vérifier la présence, et le cas échéant d'installer, les extensions nécessaires pour générer le site web.
+
+Le script **R** `build.R` permet de construire le site web.
+
+
+# Déploiement de la documentation en ligne
+
+1. Mettre le projet en privé dans la [forge SourceSup du projet](https://sourcesup.renater.fr/projects/si-snot/)
+Administration >> Utilisateurs et permissions : déférencer le rôle "Anonyme/non connecté (rôle global)"
+
+2. Attendre quelques minutes avant que le changement droit s'applique. La connexion au lecteur réseau `davs://sourcesup.renater.fr/authmain/login/www/si-snot` (avec login le nom du login) doit demander des paramètres de connexion. Une fois connecté, remplacer les nouveaux fichiers dans le lecteur réseau.
+
+3. Une fois les nouveaux fichiers mis à jour, rendre le site accessible à tous en rajoutant le rôle "Anonyme/non connecté (rôle global)" et en **configurant le rôle anonyme avec la permission "visible"**
+
+Plus d'infos dans [la doc de SourceSup](https://services.renater.fr/sourcesup/site_web)
+
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">**Attention**</h4>
+  <p>La mise à jour des droits de la forge prend un certain laps de temps. Attendre un peu entre les étapes.</p>
+</div>

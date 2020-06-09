@@ -1,0 +1,85 @@
+---
+title: "Infrastructure des applications data-snot.cnrs.fr"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+  <p>Procédure de préparation des machines virtuelles du SI SNO-T</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Administrateur du SI SNO-T</p>
+  <p>Connaissance environnement linux</p>
+</div>
+
+# Etape 1 : Créations et configuration des machines virtuelles (VMs)
+
+L'application s'appuie sur deux machines virtuelles :
+
+- **VM data_snot** : serveur tomcat de l'application
+	- *Adresse* : 163.9.41.45
+	- *Mémoire* : 8 Go
+	- *Espace disque* : 50Go
+- **VM postgres** : serveur de la bdd postgresQL
+	- *Adresse* : 163.9.41.46
+	- *Mémoire* : 8 Go
+	- *Espace disque* : 50Go
+
+# Etape 2 : Installation des paquets
+
+## Installation des paquets passe-partout
+
+```
+sudo su
+apt-update && apt dist-upgrade
+apt install vim sudo open-vm-tools git tmux iptables mlocate net-tools apt-transport-https tree mailutils
+```
+
+## Serveur data_snot
+
+### Installation de l'environnement JAVA
+
+- Installer une clé de connexion en tant que schellen sur les serveurs
+- Installation du repository ORE : 
+	- Créer un fichier ecoinfo.list dans /etc/apt/sources.list.d dont le contenu est le suivant (en root) deb https://147.100.179.122/ac27c865baf2a7ff84d7ee56df887447b69d93bf stretch stable main
+	- Ajouter le fichier /etc/apt/apt.conf.d/80ssl-exceptions avec le contenu suivant :
+		- Acquire::https::147.100.179.122::Verify-Peer "false";
+		- Acquire::https::147.100.179.122::Verify-Host "false";
+	- Ajouter la clé du repository (en root) :
+	`wget --no-check-certificate -O - https://147.100.179.122/ac27c865baf2a7ff84d7ee56df887447b69d93bf/key/public.gpg.key |apt-key add -`
+	- Installation du paquet ecoinfo-aptdater-host :
+		`apt install ecoinfo-aptdater-host`
+	- Installation de tomcat et mod_jk :
+		- `apt install ecoinfo-tomcat-maven3`
+		- Paramétrer etc/libapache2-modjk/workers-ecoinfo.properties pour la deuxième instance
+		- Rapatrier et installer les certificats SSL en éditant le fichier modjk.ssl.conf
+		- Installer le paquet modjk :
+			`apt install ecoinfo-iptables-modjk-master`
+		- Installer tomcat (à confirmer ou retrouver dans l'history) :
+			- `apt install ecoinfo-tomcat8 ecoinfo-iptables-modjk-slave ecoinfo-nfs-webapps-master`
+
+## Serveur postgresQL
+
+### Installation des logiciels
+
+`sudo su
+apt install postgresql-client`
+
+### Création des utilisateurs et de la BDD
+
+# Etape 3
+
+# Etape XX : Configuration diverses
+
+Redirection :
+```
+# Avant certification
+/etc/apache2/sites-enabled/000-default.conf :         Redirect permanent / https://163.9.41.45/snot/
+# Après certification
+/etc/apache2/sites-enabled/000-default.conf :         Redirect permanent / https://data-snot.cnrs.fr
+```

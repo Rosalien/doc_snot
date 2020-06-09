@@ -1,0 +1,354 @@
+---
+title: "Données de référence du SI SNO-T"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectifs et contenu**</h4>
+  <p>Description des données de référence du SI SNO-T :</p>
+<p>- Définition du concept,
+   - Description et liste des données de référence du SI SNO-T.</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+<p>- Administrateur des données,
+   - Avoir pris connaissance de `r linkAlertCSS("l'organisation des données dans le SNO-T","https://sourcesup.renater.fr/si-snot/1_Decouverte_OrganisationDonnees.html")`.
+ </p>
+</div>
+
+# Présentation
+
+L'application web du SI du SNO-T s'appuie sur le noyau du SI du SOERE et sur ses concepts associés. En conséquence, la description des données du SNO-T se base sur une source d'information appelée `données de référence` dans le SI des SOERE.
+
+## Définition
+
+Les données de référence représentent l'ensemble informations caractérisant des objets métier d'un domaine fonctionnel. Elles permettent de décrire les données expérimentales qui sont les données réellement utilisées en routine par les chercheurs comme la température du sol, les flux de ges d'une station eddy-covariance, etc.
+
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">**Données de référence et métadonnées**</h4>
+  <p>Les données de référence ne sont pas des métadonnées. Par contre, elles peuvent être utilisées pour les construire !</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple**</h4>
+<p>Dans le SNO-T, les données de références décrivent par exemple les stations de mesures des tourbières, les instruments utilisés, ou encore le nom et l'unité des variables associées à une méthode de calcul ou un instrument. 
+ </p>
+</div>
+
+## Résumé des données de référence
+
+Les données de référence sont organisées dans plusieurs rubriques :
+
+* **Arborescence :** Organisation des données expérimentales (les sites, les types de données par site...),
+* **Métadonnées :** Description des jeux de données et des gestionnaires des jeux de données pour la construction de métadonnées,
+* **Métrologie :** Description des variables et des unités,
+* **Instruments et méthodes :** Description des instruments de mesure (nom, marque...) et des méthodes de calcul (référence, association avec une variable).
+
+# Arborescence
+
+## Site
+
+Cette donnée de référence décrit les sites du SNO-T ainsi que les stations ou instruments de mesure associés au site.
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_snot/sites_description.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+&nbsp;
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple de fichier**</h4>
+  <p>`r linkAlertCSS("sites.csv","https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/sites.csv")`
+  </p>
+</div>
+
+## Le thème de données
+
+Le thème est un ensemble cohérent de types de données regroupés dans une thématique scientifique. Par exemple le thème « ges » regroupe les types de données liés aux flux de Gaz à Effet de Serre issus des stations eddy-covariance et des chambres à flux.
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_snot/themes_description.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple de fichier**</h4>
+  <p>`r linkAlertCSS("themes.csv","https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/themes.csv")`</p>
+</div>
+
+## Le type de données
+
+Un type de données est un ensemble de valeurs mesurées, calculées et/ou observées pour des variables qui correspondent à un même objet d'étude. Ces valeurs doivent pouvoir être regroupées dans un même fichier respectant un format prédéfini (le fichier d'échange). La notion de fréquence de mesure peut participer à la définition d'un type de données. Par exemple les flux de GES semi-horaire (sh) issues des stations eddy-covariance sont définis comme le type de données `eddycovariance_sh`.
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_snot/types_de_donnees_description.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple de fichier**</h4>
+  <p>`r linkAlertCSS("types_de_donnees.csv","https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/types_de_donnees.csv")`</p>
+</div>
+
+## Le triplet site, thème, type de données
+
+Le triplet site-thème-type de données permet de préciser pour un site particulier quels thèmes y sont représentés et pour ces thèmes les types de données produits.
+Un grand nombre de fonction de l'interface du SI SNO-T s'appuie sur ce triplet en particulier les fonctions liées à la gestion des données expérimentales et des droits. 
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_snot/types_de_donnees_par_themes_de_sites_description.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple de fichier**</h4>
+  <p>`r linkAlertCSS("types_de_donnees_par_themes_de_sites.csv","https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/types_de_donnees_par_themes_de_sites.csv")`</p>
+</div>
+
+
+# Métadonnées
+
+## Le jeu de données
+
+Le jeu de données représente la combinaison d'un site, d'un thème de donnée et d'un type de donnée. Ce niveau d'aggrégation est utilisé pour la construction des fiches de métadonnées.
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_snot/jeu_description.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple de fichier**</h4>
+  <p>`r linkAlertCSS("jeu.csv","https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/jeu.csv")`</p>
+</div>
+
+## Les gestionnaires de données
+
+La donnée de référence "gestionnaires du jeu de données" centralise les responsabilités des personnes physiques de l'observatoire SNO-T et des différents jeux de données. Cette donnée de référence est utilisée dans la construction des parties "contacts" des fiches de métadonnées. Au niveau des responsabilités, plusieurs rôles sont possibles :
+
+* **Rôles scientifiques :**
+    * **Project leader :** Responsable scientifique de l'observatoire (*un seul Project leader*),
+    * **Principal investigator :** Référant scientifique du jeu de données (*obligatoire pour chaque jeu de données*),
+    * **Project member :** Scientifique associé à la création du jeu de données (*facultatif*).
+* **Rôles techniques :**
+    * **Data manager :** Gestionnaire de données de l'observatoire,
+    * **Data collector :** Personne qui récolte les données et alimente le SI SNO-T (*facultatif*).
+
+Ces rôles sont utiles à la création de DOI ainsi qu’à la publication de fiche de métadonnées INSPIRE.
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_snot/gestionnairejeu_description.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple de fichier**</h4>
+  <p>`r linkAlertCSS("gestionnairejeu.csv","https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/gestionnairejeu.csv")`</p>
+</div>
+
+# Métrologie
+
+## Variable
+
+Toutes les variables expérimentales identifiées dans la section "données expérimentales" ci-avant auxquelles on associe une valeur peuvent être rassemblées dans une liste que l'on pourra étendre si de nouvelles variables doivent être prises en compte. La variable est une donnée de référence requise.
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_snot/variables_description.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple de fichier**</h4>
+  <p>`r linkAlertCSS("variables.csv","https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/variables.csv")`</p>
+</div>
+
+## Unité
+
+Les unités de mesure correspondant aux différentes variables sont rassemblées dans cette donnée de référence.
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_snot/unites_description.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+&nbsp;
+
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">**Attention**</h4>
+  <p>Si cette donnée de référence est insérée dans l'application web du SI SNO-T avec un fichier, il est nécessaire d'utiliser l'encodage de fichier **UTF-8**.</p>
+</div>
+
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple de fichier**</h4>
+  <p>`r linkAlertCSS("unites.csv","https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/unites.csv")`</p>
+</div>
+
+## Variable par type de données
+
+Cette donnée de référence permet de relier de quelles variables le jeu de données et les types de données sont constitués ainsi que l'unité dans laquelle ces variables sont fournies. Il est également possible d'indiquer la valeur minimale et la valeur maximale dans laquelle la variable est communément comprise. Une variable peut ainsi être présente dans plusieurs type de données et exprimée dans des unités différentes.
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_snot/variables_par_types_de_donnees_description.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple de fichier**</h4>
+  <p>`r linkAlertCSS("variables_par_types_de_donnees.csv","https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/variables_par_types_de_donnees.csv")`</p>
+</div>
+
+# Instruments et méthodes
+
+## Instrument
+
+Décrit les instruments (capteurs, analyseurs...) utilisés pour les mesures. Il s'agit du type d'instrument et non pas de l'instrument identifié de manière unique par son numéro de série. Un instrument est utilisé sur une période pour un site, un thème, un type de données et une variable. Pour une même variable, plusieurs instruments peuvent également être utilisés en même temps.
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_snot/instruments_description.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple de fichier**</h4>
+  <p>`r linkAlertCSS("instruments.csv","https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/instruments.csv")`</p>
+</div>
+
+## Références des instruments
+
+Donnée de référence pour associer des références (DOI ou URL) aux instruments. Cette donnée de référence est utilisée pour documenter les instruments utilisés.
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_snot/instrument_reference_description.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple de fichier**</h4>
+  <p>`r linkAlertCSS("instrument_reference.csv","https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/instrument_reference.csv")`</p>
+</div>
+
+## Période d'utilisation des instruments
+
+Décrit la relation entre le `[site/station]-[theme]-[type de données]-[variable]`, le jeu de données et la période d'utilisation des instruments. Cette donnée de référence est exploitée pour décrire le protocole d'observation dans la fiche de métadonnées.
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**Pour information**</h4>
+  <p>La date de fin n'est pas obligatoire et doit être vide dans si le capteur est toujours en place. Dans la construction d'une métadonnée pour Theia/OZCAR, ce champ est obligatoire et est remplacé automatiquement par la date de fin du jeu de donnée.</p>
+</div>
+
+&nbsp;
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_snot/periode_utilisation_instrument_description.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple de fichier**</h4>
+  <p>`r linkAlertCSS("periode_utilisation_instrument.csv","https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/periode_utilisation_instrument.csv")`</p>
+</div>
+
+## Méthode
+
+Indique la méthode (calcul, observation...)  utilisée pour produire les données d'observation. Une méthode est utilisée sur une période pour un site, un thème, un type de données et une variable. Pour une même variable, plusieurs méthodes peuvent également être utilisées en même temps.
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_snot/methodecalcul_description.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple de fichier**</h4>
+  <p>`r linkAlertCSS("methodecalcul.csv","https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/methodecalcul.csv")`</p>
+</div>
+
+
+## Référence de la méthode
+
+Donnée de référence pour associer des références (DOI ou URL) à la méthode utilisée. Cette donnée de référence est utilisée pour documenter le traitement réalisé sur les données.
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_snot/methode_calcul_reference_description.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple de fichier**</h4>
+  <p>`r linkAlertCSS("methode_calcul_reference.csv","https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/methode_calcul_reference.csv")`</p>
+</div>
+
+## Période d'application de la méthode
+
+Décrit la relation entre le `[site/station]-[theme]-[type de données]-[variable]` et la période d'application d'une méthode. Cette donnée de référence est exploitée pour décrire le protocole d'observation dans la fiche de métadonnées.
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_snot/periode_application_methode_description.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple de fichier**</h4>
+  <p>`r linkAlertCSS("periode_application_methode.csv","https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/periode_application_methode.csv")`</p>
+</div>
+
+## Référence
+
+Ensemble des références utilisées pour documenter les méthodes de calcul et les instruments utilisés.
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_snot/references_description.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple de fichier**</h4>
+  <p>`r linkAlertCSS("references.csv","https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/references.csv")`</p>
+</div>

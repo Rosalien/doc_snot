@@ -1,0 +1,19 @@
+Nom de la colonne;Signification;Unique;Obligatoire
+type de site;Type de site : “site” ou “station”;non;oui
+nom_key;Code du site ou de la station de mesure;oui;oui
+nom_fr;Nom en français du site ou de la station de mesure;non;non
+nom_en;Nom en anglais du site ou de la station de mesure;non;non
+description_fr;Description du site en français;non;non
+description_en;Description du site en anglais;non;non
+date début;Date de début de l’instrumentation du site ou de la mise en place de la station de mesure (JJ/MM/YYYY);non;oui
+date fin;Date de fin du site ou de l’utilisation de la station de mesure (JJ/MM/YYYY);non;non
+coordonnees_bbox;Coordonnées de l’emprise du site en GeoJSON selon le référenciel de coordonnées WGS84 (ESPG:4326)(longitude,latitude);non;oui
+surface;surface en ha;non;oui
+altitude;altitude en m;non;oui
+climat;Type de climat selon INSPIRE, respecter le format d'échange Theia/Ozcar;non;oui
+geologie;Type de géologie selon INSPIRE,uniquement "Quaternary soils";non;oui
+dir_vent_fr;Direction du vent prédominant (en français);non;non
+dir_vent_en;Direction du vent prédominant (en anglais);non;non
+pays_fr;Nom français du pays où se situe le site;non;non
+pays_en;Nom anglais du pays où se situe le site;non;non
+parent;Pour le type de site “station”, code du site de la tourbière associée à la station;non;oui

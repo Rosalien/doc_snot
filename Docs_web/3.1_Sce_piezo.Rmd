@@ -1,0 +1,54 @@
+---
+title: "Etape 1 : Collecte et stockage des données brutes des piézomètres"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectifs et contenu**</h4>
+  <p>Décrire la collecte et le stockage des données brutes en provenance des stations météo-sol. Ces données brutes sont nommées `Brute_piezo`</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Thématiciens et gestionnaires des données provenant des piézomètres,</p>
+  <p>Connaissance générale de l'organisation des données du SI SNO-T.</p>
+</div>
+
+```{r,evaL=TRUE,echo=FALSE}
+# Ici, nommer le code du type de données pour automatiser le nommage. Cette variable est également utilisée dans les tableaux pour filtrer par type de données
+v_tdo <- "piezo"
+```
+
+# Protocole d'acquisition
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**En construction**</h4>
+</div>
+
+# Caractéristiques de l'acquisition
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**En construction**</h4>
+</div>
+
+# Stockage dans le serveur FTP `STV-SO`
+
+## Caractéristique de l'envoi des fichiers
+
+### Manuel
+
+A définir pour les autres sites du SNO-T
+ 
+## Emplacement du stockage
+
+Les Fichiers bruts en sortie des piézomètres sont stockés selon le chemin suivant :
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/Caracteristiques_typedefichiers.csv",sep=""),sep=";",colClasses = "character")
+metatable <- metatable[metatable$code_typedonnees %in% v_tdo & metatable$nom_etape %in% "1_Collecte",c("code_typefichier","extension","stockage")]
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```

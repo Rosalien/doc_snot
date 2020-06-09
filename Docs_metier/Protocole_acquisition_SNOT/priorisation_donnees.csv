@@ -1,0 +1,10 @@
+Priorité,Intérêt,Fréquence,Intégration,Type_capteurs,Type_envoi
+1,Obligatoire,haute fréquence,régulière,in situ,GPRS
+2,Obligatoire,haute fréquence,régulière,in situ,manuel
+3,Obligatoire,basse fréquence,irrégulière,in situ ou laboratoire,manuel
+4,facultatif,haute fréquence,régulière,in situ,GPRS
+5,facultatif,haute fréquence,régulière,in situ,manuel
+6,facultatif,basse fréquence,irrégulière,in situ ou laboratoire,manuel
+7,optionnel,haute fréquence,régulière,in situ,GPRS
+8,optionnel,haute fréquence,régulière,in situ,manuel
+9,optionnel,basse fréquence,irrégulière,in situ ou laboratoire,manuel

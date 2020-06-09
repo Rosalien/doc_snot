@@ -1,0 +1,49 @@
+---
+title: "Etape 2b : Traitement des données météosol"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+```{r,evaL=TRUE,echo=FALSE}
+# Ici, nommer le code du type de données pour automatiser le nommage. Cette variable est également utilisée dans les tableaux pour filtrer par type de données
+v_tdo <- "meteosol"
+f_type <- "ICOS_meteosol"
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectifs et contenu**</h4>
+  <p>Décrire les traitements réalisés sur les données météosol</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Thématiciens et gestionnaires des données sur les données météo-sol,</p>
+  <p>Connaissance générale de l'organisation des données du SI SNO-T.</p>
+</div>
+
+# Le traitement des données météosol
+
+Un ensemble de traitement est réalisé sur les données météosol avant leur intégration dans le SI SNO-T. Voici les principales étapes : 
+
+- Calcul de la teneur en eau du sol SWC,
+- Calcul des flux de chaleur (G),
+- Contrôle qualité : 
+  - Cohérence des valeurs de vitesse et direction du vent,
+  - Cohérence des valeurs de pression atmosphérique,
+  - Cohérence des valeurs d'humidité relative.
+- Aggrégation des valeurs sur une fréquence semi-horaire.
+
+# Fonction R `aggregateMeteoSolSNOT`
+
+Pour reproduire facilement ces étapes, une fonction R a été développée `aggregateMeteoSolSNOT`, elle est accessible dans ce [fichier](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/Scripts/F_fileSNOT.R).
+
+## Application de la fonction
+
+La fonction utilise comme paramètre d'entrée le chemin + le nom du Fichier brut meteosol à traiter. Pour le moment, la fonction est uniquement applicable aux stations météosol de La Guette. Elle pourra facilement être utilisée sur les autres sites si les Fichiers bruts sont similaires à ceux de la Guette.
+
+Un exemple d'utilisation de cette fonction est accessible [ici](https://github.com/Rosalien/doc_snot/raw/master/Data/lgt/bm1/meteosol/2b_TRAITEMENT_meteosol/lgtMeteosolToSNOT_manuel.R).
+
+Dans ce script, les fonctions `headerSNOT` et `fileSNOT` sont utilisées pour construire le fichier au format d'entrée SNOT.
+

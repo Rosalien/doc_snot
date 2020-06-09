@@ -1,0 +1,120 @@
+---
+title: "Le serveur de base de données"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+  <p>Caractéristique du serveur de base de données</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Administrateur du SI SNO-T</p>
+</div>
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy('')
+```
+
+# Le serveur 163.9.41.46
+
+Le serveur 163.9.41.46 (**VM postgres**) héberge un serveur postgresQL contenant les bases de données associées aux applications en production et en développement :
+
+	- Adresse : 163.9.41.46
+	- Mémoire : 8 Go
+	- Espace disque : 50 Go
+
+La VM héberge deux bases de données : snotbdprod pour la production et snotbddev pour la version snapshot.
+
+# La base de données `snotbdprod`
+
+Base de données en production, elle rassemble l'ensemble des tables nécessaires au fonctionnement de l'application [https://data-snot.cnrs.fr](https://data-snot.cnrs.fr/).
+
+## Administration
+
+Son administration peut se faire directement dans l'application [https://data-snot.cnrs.fr](https://data-snot.cnrs.fr/) en mode admin.
+
+### Connexion à pgAdmin
+
+Pour se connecter directement à la base et administrer la base de données avec pdAdmin par exemple :
+
+Paramétrer `postgresql.conf`
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+sudo vim /etc/postgresql/10/main/postgresql.conf
+Modifer listen_addresses = 'localhost,163.9.41.46'
+sudo /etc/init.d/postgresql restart
+```
+
+Puis lancer une connexion ssh : 
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+ssh -L 5437:localhost:5432 snotadmin@163.9.41.46
+```
+
+Configurer la connexion sur pgadmin :
+
+	- hôte: localhost
+	- port:5437
+	- utilisateur: snotuserprod
+	- mdp:******
+
+### Autres commandes
+
+Pour une table
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+pg_dump -f ~/Bureau/utilisateur.sql -h localhost -p 5437 -d snotbdprod -U snotuserprod -t utilisateur
+```
+
+### Restaurer
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+psql -h localhost -p 5437 -U snotuserprod -d snotbdprod -f ~/Bureau/utilisateur.sql
+pg_restore --data-only -h localhost -p 5437 -d snotbdprod -U snotuserprod -t utilisateur ~/Bureau/utilisateur.sql
+```
+
+## Vues matérialisées
+
+Pour le besoin de l'application [https://data-snot.cnrs.fr/data-access/](https://data-snot.cnrs.fr/data-access/), plusieurs vues matérialisées accompagnées de fonction trigger pour les mettre à jour ont été créées. Les scripts de création de ces vues sont accessibles ci-dessous :
+
+- [MaterializedView_Prod.sql](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_shiny/snapshot/module/sql/MaterializedView_Prod.sql) : Création des vues matérialisées
+- [TriggerMaterializedView_Prod.sql](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_shiny/snapshot/module/sql/TriggerMaterializedView_Prod.sql) : Fonction pour rafraichir la vue matérialisée `data_infraj_prod`
+- [TriggerDebouncePeriod.sql](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_shiny/snapshot/module/sql/TriggerDebouncePeriod.sql) : Ensemble des instructions pour rafraichir la vue matérialisée `carac_data_sensor_method_prod` avec un décalage de 10 minutes lorsque l'une des tables associées à la création de cette vue est mise à jour.
+
+### Mise à jour simple
+
+La vue matérialisée `data_infraj_prod` est mise à jour dès lors que la table indiquant qu'une donnée est publiée ou dé-publiée est mise à jour (insertion_dataset_ids) :
+
+```{r, engine = 'sql',class.source='klippy',eval=FALSE}
+create trigger refresh_data_infraj_prod
+after insert or update or delete or truncate
+on public.insertion_dataset_ids for each statement 
+execute procedure refresh_data_infraj_prod();
+```
+
+### Mise à jour en décalée de la vue matérialisée `carac_data_sensor_method_prod`
+
+Pour des raisons de performance, la vue matérialisée `carac_data_sensor_method_prod` est mise à jour 10 minutes après la modification des tables associées à la requête de création de la vue matérialisée. Ce décalage de mise à jour est réalisée grâce à une table retraçant les modifications apportées. La procédure est inspirée de ce [blog](https://onethingsimple.com/2017/10/sync-materialized-views-after-debounce-period/).
+
+Le script de création des tables et des triggers est accessible [ici](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_shiny/snapshot/module/sql/TriggerDebouncePeriod.sql).
+
+[RefreshMaterializedView.sh](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_shiny/snapshot/module/sql/RefreshMaterializedView.sh) est lancé toutes les minutes dans le crontab du serveur tomcat avec cette configuration :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+* * * * * tomcat /home/tomcat/devel/metadata/RefreshMaterializedView.sh
+```
+
+Pour fonctionner, le `~/.pgpass` doit être configuré et `RefreshMaterializedView.sh` doit être executable : 
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+chmod +x RefreshMaterializedView.sh
+```
+
+
+
+

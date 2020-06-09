@@ -1,0 +1,21 @@
+---
+title: "Caractéristiques du serveur FTP SRV-SO"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+Description des caractéristiques du serveur FTP SRV-SO et de la procédure d'accès.
+</div>
+
+# Caractéristiques techniques
+
+Le serveur `SRV-SO` est utilisé pour stocker l'ensemble des fichiers collectés sur les sites du SNO-T. Il a pour objectif d'assurer la traçabilité des traitements effectués pendant tout le cycle de vie des données. Il fait également fonction d'archivage des données au bout d'un laps de temps après la publication de la données. 
+
+# Accès au serveur  
+
+Partie à développer
+

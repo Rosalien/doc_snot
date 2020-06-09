@@ -1,0 +1,12 @@
+nom;description
+srvso_cycledevie;Description des principales étapes du cycle de vie d’une donnée du SNO-T
+srvso_profil;Codes des profils utilisés dans la nomenclature ICOS pour les données méteosol
+srvso_profondeur;Codes des profondeurs utilisés dans la nomenclature ICOS pour les données méteosol
+srvso_site;Codes et nom des sites SNO-T pour nommer les répertoire du SRV-SO
+srvso_stations;Codes anciens et nouveaux des stations de mesures du SNO-T
+srvso_subplot;Codes des subplot utilisés dans la nomenclature ICOS pour les données méteosol
+srvso_themedonnees;Codes des thèmes de données
+srvso_typedonnees;Codes des types de données
+srvso_typefichiers;Codes des profils utilisés dans la nomenclature ICOS pour les données méteosol
+srvso_unites;Ensemble des unités utilisés dans le SNO-T
+srvso_variables;Description des variables cibles et auxiliaire utilisées durant toute la chaine de traitement du SNO-T

@@ -1,0 +1,68 @@
+---
+title: "Les métadonnées du SI SNO-T"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectifs et contenu**</h4>
+  <p>Introduction sur l'élaboration des métadonnées</p>
+<p>- Description du cycle de vie des données du SNO-T,
+   - Description de l'organisation générale des données,
+   - Présentation des types de données du SNO-T.</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+<p>- Pour tous public souhaitant découvrir l'organisation du SI SNO-T,
+   - Pas de pré-requis.
+ </p>
+</div>
+
+# Avant-propos
+
+Le SI du SNO-T s'appuie sur le noyau du SI du SOERE et sur ses concepts associés. En conséquence, la description des données du SNO-T s'appuie sur une source d'information appelée `données de référence` dans le SI des SOERE.
+Les `métadonnées` représentent les données qui décrivent les données du SNO-T. Ces données sont construitent en partie grâce aux données de référence du SI SNO-T.
+
+## Définition proposée dans le SOERE 
+
+Les données de référence représentent l'ensemble de données ou informations caractérisant des objets métier principaux (« cœur de métier ») d'un domaine fonctionnel. Elles permettent de décrire les données expérimentales qui sont des données réellement produites et utilisées en routine par les chercheurs comme la température, la concentration en calcium, le diamètre, etc. et qui correspondent dans la plupart du temps à des variables qui sont mesurées ou calculées, manuellement ou automatiquement.
+
+Les données de référence préexistent aux données expérimentales. Il s'agit par exemple des données décrivant et localisant les sites d'études ou encore des informations liées à l'assurance qualité (outil de mesure, méthodes, mode opératoire...). Il est important de bien les identifier, les décrire et d'indiquer comment on souhaite les associer aux données expérimentales. Ces informations peuvent être obligatoires ou facultatives. Elles peuvent de plus être spécifiques au type de données (thématique) étudié ou partagées entre plusieurs types de données du SI.
+
+**Important** : le terme « données de référence » est ici préféré à celui de « métadonnées » parfois utilisé. Les métadonnées sont en effet aujourd'hui abordées sous l'angle de la recherche et l'accès aux données. En respectant des normes à des fins d'interopérabilité, elles documentent des ressources (jeux de données par exemple) qui sont cataloguées. Il existe par exemple des catalogues de métadonnées décrivant des données de référence d'un domaine.
+
+## Objectif du document
+
+Dans la construction du SI du SNO-T, les données de référence du SOERE ont été complétées et adaptées au contexte du SNO-T. Ce document les présente dans le détail.
+
+# Présentation des données de référence du SNO-T
+
+```{r,evaL=TRUE,echo=FALSE}
+# Ici, nommer le code du jeu de données pour automatiser le nommage. Cette variable est également utilisée dans les tableaux pour filtrer par type de données
+v_jdd <- "GES"
+```
+
+## Rappel sur l'organisation des données dans le SNO Tourbières
+
+Voir cette page https://github.com/yihui/knitr/issues/886 pour la génération à la volée des tables
+
+```{r,evaL=TRUE,echo=FALSE,results='asis'}
+metaref <- read.csv(paste(reptables,"donnees_reference.csv",sep=""),sep=";")
+ddr <- levels(metaref["Donnees_de_reference"][,1])
+for(i in ddr){
+  metatable <- metaref[metaref$Donnees_de_reference %in% i,-1]
+  table <- kable(metatable, "html",row.names=FALSE) %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+  print(table)
+}#
+```
+
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_reference.csv",sep=""),sep=";")
+metatable <- metatable[,-1]
+DT::datatable(metatable,rownames = FALSE)
+```
+

@@ -1,0 +1,181 @@
+---
+title: "Arborescence du serveur FTP SRV-SO"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+Description de la logique de constuction de l'arborescence du serveur FTP SRV-SO.
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+<p>- Fournisseur de données, responsable des données d'un site du SNO-T,
+   - Avoir pris connaissance de `r linkAlertCSS("l'organisation générale des données dans le SNO-T","https://sourcesup.renater.fr/si-snot/1_Decouverte_OrganisationDonnees.html")`.
+ </p>
+</div>
+
+# Rôle du serveur FTP `SRV-SO`
+
+Le serveur FTP `SRV-SO` est utilisé pour stocker l'ensemble des fichiers collectés sur les sites du SNO-T. Il a pour objectif d'assurer la traçabilité des traitements effectués pendant tout le cycle de vie des données.
+
+# Arborescence du serveur FTP `SRV-SO`
+
+## Règles à respecter
+
+1. Ne jamais modifier les Fichiers bruts,
+2. Les fichiers et les répertoires doivent être nommés sans espace, ni accents et caractères spéciaux,
+3. Créer des fichiers "ALire" pour décrire le contenu de l'arborescence et les nouveaux répertoires/fichiers créés.
+
+&nbsp;
+
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">**Important**</h4>
+  <p>La création de fichier "ALire" permet de faciliter la navigation et de comprendre le lien entre les fichiers. Merci de les mettre à jour dès que vous créez de nouveaux répertoires ou de nouveaux fichiers.</p>
+</div> 
+
+## Logique d'organisation
+
+L'arborescence du serveur FTP `SRV-SO` est construite selon cette logique : 
+
+[code du site](https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_srvso/srvso_site.csv) >> [code de la station](https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_srvso/srvso_stations.csv) >> [code du type de données](https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_srvso/srvso_typedonnees.csv)
+
+Ensuite, pour chaque type de données, l'organisation s'appuie sur le [cycle de vie](https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_srvso/srvso_cycledevie.csv) de la donnée avec un ensemble de répertoires types. Chacun de ces répertoires est construit selon le numéro du cycle de vie de la donnée et du type de fichier :
+
+```
+└── [code_site]
+    └── [code_station]
+        └── [code_typedonnees]
+            ├── 1_BRUTE_[typedonnees]
+            ├── 2_TRAITEMENT_[typedonnees]
+            └── 3_SNOT_[typedonnees]
+
+```
+&nbsp;
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Remarque**</h4>
+  <p>Cette arborescence proposée est susceptible d'évoluer. Il y aura également des spécificités en fonction des stations et des types de données collectées.</p>
+</div> 
+
+Avec : 
+
+- [code_site] : Racine du répertoire de stockage des fichiers pour un site du SNO-T,
+- [code_station] : Stockage des fichiers provenant d'une station ou d'un instrument ayant une position géographique donnée,
+- [code_typedonnees] : Stockage des fichiers pour un type de donnée,
+- 1_BRUTE_[typedonnees] : Stockage des Fichiers bruts d'un type de données (**NE JAMAIS MODIFIER CES FICHIERS**),
+- 2_TRAITEMENT_[typedonnees] : Stockage des traitements associés aux Fichiers bruts. Ce répertoire peut contenir différents sous-répertoires pour le stockage des scripts de traitements ou des tableurs ainsi que les stockages des fichiers pré-traités,
+- 3_SNOT_[typedonnees] : Stockage des fichiers prêts à être intégrés dans la BDD du SI SNO-T. Ils respectent le format d'échange demandé et les critères qualités,
+
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple**</h4>
+  <p>Ci-dessous, l'arborescence complète pour le type de données `meteosol` de la station bm1 de La Guette. Dans cet exemple, le répertoire 2_TRAITEMENT_meteosol contient deux sous-répertoires pour stocker les scripts R et leurs sorties.</p>
+  <p>Ici, le répertoire 3_ICOS_meteosol contiendra les fichiers au format ICOS provenant de traitements réalisés dans 2_TRAITEMENT_meteosol.</p>
+</div> 
+
+```
+lgt
+├── bm1
+│   └── meteosol
+│       ├── 1_BRUTE_meteosol
+│       │   ├── 03-02-2016_actuel
+│       │   ├── 10-12-2010_16-04-2015
+│       │   ├── 16-04-2015_03-02-2016
+│       │   └── Readme.md
+│       ├── 2_TRAITEMENT_meteosol
+│       │   ├── Readme.md
+│       │   ├── ScriptsR
+│       │   └── Sorties
+│       ├── 3_ICOS_meteosol
+│       ├── 3_SNOT_meteosol
+│       │   ├── lgt-bm1_meteosol_infraj_01-01-2017_31-12-2017.csv
+│       │   ├── lgt-bm1_meteosol_infraj_01-01-2018_31-12-2018.csv
+│       │   ├── lgt-bm1_meteosol_infraj_01-01-2019_11-08-2019.csv
+│       │   ├── lgt-bm1_meteosol_infraj_03-02-2016_31-12-2016.csv
+│       │   ├── lgt-bm1_meteosol_infraj_10-12-2010_15-04-2015.csv
+│       │   └── lgt-bm1_meteosol_infraj_16-04-2015_03-02-2016.csv
+│       └── Readme.md
+```
+
+# Description des critères de construction de l'arborescence
+
+## Codes des sites et stations
+
+Code des sites et stations en production :
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"/donnees_references_PROD/sites.csv",sep=""),sep=";")
+DT::datatable(metatable[,c("type.de.site","nom_key","description_fr","parent")],rownames = FALSE,filter = 'top')
+#kable(metatable[,c("type.de.site","nom_key","description_fr")], "html",row.names=FALSE) %>%
+#kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+## Règle de nommage des stations du SNO-T
+
+### Stations météosol et eddycovariance
+
+Les stations eddycovariance et météosol du SNO-T sont codées selon les codes suivants :
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"/donnees_references_srvso/srvso_stations.csv",sep=""),sep=";")
+metatable <- metatable[metatable$code_station %in% c("ec[code_logger]","bm[code_logger]"),]
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple**</h4>
+  <p>La seule et unique station eddy-covariance de Landemarais est codée `ec1`. La tourbière de la Guette a deux stations météo-sol, elles portent donc les codes `bm1` et `bm2`.</p>
+</div> 
+
+### Piézomètres 
+
+Pour faciliter le nommage des piézomètres pouvant être nombreux par site, le code des piézomètres est basé sur le préfixe `pz` et le nom vernaculaire utilisé dans chacune des tourbières. Le nom vernaculaire doit respecter ces quelques règles : 
+
+- minuscule, sans accent et sans `-`
+- sans espace, utiliser des `_` pour nommer le piézomètre avec un nom vernaculaire ou sans `_` si il s'agit d'un numéro. 
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"/donnees_references_srvso/srvso_stations.csv",sep=""),sep=";")
+metatable <- metatable[grepl("pz_",metatable$code_station)==TRUE,]
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple**</h4>
+  <p>Le piézomètre cbdv_amont de la tourbière de La Guette a pour code : `pz_cbdv_amont`.</p>
+  <p>Le piézomètre 1 de la tourbière de Bernadouze est codé : `pz1`.</p>
+</div> 
+
+### Autres équipements
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"/donnees_references_srvso/srvso_stations.csv",sep=""),sep=";")
+metatable <- metatable[!metatable$code_station %in% c("pz_[nom_vernaculaire]","ec[code_logger]","bm[code_logger]"),]
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+## Les thèmes, type de données et type de fichier du SNO-T
+
+La déclinaison des différents types de fichier par type de données et thème est présentée dans la table ci-dessous.
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"/donnees_references_srvso/srvso_typefichiers.csv",sep=""),sep=";")
+DT::datatable(metatable,rownames = FALSE,filter = 'top')
+#kable(metatable, "html",row.names=FALSE) %>%
+#kable_styling() %>%
+#scroll_box(width = "100%", height = "400px")
+#kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+

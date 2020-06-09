@@ -1,0 +1,1083 @@
+
+%---------------------- %   Chapitre 1   %--------------------- %
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%																%	
+%		 SNO Tourbières - Typologie et nom des variables		%
+%																%	
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+
+%A REVOIR:
+%1) tableau liste des variables
+%2) ajouter tableau liste des variables facultatives
+
+
+
+\chapter{Typologie des variables}
+
+S.Gogo, M.-L. Toussaint, ...
+
+\section{Éléments de contexte et objectifs}
+
+%JBP Pour les éléments de contextualisation, faire un bref point sur ICOS et rajouter également un point sur OZCAR.
+
+Le Service National d'Observation des Tourbières (SNO Tourbières) a acquis, acquière et va acquérir un grand nombre de données de différents types, parfois de différents formats (organisation des données et format de fichier), dans des sites différents, par des équipes de recherches différentes. Pour pouvoir générer des données de qualité à même de permettre un suivi sur le long terme cohérent et une inter-comparaison entre site qui ait du sens, il est nécessaire de ce mettre d'accord sur une liste de variable et sur la façon dont on les acquière et traite. Ceci passe par une harmonisation des noms et des formats de fichiers.
+
+Les fichiers contenant les données sont intégrés dans un système d'information en environnement (SIE) pour les stocker, les traiter et permettre leur visualisation et leur téléchargement via une interface web présente sur le site du SNO Tourbières\footnote{\url{http://www.sno-tourbieres.cnrs.fr/}}.
+
+L'objectif de ce document est 1) de décrire les types de variables et l'organisation des équipements et des acquisitions manuelles pour ensuite 2) générer de manière cohérente des noms de fichiers, de colonnes et de ligne commune à tous les types de données pour rendre possible leur intégration dans le SIE. Pour beaucoup de variables, nous suivront les recommandations provenant des protocoles de l'Integrated Carbon Observation System (ICOS\footnote{\url{http://www.europe-fluxdata.eu/icos/variables}}).
+
+\newpage
+
+\section{Catégorie et modes d'acquisition}
+
+A ce jour un total autour de 42~variables cibles(Tableaux 1.1) sont ou seront suivies? dans le cadre du SNO Tourbière. Elles ont été regroupées en 5 catégories:
+
+\
+
+		\begin{itemize}	
+			\item \textbf{a - Météorologie, physique du sol}: Météo-sol
+			
+			\
+			
+			\item \textbf{b - Hydrologie hors profil "météo-sol"}: Hydro/Carto 
+			
+			\
+			
+			\item \textbf{c - Flux de gaz à effet de serre}: GHG 
+			
+			
+			\
+			
+			\item \textbf{d - Biogéo- physique et chimie}: Biogéo
+			
+			\
+			
+			\item \textbf{e - Biodiversité et végétation}: Bioveg
+		\end{itemize}
+		
+\
+
+%JBP définir gap-filling		
+Pour les ateliers, les variables météo-sol et GHG sont regroupées car elles constituent un groupement cohérent qui \textit{in fine} aboutiront aux calculs des flux et des bilans de carbone. Les données météo-sol serviront à comprendre les flux et à réaliser le gap-filling des chroniques de flux. C'est dans les catégories météo-sol, GHG et Bioveg où se trouvent les variables nécessaires à suivre pour être cohérent avec ICOS. De ce fait, les catégories Hydro/Carto et Biogéo ont moins de contraintes que les 3 autres catégories.
+
+\
+
+%JBP Je te propose un tableau pour synthétiser les différents types de données
+Les données correspondant aux variables des différentes catégories sont acquises de manière différentes (haute ou basse fréquence d'acquisition, de manière régulière ou irrégulière), sont injectées sur le serveur du SNO Tourbières de manière différentes (par télécommunication ou manuellement) et ont un plus ou moins grand intérêt relativement aux objectifs du SNO Tourbières. Le tableau \ref{priorite_donnees} énumère par ordre de priorités d'intégration dans le SIE ces types de données et leur mode d'envoi sur le serveur. 
+
+%\csvautotabular{priorisation_donnees.csv}
+
+%JBP Rajout des références de section
+Certaines variables sont acquises par des capteurs placés sur le terrain et enregistrées dans des stations d'acquisition. Ces stations d'acquisitions génèrent des fichiers qui contiennent les données temporelles de plusieurs variables. Un maximum théorique de 100 stations est prévue, mais concrètement, le nombre de stations d'acquisition par site devrait se situer entre 10 et 20 par site. L'organisation des équipements et des fichiers générés par ces équipement est développée dans la section \ref{Organisation_equipement} et les variables acquises manuellement dans la section \ref{Organisation_campagne}. Les codes serviront ensuite à la nomenclature des fichiers générés par chaque type de mesure.%JBP cette dernière phrase n'est pas très clair.
+
+\newpage
+
+\section{Les variables cibles obligatoires}
+
+\subsection{Définition et degré d'élaboration}
+
+% JBP Rajout des reférences de section
+Les variables cibles sont les supports de l'interprétation du fonctionnement des systèmes étudiés. A un degré plus ou moins grand, toutes ces variables sont élaborées (ayant subit au moins un calcul). Certaines de ces variables correspondent au signal de sortie d'un capteur comme par exemple la température du sol (juste un calcul machine). D'autres variables cibles vont être le fruit de nombreux calculs réalisés par la sonde et par l'expert. C'est le cas de la teneur en eau du sol. Un signal électrique est traduit en conductivité électrique (calcul machine 1) qui sert à calculer la permittivité électrique (calcul machine 2). Cette dernière est utilisé dans une calibration "expert" avec des mesures manuelles pour obtenir la variables cible "teneur en eau". D'autres variables peuvent être calculées à partir de deux (ou plus) variables cibles. Le chemin réalisé pour obtenir la variable cible à partir des données obtenues sur le terrain est décrit dans le chapitre \ref{v_meteosol}.\\
+Le degré d'élaboration d'une variable peut être codé de la manière suivante :
+
+		\begin{itemize}	
+			\item Signal électrique brut du capteur: \textbf {b\_0}
+			\item Calcul machine à partir du signal b\_0 : \textbf {b\_1}
+			\item Calcul machine à partir du signal b\_1 : \textbf {b\_2}
+			\item Calcul machine à partir du signal b\_n : \textbf {b\_n+1}
+			\item Calcul expert à partir d'un signal b\_i et une calibration manuel :  \textbf {c\_0}
+			\item Calcul expert à partir d'au moins 2 signaux b\_i (i>0) :  \textbf {c\_1}
+		\end{itemize}
+
+
+\subsection{Liste des variables cibles}
+Les variables cibles suivies dans le cadre du SNO Tourbières de manières obligatoires sont à ce jour au nombre de 42 (tableau \ref{liste_variables}). Pour chaque variable cible, le code variable, la catégorie et le code de station/équipement sont précisés. Ces derniers servent dans la désignation des fichiers de données. Les codes variables servent dans les entêtes de colonnes. Les détails sur les types de capteurs, les fréquence d'acquisition, la maintenance et les calculs sont données au chapitre \ref{v_meteosol}.
+
+Certaines variables sont facultatives. Le caractère facultatif provient de la nécessité de mesurer une variable spécifique en fonction des caractéristiques propre à un site. Pour l'instant, deux variables sont facultatives: la précipitation sous forme de neige et l'azote totale dissous dans l'eau. Il est recommandé de prévoir la hauteur de neige dans les sites les plus en altitude (Bernadouze et Frasne). 
+
+\begin{table}
+\begin{scriptsize}
+
+\caption{Liste des variables cibles obligatoires .}
+\label{liste_variables}
+
+\
+
+\begin{tabular}{l l l l l l}
+	
+			\hline
+			\textbf{\#}&\textbf{Variable}&\textbf{Code}&\textbf{Catégorie}&\textbf{Station/équipement}\\
+			\hline
+			1&Pression atmosphérique&Pa&météo-sol&\#1, 2, 3\\
+			2&Précipitation - pluie&P\_rain&météo-sol&\#1, 2, 3\\	
+			3&Densité du flux de photon photosynthétique&PPFD&météo-sol&\#1, 2, 3\\
+			4&Vitesse du vent 2D&WS&météo-sol&\#1, 2, 3\\
+			5&Direction du vent 2D&WD&météo-sol&\#1, 2, 3\\
+			6&Humidité relative&RH&météo-sol&\#1, 2, 3\\
+			7&Température de l'air&Ta&météo-sol&\#1, 2, 3\\	
+			8&Température du sol&Ts&météo-sol&\#1, 2, 3\\
+			9&Teneur en eau du sol&SWC&météo-sol&\#1, 2, 3\\
+			10&Flux de chaleur dans le sol&G&météo-sol&\#1, 2, 3\\
+			11&Niveau de la nappe d'eau dans le sol (empreinte EC)&GWL&météo-sol&\#1, 2, 3\\
+			12&Rayonnement, longueurs d'ondes courtes entrantes&SWin&météo-sol&\#1, 2, 3\\
+			13&Rayonnement, longueurs d'ondes courtes sortantes&SWout&météo-sol&\#1, 2, 3\\
+			14&Rayonnement, longueurs d'ondes longues entrantes&LWin&météo-sol&\#1, 2, 3\\
+			15&Rayonnement, longueur d'ondes longues sortantes&LWout&météo-sol&\#1, 2, 3\\
+			16&Flux de H$_2$O par eddy covariance&FH2O&GHG&\#4\\
+			17&Flux de CO$_2$ par eddy covariance&FCO2&GHG&\#4\\
+			18&Flux de CH$_4$ par eddy covariance&FCH4&GHG&\#4\\
+			19&Vitesse du vent 3D - composante horizontale&WSx&GHG&\#4\\
+			20&Vitesse du vent 3D - composante latérale&WSy&GHG&\#4\\
+			21&Vitesse du vent 3D - composante verticale&WSz&GHG&\#4\\
+			22&Direction du vent 3D - x&WDx&GHG&\#4\\
+			23&Direction du vent 3D - y&WDy&GHG&\#4\\
+			24&Direction du vent 3D - z&WDz&GHG&\#4\\
+			25&Flux de carbone organique dissous à l'éxutoire&FDOC&biogéochimie&\#5\\	
+			26&Flux de carbone organique particulaire à l'éxutoire&FPOC&biogéochimie&\#5\\
+			27&Conductivité à l'éxutoire&Cond&biogéochimie&\#5\\	
+			28&Niveau de la nappe d'eau hors profil "météo-sol"&GWL&hydro-carto&\#6 à 15\\
+			29&Débit à l'éxutoire &Q&hydro-carto&\#16 à 20\\
+			30&Echange Net de l'Ecosystème - mesure chambre&NEEc&GHG&\#101 à 105\\
+			31&Respiration de l'Ecosystème - mesure chambre&REc&GHG&\#101 à 105\\
+			32&Production primaire brute - mesure chambre&GPPc&GHG&\#101 à 105\\
+			33&Flux de  CH$_4$&FCH4c&GHG&\#106\\
+			34&Température du sol manuelle&Tsm&GHG&\#107\\
+			35&Teneur en eau du sol, manuelle&SWCm&GHG&\#108\\	
+			36&Leaf Area Index&LAIm&GHG&\#109\\
+			37&Carbone organique dissous, manuel&DOCm&biogéochimie&\#110\\
+			38&Carbone organique particulaire, manuel&POCm&biogéochimie&\#111\\
+			39&pH, manuel&pHm&biogéochimie&\#112\\
+			40&Conductivité, manuel&Condm&biogéochimie&\#112\\
+			41&Niveau piézométrique, manuel&GWLm&hydro-carto&\#113\\
+			42&Débit à l'éxutoire, manuel&Qm&hydro-carto&\#112\\		
+			\hline
+	
+\end{tabular}
+\end{scriptsize}
+\end{table}
+
+
+
+%\caption{Liste des variables facultatives acquises dans le
+%cadre du SNO Tourbières.}
+%\label{Table 2.}
+
+\
+
+%\begin{tabular}{l l l l l l}
+	
+		%	\hline
+		%	\textbf{\#}&\textbf{Variable}&\textbf{Code}&\textbf{Catégorie}&\textbf{Transmission}\\
+		%	\hline
+		%	60&Précipitation - neige&b&météo-sol&#1, 2, 3\\
+		%	\hline
+	
+%\end{tabular}
+%\end{scriptsize}
+%\end{table}
+
+\section{Organisation des équipements d'acquisition automatique}\label{Organisation_equipement}%JBP proposer également un tableau pour synthétiser les codes de stations
+
+Les données acquises régulièrement et à haute fréquence par des capteurs \textit{in situ} sont enregistrées dans 4 types de station d'acquisition : i) météo-sol (stations Campbell), ii) Eddy Covariance (station LICOR), iii) fluorescence de la matière organique dissoute (Fluorescence of Dissolved Organic Matter, FDOM - station Schnegg ou Xylem), iv) sondes piézométriques hors profil "météo-sol" (OTT, Diver, Campbell).
+
+\subsection{Stations météo-sol}
+Sur chaque site du réseau, il y aura 2 (minimum) voire 3 stations d'acquisition pour les variables météo-sol: 
+
+\
+
+		\begin{itemize}
+			\item station \textbf{\#001} = station météo "classique" + physique du sol,
+			
+			\
+			
+			\item station \textbf{\#002} = station physique du sol.
+				
+			\
+			
+			\item station \textbf{\#003} = station physique du sol.
+		\end{itemize}
+
+\
+%JBP ce point pourra être défini dans l'introduction car pour le moment, le lecteur n'a aucune idée de ce que représente les sites de niveau 2.
+Nous adoptons le nombre et la nomenclature des variables recommandées par ICOS pour les sites de niveau 2. De manière minimale, deux profils complets seront installés.
+
+La station météo "classique" enregistre les variables permettant de caractériser le site et de calculer l'évapo-transpiration potentielle: température de l'air, pression atmosphérique, précipitation, vitesse et direction du vent, humidité relative de l'air et rayonnement.
+
+%JBP rajouter des liens \ref{}
+Dans les variables météo-sol, il y a le niveau de la nappe d'eau dans l'empreinte de la tour à flux. Les sondes qui mesurent ces niveaux d'eau (branchées sur les stations Campbell) ne sont pas considérées dans le paragraphe 1.10 concernant les variables \og{} hydro\fg{}. Les sondes considérées dans le paragraphe 1.10 correspondent aux sondes de mesures de niveau d'eau se situant à l'extérieur des profils "météo-sol".
+
+
+\subsection{Station Eddy Covariance (EC)}
+Une station d'acquisition est présente au niveau du mât EC pour enregistrer toutes les variables nécessaires aux calculs des flux de CO$_2$, CH$_4$ et H$_2$O, et la direction et vitesse du vent en 3D:
+
+\
+
+		\begin{itemize}	
+			\item station \textbf{\#004} = station d'acquisition EC.	
+		\end{itemize}
+
+\
+%JBP Rajouter le lien vers le propotcole d'acquisition des données EC
+Le calcul des flux est réalisé à la fréquence d'un flux toutes les 30 minutes. Ceci nécessite l'acquisition de tous les paramètres à une fréquence de 20Hz (cf protocole sur l'EC pour tous les détails). La station d'acquisition Licor calcule un flux "immédiat" chaque 30 minutes qui servira à vérifier que l'appareil fonctionne bien. Cependant, il s'agit juste d'une valeur indicative puisque la vraie valeur de flux sera calculée par les experts de cette variable (avec le support des collègues d'ICOS).
+
+
+\subsection{Fluorimètre de terrain à l'exutoire}
+%JBP Correspond aux groupes de variable hydro-carto? A préciser
+Un fluorimètre avec un système d'acquisition est présent au niveau de l'exutoire principal de chaque site:
+
+\
+
+		\begin{itemize}	
+			\item station \textbf{\#005} = station d'acquisition du fluorimètre à l'exutoire.
+		\end{itemize}
+		
+		
+\subsection{Sondes piézométrique hors profil "météo-sol"}
+Des sondes de mesure du niveau d'eau contenant leur système autonome d'acquisition sont déployées à différents endroits dans (de 6 à 15) et à l'exutoire (de 16 à 20) de chaque tourbière :
+
+\
+
+		\begin{itemize}	
+			\item station \textbf{\#006} = sonde piézométrique 1 dans la tourbière,
+			
+			\
+			
+			\item station \textbf{\#007} = sonde piézométrique 2 dans la tourbière,
+			
+			\
+			
+			\item station \textbf{...}
+			
+			\
+			
+			\item station \textbf{\#015} = sonde piézométrique 10 dans la tourbière,
+			
+			\
+			
+			\item station \textbf{\#016} = sonde piézométrique 1 à l'éxutoire,
+			
+			\
+			
+			\item station \textbf{...}
+			
+			\
+			
+			\item station \textbf{\#020} = sonde piézométrique 5 à l'éxutoire,	
+		\end{itemize}
+		
+\
+
+
+\subsection{Stations d'acquisitions supplémentaires}
+
+Si un nouveau dispositif (e.g. mesures de concentration en carbone inorganique dissous à l'éxutoire), une station d'acquisition météo-sol, eddy-covariance, fluorimètre et/ou sonde piézométrique sont ajoutés, ils prendront le numéro suivant à partir de 21 jusqu'à 100: de 21 à 30 pour les stations météo-sol, de 31 à 40 pour les tour EC, de 41 à 50 pour les fluorimètres, de 51 à 70 pour les piézomètres et de 71 à 100 pour tout appareil nouveau.
+
+\newpage
+
+\section{Organisation des campagnes d'acquisition manuelle}\label{Organisation_campagne}
+Les variables acquises de manières manuelles sont regroupées par équipement de mesures. La liste des équipements commence à 101.
+
+\subsection{Mesure de flux par chambre d'accumulation}
+Les équipements utilisés pour les mesures de flux de C en chambres fermées ont été choisies par les équipes d'Orléans: Vaisala pour le CO$_2$ et Los Gatos pour le CH$_4$ (voir chapitre ? pour plus de détails). Les chambres peuvent être posées manuellement ou automatiquement, suivant les moyens disponibles. Les points de mesures sont au nombre de dix et doivent couvrir la variabilité spatiale de la végétation dans l'empreinte. Cependant, les mesures sont effectuées par 5 (tirage au sort). Pour interpréter les flux, des variables explicatives sont enregistrées : un profil de température du sol à proximité de la mesure de flux, la teneur en eau des premiers centimètres de tourbe et l'indice de surface des feuille (leaf area index ou LAI).
+
+Dans le réseau ICOS, les mesures de flux avec les chambres ne sont obligatoires que pour les sites de niveau 1. Dans le cadre du SNO Tourbières, nous avons pour objectif de tendre vers les recommandations pour les sites de niveau 2. Compte-tenu de l'importance de la connaissance de la variabilité spatiale des flux dans la compréhension du bilan à l'échelle de l'écosystème, nous essaierons tout de même de mettre en place dans tous les sites des mesures en chambre. Nous suivrons les recommandations ICOS puisqu'elles existent, mais nous autoriseront une certaine flexibilité.
+
+\
+
+	\begin{itemize}	
+			\item équipement \textbf{\#101 à 105} = matériel Vaisala pour le CO$_2$,
+			
+			\
+			
+			\item équipement \textbf{\#106} = matériel Los Gatos pour le CH$_4$,
+			
+			\
+			
+			\item équipement \textbf{\#107} = sonde pour mesure de profils de température,
+			
+			\
+			
+			\item équipement \textbf{\#108} = sonde teneur en eau,
+			
+			\
+			
+			\item équipement \textbf{\#109} = LAI-mètre.	
+		\end{itemize}
+
+\
+
+Les équipements de \#101 à 105 correspondent à 5 chambres manuelles ou automatiques. Chaque station produira un fichier avec l'ensemble des variables correspondant à son point de mesure. Si les mesures sont réalisées manuellement, une même chambre (la \#101) sera utilisée pour tous les points de mesures et un seul fichier (...\_101\_...) sera généré avec les variables de tous les points de mesures.
+
+
+		
+\subsection{Chimie et physique de l'eau}
+
+%JBP Rajouter \ref{}
+
+Pour caractériser les sites et compléter le bilan de C à l'échelle de l'écosystème, des analyses chimiques et physiques seront réalisées sur les eaux à l'exutoire et dans la tourbière (eau dans les piézomètre).
+%JBP Rajouter le point sur les variables obligatoires n'est pas clair, il est contradictoire avec ce qui est développé dans la section 1.13
+Les éléments mesurés sont: le carbone organique dissous (DOC, variable obligatoire), le carbone organique particulaire (POC, variable obligatoire) l'azote totale (TN, variable facultative). Ces variables sont mesurées sur des échantillons d'eau ramenés au laboratoire (voir chapitre ? pour plus de détails). Pour le DOC et le TN, l'appareil de mesure est un DOC-mètre (e.g. Shimadzu). Le POC correspond à la masse de C contenu dans les matières dont la taille est supérieure à 0.45~$µ$m.
+A chaque échantillonnage à l'exutoire et dans la tourbière, le pH, la température et la conductivité de la solution seront mesurés avec des sondes multiparamètres (e.g. WTW).
+
+\
+
+	\begin{itemize}	
+			\item équipement \textbf{\#110} = COT-mètre%JBP(COT-mètre ou DOC-mètre??)
+			
+			\
+			
+			\item équipement \textbf{\#111} = balance + analyseur élémentaire
+			
+			\
+			
+			\item équipement \textbf{\#112} = sonde multiparamètres	
+	\end{itemize}
+		
+		
+\subsection{Débit à l'éxutoire}
+Pour obtenir des mesures de débit à haute fréquence, des mesures de niveau d'eau à l'éxutoire à haute fréquence (stations de 016 à 020) sont couplées avec des mesures manuelles de débit. La méthode utilisée dans tous les sites est la méthode du débit au sel (voir chapitre 4 pour plus de détails). Elle utilise un conductimètre. Le débit est ensuite calculé à partir des variations de conductimétrie en fonction du temps.
+
+\
+
+	\begin{itemize}	
+			\item équipement \textbf{\#112} = conductimètre (sonde multiparamètres)
+	\end{itemize}
+
+\subsection{Niveau d'eau}
+Des mesures manuelles dans tous les piézomètres équipés de sondes automatiques sont nécessaires pour corriger les chroniques. Ces mesures sont réalisées avec une sonde manuelle ou avec un mètre (à préciser dans le métadonnées).
+
+\
+
+	\begin{itemize}	
+			\item équipement \textbf{\#113} = sonde piézométrique manuelle ou mètre
+	\end{itemize}
+
+\subsection{Equipements supplémentaires}
+Les mesures supplémentaires seront numérotées par type d'équipement à partir de 114. Dans l'idéal, le choix et le début du monitoring d'une variable sur un site devrait être l'objet d'une discussion lors d'un comité de pilotage. Si la variable est retenue, un numéro sera attribué à l'équipement et les autres sites qui seront capables de suivre cette nouvelle variables devront reprendre le même numéro d'équipement. Exemple: si un responsable de site a envie (besoin) de mesurer sur un an (voire plus) les concentrations en azote inorganique (nitrate, nitrite, ammoniaque) à l'exutoire, et si le copil est d'accord pour inclure cette variable dans la liste du SNO, alors le numéro 114 sera attribué à l'équipement mesurant les anions et 115 à celui mesurant les cations. Ces numéro seront bloqués. Si trois ans plus tard, un autre site veut suivre cette même variable, il reprendra les mêmes codes, même si l'équipement est d'une autre marque et mesure en même temps d'autres variables. Si un site qui n'a jamais suivi ces varai
+
+
+\newpage
+
+
+\section{Format des noms de fichiers}
+Que ce soient les fichiers envoyés par GPRS ou les fichiers injectés manuellement dans le système d'information en environnement, obtenus automatiquement ou manuellement, leurs noms devront respecter le format suivant composé de 6 éléments séparées par un "tiret du 8"  \_ :
+
+\
+
+\textbf{1 - code pays} - 2 lettres suivant le code ISO \footnote{\url{http://www.iso.org/iso/fr/french_country_names_and_code_elements.htm}}:
+
+\
+
+		\begin{itemize}	
+			\item \textbf{FR} = France
+			\item \textbf{CH} = Confédération Helvétique
+			\item \textbf{PL} = Pologne
+			\item \textbf{RU} = Russie
+			\item \textbf{DE} = Allemagne
+			\item \textbf{ES} = Espagne
+			\item \textbf{EE} = Estonie
+		\end{itemize}
+
+\
+
+\textbf{2 - code site} - 3 lettres :
+
+\
+
+		\begin{itemize}	
+			\item \textbf{FRN} = Frasne
+			\item \textbf{LGT} = La Guette
+			\item \textbf{LDM} = Landemarais
+			\item \textbf{BDZ} = Bernadouze
+			\item \textbf{SNO} = SNO Tourbières (quand données commune à tous les sites)
+		\end{itemize}
+
+\
+
+\textbf{3 - numéro station d'acquisition ou d'équipement} - un nombre à 3 chiffres :
+
+\
+
+		\begin{itemize}	
+			\item \textbf{001} = station météo classique + physique du sol 1
+			\item \textbf{002} = station météo-sol 2
+			\item \textbf{003} = station météo-sol 3
+			\item \textbf{004} = station eddy covariance
+			\item \textbf{005} = station fluorescence de la matière organique dissoute à l'éxutoire
+			\item \textbf{006} = station hydro 1
+			\item \textbf{007} = station hydro 2
+			\item \textbf{...} = station hydro ...
+			\item \textbf{020} = station hydro 15
+			\item \textbf{101} = équipement Vaisala du premier point de mesure
+			\item \textbf{...}
+			\item \textbf{113} = mesure niveau d'eau manuelle
+		\end{itemize}
+
+\
+	
+\textbf{4 - année} - un nombre à 2 chiffres :
+
+\
+
+		\begin{itemize}	
+			\item \textbf{14} = année 2014
+			\item \textbf{15} = année 2015	
+			\item etc...
+		\end{itemize}
+		
+\
+
+\textbf{5 - jour de l'année ou jour julien} - un nombre à 3 chiffres entre 001 et 365 ou 366 :	
+
+\
+	
+		\begin{itemize}	
+			\item \textbf{001} = le 1$^{er}$ janvier
+			\item \textbf{002} = le 2 janvier
+			\item ...
+			\item \textbf{033} = le 2 février
+			\item \textbf{034} = le 3 février
+			\item ...
+			\item \textbf{365} = le 31 décembre
+		\end{itemize}
+		
+\
+
+\textbf{6 - heure} - un nombre à 4 chiffres, 2 pour l'heure, 2 pour les minutes:
+
+\
+
+		\begin{itemize}	
+			\item \textbf{0000} = 00 heure 00 minute
+		\end{itemize}
+
+\
+
+Exemple: le fichier du 2 décembre 2014 provenant de la station météo-sol \#001 de la tourbière de la Guette s'écriera:
+
+\
+
+\textbf{FR\_LGT\_001\_14\_336\_0000.csv}
+
+\
+
+La date et l'heure sont celles du premier temps de mesures. Par exemple, pour 2014, les fichiers annuels seront tous au format: 
+
+
+xx\_xxx\_xxx\_14\_001\_0000.csv
+
+\
+
+\textbf{Très important}, il est demandé que l'heure de toutes les données soit calée sur l'heure UTC+1 (heure française en hiver, pas de changement d'heure en été). Les programmes des stations d'acquisitions devront être corrigés en conséquence. Aucun fichier ne pourra être injecté dans la BDD sans avoir été corrigé préalablement.
+
+\
+
+Dans les noms des fichiers, les stations d'acquisitions des variables dans le cadre du SNO Tourbières (cf 1.3.) sont désignées par un nombre composé de 3 chiffres allant de 001 à 100 comme mentionné plus haut. Les nombres allant de 101 à 700 désignent des fichiers de données obligatoires ou facultatives acquises manuellement dans le cadre du SNO Tourbières (e.g. relevé piézo manuel). Les nombres allant de 701 à 999 désigneront des fichiers de données acquises dans un cadre différent du SNO Tourbières (e.g. projet). Ainsi, tous les fichiers de données acquises dans les sites du SNO Tourbières suivront la même nomenclature, quel que soit leur mode d'acquisition.
+
+\
+
+Une fois au bon format, les fichiers de données seront envoyés sur le serveur SRV-SO du SNO Tourbières (basé à l'OSUC) et plus précisement dans le dossier "Data" (pour plus de détails, cf chapitre 2).
+
+\
+
+Les fichiers envoyés par les stations ou injectés manuellement sur le serveur de l'OSUC devront être au format .csv (coma separeted values). ATTENTION: dans tous les cas le séparateur de COLONNE est une VIRGULE, le séparateur de DECIMAL est un POINT. Le format .csv a l'avantage d'être un format informatique ouvert ce qui permettra d'éviter les problèmes liés au format propriétaire (coût des mises à jour, compatibilité).
+
+\
+
+A mesure que cela sera possible (financièrement et techniquement) chaque station d'acquisition sera équipée d'un GPRS afin d'envoyer directement les fichiers de données sur le serveur.
+
+
+\newpage
+
+
+\section{La variable "temps"}
+
+L'ensemble des données acquises dans le cadre du SNO Tourbières sont des séries temporelles. Il est donc primordial d'avoir une nomenclature commune pour identifier le temps et d'homogénéiser pour chaque variable les fréquences d'acquisition entre les sites pour permettre des comparaisons fiables. La variable temps sera systématiquement la première colonne de chaque fichier. L'en-tête de cette variable est:
+
+\
+
+		\begin{itemize}	
+			\item \textbf{Time} = année, mois, jour, heure, minute, seconde de la ou des mesures présent sur la même ligne
+		\end{itemize}
+
+\
+
+La nomenclature retenue est celle recommandée par ICOS, ce qui devrait faciliter l'interopérabilité. Au cas ou un ou des sites participeront à ICOS, les fichiers une fois sur le serveur de l'OSUC devront être envoyés vers le centre thématique sur le écosystèmes d'ICOS (ICOS Ecosystem Thematic Center, ETC\footnote{\url{http://www.europe-fluxdata.eu/icos/home}}). Le format de la variable temps est le suivant:
+
+\
+
+		\begin{itemize}	
+			\item \textbf{aaaammjjhhmmss} 
+		\end{itemize}
+
+\
+
+Pour les variables ICOS, la fréquence de mesure suivra les recommandations du réseau (spécifié par la suite). Pour les variables non-ICOS, si ce n'est déjà fait, il faudra se mettre d'accord sur ces fréquences. Point important: \textbf{toutes les variables seront mesurées et enregistrées à l'heure locale (UTC+1)}.
+
+
+\newpage
+
+
+\section{Nom des variables  "météo-sol" - stations \#001, \#002 et \#003}
+
+\subsection{En-têtes}
+Le fichier envoyé quotidiennement par GPRS au serveur SNO Tourbières de l'OSUC contient des entêtes de colonnes avec le code de la variable et un code pour sa position. Les unités des variables se trouvent dans un fichier séparé valable pour toutes les stations. Le nom des variables suit la nomenclature suivante (ICOS) composé de 4 éléments séparés par un "tiret du 8"  \_ :
+
+\
+
+\textbf{code variable\_numéro profil\_numéro altitude ou profondeur\_numéro subplot}
+
+\
+%JBP : Attention, le code des variables semblent caduque. Voir les codes proposés dans Instructions_ECO_Fileformat_Meteo_final_20171013.pdf
+\textbf{1 - code variable} composé de lettre(s):
+
+\
+
+		\begin{itemize}	
+			\item \textbf{Pa} = pression atmosphérique
+			\item \textbf{P\_rain} = précipitation sous forme de pluie
+			\item \textbf{P\_snow} = précipitation sous forme de neige
+			\item \textbf{SWin} = ondes courtes entrantes
+			\item \textbf{SWout} = ondes courtes sortantes
+			\item \textbf{LWin} = ondes longues entrantes
+			\item \textbf{LWout} = ondes longues sortantes
+			\item \textbf{PPFD} = photosynthetic photon flux density
+			\item \textbf{NDVI} = Normalized Difference Vegetation Index
+			\item \textbf{WS} = vitesse du vent
+			\item \textbf{WD} = direction du vent
+			\item \textbf{Rh} = humidité relative de l'air
+			\item \textbf{Ta} = température de l'air
+			\item \textbf{Ts} = température du sol
+			\item \textbf{SWC} = teneur en eau du sol
+			\item \textbf{G} = flux de chaleur dans le sol
+			\item \textbf{GWL} = niveau de la nappe d'eau (dans empreinte EC)
+		\end{itemize}
+
+\
+
+\textbf{2 - numéro profil} composé d'un chiffre :
+
+\
+
+		\begin{itemize}	
+			\item \textbf{1} = premier profil
+			\item \textbf{2} = deuxième profil
+			\item \textbf{3} = troisième profil
+		\end{itemize}
+
+\
+
+\textbf{3 - numéro altitude ou profondeur} composé d'un chiffre :
+
+\
+
+		\begin{itemize}	
+			\item \textbf{1} = profondeur ou altitude la plus proche de la surface du sol
+			\item \textbf{2} = profondeur ou altitude suivante (plus profond ou plus haut que 1)
+			\item \textbf{3} = profondeur ou altitude suivante (plus profond ou plus haut que 2)\footnote{le nombre de profondeur varie en fonction de la variable}
+		\end{itemize}
+
+\
+
+\textbf{4 - numéro du subplot} composé d'un chiffre :
+
+\
+
+		\begin{itemize}	
+			\item \textbf{1} = capteur 1 du profil "i" à la profondeur ou altitude "j"
+			\item \textbf{2} = capteur 2 du profil "i" à la profondeur ou altitude "j"
+			\item \textbf{3} = capteur 3 du profil "i" à la profondeur ou altitude "j"
+		\end{itemize}
+
+\
+
+Exemple: la température du sol provenant du profil numéro 2 à la troisième profondeur et du premier subplot s'écriera: 
+
+\
+
+\textbf{Ts\_2\_3\_1}
+
+\
+
+Toutes les variables ne seront pas acquises dans tous les sites, par exemple, la précipitation sous forme de neige ne sera mesurée qu'à Frasne et Bernadouze. Là où il n'y a pas de capteurs, il y a une colonne vide (2 séparateurs qui se suivent). Dans le cas de capteurs défaillants, il y a "9999". Autrement dit, les capteurs pas encore installés ne renvoient rien (colonne vide) et les capteurs installés qui ne donnent pas de données (e.g. cable sectionné) renvoient "9999".
+
+\
+
+Plusieurs variables peuvent être acquises par un même instrument, exemple: le Wind Sonic (Gill) est un instrument qui mesure 2 variables, la vitesse et la direction du vent.
+
+\
+
+La quantité de profil dépend du nombre de type de végétation dans l'empreinte de la mesure EC. Le niveau de site ICOS  que nous viserons est le niveau 2. A ce niveau, il est requit un minimum de 2 profils par sites. Chaque profil comprend 1 profil complet et un profil additionnel pour une mesure supplémentaire du flux de chaleur dans le sol (grandeur physique spatialement très variable). Cependant, dans le cas où un troisième serait nécessaire/possible d'équiper, un maximum de 3 types de végétations a été retenu pour le fichier type. \textbf{Très important}, il est indispensable que les profils soient installés dans l'empreinte de la mesure par EC. 
+
+\
+
+Le code de l'altitude ou de la profondeur ne correspond pas à des côtes définies (sauf pour -5 cm) et il n'y a pas de correspondance entre les variables. Par exemple, la première profondeur de température codifiée "1" correspondra à la profondeur juste en dessous des sphaignes où dans la litière, c'est à dire -1 ou -2 cm. La température codifiée "2" se situera à - 5 cm obligatoirement (norme ICOS). Ensuite, la température codifiée "3" correspondra à la profondeur - 10 cm, "4" à - 25 cm et "5" à -60 cm. La première sonde de teneur en eau Campbell CS 650, la teneur en eau codifiée "1", se situera à -5 cm (alors que la sonde température de la même profondeur est notée "2"). Il faudra garder à l'esprit que le volume élémentaire de mesure de la CS 650 se situe théoriquement dans un rayon de 10 cm autour de la sonde.
+
+\subsection{Fréquence d'acquisition}
+Les données sont acquises à une fréquence de 1 mesures par minute.
+
+%JBP: Définir le gap-filling
+\subsection{Répartition des variables météo-sol}
+Comme tous les capteurs "météo-sol" ne peuvent être installés sur une même station d'acquisition, il a été choisi de déployer une station d'acquisition (e.g. CR1000) par plot de mesures de la physique du sol. Cette contrainte technique a l'avantage de donner plus de flexibilité quant au déploiement des équipements sur le site pour couvrir la variabilité spatiale dans l'empreinte de la tour Eddy-Covariance et une sécurité quant à la sauvegarde des données pour le gap-filling: s'il n'y avait qu'une station et qu'elle tombe en panne, tout est perdu, alors qu'il est moins probable que les 2 stations soient hors service en même temps.
+
+\newpage
+
+\section{Nom des variables "eddy-covariance" - station \#004)}
+
+\subsection{En-têtes}
+Le fichier généré par la station d'acquisition du LICOR est envoyé quotidiennement au serveur SNO Tourbières de l'OSUC. Les flux sont des variables élaborées à partir de plusieurs variables listées ci-dessous. Le nom des variables suit la nomenclature suivante (ICOS) composé de 4 éléments séparés par un "tiret du 8"  \_ :
+
+\
+
+\textbf{code variable\_numéro profil\_numéro altitude ou profondeur\_numéro subplot}
+
+\
+%JBP : Attention, le code des variables semblent caduque. Voir les codes proposés dans Instructions_ECO_Fileformat_EC_final_20171020.pdf
+\textbf{1 - code variable:}
+
+\
+
+		\begin{itemize}	
+			\item \textbf{TempIn} = température d'entrée de la cellule en °C
+			\item \textbf{TempOut} = température de sortie de la cellule en °C
+			\item \textbf{AvgTemp} = température moyenne de la cellule en °C
+			\item \textbf{Dpres} = head pressure en kPa
+			\item \textbf{Pres} = pression total en kPa
+			\item \textbf{H2OAW0/H2OAW} = mesure brute H2O, référence / échantillon
+			\item \textbf{H2OD} = concentration en H2O en mmol m$^-3$
+			\item \textbf{H2OMF} = fraction molaire d'H2O dans l'air sec en mmol m$^-3$
+			\item \textbf{CO2AW0/CO2AW} = mesure brute CO$_2$ référence / échantillon
+			\item \textbf{CO2D} = concentration en CO$_2$ en mmol m$^-3$
+			\item \textbf{CO2MFd} = fraction molaire de CO$_2$ dans l'air sec en mmol m$^-3$
+			\item \textbf{CH4AW0/CH4AW} = concentration brute en CH$_4$ référence et échantillon
+			\item \textbf{CH4D} = concentration en CH$_4$ en mmol m$^-3$
+			\item \textbf{CH4MFd} = fraction molaire de CH$_4$ dans l'air sec en mmol m$^-3$
+			\item \textbf{Path/Synch/PLL/DetOK/Chopper/PDif/Tin/Tout/Head} = valeurs diagnostiques LI-7200
+			\item \textbf{fp} = pression du débit du 7200-101 en kPa (code à confirmer)
+			\item \textbf{d} = débit (code à confirmer)
+		\end{itemize}
+
+\
+
+\textbf{2 - numéro profil:}
+
+\
+
+		\begin{itemize}	
+			\item \textbf{1} = premier station eddy-covariance
+		\end{itemize}
+
+\
+
+\textbf{3 - numéro altitude ou profondeur:}
+
+\
+
+		\begin{itemize}	
+			\item \textbf{1} = altitude de mesure de la vitesse et direction du vent et des concentrations en différents gaz la plus proche de la surface du sol
+			\item \textbf{2} = altitude suivante (plus haut que 1)
+		\end{itemize}
+
+\
+
+\textbf{4 - numéro du subplot:}
+
+\
+
+		\begin{itemize}	
+			\item \textbf{1} = capteur 1 du profil "i" à l'altitude "j"
+			\item \textbf{2} = capteur 2 du profil "i" à l'altitude "j"
+			\item \textbf{3} = capteur 3 du profil "i" à l'altitude "j"
+		\end{itemize}
+
+\
+
+Il n'est pas prévu d'installer des profil de concentrations. 
+
+\subsection{Fréquence d'acquisition}
+Les données sont acquises à une fréquence de 20Hz.
+
+\subsection{Répartition des variables eddy covariance}
+Une seule station par site est prévue. L'emplacement devra être établie à partir de la rose des vent et de la surface disponible pour optimiser le nombre de flux calculables. Pour chaque site, ce choix devra faire l'objet d'une discussion suivi d'un consensus entre tous les membres du SNO Tourbières impliqués par ces meures. Des avis extérieurs seront si besoin demandé.
+
+\newpage
+
+\section{Nom des variables "biogéochimie de l'eau" - station \#005)}
+\subsection{En-têtes}
+Les données mesurées par les fluorimètres sont stockées dans une station d'acquisition incorporée à l'instrument de mesure (cas du Xylem) ou indépendante du capteur (cas du Schnegg). les données sont récupérées régulièrement lors des missions de terrain. Les données acquises par le fluorimètre ne sont pas requises par ICOS. Les noms des entêtes de colonnes sont composés de 4 éléments séparés par un "tiret du 8"  \_ :
+
+\
+
+\textbf{code variable\_numéro profil\_numéro altitude ou profondeur\_numéro subplot}
+
+\
+
+\textbf{1 - code variable:}
+
+\
+
+		\begin{itemize}	
+			\item \textbf{FDOM} = fluorescence de la matière organique dissoute
+			\item \textbf{Turb} = turbidité
+			\item \textbf{Cond} = conductivité
+		\end{itemize}
+\
+
+\textbf{2 - numéro profil:}
+
+\
+
+		\begin{itemize}	
+			\item \textbf{1} = premier fluorimètre		
+		\end{itemize}
+
+\
+
+\textbf{3 - numéro altitude ou profondeur:}
+
+\
+
+		\begin{itemize}	
+			\item \textbf{1} = position du capteur dans la colonne d'eau (toujours 1)
+		\end{itemize}
+
+\
+
+\textbf{4 - numéro du subplot:}
+
+\
+
+		\begin{itemize}	
+			\item \textbf{1} = capteur 1 du profil "i" à l'altitude "j" (toujours 1)
+		\end{itemize}
+
+
+La variable cible "flux de carbone organique dissous" (FDOC) sera calculée avec les données FDOM et DOCm (cf section 1.12). La variable cible "flux de carbone organique particulaire" (FPOC) sera calculée avec les données Turb et POCm (cf section 1.12).
+
+\
+
+
+\subsection{Fréquence d'acquisition}
+Les données acquises par ces sondes ne rentrent pas dans le cadre ICOS. Les mesures seront effectuées et enregistrées toutes les 30 minutes (voire 15 minutes).
+
+
+
+\newpage
+
+\section{Nom des variables "hydro" - stations \#006 à \#020}
+
+
+\subsection{En-têtes}
+Les données mesurées par les sondes piézométriques sont stockées dans une station d'acquisition incorporée à l'instrument de mesure. Il est préférable que la corrections de la pression atmosphérique soit réalisée directement par la sonde. Les données sont récupérées régulièrement lors des missions de terrain. Les données acquises par les sondes OTT hors profil "météo-sol" ne sont pas requises par ICOS. Les noms des entêtes de colonnes sont composés de 4 éléments séparés par un "tiret du 8"  \_ :
+
+\
+
+\textbf{code variable\_numéro profil\_numéro altitude ou profondeur\_numéro subplot}
+
+\
+
+\textbf{code variable:}
+
+\
+
+		\begin{itemize}	
+			\item \textbf{GWL} = niveau de la nappe d'eau (hors empreinte EC)
+		\end{itemize}
+\
+
+\textbf{1 - numéro du plot:}
+
+
+\
+
+		\begin{itemize}	
+			\item \textbf{6} = sonde de la station d'acquisition \#006
+			\item \textbf{7} = sonde de la station d'acquisition \#007
+			\item \textbf{...} = ...
+			\item \textbf{20} = sonde de la station d'acquisition \#020	
+		\end{itemize}
+
+\
+
+\textbf{2 - numéro altitude ou profondeur:}
+
+\
+
+		\begin{itemize}	
+			\item \textbf{1} = la mesure de niveau d'eau ne se fera qu'à une seul profondeur.
+		\end{itemize}
+
+\
+
+\textbf{3 - numéro du subplot:}
+
+\
+
+		\begin{itemize}	
+			\item \textbf{1} = capteur 1 du profil "i" à l'altitude "j"
+		\end{itemize}
+		
+\
+
+Par exemple, le nom de la colonne correspondant aux mesures de niveau d'eau dans le piézomètre ce trouvant le plus en aval de la tourbière de La Guette (habituellement appelé WO) s'écrira: 
+
+\
+
+GWL\_6\_1\_1, dans le fichier FR\_LGT\_006\_14\_001\_0000.csv
+
+\
+
+\subsection{Fréquence d'acquisition}
+Les données acquises par ces sondes ne rentrent pas dans le cadre ICOS. Les mesures seront effectuées et enregistrées toutes les 30 minutes.
+
+
+
+\newpage
+
+
+% % % % % % % % % % % % % MESURES MANUELLES % % % % % % % % % % % % % % % % % % %
+
+
+
+\section{Nom des variables "GHG" - équipements \#101 à \#105}
+
+
+\subsection{En-têtes}
+Les données des mesures de flux avec les chambres sont stockées dans un logger manuel (type Vaisala pour mesures manuelels) ou dans une station d'acquisition incorporée au module de mesure (type chambre automatique Licor). Afin de traiter les données de la même façon, il est demandé de transmettre les données de concentrations en fonction du temps (acquisition minimum d'une mesure toute les 10 secondes - 0,1 Hz). Les mesures seront réalisées avec une chambre transparente (NEE) et opaque (RE). Les variables cibles que sont les flux de NEEc, REc et FCH4c seront calculées à partir des variables ci-dessous. La variable cible GPPc est calculée à partir des variables NEEc et REc. Les noms des entêtes de colonnes sont composés de 4 éléments séparés par un "tiret du 8"  \_ :
+
+\
+
+\textbf{code variable\_numéro profil\_numéro altitude ou profondeur\_numéro subplot}
+
+\
+
+\textbf{code variable:}
+
+\
+
+		\begin{itemize}	
+			\item \textbf{NEEcc} = concentration en CO2  en ppmv avec la date et le temps (précision à la seconde) de la mesure de l'échange net de l'écosystème
+			\item \textbf{NEEcTa} = température de l'air dans la chambre lors de la mesure de l'échange net de l'écosystème	
+			\item \textbf{NEEcPa} = pression de l'air dans la chambre lors de la mesure de l'échange net de l'écosystème	
+			\item \textbf{NEEcV} = volume de mesure de l'échange net de l'écosystème		
+			\item \textbf{NEEcWV} = hygrométrie dans la chambre lors de la mesure de l'échange net de l'écosystème, si disponible		
+			
+			\
+			
+			\item \textbf{REcc} = concentration en CO2  en ppmv avec la date et le temps (précision à la seconde) de la mesure de l'échange net de l'écosystème
+			\item \textbf{REcTa} = température de l'air dans la chambre lors de la mesure de l'échange net de l'écosystème	
+			\item \textbf{REcPa} = pression de l'air dans la chambre lors de la mesure de l'échange net de l'écosystème	
+			\item \textbf{REcV} = volume de mesure de l'échange net de l'écosystème		
+			\item \textbf{REcWV} = hygrométrie dans la chambre lors de la mesure de l'échange net de l'écosystème, si disponible		
+			
+			\
+			
+			\item \textbf{GPPc} = Production Primaire Brute	
+			
+			\
+			
+			\item \textbf{FCH4cc} = concentration en CO2  en ppmv avec la date et le temps (précision à la seconde) de la mesure de l'échange net de l'écosystème
+			\item \textbf{FCH4cTa} = température de l'air dans la chambre lors de la mesure de l'échange net de l'écosystème	
+			\item \textbf{FCH4cPa} = pression de l'air dans la chambre lors de la mesure de l'échange net de l'écosystème	
+			\item \textbf{FCH4cV} = volume de mesure de l'échange net de l'écosystème		
+			\item \textbf{FCH4cWV} = hygrométrie dans la chambre lors de la mesure de l'échange net de l'écosystème, si disponible			
+			
+
+		\end{itemize}
+\
+
+\textbf{numéro du plot:}
+
+\
+
+		\begin{itemize}	
+			\item \textbf{1} = plot 1
+			\item \textbf{} = plot 2
+			\item \textbf{...} = ...
+			\item \textbf{10} = plot 10
+		\end{itemize}
+
+\
+
+\textbf{numéro altitude ou profondeur:}
+
+\
+
+		\begin{itemize}	
+			\item \textbf{1} = l'échange de gaz ne se réalise qu'à une seul profondeur/altitude.
+		\end{itemize}
+
+\
+
+\textbf{numéro du subplot:}
+
+\
+
+		\begin{itemize}	
+			\item \textbf{1} = il n'y a qu'un subplot par point de mesure
+		\end{itemize}
+
+\subsection{Fréquence d'acquisition}
+Les données sont acquises à une fréquence variables en fonction de la disponibilité des personnels impliqués dans ces mesures. Un minimum d'une mesure par saison est recommandé.
+
+	
+\newpage
+
+
+\section{Nom des variables "GHG", "Biogéo" et "Hydro" acquisent manuellement - équipements \#106 à \#113}
+
+
+\subsection{En-têtes}
+Les données des mesures manuelles pourront être consignées dans des fichiers de logiciel de type tableur ou bloc notes qui seront ensuite convertis en fichier .csv. Ces variables cibles n'étant pas requises par ICOS, elles pourront être stockées directement après les calculs par expert quand cela est nécessaire (e.g. mesure du débit Q). Dans ces cas là, tous les détails de la méthode de mesure et des calculs devront être consignés dans les fichiers de métadonnées. Dans le cas où un tiers demanderait les données originelles, les opératuers/experts devront être capables de fournir ces données. Les noms des entêtes de colonnes sont composés de 4 éléments séparés par un "tiret du 8"  \_ :
+
+\
+
+\textbf{code variable\_numéro profil\_numéro altitude ou profondeur\_numéro subplot}
+
+\
+
+\textbf{code variable:}
+
+\
+
+		\begin{itemize}	
+			\item \textbf{LAIm} = indice de surface des feuilles ou leaf area index mesuré manuellement
+			\item \textbf{DOCm} = carbone organique dissous ou dissolved organic carbon mesuré manuellement
+			\item \textbf{POCm} = carbone organique particulaire ou particulate organic carbon mesuré manuellement
+			\item \textbf{pHm} = pH mesuré manuellement
+			\item \textbf{Condm} = conductivité mesuré manuellement
+			\item \textbf{GWLm} = niveau de nappe mesuré manuellement
+			\item \textbf{Qm} = débit mesuré manuellement
+		\end{itemize}
+\
+
+\textbf{numéro du plot:}
+
+\
+
+		\begin{itemize}	
+			\item \textbf{1} = plot 1
+			\item \textbf{2} = plot 2
+			\item \textbf{...} = ...
+			\item \textbf{i} = plot i
+		\end{itemize}
+
+\
+
+\textbf{numéro altitude ou profondeur:}
+
+\
+
+		\begin{itemize}	
+			\item \textbf{1} = toutes ces mesures ne sont réalisées qu'à une seul profondeur/altitude.
+		\end{itemize}
+
+\
+
+\textbf{numéro du subplot:}
+
+\
+
+		\begin{itemize}	
+			\item \textbf{1} = hormis pour LAIm, il n'y a qu'un subplot par point de mesure
+		\end{itemize}
+
+
+
+\subsection{Fréquence d'acquisition}
+Les données sont acquises à une fréquence variables en fonction de la disponibilité des personnels impliqués dans ces mesures. Un minimum d'une mesure par saison est recommandé.
+
+
+
+
+
+
+
+
+%\begin{table}
+%\begin{scriptsize}
+
+
+%\caption{Liste des variables ICOS.}
+%\label{Table 1.}
+
+
+%\begin{tabular}{l l l }
+	
+			%\hline
+		%\textbf{\#}&\textbf{Variable}&\textbf{ICOS}\\
+		%	\hline
+		%	1&Pression atmosphérique&oui\\
+		%	2&Précipitation - pluie&oui\\	
+		%	3&Densité du flux de photon photosynthétique&oui\\
+		%	4&Vitesse du vent 2D&oui\\
+		%	5&Direction du vent 2D&oui\\
+		%	6&Humidité relative&oui\\
+		%	7&Température de l'air&oui\\	
+		%	8&Température du sol&oui\\
+		%	9&Teneur en eau du sol&oui\\
+		%	10&Flux de chaleur dans le sol&oui\\
+		%	11&Niveau de la nappe d'eau dans le sol (empreinte EC)&oui\\
+		%	12&Rayonnement, longueurs d'ondes courtes entrantes&oui\\
+		%	13&Rayonnement, longueurs d'ondes courtes sortantes&oui\\
+		%	14&Rayonnement, longueurs d'ondes longues entrantes&oui\\
+		%	15&Rayonnement, longueur d'ondes longues sortantes&oui\\
+		%	16&Température à l'entrée de la cellule du LI 7200&oui\\
+		%	17&Température à la sortie de la cellule du LI 7200&oui\\
+		%	18&Température moyenne de la cellule du LI 7200&oui\\
+		%	19&Head pressure du LI 7200&oui\\
+		%	20&Pression totale du LI 7200&oui\\
+		%	21&Concentration brute en H2O, référence et échantillon&oui\\
+		%	22&Concentration en H2O&oui\\
+		%	23&Fraction molaire d'H2O dans l'air sec&oui\\
+		%	24&Concentration brute en CO2, référence et échantillon&oui\\
+		%	25&Concentration en CO2&oui\\
+		%	26&Fraction molaire de CO2 dans l'air sec&oui\\
+		%	27&Concentration brute en CH4, référence et échantillon&oui\\
+		%	28&Concentration en CH4&oui\\
+		%	29&Fraction molaire de CH4 dans l'air sec&oui\\
+		%	30&Valeur diagnostique du LI 7200&oui\\
+		%	31&Pression du débit du LI 7200-101&oui\\
+		%	32&Débit&oui\\
+		%	33&Vitesse du vent 3D - composante verticale&oui\\
+		%	34&Vitesse du vent 3D - composante horizontale&oui\\
+		%	35&Vitesse du vent 3D - composante latérale&oui\\
+		%	36&Direction du vent 3D - x&oui\\
+		%	37&Direction du vent 3D - y&oui\\
+		%	38&Direction du vent 3D - z&oui\\
+		%	39&Fluorescence de la matière organique à l'éxutoire&non\\	
+		%	40&Turbidité à l'éxutoire&non\\	
+		%	41&Conductivité à l'éxutoire&non\\	
+		%	42&Niveau de la nappe d'eau hors profil "météo-sol"&non\\
+		%	43&Niveau d'eau à l'éxutoire &non\\
+		%	44&Echange Net de l'Ecosystème - mesure chambre&oui\\
+		%	45&Respiration de l'Ecosystème - mesure chambre&oui\\
+		%	46&Température de l'air - mesure chambre&oui\\
+		%	47&Pression atmosphérique - mesure chambre&oui\\
+		%	48&Température du sol manuelle&non\\
+		%	49&Teneur en eau du sol, manuelle&non\\	
+		%	50&Leaf Area Index&oui\\
+		%	51&Carbone organique dissout à l'éxutoire, manuel&non\\
+		%	52&Carbone organique particulaire à l'éxutoire, manuel&non\\
+		%	53&pH à l'éxutoire, manuel&non\\
+		%	54&Conductivité à l'éxutoire, manuel&non\\
+		%	55&pH dans l'eau de la tourbe, manuel&non\\
+		%	56&Conductivité dans l'eau de la tourbe, manuel&non\\
+		%	57&Débit à l'éxutoire, manuel&non\\	
+		%	58&Niveau d'eau à l'éxutoire, manuel&non\\	
+		%	\hline
+	
+%\end{tabular}
+%\end{scriptsize}
+%\end{table}
+
+%\
+
+%\begin{table}
+%\begin{scriptsize}
+
+%\newpage
+

@@ -1,0 +1,58 @@
+---
+title: "Échange avec le SI Theia/Ozcar"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+  <p>Procédure d'échange des données avec le SI Theia/Ozcar</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Administrateur du SI SNO-T</p>
+  <p>Pas de connaissance spécifique</p>
+</div>
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy('')
+```
+
+# Procédure générale {-}
+
+Le SI SNO-T partage ses données avec le [SI Theia/Ozcar](http://in-situ.theia-land.fr/). Le partage des données s'appuie sur un module de création de métadonnées et une application web pour générer une archive envoyé vers un FTP du SI Theia/Ozcar.
+Cette documentation présente les principales étapes pour assurer le partage des données avec le SI Theia/Ozcar.
+
+# Documentation et procédures du SI Theia/Ozcar
+
+Le format des métadonnées et du format d'échange des fichiers à envoyer vers le SI Theia/Ozcar sont décrits dans les documents suivants :
+
+- [Schéma du format de métadonnées](https://theia-ozcar.gricad-pages.univ-grenoble-alpes.fr/doc-producer/_downloads/f290a9689a029512c7ade3f18fc7a66c/ClassDiagramPivotFormatV1.1.pdf)
+- [Format d'échange des fichiers de données](https://theia-ozcar.gricad-pages.univ-grenoble-alpes.fr/doc-producer/_downloads/cdf56201947d99a98976ac15f5e8ddc5/description_fichier_de_donnees_v1.1.pdf)
+- [Procédure de dépôt des données](https://theia-ozcar.gricad-pages.univ-grenoble-alpes.fr/doc-producer/_downloads/e64ac8c3acb597710601dfc2c7c8c248/depot_des_informations_v1.1.pdf)
+
+Pour plus d'information, voir la documentation du [SI Theia/Ozcar](https://theia-ozcar.gricad-pages.univ-grenoble-alpes.fr/doc-producer/producer-documentation.html).
+
+# Procédure pour générer les métadonnées et créer les fichiers de dépôt pour le SI Theia/Ozcar
+
+Une application Shiny a été développée pour générer une archive au bon format qui pourra être déposée sur le serveur FTP du SI Theia/Ozcar : [https://data-snot.cnrs.fr/dataset-archive/](https://data-snot.cnrs.fr/dataset-archive/)
+
+1. Sélectionner **"all"** Dataset of SNO-Tourbières
+2. Cliquer sur **"Download"**. La création de l'archive prend **quelques minutes**.
+3. Une fois l'archive créée, lancer le dépôt avec une commande curl : 
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+curl -u login:motdepasse -T NomArchive.zip http://in-situ.theia-land.fr/data/TOUR/new/
+```
+
+Le login et le mot de passe sont stockés dans `U:\SNOT_CORE\SI_SNOT\LiensUtiles`
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Plus d'infos**</h4>
+  <p>`r linkAlertCSS("Développement du module MetadataPivot","https://sourcesup.renater.fr/www/si-snot/5_Developper_MetadataPivot.html")`</p>
+  <p>`r linkAlertCSS("Deploiement du module MetadataPivot","https://sourcesup.renater.fr/www/si-snot/5_Deploiement_MetadataPivot.html")`</p>
+</div>
+

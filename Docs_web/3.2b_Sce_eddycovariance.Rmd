@@ -1,0 +1,108 @@
+---
+title: "Etape 2b : Calcul des flux de GES par eddy-covariance (en cours de rédaction)"
+---
+
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+```{r,evaL=TRUE,echo=FALSE}
+# Ici, nommer le code du type de données pour automatiser le nommage. Cette variable est également utilisée dans les tableaux pour filtrer par type de données
+v_tdo <- "eddycovariance"
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectifs et contenu**</h4>
+  <p>Décrire la chaine de traitement de calcul des flux de GES avec le logiciel EddyPro. Ce type de fichier est nommé `FluxEddypro_eddycovariance`</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Thématiciens et gestionnaires des données sur les données eddy-covariance,</p>
+  <p>Connaissance générale de l'organisation des données du SI SNO-T.</p>
+</div>
+
+Les calculs de flux de GES sont réalisés en interne avec le logiciel [EddyPro](https://github.com/LI-COR/eddypro-engine). Ce logiciel peut générer plusieurs types de fichiers selon les recommandations des différents réseaux internationaux, pour plus de détails, consultez le chapitre 5 de ce [document](https://github.com/LI-COR/eddypro-engine/raw/master/docs/EddyPro5_User_Guide.pdf). Dans le cas du SNO-T, le format choisi est `full-output` car il fournit également la variable ETR.
+
+Le fichier en sortie du traitement Eddypro contient des flux de gaz à effet de serre qui ne sont pas validés. Ces flux seront intégrés dans la base de données de l'application [Data-SNOT](https://data-snot.cnrs.fr/snot/login.jsf) pour tester les fonctionnalités du système avant que les flux de GES provenant d'ICOS soient intégrés. 
+
+En parallèle, la création d'une image synthétisant les données des flux de GES pourra être générée et diffusée sur le site web du SNO-T (voir cet [exemple](http://www.barbeau.u-psud.fr/realtime.html)). 
+
+Cette section décrit brièvement le scénario d'échange du fichier type qui sera intégré dans le SI, ce fichier en sortie d'EddyPro est de type `full-output`. Pour plus de détail sur ce type de fichier généré par EddyPro, consultez la documentation à [l'adresse suivante](https://www.licor.com/env/help/eddypro/topics_eddypro/Output_Files_Full_Output.html).
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**Important**</h4>
+  <p>Il y a encore pas mal d'incertitude sur ces fichiers, notamment les fichiers fournis par ICOS après calcul des flux et la validation...</p>
+</div>
+     
+# Format et encodage
+
+Les fichiers en sortie d'EddyPro sont au format `.csv` siteInstru()avec les caractéristiques suivantes :
+
+  - Séparateur de colonne : `;`
+  - Séparateur de décimal : `.`
+  - Encodage du fichier : `UTF-8`
+
+# Convention de nommage
+
+La convention de nommage des fichiers en sortie d'Eddy-pro est la suivante : 
+
+```
+eddypro_OutputID_full_output_yyyy-mm-ddThhmmss.csv
+```
+
+Seul `OutputID` est modifiable. Il doit respecter la convention suivante pour assurer une génération automatique de fichier au format SNOT par la suite :
+
+```
+[code_site]-[code_station]-[code_theme]-[code_typedonnees]_[code_frequence]
+```
+
+Avec :
+
+- [code_site] : le code du site du SNO-T en **minuscule** (*bdz*, *lgt*, *ldm*, ou *frn*),
+- [code_station] : le code de la station eddy-covariance, soit : **ec1**
+- [code_theme] : le theme de la donnée est **ges**
+- [code_typedonnees] : le code du type de données, ici il s'agit de **eddycovariance**
+- [code_frequence] : fréquence des flux de ges par eddy-covariance :
+    - **sh** : fréquence semi-horaire,
+    - **j** : fréquence journalière,
+    - **m** : fréquence mensuelle.
+
+Ainsi, le calcul de flux de GES en sortie d'EddyPro pour les mesures réalisées le 31 octobre 2017 à 12h08m sur la station eddy-covariance de la Guette a le nom suivant :
+
+```
+eddypro_lgt-ec1-ges-eddycovariance_sh_2017_04_full_output_2017-10-31T120835_exp
+
+```
+
+# Données descriptive des données du type de fichier `FluxEddypro`
+
+Pour plus de détails sur le format, consultez la documentation [suivante](https://www.licor.com/env/help/eddypro/topics_eddypro/Output_Files_Full_Output.html).
+
+&nbsp;
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**Important**</h4>
+  <p>Dans le SI SNO-T, les jours commence **obligatoirment** à l'heure 00:00. L'heure donnée correspond au début de la moyenne calculée.
+</p>
+</div>
+
+# Stockage du type de fichier `FluxEddypro`
+
+Les fichiers en sortie d'EddyPro sont stockés dans l'arborescence suivante :
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/Caracteristiques_typedefichiers.csv",sep=""),sep=";",colClasses = "character")
+metatable <- metatable[metatable$code_typedonnees %in% v_tdo & metatable$nom_etape %in% "2b_Traitement",c("code_typefichier","extension","stockage")]
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+&nbsp;
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**Important**</h4>
+  <p>Il faudra prévoir un temps de stockage particulier pour faciliter l'analyse des résultats</p>
+</div>
+    

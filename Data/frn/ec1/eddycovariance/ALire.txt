@@ -1,0 +1,8 @@
+> Description des répertoires du type de données eddycovariance
+
+- 1_LICOR_eddycovariance : Fichiers brutes en provenance de la station LICOR
+- 2a_ICOS_eddycovariance : Fichiers brutes au format ICOS
+- 2b_fluxeddypro_eddycovariance : Fichiers provenant du calcul des GES avec le logiciel EddyPro
+- 2TEST_eddycovariance : Stockage des tests réalisés
+- 3_SNOT_eddycovariance : Stockage des fichiers au format du SI SNO-T pour intégration dans la BDD
+

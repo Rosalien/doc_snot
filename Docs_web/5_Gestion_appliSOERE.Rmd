@@ -1,0 +1,85 @@
+---
+title: "Maintenance de l'application https://data-snot.cnrs.fr/"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+  <p>Quelques commandes utilisées régulièrement pour faciliter la gestion de l'application</p>
+  <p>Procédure de mise à jour de l'application</p>
+  <p>Procédure pour faire remonter les bugs du noyau</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Administrateur du SI SNO-T</p>
+  <p>Connaissance environnement linux</p>
+</div>
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy('')
+```
+
+# Commandes pratiques
+
+## Apache2
+
+Pour voir les virtualhost actifs
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+apache2ctl -S
+```
+
+Pour activer un virtualhost d'un fichier
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+sudo a2ensite fichier
+```
+
+Pour désactiver un virtualhost d'un fichier
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+sudo a2dissite fichier
+```
+
+## Pour voir les logs
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+tail -f /opt/tomcat8/logs/{catalina.out,localhost*}
+tail -f /opt/tomcat8/otherinstances/snapshot/logs/{catalina.out,localhost*}
+```
+
+## Pour lister les applications sur un port et tuer une instance
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+lsof -i:8002
+kill -9 <pid>
+```
+
+## Autres commandes
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+netstat -tulpn | grep 8080
+```
+## Redémarrage des instances
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+/etc/init.d/postgresql restart
+/etc/init.d/postgresql status
+service tomcat8 status
+/etc/init.d/tomcat8 start
+/etc/init.d/tomcat8 stop
+```
+
+# Remonter les bugs via les forges
+
+Une forge pour le SI SNO-Tourbières permet de centraliser les anomalies rencontrées : [https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/). Celle-ci doit être utilisée en complément de la forge du SI des SOERE dédiée à la remontée des bugs concernant **le noyau du SI des SOERE** : [forge du noyau SOERE](https://forge.orleans.inra.fr/projects/soere-socle-ecoinfo/issues).
+
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">**Important**</h4>
+  <p>Pour remonter un bug concernant le noyau, il est nécessaire de bien étudier l'origine de l'erreur, si celle-ci provient de dépendance du noyau, alors il est nécessaire de faire remonter le bug. Celui-ci profitera aux autres SI des SOERE.</p>
+  <p>Les suggestions d'amélioration des fonctionnalités du noyau sont également les bienvenues!</p>
+</div>

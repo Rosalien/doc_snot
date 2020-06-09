@@ -1,0 +1,14 @@
+code_station;ancien_code;code_logger;description
+bm[code_logger];001 à 003;1 à 99;Bio Meteorological : station météo et physique du sol
+ec[code_logger];4;1 à 99;Eddy-Covariance : station eddy-covariance
+A définir;5;1 à 99;Fluorescence : station fluorescence de la matière organique dissoute à l’exutoire
+pz_[nom_vernaculaire] ou pz[code_logger];006 à 015;Pas de code_logger;Piézomètre
+ch_[nom_vernaculaire] ou ch[code_logger];101 à 105;1 à 99;Chambre de mesure statique (équipement Vaisala) pour le CO2
+ch_[nom_vernaculaire] ou ch[code_logger];106;1 à 99;Chambre de mesure statique (équipement Los Gatos) pour le CH4
+A définir;107;1 à 99;Température : sonde pour mesurer les profils de température
+A définir;;1 à 99;Teneur en Eau : sonde pour mesurer la teneur en eau
+A définir;110;1 à 99;COT-mètre
+A définir;;1 à 99;Analyseur Elementaire : balance + analyseur élémentaire
+sm_[nom_vernaculaire];;1 à 99;Sonde Multiparamètres
+A définir;113;1 à 99;Niveau d’Eau : mesure du niveau d’eau manuelle
+A définir;;;Autre appareil supplémentaire

@@ -1,0 +1,160 @@
+
+%---------------- %   Chapitre 4   %--------------- %
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+%													%	
+%			 SNO Tourbières - Hydrologie			%
+%													%	
+% % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+
+
+
+
+\chapter{Hydrologie}
+
+S. Gogo, S. Binet, L. Bernard-Jannin...
+
+\section{Cadre et objectif des mesures}
+Les tourbières étant des zones humides, la connaissance de leur fonctionnement hydrologique est essentielle pour comprendre le système dans sa globalité. Les mesures du niveau de la nappe d'eau (ou Ground Water Level, GWL) et du débit à l'exutoire sont les variables obligatoires pour comprendre ce fonctionnement. Couplées avec des mesures météorologiques, elles permettent l'établissement du bilan hydrique. De plus, l'hydrologie, en influençant la teneur en eau du sol, va déterminer l'intensité des processus biogéochimiques à l'origine des flux de GES: la respiration s'effectue de manière optimale dans une gamme de teneur en eau volumique du sol d'environ 30 à 80 \% et la méthanogénèse ne s'effectue qu'en conditions anaérobique. Dans ce cas, la profondeur de la nappe d'eau (Ground Water Depth, GWD) est la variable la plus indiqué car elle informe de l'épaisseur de la zone aérobique.
+
+
+\textbf{Les objectifs de ces mesures sont:}
+
+\
+
+		\begin{itemize}
+			\item \textbf{Déterminer le bilan hydrique de chaque site}
+			
+			\
+			
+			\item \textbf{Fournir des données pour calibrer/valider des modèles hydrologiques}
+			
+			\
+			
+			\item \textbf{Fournir des données pour calibrer/valider des modèles de flux de GES}
+
+		\end{itemize}
+
+%\newpage
+
+
+
+
+\section{Organisation des équipements}
+
+\subsection{Nombre de stations d'acquisition}
+
+\paragraph{Stations intra-tourbière} Dans chaque site, en dehors des profils météo-sol, au moins un piézomètre équipé d'un capteur automatique est demandé. Cette station est notée \#006. Au maximum, 10 piézomètres intra-tourbières (en dehors des profils météo-sol) peuvent être installés et seront notés de \#007 à \#015. Les données provenant de ces stations permettront d'évaluer le stock d'eau dans la tourbière et ses variations.
+
+
+\paragraph{Stations exutoire} La mesure du débit à haute fréquence à l'exutoire est estimé grâce à une courbe de tarage (relation entre le niveau de l'eau à l'éxutoire et le débit) et la mesure en à haute fréquence du niveau de l'eau à l'exutoire. Une station d'acquisition avec sa sonde peut être installée, mais en fonction des caractéristique du site, plusieurs sondes peuvent être utilisées (e.g. cas de Landemarais) avec au maximum 5 sondes. Ces stations seront notées de \#016 à \#020.
+
+
+%\newpage
+
+\section{Les variables}
+
+\subsection{Liste et abréviations des variables cibles}
+Les variables cibles concernées par ce chapitre sont:
+
+	%\textbf{code variable:}
+		\begin{itemize}	
+			\item 	\textbf{GWL} = niveau de la nappe d'eau dans la tourbière par rapport à une référence fixe (ground water level)
+			\item 	\textbf{GWD} = niveau de la nappe d'eau par rapport au haut des sphaignes (ground water depth) 
+			\item 	\textbf{Q} = débit à l'éxutoire
+		\end{itemize}
+		
+Pour rappel, les détails des informations concernant les noms de fichier, le type de variables et leur code sont disponibles dans le chapitre 1.
+
+\subsection{Définition}
+\paragraph{Le niveau de la nappe d'eau} Cette variable est l'altitude de la surface de la nappe d'eau libre (GWL dans Fig 4.1). Elle est calculé en connaissant l'altitude d'un point de référence noté A$_{ref}$ sur la figure 4.1 (e.g. point IGN), en y soustrayant la distance entre le capteur de pression et le point de référence (noté L sur la figure 4.1) et en ajoutant l'épaisseur de la lame d'eau mesurée entre le capteur et le haut de la nappe (noté H sur la figure 4.1). Un point IGN étant très rarement disponible auprès de la tourbière, un autre point de référence dont il faudra estimer l'altitude et dont on s'assura qu'il ne fluctue pas pourra servir de référence.
+
+	\begin{figure}[h] 
+		\centering
+		\includegraphics[width=14cm]{hydro_1.jpg}
+		\caption{Schéma des mesures permettant d'obtenir des niveaux de la nappe d'eau.}
+		\label{Fig. hydro 1}
+	\end{figure}
+	
+\paragraph{La profondeur de la nappe d'eau} Cette variable est la distance algébrique entre le haut des sphaignes (ou la surface du sol quand il n'y a pas de sphaignes) et la surface de la nappe d'eau libre (GWD dans Fig 4.2). Elle est positive quand l'eau est au dessus des sphaignes . Elle est négative quand l'eau est en dessous des sphaignes (cas le plus fréquent). Pratiquement, le piézomètre dépasse du tapis de sphaignes et lors des mesures manuelles, 2 mesures sont réalisées: 1) la distance entre le haut du piézomètre et la nappe d'eau(d$_{nappe}$ dans Fig 4.1) et 2) la distance entre le haut du piézomètre et le haut des sphaignes (d$_{ref}$ dans Fig 4.1)). La différence donne la profondeur de nappe (GWD$_{manuel}$). Le capteur mesure l'épaisseur de la tranche d'eau (H, Fig. 2). De la distance L (Fig. 2) entre le haut du piézomètre et le capteur, on retranche l'épaisseur H et d$_{ref}$ pour obtenir la GWD automatique.
+
+	\begin{figure}[h] 
+		\centering
+		\includegraphics[width=14cm]{hydro_2.jpg}
+		\caption{Schéma des mesures permettant d'obtenir des niveaux de la nappe d'eau.}
+		\label{Fig. hydro 2}
+	\end{figure}
+
+\paragraph{Le débit à l'éxutoire} C'est le volume d'eau sortant à l'exutoire de la tourbière par unité de temps. Même si une sortie d'eau principale est généralement présente, il existe le plus souvent de multiples sorties d'eau plus petites, du fait que les tourbières se développent en général sur des zones plates. Les mesures de débit sont réalisées dans la sortie principale. 
+
+
+
+\section{Le capteur de pression}
+
+\subsection{Modèles de capteurs}
+Les membres du SNO Tourbières s'engage à tendre vers une uniformisation du parc analytique. Compte-tenu des contraintes inhérente à chaque site et à la jouvence des appareils, cette uniformisation est théorique. Cependant, le souci d'avoir des équipements identiques doit être présent pour une meilleur comparaison entre site et gestion des équipements et des données (un équipement différent dans chaque site pour une même variables implique des fournisseur différents, avec des caractéristiques techniques différentes, des données brutes différentes, etc...). Pour rappel, la fréquence d'acquisition est de une mesure toute les 30 minutes.
+
+A ce jour, les capteurs les plus utilisés sur nos sites sont les sondes OTT (modèle Orpheus mini) et Schlumberger  (modèle mini Diver). A l'éxutoire, la mesure de pression de la sonde EXO2 utilisée pour le fluorescence et la turbidité peut-être utilisée si elle possède un capteur de pression.
+
+\subsection{Principe de mesure et unité}
+La mesure du niveau d'eau est réalisée à partir d'une mesure de la pression hydrostatique de la colonne d'eau grâce à une cellule de pression relative. Pour les sondes OTT, la cellule de mesure dispose de la pression atmosphérique via un tube capillaire localisé dans le câble de la sonde et  en contact avec l'air ambiant. Grâce à cette compensation, la sonde n'enregistre que les variations de pression liées aux variations de la hauteur de la colonne d'eau. Pour les sondes Schlumberger, un capteur de pression atmosphérique indépendant doit être installé.
+
+Le niveau de la nappe d'eau est exprimée en mètre (m).
+
+\subsection{Positionnement du capteur}
+Pour les mesures intra-tourbières, un piézomètre crépiné et bouché à son extrémité inférieur est enfoncé dans la tourbe, si possible jusqu'au substratum. Il est important de s'assurer que le piézomètre n'est pas connecté avec la nappe d'eau sous-jacente à la tourbière. Il est recommandé de recouvrir le haut du piézo avec un couvercle. La sonde de mesure de pression est placée dans le piézomètre à un niveau suffisamment bas pour pouvoir enregistrer les niveaux de nappe pendant les sécheresses. Des ajustement doivent être fait si le niveau d'eau descend en dessous du capteur et notifié dans les dossier log.
+
+S'il n'y a qu'une station d'acquisition, elle doit être placée au centre de la zone d'étude. Si plusieurs station sont installées, il recommandé de justifier leur emplacement dans les métadonnées correspondantes.
+
+Pour la mesure à l'exutoire, le capteur peut être installé dans un piézomètre crépiné est planté dans le lit du cours d'eau à l'éxutoire ou installé horizontalement. De même que pour les sondes dans la tourbière, le capteur de niveau d'eau à l'exutoire doit être capable d'enregistrer les sécheresses.
+
+
+\subsection{Maintenance du capteur}
+A chaque collecte de données, l'installation est vérifiée pour détecter tout problème apparent.
+
+Des mesures aberrantes peuvent provenir d'une cellule de mesure encrassée. Pour nettoyer le capteur de pressions, sortez le capteur du piézomètre, dévissez le bouchon de protection noir. Nettoyez avec précaution le capteur à l'eau avec un pinceau ou une brosse. Rincez abondamment avec de l'eau clair la sonde de pression, revissez le capuchon noir et replacez la sonde dans le tube. Si une telle maintenance est réalisée, elle doit être consigné dans le fichier log correspondant.
+
+\section{Elaboration des variables cibles}
+
+\subsection{Ground Water Level - GWL}
+La variable mesurée par le capteur est une hauteur de colonne d'eau (H dans Fig. 4.1). Pour connaître le niveau de la nappe d'eau GWL, il est nécessaire de connaître la distance entre le capteur et un point de référence. Comme mentionné plus haut, le haut des sphaignes sert de référence. Cette distance étant variable, une référence intermédiaire est utilisée: le haut du tube du piézomètre. Le niveau de la nappe d'eau est calculé en retranchant de la distance entre le haut du piézomètre et la sonde (L sur le figure 4.1, mesurée à l'installation de la sonde et constante), la distance entre le haut du piézomètre et le haut des sphaignes et la hauteur de la colonne d'eau H (Fig. 4.1).
+
+Certains de ces calculs peuvent être programmés. Cependant, du fait de la croissance des végétaux, de l'accumulation de litière et du gonflement de la tourbe, une correction de la dérive est souhaitable en réalisant des mesures manuelles de niveau de la nappe d'eau (GWLm). Ce calcul étant difficilement automatisable, il est réalisées par l'expert.
+
+Dans la base de données, les données en sortie de capteur (H) sont injectées au moins une fois par an dans le dossier "fichiers annuels" des dossiers "data brutes" des différents sites (cf section 2.3.2) par l'expert responsable de l'hydrologie de chaque site (cf flux de données 2.3.1, cas 2). Les données de niveau de la nappe d'eau (GWL) sont placés dans le dossier "fichiers annuels" des dossiers "data corrigées" des différents sites (cf section 2.3.2). Les actions réalisées sur les données brutes sont consignées dans le log correspondant. Le nom des fichiers sera basé sur la nomenclature décrite au chapitre 1.
+
+
+\subsection{Ground Water Depth - GWD}
+La variable mesurée par le capteur est une hauteur de colonne d'eau (H dans Fig. 4.1). Pour connaître le niveau de la nappe d'eau GWL, il est nécessaire de connaître la distance entre le capteur et un point de référence. Comme mentionné plus haut, le haut des sphaignes sert de référence. Cette distance étant variable, une référence intermédiaire est utilisée: le haut du tube du piézomètre. Le niveau de la nappe d'eau est calculé en retranchant de la distance entre le haut du piézomètre et la sonde (L sur le figure 4.1, mesurée à l'installation de la sonde et constante), la distance entre le haut du piézomètre et le haut des sphaignes et la hauteur de la colonne d'eau H (Fig. 4.1).
+
+Certains de ces calculs peuvent être programmés. Cependant, du fait de la croissance des végétaux, de l'accumulation de litière et du gonflement de la tourbe, une correction de la dérive est souhaitable en réalisant des mesures manuelles de niveau de la nappe d'eau (GWLm). Ce calcul étant difficilement automatisable, il est réalisées par l'expert.
+
+Dans la base de données, les données en sortie de capteur (H) sont injectées au moins une fois par an dans le dossier "fichiers annuels" des dossiers "data brutes" des différents sites (cf section 2.3.2) par l'expert responsable de l'hydrologie de chaque site (cf flux de données 2.3.1, cas 2). Les données de niveau de la nappe d'eau (GWL) sont placés dans le dossier "fichiers annuels" des dossiers "data corrigées" des différents sites (cf section 2.3.2). Les actions réalisées sur les données brutes sont consignées dans le log correspondant. Le nom des fichiers sera basé sur la nomenclature décrite au chapitre 1.
+
+
+\subsection{Débit à l'éxutoire - Q}
+Le débit est obtenu à partir de la relation qui le lie à la hauteur d'eau dans le canal de l'exutoire. Cette hauteur d'eau est enregistrée à haute fréquence. En réalisant des mesures ponctuelles de débit et en mesurant simultanément la hauteur d'eau, on peu réaliser une courbe de tarage qui permettra de transformer les hauteurs d'eau en débit.
+La mesure de débit couramment employée dans le réseau est la méthode du débit au sel (Fig. 4.2). En amont d'un point de mesure ou la conductivité électrique est mesuré, une masse connue de sel est injecté dans le cours d'eau. La conductivité est enregistrée à haute fréquence. Une fois le panache de sel passé (retour à une conductivité de base), la mesure est stoppée. L'intégration de la conductivité avec le temps donne une estimation du débit (Fig. 4.2).
+
+
+	\begin{figure}[h] 
+		\centering
+		\includegraphics[width=11cm]{hydro_3.jpg}
+		\caption{Schéma des mesures du débit au sel.}
+		\label{Fig. hydro 2}
+	\end{figure}
+	
+A partir du débit mesuré avec la méthode au sel et la hauteur de la colonne d'eau à l'exutoire au moment de la mesure, il est possible de réaliser une courbe de tarage (Fig. 4.3). La relation physique entre ces deux paramètres et sa représentation mathématique sont connues. Il est alors possible de déterminer les paramètres d'une fonction. En injectant les mesures à hautes fréquences de hauteur de la colonne d'eau dans la fonction paramétrée précédemment (spécifique à chaque site), il sera possible d'obtenir des données de débit Q à haute fréquence (Fig. 4.3).
+
+	\begin{figure}[h] 
+		\centering
+		\includegraphics[width=11cm]{hydro_4.jpg}
+		\caption{Calcul des chroniques de débit à partir des hauteur de la colonne d'eau à haute fréquence et de la courbe de tarage.}
+		\label{Fig. hydro 3}
+	\end{figure}
+	
+Dans la base de données, les données en sortie de capteur (H) sont injectées au moins une fois par an dans le dossier "fichiers annuels" des dossiers "data brutes" des différents sites (cf section 2.3.2) par l'expert responsable de l'hydrologie de chaque site (cf flux de données 2.3.1, cas 2). En plus des données à hautes fréquences des hauteurs d'eau, un fichier contenant les résultats de la courbe de tarage sera placé également dans les fichiers de données brutes au moins une fois par an. Ces fichiers auront pour nom : "FR\_xxx\_tarage\_yy", avec xxx pour le code du site et yy pour l'année de mesure. Le nom des lignes devra se conformer au format décrit au chapitre 1. Les données de débit à l'éxutoire (Q) sont placées dans le dossier "fichiers annuels" des dossiers "data corrigées" des différents sites (cf section 2.3.2). Les actions réalisées sur les données brutes sont consignées dans le log correspondant. Le nom des fichiers sera basé sur la nomenclature décrite au chapitre 1. Le numéro de la station pour la variable GWL permettra de savoir s'il s'agit de données provenant de l'intérieur de la tourbière où de son exutoire.
+
+\newpage

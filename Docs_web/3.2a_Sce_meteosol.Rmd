@@ -1,0 +1,156 @@
+---
+title: "Etape 2a : Formatage et stockage du fichier type `ICOS_meteosol`"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+```{r,evaL=TRUE,echo=FALSE}
+# Ici, nommer le code du type de données pour automatiser le nommage. Cette variable est également utilisée dans les tableaux pour filtrer par type de données
+v_tdo <- "meteosol"
+f_type <- "ICOS_meteosol"
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectifs et contenu**</h4>
+  <p>Décrire la création des Fichiers bruts au format ICOS. Ce type de fichier est nommé `ICOS_meteosol`</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Sites associés ou labellisés ICOS Europe,</p>
+  <p>Thématiciens et gestionnaires des données sur les données météo-sol,</p>
+  <p>Connaissance générale de l'organisation des données du SI SNO-T.</p>
+</div>
+
+En fonction des sites du SNO-T, l'étape 2a consiste à décompresser et formater le fichier des données brutes pour l'envoyer à ICOS. L'objectif de cette mise en forme est de respecter les recommandations de ce [document ICOS](http://www.europe-fluxdata.eu/icos/documents/instructions/bmform) datant du 15/06/2018 (**Attention**, les recommandations sont régulièrement mises à jour).
+
+# Format et encodage
+
+Les fichiers doivent être au format `.csv` siteInstru()avec les caractéristiques suivantes :
+
+  - Séparateur de colonne : `;`
+  - Séparateur de décimal : `.`
+  - Encodage du fichier : `UTF-8`
+
+# Convention de nommage
+
+Le fichier d'échange respectent la convention de nommage ICOS basée sur la règle suivante :
+
+```
+[code_pays]-[code_site]_[code_station]_[AAAAMMDDHHMM]_L[LN]_F[FN].csv
+```
+
+avec :
+
+  - [code_pays] : FR pour la France,
+  - [code_station] : Le code la station. Ici, la mesure est réalisée avec les stations eddy-covariance, le code est **BM**.
+  - [AAAAMMDDHHMM] : la date à laquelle **la mesure s'est terminée**,
+  - [LN] : 2 chiffres, numéro du logger (chaque logger doit être identifié par un numéro unique),
+  - [FN] : 2 chiffres, numéro du fichier généré par le logger (dans le cas où plusieurs fichiers sont générés dans le même logger, chaque fichier doit être identifié par un numéro unique).
+
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">**Attention**</h4>
+  <p>Toutes les données collectées doivent être enregistrées sur le fuseau horaire UTC+1</p>
+</div>
+
+Les codes sont définis selon les règles et nomenclatures suivantes :
+
+## Nomenclature du code des sites [code_site]
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/srvso_site.csv",sep=""),sep=";")
+metatable <- metatable[metatable$type_site %in% "Site",]
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+## Nomenclature du code des stations [code_station]
+
+Ancien et nouveaux codes des stations pour le SNO-T
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/srvso_stations.csv",sep=""),sep=";",colClasses = "character")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+## Exemple de nommage du fichier d'entrée `ICOS_meteosol`
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple**</h4>
+  <p>Le fichier des données de météo-sol collectées durant toute la journée du 14/03/2018 dans la station BM de la tourbière de La Guette avec le logger 1 sous la forme d'un seul fichier est nommé de la manière suivante :</p>
+  <p>Fr-Lgt_BM_201803140000_L01_F01.csv</p>
+</div>  
+
+# Description des données du fichier type `ICOS_meteosol`
+
+## Convention de nommage des variables
+
+Le nommage des variables de type `meteosol` respecte la nomenclature ICOS, il s'appuie sur 4 éléments séparés par un "tiret du 8" `_` :
+
+```
+[code_variable]_[code_profil]_[code_profondeur] ou [code_subplot]
+```
+
+### Code des variables `ICOS_meteosol` [Code_variable]
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/srvso_variables.csv",sep=""),sep=";")
+metatable <- metatable[metatable$code_typefichier %in% f_type, names(metatable) %in% c("code_var","description","code_unite"),] 
+DT::datatable(metatable,rownames = FALSE)
+```
+
+### Code des profils de mesures [Code_profil]
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/srvso_profil.csv",sep=""),sep=";",colClasses = "character")
+kable(metatable, "html") %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+### Code de la profondeur de la mesure [code_profondeur]
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/srvso_profondeur.csv",sep=""),sep=";",colClasses = "character")
+kable(metatable, "html") %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+### Numéro du subplot de la mesure [code_subplot]
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/srvso_subplot.csv",sep=""),sep=";",colClasses = "character")
+kable(metatable, "html") %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+### Exemple de nommage d'une variable météo-sol
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple**</h4>
+  <p>La température du sol provenant du profil numéro 2 à la troisième profondeur et du premier subplot s'écriera ainsi :</p>
+  <p>TS_2_3_1</p>
+</div>  
+
+# Stockage du fichier `ICOS_meteosol`
+
+Le fichier de type `ICOS_meteosol` est stocké selon le chemin suivant dans l'arborescence du SRV-SO :
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/Caracteristiques_typedefichiers.csv",sep=""),sep=";",colClasses = "character")
+metatable <- metatable[metatable$code_typefichier %in% f_type & metatable$nom_etape %in% "1_Collecte",c("code_typefichier","extension","stockage")]
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+# Création du fichier `ICOS_eddycovariance`
+
+## Automatique
+
+A venir, présentation du script pour transformer automatiquement les fichiers `Brute_meteosol` au format `ICOS_meteosol`
+
+## Manuel
+
+Cette étape temporaire (optionnel) consiste à re-mettre en forme le fichier afin qu'il respecte les recommandations ICOS. Ces recommandations disponibles à cette [adresse](https://docs.icos-cp.eu/share/s/HmJeIC1fSxy4rZBmO6FlZw) ont été présentés dans l'étape 1. 

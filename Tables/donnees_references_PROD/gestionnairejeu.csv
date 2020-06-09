@@ -1,0 +1,23 @@
+code_jeu;nom;prenom;email;responsabilite;date de début;date de fin
+bdz-meteosol-meteosol;Lerigoleur;Emilie;emilie.lerigoleur@univ-tlse2.fr;data_manager;01/02/2017;
+bdz-hydrocarto-piezo;Lerigoleur;Emilie;emilie.lerigoleur@univ-tlse2.fr;data_manager;01/02/2017;
+bdz-meteosol-meteosol;Gascoin;Simon;simon.gascoin@cesbio.cnes.fr;principal_investigator;01/09/2018;
+bdz-hydrocarto-piezo;Binet;Stéphane;stephane.binet@univ-orleans.fr;principal_investigator;01/09/2018;
+frn-ges-eddycovariance;Bertrand;Guillaume;guillaume.bertrand2@univ-fcomte.fr;principal_investigator;01/01/2011;
+frn-ges-eddycovariance;Toussaint;Marie-Laure;marie-laure.toussaint@univ-fcomte.fr;data_manager;01/02/2017;
+frn-meteosol-meteosol;Toussaint;Marie-Laure;marie-laure.toussaint@univ-fcomte.fr;data_manager;01/02/2017;
+frn-meteosol-meteosol;Bertrand;Guillaume;guillaume.bertrand2@univ-fcomte.fr;principal_investigator;01/09/2018;
+ldm-ges-eddycovariance;Flechard;Christophe;christophe.flechard@inra.fr;principal_investigator;01/01/2011;
+ldm-ges-eddycovariance;Gogo;Sebastien;sebastien.gogo@univ-orleans.fr;data_manager;01/02/2017;
+ldm-meteosol-meteosol;Flechard;Christophe;christophe.flechard@inra.fr;principal_investigator;01/01/2011;
+ldm-meteosol-meteosol;Gogo;Sebastien;sebastien.gogo@univ-orleans.fr;data_manager;01/02/2017;
+lgt-ges-eddycovariance;Gogo;Sebastien;sebastien.gogo@univ-orleans.fr;data_manager;01/02/2017;
+lgt-ges-eddycovariance;Gogo;Sebastien;sebastien.gogo@univ-orleans.fr;principal_investigator;01/09/2018;
+lgt-meteosol-meteosol;Gogo;Sebastien;sebastien.gogo@univ-orleans.fr;data_manager;01/02/2017;
+lgt-meteosol-meteosol;Gogo;Sebastien;sebastien.gogo@univ-orleans.fr;principal_investigator;01/01/2011;
+lgt-hydrocarto-piezo;Gogo;Sebastien;sebastien.gogo@univ-orleans.fr;data_manager;01/02/2017;
+lgt-hydrocarto-piezo;Gogo;Sebastien;sebastien.gogo@univ-orleans.fr;principal_investigator;01/01/2011;
+lgt-biogeo-doc;Gogo;Sebastien;sebastien.gogo@univ-orleans.fr;data_manager;01/02/2017;
+lgt-biogeo-doc;Gogo;Sebastien;sebastien.gogo@univ-orleans.fr;principal_investigator;01/01/2011;
+bdz-ges-chambreco2;Gandois;Laure;laure.gandois@toulouse-inp.fr;principal_investigator;01/06/2016;
+bdz-ges-chambreco2;Gandois;Laure;laure.gandois@toulouse-inp.fr;data_manager;01/06/2016;

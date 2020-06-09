@@ -1,0 +1,9 @@
+Nom de la colonne;Signification;Unique;Obligatoire
+code_jeu;code du jeu de données [code_site]-[code_theme]-[code_typedonnees];Oui;Oui
+code_site;code du site;Oui;Oui
+code_theme;code du theme de données;Oui;Oui
+titre;Titre du jeu de données. Il est recommandé de faire figurer une indication de la zone géographique couverte, notamment si le même type d'enregistrement de données scientifiques est proposé sur plusieurs territoires;Non;Oui
+description;Un résumé du jeu de données. Le résumé doit décrire la ressource de façon compréhensible par l’utilisateur;Non;Oui
+objectif;Résumé des objectifs scientifiques du jeu de donnée;Non;Oui
+genealogie;Description littérale et concise soit de l’histoire du jeu de données, soit des moyens, procédures ou traitements informatiques mis en œuvre au moment de l’acquisition du jeu de données;Non;Oui
+doi;Doi du jeu de données;Oui;Non

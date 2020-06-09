@@ -1,0 +1,152 @@
+
+%------------- %   Document maître   %------------- %
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+%													%
+%   		Protocoles du SNO Tourbières			%
+%													%
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+
+% % % % % %   AIDES   % % % % % %
+
+%http://fr.wikibooks.org/wiki/LaTeX/Gestion_des_gros_documents
+
+
+% % % % % %   Préambule   % % % % % %
+
+% Appel classe du document %
+\documentclass[12pt,a4paper]{report}
+% Appel du préambule %
+\input{preambule.tex}
+
+% Commandes de page et de titre %
+%\title{SNO Tourbières - Protocoles d'acquisition et de traitement des mesures}
+%\author{Sébastien Gogo}
+%\maketitle
+%\includegraphics[width=14cm]{couverture.jpg}
+
+
+% % % % % %   Document   % % % % % %
+
+\begin{document}
+	% Start of the revision history table
+
+\begin{titlepage}
+
+\begin{center}
+
+	% Upper part of the page. The '~' is needed because \\
+	% only works if a paragraph has started.
+	~\\[-3cm]
+	\includegraphics[scale=0.5]{logo}~\\[1.5cm]
+	\includegraphics[scale=0.5]{logo_Tourbieres}\\[1cm]
+	%\textsc{\Large Camp de terrain en Auvergne - semestre 1}\\[1.5cm]
+
+	% Title
+	\HRule \\[0.4cm]
+	{ \huge \bfseries Protocoles d'acquisition et de traitement des mesures\\[0.4cm] }
+	\HRule \\[2cm]
+	
+
+    
+    \includegraphics[scale=0.5]{couverture.jpg}
+    \\[1cm]
+    
+	\text{\large Sébastien Gogo}\\[1cm]
+    % Author and supervisor
+    %\begin{minipage}{0.4\textwidth}
+    %  \begin{flushleft} \large
+    %   \emph{Encadrants :} M. Le \textsc{Tuteur}\\
+    %  \end{flushleft}
+    %\end{minipage}
+    %\begin{minipage}{0.4\textwidth}
+    %  \begin{flushright} \large
+    %    \emph{Tuteur :} M. Le \textsc{Tuteur}\\
+    %    \emph{Chef d'équipe : } M. Chef \textsc{D?Équipe}
+    %  \end{flushright}
+    %\end{minipage}
+    
+    \text{16 janvier 2018}
+
+    \vfill
+
+	\begin{versionhistory}
+		\vhEntry{1.0}{22.01.04}{JPW|KW}{created}
+		\vhEntry{1.1}{23.01.04}{DP|JPW}{correction}
+		\vhEntry{1.2}{03.02.04}{DP|JPW}{revised after review}
+	\end{versionhistory}
+
+    % Bottom of the page
+
+
+  \end{center}
+
+\end{titlepage}
+
+
+	\afterpage{\blankpage}
+	
+	\tableofcontents
+	\listoftables
+	\listoffigures
+
+
+\
+
+		%--- CHAPITRE 1: Typologie et nomenclature des variables
+		\include{protocole_1_data}
+
+
+\newpage
+
+		%--- CHAPITRE 2: Système d'information en environnement (BDD)
+		\include{protocole_2_SIE}
+
+
+\newpage
+
+		%--- CHAPITRE 3 : Variables météo-sol
+		\include{protocole_3_meteosol}
+
+		
+\newpage
+
+		%--- CHAPITRE 4: Hydrologie
+		\include{protocole_4_hydro}
+
+		
+\newpage
+
+		%--- CHAPITRE 5:Flux de C par Eddy-covariance
+		\include{protocole_5_eddycov}
+
+		
+\newpage
+
+		%--- CHAPITRE 6: Flux de C avec chambre d'accumilation
+		%\include{protocole_6_chambre}
+
+\newpage
+
+		%--- CHAPITRE 7: Végétation
+		%\include{protocole_7_vegetation}
+
+\newpage
+
+		%--- CHAPITRE 8: Biogéochimie
+		%\include{protocole_8_biogeochimie}
+
+\newpage
+
+		%--- CHAPITRE 9: Glossaire
+		\include{protocole_9_glossaire}
+		
+\newpage
+
+		%--- CHAPITRE 10: Glossaire
+		%\include{protocole_10_maintenance}
+
+
+\end{document}

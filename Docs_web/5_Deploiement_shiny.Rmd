@@ -1,0 +1,110 @@
+---
+title: "Déploiement des applications Shiny"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+  <p>Procédure de déploiement des applications Shiny `r linkAlertCSS("https://data-snot.cnrs.fr/data-access/","https://data-snot.cnrs.fr/data-access/")` et `r linkAlertCSS("https://data-snot.cnrs.fr/dataset-archive/","https://data-snot.cnrs.fr/dataset-archive/")`</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Administrateur du SI SNO-T</p>
+  <p>Connaissance environnement linux et R</p>
+</div>
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy('')
+```
+
+# Déployer l'application
+
+Pour déployer l'application, suivre ces différentes étapes : 
+
+## Pousser les mises à jour vers le dépot git
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+git add *
+git commit -m "message"
+git push origin master
+```
+
+## Se connecter au serveur `163.9.41.45` :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+ssh tomcat@163.9.41.45
+```
+
+## Mettre à jour le dépôt du serveur
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+git pull origin master
+```
+
+Il peut arriver des problèmes lors du `pull` :
+
+`error: Your local changes to the following files would be overwritten by merge:`
+
+Dans ce cas, lancer les commandes suivantes :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+git stash save --keep-index
+git stash drop
+```
+
+Et ensuite, relancer le `pull`
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+git pull origin master
+```
+
+## Copier/Coller les applications vers les répertoires de déploiement :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+# data-access en production
+cp -r ~/devel/prod/Developpement/SI/app_shiny/snapshot/module/* /srv/shiny-server/data-access/
+# data-access en développement
+cp -r ~/devel/prod/Developpement/SI/app_shiny/snapshot/module/* /srv/shiny-server/data-access-snapshot/
+# dataset-archive en production
+cp -r ~/devel/prod/Developpement/SI/app_shiny/snapshot/module/* /srv/shiny-server/dataset-archive/
+```
+
+## Configurer les connexions vers la base de données `snotbdprod` :
+
+Pour toutes les applications, il est nécessaire de configurer le fichier `confConnexion.R` pour se connecter à la bdd snotbdprod :
+
+### Copier/coller le fichier de configuration confConnexion.R :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+cp ~/devel/conf/confConnexion.R /srv/shiny-server/data-access/
+cp ~/devel/conf/confConnexion.R /srv/shiny-server/data-access-snapshot/
+cp ~/devel/conf/confConnexion.R /srv/shiny-server/dataset-archive/
+```
+
+### Configurer la connexion en **prod** 
+
+Modifier le fichier `dependanciesQuery.R` :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+pool <- confConnexion(dbWork="prod")
+```
+
+### Passer la version snap-shot en version pro
+
+Souvent, il peut être pratique de déplacer la version en développement vers la version en production.
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+cd /srv/shiny-server/data-access-snapshot/
+cp -r * ../data-access/
+cp -r * ../dataset-archive/
+```
+
+## Tester le bon fonctionnement des applications :
+
+- [https://data-snot.cnrs.fr/data-access/](https://data-snot.cnrs.fr/data-access/)
+- [https://data-snot.cnrs.fr/data-access-snapshot/](https://data-snot.cnrs.fr/data-access-snapshot/)
+- [https://data-snot.cnrs.fr/dataset-archive/](https://data-snot.cnrs.fr/dataset-archive/)

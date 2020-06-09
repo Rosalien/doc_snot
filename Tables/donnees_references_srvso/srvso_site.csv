@@ -1,0 +1,29 @@
+type_site;code_site;nom;parent
+Site;frn;Tourbière de Frasne;
+Site;lgt;Tourbière de La Guette;
+Site;ldm;Tourbière de Landemarais;
+Site;bdz;Tourbière de Bernadouze;
+Station;bm1;Station météosol 1 de la tourbière de La Guette;lgt
+Station;bm2;Station météosol 2 de la tourbière de La Guette;lgt
+Station;ec1;Station eddy-covariance de la Guette;lgt
+Station;bm1;Station météosol 1 de la tourbière de Landemarais;ldm
+Station;ec1;Station eddy covariance de Landemarais;ldm
+Station;bm1;Station météosol 1 de la tourbière de Frasne;frn
+Station;ec1;Station eddy-covariance de Frasne;frn
+Station;ec1;Station eddy-covariance de Landemarais;ldm
+Station;pz_cbdv_amont;Piézomètre carbiodiv AMONT ;lgt
+Station;pz_do;Piézomètre DO;lgt
+Station;pz_dc;Piézomètre DC;lgt
+Station;pz_wc;Piézomètre WC;lgt
+Station;pz_wo;Piézomètre WO;lgt
+Station;pz_cbdv_aval;Piézomètre Carbiodiv AVAL ;lgt
+Station;pz1;Piézomètre 1;bdz
+Station;pz2;Piézomètre 2;bdz
+Station;pz3;Piézomètre 3;bdz
+Station;pz4;Piézomètre 4;bdz
+Station;pz5;Piézomètre 5;bdz
+Station;pz6;Piézomètre 6;bdz
+Station;pz7;Piézomètre 7;bdz
+Station;pz8;Piézomètre 8;bdz
+Station;pz9;Piézomètre 9;bdz
+Station;pz10;Piézomètre 10;bdz

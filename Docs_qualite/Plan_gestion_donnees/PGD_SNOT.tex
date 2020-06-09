@@ -1,0 +1,210 @@
+\documentclass[]{article}
+\usepackage[frenchb]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{natbib}
+\usepackage{multicol}
+%pour liens hypertexte
+\usepackage{hyperref}
+\newcommand{\mhref}[3][blue]{\href{#2}{\color{#1}{#3}}}%
+
+\usepackage{geometry}
+%\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
+
+% Pour les tables de matières
+%\usepackage{shorttoc}
+
+%pour les tableaux
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{ctable}
+\usepackage{bm}
+\newcolumntype{M}[1]{>{\arraybackslash}m{#1}}
+\newcommand{\SNOT}{{\tt SNO~Tourbières }}
+
+%% The amsthm package provides extended theorem environments
+\usepackage{amsthm}
+\usepackage{numprint}
+
+%\graphicspath{{../Fig/}}
+
+%%Pour les algorithmes
+\usepackage{algorithmic}
+\usepackage{algorithm}
+
+\usepackage{natbib}
+\usepackage{bibentry}
+\title{Plan de gestion des données du Service~National~d'Observation~des~Tourbières}
+\author{Jean-Baptiste Paroissien, Sébastien Gogo, Fatima Laggoun}
+
+
+\begin{document}
+	\maketitle
+\section{Introduction}
+Le Service National d'Observation des Tourbières (\SNOT) a acquis, acquière et va acquérir un nombre important et varié de données provenant à la fois de site et d'équipes de recherches différentes. Son objectif est d'observer sur le long terme les flux de gaz à effet de serre et ses variables explicatives pour comprendre les effets du changement climatique sur le fonctionnement des tourbières et les modéliser. La pérennité, l'accessibilité, la compréhension et l'interopérabilité des données avec d'autres système d'information sont des notions qui doivent être respectées tout au long du cycle de vie des données du \SNOT. Pour parvenir à cet objectif, un ensemble de documents \og{} métiers \fg{} accompagne la vie des données du \SNOT durant ces principales étapes :
+
+\begin{description}
+	\item[Acquisition] L'acquisition des données correspond à l'étape
+	\item[Traitement et modélisation] Le traitement et la modélisation des données du \SNOT
+	\item[Diffusion] La diffusion des données représente l'étape ...
+	\item[Maintenance et mise à jour] Ici, il faudra prendre en compte l'évolution du SI \SNOT à travers un ensemble de mode opératoire pour maintenir le SI à jour et assurer son évolution (ajout d'un nouveau site, nouveaux instruments, nouveaux types de variables...)
+\end{description}
+	
+Ce document est un plan de gestion de données qui regroupe la démarche globale de la gestion des données du \SNOT. Il est accompagné de lien vers des documents techniques et métiers qui détaillent la démarche de gestion des données.
+	
+Le trame du document s'appuie la traduction française du plan de gestion de données de la commission européenne consultable à cette \mhref{http://www.donneesdelarecherche.fr/IMG/pdf/lignes-directrices_gestion-donnees-fair_horizon2020_version_3.0_tr-fr.pdf}{adresse}. 
+	
+\section{Résumé descriptif des données collectées dans le SNO~Tourbières}
+	
+\subsection{Objectif de la collecte des données}
+	
+Les données collectées dans le \SNOT ont pour objectif de répondre aux problématiques associées aux changements climatiques et aux répercussions possibles dans les tourbières.
+	
+\begin{description}
+	\item[Estimer le bilan de carbone et hydrologique dans les tourbières :] Les sites du \SNOT sont équipés d’instruments de mesures qui collectent à un pas de temps de 30~minutes les émissions de Gaz à Effet de Serre (GES), la concentrations en carbone organique dissous à l’exutoire, les variables hydrologiques et des données environnementales permettant l’établissement à l'échelle de l’écosystème du bilan de carbone et d'eau.
+	\item[Mettre en évidence les rétroactions entre le changement climatique et les GES des tourbières : ] En étant représentatif de différents contextes climatiques, les données collectées du \SNOT permettront de modéliser les émissions de GES et d'alimenter et affiner les modèles de changement climatiques globaux. En évaluant les effets du changement du climat sur les tourbières et les effets de ces changements sur le climat, le \SNOT se propose de déterminer quelles rétroactions vont se mettre en place,
+	\item[Développer des expérimentations :] Le \SNOT a pour vocation à accueillir des dispositifs expérimentaux portés sur l’étude des forçages climatiques et anthropiques, qu'ils soient \textit{in situ} ou au laboratoire. Ces expérimentations sont réalisées dans le cadre de projet.
+\end{description}
+	
+\subsection{Description des données collectées}
+	
+\subsubsection{Origine et volume des données collectées}
+Les données collectées du \SNOT proviennent d'un ensemble de 4 sites de tourbières instrumentés en France dans des contextes climatiques variés :
+\begin{itemize}
+	\item Bernadouze (Ariège),
+	\item Frasne (Doux),
+	\item La Guette (Cher),
+	\item Landemarais (Ille-et-Vilaine).\\
+\end{itemize}
+	
+Le niveau d'équipement des sites est hétérogène mais un ensemble de données communes aux sites est collecté. Un maximum théorique de 100 stations est prévue, mais concrètement, le nombre de stations d'acquisition par site devrait se situer entre 10 et 20. En l'état actuel des équipements, le volume des données collectées est estimé à environ XX/an et devrait être de XX/an lorsque tous les sites seront complètement équipés.
+	
+\subsubsection{Types et formats des données}
+%Les jeux de données
+Les données collectées sur les sites du \SNOT sont regroupés en 4 types :
+	
+\begin{description}
+	\item[Biogéo:]Ensemble des données biogéochimique et physique des eaux à l'exutoire des sites,
+	\item[Bioveg:]Données sur la biodiversité,
+	\item[GES/Météo-sol:]Ensemble des données provenant des tours à flux de GES ainsi que des stations collectant des données sur la météorologie de l'atmosphère et du sol,
+	\item[Hydro/Carto:]Données sur l'hydrologie et l'hydrogéologie.
+\end{description}
+	
+Les données collectées sont au format \protect{\tt csv} (coma separeted values) avec les caractéristiques suivantes : 
+	
+\begin{itemize}
+	\item séparateur de colonne : virgule,
+	\item séparateur décimal : point,
+	\item encodage : UTF-8.
+\end{itemize}
+	
+\subsubsection{Documents}
+	
+Voir si rajouter un lien vers le protocole du \SNOT
+	
+\subsection{La réutilisation des données}
+%ICi, évoquer si les données existantes ont déjà été ré-utilisées. A défaut, mettre en évidence le potentiel de réutilisation des données...a qui seront-elles utiles?
+	
+\section{Gestion des données selon le principe \og{}FAIR\fg{}}
+	
+Cette section aborde le point de la gestion des données selon le principe \og{}FAIR\fg{}, c'est à dire selon le principe que les données doivent être trouvables, accessibles, interopérables et réutilisables. Pour plus d'information sur ce concept, le lecteur intéressé peut consulter cet \mhref{http://www.nature.com/articles/sdata201618}{article}.
+	
+\subsection{Rendre les données et les métadonnées trouvables}
+	
+Les données et les métadonnées relatives au \SNOT seront organisées dans une base de données relationnelle connectée à un moteur de génération de service web de type Open Geospatial Consortium (OGC). A terme, ce système d'information (SI) permettra :
+\begin{itemize}
+	\item de générer des fiches de métadonnées et de les diffuser à travers des services web interopérables OGC de type Catalog Service for the Web (CSW).
+	\item de diffuser les données des stations d'acquisition avec des services web interopérables OGC de type Sensor Observation Service (SOS).
+\end{itemize} 
+	
+\subsubsection{Les métadonnées du \SNOT}
+	
+Le SI du \SNOT permettra de générer différents type de métadonnées pour les jeux de données du \SNOT. 
+	
+\begin{description}
+	\item[Format OZCAR-Pivot] L'infrastructure de recherche OZCAR auquel le \SNOT appartient diffuse les métadonnées de ses membres sous la base d'un standard dit hybride appelé \og{}OZACR-Pivot\fg{}.
+	\item[Format INSPIRE] Pour répondre aux exigences de la directive INSPIRE, des métadonnées au format INSPIRE seront générées et moissonnées sur un ensemble de plateforme pas encore définies.
+	\item[Format SensorML] Chaque jeux de données du \SNOT est associé à des instruments qui seront également documentés au travers de métadonnées. Ces métadonnées respecteront le format SensorML de l'OGC.
+\end{description}
+	
+\subsubsection{Procédure d'identification}
+	
+Pour le moment, la procédure d'identification des jeux de données du \SNOT n'est pas encore définie. \textit{A priori}, elle s'appuiera sur un identifiant pérenne unique de type DOI. Pour mettre en place ces identifiants, le \SNOT s'appuiera sur les services de \mhref{http://www.inist.fr/?Attribution-de-DOI&lang=fr}{l'INIST-CNRS}.
+	
+\subsubsection{Diffusion des métadonnées}
+	
+Plusieurs services (à identifier) moissonneront ces métadonnées pour faciliter la découverte des jeux de données proposés par le \SNOT. Le site web du \SNOT (en construction) proposera également un lien vers les métadonnées.
+	
+\subsection{Rendre les données librement accessibles}
+	
+Toutes les données du \SNOT seront librement disponibles
+	
+\subsubsection{Méthode de diffusion}
+	
+La mise à disposition des données du \SNOT sera réalisée à travers le développement de services web interopérables OGC de type SOS.
+	
+\begin{description}
+	\item [Site web du \SNOT] : le site web du \SNOT donne un accès à une interface web proposant le libre téléchargement des données à travers un formulaire de requête.
+	\item[Service web interopérable OGC (SOS)] : Un moteur de génération de flux de données interopérable de type (Sensor Observation Service) permettra à n'importe quel utilisateur d'accéder aux données du \SNOT.
+\end{description}
+	
+\subsubsection{Accès aux codes et documentation}
+
+L'ensemble du code de développement du système d'information du \SNOT est stocké à un serveur de versionnement \protect{\tt{git}} connecté à une forge redmine. L'accès à la forge et au code est pour le moment restreint. Les demandes seront étudiées selon une procédure qui reste à définir.
+Une documentation en ligne basée sur \mhref{http://www.mkdocs.org/}{mkdocs} sera mise en place et accessible sur le site web du \SNOT pour guider l'utilisateur dans l'extraction et l'utilisation des données.
+
+\subsection{Rendre les données interopérables}
+
+L'interopérabilité du SI du \SNOT est recherché sur le niveau de la sémantique et sur le niveau technique. La recherche de l'interopérabilité du \SNOT est un point de vigilance qui s'appuie notamment sur les recommandations du \mhref{http://references.modernisation.gouv.fr/sites/default/files/Referentiel_General_Interoperabilite_V2.pdf}{Référentiel Général d'Interopérabilité (RGI)}
+
+\subsubsection{Démarche d'interopérabilité au niveau sémantique}
+
+Le vocabulaire employé pour décrire les données du \SNOT s'appuie sur plusieurs sources :
+\begin{itemize}
+	\item Le code des variables du \SNOT respecte les recommandations de la discipline et notamment du réseau \mhref{http://www.icos-etc.eu/icos/}{ICOS}
+	\item Un tableau de correspondance sera mis en place entre le taxonomie \mhref{https://gcmd.nasa.gov/}{Global Change Master Directory} de la NASA et les variables du \SNOT.
+\end{itemize}
+
+D'autre part, l'organisation et la description des données sera consultable sur le site web du \SNOT à travers la génération d'une documentation basée sur \mhref{http://schemaspy.org/}{schemaspy}.
+
+\subsubsection{Démarche d'interopérabilité au niveau technique}
+
+Au niveau technique, la démarche d'interopérabilité s'applique sur les standards et les protocoles d'échanges des données et de leur métadonnées ainsi que sur la syntaxe utilisée.
+
+
+Données (brutes, élaborées)
+Des métadonnées (données, jeux de données et capteurs)
+Encodage du texte (utf-8)
+Type de document (docx, odf, pdf)
+Structuration des données (XML)
+
+
+
+L'ensemble des variables du \SNOT s'appuie sur les recommandations du réseau européen d'acquisition de données de flux de gaz à effet de serre ICOS. D'autres part, deux types de métadonnées seront générées :
+	
+Les métadonnées aux formats INSPIRE
+	
+Les métadonnées dans un format spécifique. Ce format est proposé par l'infrastructure de recherche OZCAR. DAns ce cas, le vocabulaire employé s'appuit sur le thesaurus Global Change Master Directory de la NASA (https://gcmd.nasa.gov/).
+	
+\subsection{Accroître la réutilisation des données}
+	
+Les données seront accessible pour être ré-utiliser dès lors qu'elles seront diffusées. Il n'y aura pas d'embargo sur les données, la diffusion des données sera réalisé après un processus de vérification et de traitement automatisé. Pour le moment, aucune licence n'a été identifié, ce travail reste à faire.
+	
+Développer la partie ré-utilisation...!
+	
+\section{Allocation des ressources}
+	
+\section{Sécurité des données}
+	
+\section{Aspects éthiques}
+	
+\section{Autres}
+	
+	
+\end{document}	

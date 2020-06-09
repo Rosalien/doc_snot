@@ -1,0 +1,295 @@
+---
+title: "Développement de l'application data-snot.cnrs.fr"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+  <p>Documentation sur l'architecture technique data-snot.cnrs.fr</p>
+  <p>Aide sur l'ajout d'un nouveau data-type dans l'application</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Administrateur du SI SNO-T</p>
+  <p>Connaissance environnement JAVA</p>
+</div>
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy('')
+```
+
+# Développer l'application data-snot.cnrs.fr
+
+L'application data-snot.cnrs.fr s'appuie sur le noyau du SI des SOERE développé par l'équipe ECO-Informatic d'InfoSol (INRA Orléans).
+Pour plus d'informations sur le noyau et l'architecture du SI des SOERE, vous pouvez consulter la documentation du projet :
+
+- [L'architecture fonctionnelle du noyau](https://git.renater.fr/authscm/jbparoisien/gitweb/?p=si-soere-kernel/documentations.git;a=blob_plain;f=techniques/Architecture_si_ecoinformatique_soere.pdf;hb=HEAD)
+
+- [Le guide de développement](https://git.renater.fr/authscm/jbparoisien/gitweb/?p=si-soere-kernel/documentations.git;a=blob_plain;f=techniques/guide_du_d\%c3\%a9veloppeur/guideDeveloppeurNoyau1709.odt;hb=HEAD)
+
+Au besoin, il est possible de cloner la documentation : 
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+git clone https://git.renater.fr/anonscm/git/si-soere-kernel/documentations.git 
+```
+
+# Intégration automatique des données avec un service web
+
+Il est possible d'intégrer automatiquement des données via un service web. Ce service n'est pas exploité dans data-snot.cnrs.fr mais fonctionne parfaitement. Il pourra être mise en service en fonction des besoins :
+
+- [Web_service_de_publication.odt](https://git.renater.fr/authscm/jbparoisien/gitweb/?p=si-soere-kernel/documentations.git;a=blob;f=techniques/guide_du_d%C3%83%C2%A9veloppeur/1709+compl%C3%83%C2%A9ments/web+service+de+publication.odt;h=986283ed2cbe4092a8a4ba861d0c9dae8927c39e;hb=1bade26a75ed2c98c70960c497f9400f21c84b38).
+
+# Principales modifications apportées pour le SI SNO-Tourbières
+
+Une grande partie du code est basé sur le [SI F-ORE-T](https://si-foret-ecofor.fr/si_foret-prod/login.jsf). 
+
+## Simplification du SI SNO-Tourbières
+
+Le SI des SOERE est conçu pour fournir des services de gestion, d'intégration, d'extraction et de synthèse des données. Pour faciliter l'accès aux données, la version modifiée du SI SNO-Tourbières n'intègre que le volet de **gestion et d'intégration des données**. La partie d'extraction et de synthèse des données est intégrée dans une application dédiée [data-access](https://data-snot.cnrs.fr/data-access/).
+De même, l'intégration des données d'observation se veut le plus simple possible, elles sont intégrées sous forme de timeseries (date, valeur, variable).
+En conséquence, le SI SNO-Tourbières conserve seulement quelques modules par rapport au SI F-ORE-T : 
+
+- [snot-core-services-api](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/snot-core-services-api) : Implémentation des fonctionnalité du noyau du SI des SOERE, configuration des entités pour la base de données (contraintes, nom des champs...)
+- [snot-core-services-impl](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app/snot-core-services-impl) : JPA-DAO et recorder des données de référence et autres fonctionnalité du noyau.
+- [snot-core-ui-jsf](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/snot-core-ui-jsf) : Implémentation de l'inteface jsf/hibernate des fonctionnalités du noyau.
+- [snot-fluxmeteo-services-api](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/snot-fluxmeteo-services-api) : Implémentation des fonctionnalités d'intégration des données d'observation, configuration des tables d'intégration des données d'observation.
+- [snot-fluxmeteo-services-impl](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/snot-fluxmeteo-services-impl) : JPA-DAO,recorder et dataset-descriptor des données d'observation.
+- [snot-fluxmeteo-ui-jsf](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/snot-fluxmeteo-ui-jsf) : Implémentation de l'inteface jsf/hibernate des fonctionnalités du noyau pour l'intégration des données d'observation.
+- [snot-web](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/snot-web) : Contenu de l'application web (xhtml, css, configuration du thème primefaces...)
+
+Les deux modules d'extraction ont été conservés mais ne sont pas utilisés : 
+
+- [snot-fluxmeteo-extraction-impl](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/snot-fluxmeteo-extraction-impl) : Implémentation des fonctionnalités d'extration pour tous les types de données.
+- [snot-fluxmeteo-extraction-ui-jsf](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/snot-fluxmeteo-extraction-ui-jsf) : Implémentation de l'inteface jsf/hibernate des fonctionnalités du noyau pour l'extraction des données.
+
+## Ajout de nouvelles données de référence 
+
+La principale évolution concerne l'ajout de la notion de "Jeu de données" dans l'organisation des données. Cette notion répond au besoin de regrouper les données d'un site, d'un thème et d'un type de données en vue de partager les données avec le SI Theia/OZCAR et d'assurer la visibilité des données à travers les DOI. Plus d'information dans cette [partie](https://sourcesup.renater.fr/www/si-snot/4_JeuxDonneesDOI.html).
+
+Pour répondre à ce besoin, 3 nouvelles données de référence ont été ajoutées pour gérer les jeux de données : 
+
+- jeu : descriptif des jeux de données (titre, doi, licence...)
+- gestionnairejeu : Ensembles des gestionnaires de données
+- sousjeu : Sous jeux de données associés aux jeux de données
+
+En plus de ces 3 nouvelles données de référence, les données de référence `variable par type de données`, `periodeapplicationmethode`, `periodeutilisationinstrument` ont été modifiées pour prendre en compte les jeux de données. A celà s'ajoute également des ajouts de champs dans la données de référence `site`.
+
+## Recorder des données d'observation
+
+Dans le SI F-ORE-T, plusieurs recorder sont utilisés pour intégrer les données en fonction du type de données et de la fréquence d'acquisition. Dans l'application du SNO-Tourbières, ce fonctionnement est simplifié. Deux recorder sont seulement utilisés et pour deux types de fréquences : 
+
+- Fréquence infra-journalières et tous les types de données exceptés les flux par eddy-covariance : 
+`org.cnrs.osuc.snot.dataset.fluxmeteo.impl.meteo.ProcessRecordMeteo_if`
+- Fréquence semi-horaire et type de donnée des flux par eddy-covariance : 
+`org.cnrs.osuc.snot.dataset.fluxmeteo.impl.flux.ProcessRecordFlux`
+
+De cette façon, les données sont stockées dans deux tables dans la base de données : 
+
+- valeurs_meteo_sh_vms et mesures_meteo_sh_mms pour tous les types de données **exceptés les flux par eddy-covariance**.
+- valeurs_flux_tour_vfs et mesures_flux_mfs uniquement pour les flux par eddy-covariance.
+
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">**Important**</h4>
+  <p>Cette logique doit être respectée lors de l'ajout d'un nouveau type de données. Voir ci-dessous pour la procédure à suivre lors de l'ajout d'un nouveau type de données.</p>
+</div>
+
+## Modification de l'interface
+
+De nombreuses modifications (changement du thème primefaces notamment) ont été apportées au niveau de l'interface pour gagner en ergonomie.
+
+# Ajouter un nouveau type de données dans l'application
+
+L'ajout d'un nouveau type de données dans l'application data-snot.cnrs.fr demande la modification de nombreux fichiers. Voici les étapes à suivre pour créer un nouveau type de données.
+
+## Création du dataset-descriptor.xml
+
+Ce fichier placé dans les ressources du même package que le recorder décrit la structure du fichier data à déposer (le code des variables et le type de variable). Il doit être créé dans le module `snot-fluxmeteo-service-impl`, précisément dans :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+snot-fluxmeteo-services-impl/src/main/resources/org/cnrs/osuc/snot/dataset/fluxmeteosrc/main/resources/org/cnrs/osuc/snot/dataset/fluxmeteo/impl/
+```
+
+Les dataset-descriptor sont ensuite stockés dans les répertoires associés au thème de la donnée et leur nom suit la logique suivante :
+
+`dataset-descriptor-[typedonnees]-[frequence]`
+
+Vue de l'arborescence avec les différents dataset-descriptor :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+.
+├── biogeo
+│   ├── biogeo-beans.xml
+│   └── dataset-descriptor-doc-infra-journalier.xml
+├── flux
+│   ├── dataset-descriptor-journalier.xml
+│   ├── dataset-descriptor-mensuel.xml
+│   ├── dataset-descriptor-semi-horaire.xml
+│   └── flux-beans.xml
+├── hydro
+│   ├── dataset-descriptor-debit-infra-journalier.xml
+│   ├── dataset-descriptor-piezo-infra-journalier.xml
+│   ├── dataset-descriptor-piezo-semi-horaire.xml
+│   └── hydro-beans.xml
+├── messages_en.properties
+├── messages_fr.properties
+└── meteo
+    ├── dataset-descriptor-infra-journalier.xml
+    ├── dataset-descriptor-journalier.xml
+    ├── dataset-descriptor-mensuel.xml
+    ├── dataset-descriptor-semi-horaire.xml
+    └── meteo-beans.xml
+```
+
+Voici les règles de construction d'un dataset-descriptor
+
+```{r, engine = 'xml',class.source='klippy',eval=FALSE}
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset-descriptor xmlns="http://orei.inra.fr/dataset-descriptor" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://orei.inra.fr/dataset-descriptor http://orei.inra.fr/dataset-descriptor ">
+    <name>site</name>
+< !-- undefined column représente le numéro de colonne à partir de laquelle les colonnes sont facultatives -->
+    <undefined-column>4<undefined-column>
+< !-- un tag column par colonne obligatoire. Les colonnes internationnalisées sont définie dans un seul tag -->
+    <column>
+        <name>nom du site</name>< !-- le nom de la colonne-->
+        <not-null>true</not-null>< !-- si la colonne ne peut être vide -->
+        <key>true</key>< !-- si la colonne est une clef crée une colonne nomcolonne_key c’est la valeur stockée en base et retournée par nextToken() -->
+        <localizable fieldName="name">true</localizable>< !--si la valeur est internationalisable. Les colonnes nomColonne_fr … sont crées en fonction des langues indiquées dans configuration.xml. Si la colonne key est absente alors c’est la valeur de la colonne de la
+langue par défaut qui est retournée par nextToken. Sinon cette valeur est stockées dans la table localisation. -->
+    </column>
+    <column>
+        <name>description du site</name>
+        <localizable fieldName="description">true</localizable>
+    </column>
+    <column>
+        <name>parent</name>
+    </column>
+</dataset-descriptor>
+```
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple d'un dataset-descriptor**</h4>
+  <p>`r linkAlertCSS("dataset-descriptor-piezo-infra-journalier.xml","https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_snot/snot-fluxmeteo-services-impl/src/main/resources/org/cnrs/osuc/snot/dataset/fluxmeteo/impl/hydro/dataset-descriptor-piezo-infra-journalier.xml")`</p>
+</div>
+
+## Modification des beans.xml
+
+Un bean.xml est présent dans chaque répertoire contenant les dataset-descriptor. Rajouter dans ce bean tous paramètres nécessaires. Dans tous les cas, on utilisera le **processRecord**, le **deleteRecord** et l'**expertEnTete** de meteosol infrajournalier : 
+
+```{r, engine = 'xml',class.source='klippy',eval=FALSE}
+    <!--processRecord et deleteRecordMeteo--> 
+    <bean id="processRecordMeteo" class="org.cnrs.osuc.snot.dataset.fluxmeteo.impl.meteo.ProcessRecordMeteo" parent="abstractProcessRecordFluxMeteo" abstract="true"/>
+    <!-- Pour Meteo_sh -->
+    <bean id="processRecordMeteo_if" class="org.cnrs.osuc.snot.dataset.fluxmeteo.impl.meteo.ProcessRecordMeteo_if" parent="processRecordMeteo">
+        <property name="mesureMeteoDAO" ref="mesureMeteo_sh" />
+    </bean>
+    <bean id="deleteRecordMeteo_if" parent="deleteRecord">
+        <property name="publicationDAO" ref="publicationMeteo_sh" />
+    </bean>
+```
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple du bean hydro-beans.xml**</h4>
+  <p>`r linkAlertCSS("hydro-beans.xml","https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_snot/snot-fluxmeteo-services-impl/src/main/resources/org/cnrs/osuc/snot/dataset/fluxmeteo/impl/hydro/hydro-beans.xml")`</p>
+</div>
+
+## Modification du dataset-snot-bean.xml
+
+Dans le module snot-core-service-impl, le `dataset-snot-bean.xml` renseigne les différents types de données ajoutés dans l'application. Rajouter le nouveau type de données créé à la suite des autres dans la propriété `datatypesVersionFileHelpersMap`.
+
+## Ajout du nouveau type de données dans configuration.xml
+
+C'est le fichier de configuration de l'application. On pourra y mettre toutes les informations de portée "application" que l'on souhaite utiliser à un moment ou un autre.
+Le nouveau type de données doit être rajouté dans la section datatypeConfiguration. Il conviendra de renseigné le recorder configuré dans les étapes précédentes :
+
+Exemple pour le type de données `piezo_infraj`. Ce type de données utilise `recorderHydro_if` déclaré dans `hydro-beans.xml` et s'appuyant sur le dataset-descriptor `dataset-descriptor-piezo-infra-journalier.xml` : 
+
+```{r, engine = 'xml',class.source='klippy',eval=FALSE}
+<module>
+    <datatypeConfiguration>
+            <dataType>
+                <name language="key">piezo_infraj</name>
+                <name language="fr">Profondeur et température de la nappe</name>
+                <name language="en">Depth and temperature of the groundwater</name>
+                <description language="key">gwd_infraj_desc</description>
+                <description language="fr">Profondeur de la nappe et température infra-journalière</description>
+                <description language="en">Infra-daily depth and temperature of the groundwater</description>
+                <fileNameDateFormat>dd-MM-yyyy</fileNameDateFormat>
+                <recorder>recorderHydro_if</recorder>
+                <name-file-checkers>
+                    <class>fileNameCheckerSnotddmmyyyy</class>
+                </name-file-checkers>
+            </dataType>
+    </datatypeConfiguration>
+</module>
+```
+## Configuration des données de référence
+
+Une fois compilée et déployée, l'application peut intégrer le nouveau type de données. Il suffit alors de configurer les données de référence en suivant les instructions de ce mode opératoire par [exemple](https://sourcesup.renater.fr/www/si-snot/4_IntegrationNvelleDonnees.html).
+
+# Ajouter de nouvelles variables pour un datatype
+
+Si de nouvelles variables sont associées à un datatype, outre la modification des données de référence dans l'application, il sera nécessaire de rajouter ces variables dans le dataset-descriptor du datatype. Les dataset-descriptors se trouvent dans le package `snot-fluxmeteo-services-impl` via ce chemin :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+snot-fluxmeteo-services-impl/src/main/resources/org/cnrs/osuc/snot/dataset/fluxmeteosrc/main/resources/org/cnrs/osuc/snot/dataset/fluxmeteo/impl/
+```
+
+Ils sont stockés dans les répertoires associés au thème de la donnée et leur nom suit la logique suivante :
+
+`dataset-descriptor-[typedonnees]-[frequence]`
+
+Vue de l'arborescence avec les différents dataset-descriptor :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+.
+├── biogeo
+│   ├── biogeo-beans.xml
+│   └── dataset-descriptor-doc-infra-journalier.xml
+├── flux
+│   ├── dataset-descriptor-journalier.xml
+│   ├── dataset-descriptor-mensuel.xml
+│   ├── dataset-descriptor-semi-horaire.xml
+│   └── flux-beans.xml
+├── hydro
+│   ├── dataset-descriptor-debit-infra-journalier.xml
+│   ├── dataset-descriptor-piezo-infra-journalier.xml
+│   ├── dataset-descriptor-piezo-semi-horaire.xml
+│   └── hydro-beans.xml
+├── messages_en.properties
+├── messages_fr.properties
+└── meteo
+    ├── dataset-descriptor-infra-journalier.xml
+    ├── dataset-descriptor-journalier.xml
+    ├── dataset-descriptor-mensuel.xml
+    ├── dataset-descriptor-semi-horaire.xml
+    └── meteo-beans.xml
+```
+
+Il suffit de rajouter la nouvelle variable dans le fichier :
+
+```{r, engine = 'xml',class.source='klippy',eval=FALSE}
+    <column>
+        <name>Code de la variable</name>
+        <not-null>false</not-null>
+        <value-type>float</value-type>
+        <variable>true</variable>
+        <flag>false</flag>
+        <flag-type>variable</flag-type>
+    </column>
+```
+
+# Mise à jour de l'application
+
+Il est possible de mettre à jour l'application en fonction **des évolutions mineures** apportées sur le noyau du SI des SOERE (correction de bug). Dans ce cas, il est simplement nécessaire de modifier la version du noyau dans le [pom.xml](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_snot/pom.xml) : 
+
+Modifier cette partie avec la nouvelle version : 
+
+```{r, engine = 'xml',class.source='klippy',eval=FALSE}
+<kernel.version>1709.09</kernel.version>
+```
+
+Ensuite, il sera nécessaire de recompiler l'application et de la déployer en suivant [ces recommandations](https://sourcesup.renater.fr/www/si-snot/5_Deploiement_appliSOERE.html).

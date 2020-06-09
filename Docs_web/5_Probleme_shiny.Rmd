@@ -1,0 +1,82 @@
+---
+title: "Quoi faire en cas de problème ?"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+  <p>Démarche à suivre en cas de problème sur les applications Shiny</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Administrateur, développeur du SI SNO-T</p>
+  <p>Connaissance environnement linux et R</p>
+</div>
+
+# Rappel sur les applications Shiny
+
+2 applications Shiny sont diffusées : 
+
+- data-access : application grand public pour visualiser et extraire les données du SI SNOT. Adresse : [https://data-snot.cnrs.fr/data-access/](https://data-snot.cnrs.fr/data-access/). Cette application a également une version de développement : [https://data-snot.cnrs.fr/data-access-snapshot/](https://data-snot.cnrs.fr/data-access-snapshot/)
+- dataset-archive : application pour constuire des archives au format pour le SI Theia/OZCAR et ZENODO. Diffusée à cette adresse [https://data-snot.cnrs.fr/dataset-archive/](https://data-snot.cnrs.fr/dataset-archive/)
+
+# Rappel sur les principales commandes sur shiny-server
+
+Pour le status du server
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+sudo systemctl status shiny-server
+```
+
+Démarrer le server
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+sudo systemctl start shiny-server
+```
+
+Stopper le server
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+sudo systemctl stop shiny-server
+```
+
+Redémarrer le server
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+sudo systemctl restart shiny-server
+```
+
+# En cas de problème
+
+Des soucis peuvent apparaître sur les applications Shiny, si la page n'apparaît pas ou si elle est "grisée", la première chose à faire est de regarder les logs.
+
+## Accès aux logs
+
+Les logs sont accessibles dans le répertoire `/var/log/shiny-server/` et porte le nom de l'application et de l'utilisateur (ici tomcat)
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+# Exemple pour le log de l'application dataset-archive
+tail -f /var/log/shiny-server/dataset-archive-tomcat-20191107-081719-44923.log
+```
+
+Plus d'infos sur les logs, [voir Logging and Analytics](https://docs.rstudio.com/shiny-server/#logging-and-analytics)
+
+## Tester l'application
+
+L'analyse du log peut révéler un souci dans l'application, comme par exemple une librairie manquante ou une variable mal définie. Dans ce cas, le plus simple est de lancer l'application directement dans le serveur.
+
+Lancer R dans le répertoire de l'application puis taper cette commande :
+
+`runApp(launch.browser = FALSE)`
+
+En fonction des erreurs renvoyées, installez les paquets et/ou effectuez les corrections nécessaires.
+
+## Cas de l'écran gris
+
+Dans certains cas, l'application peut tourner dans le vide et se présenter avec écran gris. En complément des logs, vous pouvez analyser la page avec la console du navigateur (outils de développement de firefox par exemple).
+
+Par expérience, les mises à jour de Kaspersky peuvent poser des soucis sur les applications Shiny et les bloquer. A titre d'information, la configuration du shiny-server a été modifiée pour éviter des bloquages (cf configuration du [shiny-server](https://sourcesup.renater.fr/www/si-snot/5_Administrer_shiny.html#13_configuration_de_shiny-server)). Le message alors renvoyé dans la console était : 
+
+**Firefox ne peut établir de connexion avec le serveur à l’adresse** wss://data-snot.cnrs.fr/data-access/__sockjs__/n=sPAwEj5K4IJtC2Kh0e/709/ndczs_hp/websocket.
+
+Plus d'infos sur les websocket dans la doc [shiny-server](https://docs.rstudio.com/shiny-server/#disabling-websockets-on-the-server).

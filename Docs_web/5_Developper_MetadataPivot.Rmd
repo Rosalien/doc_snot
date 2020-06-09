@@ -1,0 +1,67 @@
+---
+title: "Développement du module de création des métadonnées PIVOT"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+  <p>Présenter le module de génération des métadonnées PIVOT</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Administrateur, développeur du SI SNO-T</p>
+  <p>Connaissance environnement JAVA</p>
+</div>
+
+# Présentation du module de génération des métadonnées `PivotMetadata`
+
+Le module de génération des métadonnées est accessible à cette [adresse](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/PivotMetadata). Basé sur une implementation (jax-D) de services web REST avec JAX-RS, il permet la génération de métadonnées à la volée grâce à des requêtes curl.
+La génération des métadonnées est au format json et respecte le modèle présenté dans la [documentation du SI Theia/OZCAR](https://theia-ozcar.gricad-pages.univ-grenoble-alpes.fr/doc-producer/producer-documentation.html).
+
+Le module contient ces principaux éléments : 
+
+- Les paramètres de connexion à la base de données sont gérés dans [Main.java](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_snot/PivotMetadata/src/main/java/entry/Main.java).
+- Les requêtes JPA ves la base de données sont dans [JPAQueryDAO.java](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_snot/PivotMetadata/src/main/java/moulinette/jpa/JPAQueryDAO.java).
+- Les constructeurs des 3 grandes parties de la métadonnée (Producer, Dataset, Observation) sont dans le [builder](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/PivotMetadata/src/main/java/moulinette/builder).
+- Les fichiers de description pour la partie `producer` sont dans le répertoire [inputs_files](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/PivotMetadata/src/main/resources/inputs_files). Le fichier [Producer_snot.csv.csv](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_snot/PivotMetadata/src/main/resources/inputs_files/Producer_snot.csv) décrit les producteurs du SNO-Tourbières.
+
+# Fonctionnement général
+
+## Lancement du module 
+Le module est lancé dans le serveur `163.9.41.45` :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+java -jar jax-d-swarm.jar
+```
+
+La génération des métadonnées au format PIVOT se fait à travers des requêtes interrogeant le service sur le port `8081` :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+curl http://localhost:8081/rest/resources/pivot?codes_jeu=<codeJeu>
+```
+
+Avec <codeJeu> le code du jeu de données selon la codification du SNO-Tourbières (voir [documentation](https://sourcesup.renater.fr/www/si-snot/4_JeuxDonneesDOI.html)).
+
+Exemple pour le jeu de données des flux de GES par eddy-covariance à la Guette : 
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+curl http://localhost:8081/rest/resources/pivot?codes_jeu=lgt-ges-eddycovariance
+```
+
+Dans le cas d'une génération de tous les jeux de données du SNO-Tourbières, le code à utiliser est `all` : 
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+curl http://localhost:8081/rest/resources/pivot?codes_jeu=all
+```
+
+## Validation des fichiers
+
+Le [JSON_schema_validator-1.0.jar](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/Scripts/JSON_schema_validator-1.0.jar) permet de savoir si le fichier en sortie est valide :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+java -jar JSON_schema_validator-1.0.jar nom_fichier.json
+```

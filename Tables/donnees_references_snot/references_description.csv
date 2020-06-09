@@ -1,0 +1,4 @@
+Nom de la colonne;Signification;Unique;Obligatoire
+DOI;Digital Object Identifier;oui;oui
+premier auteur;Nom du premier auteur ou ;non;oui
+année;Année de la publication du document;non;non

@@ -1,0 +1,4 @@
+Nom de la colonne; Signification ;Unique;Obligatoire
+nom ;Nom de la variable;oui;oui
+définition_fr;Définition (en français) de la variable;non;non
+définition_en;Définition (en anglais) de la variable;non;non

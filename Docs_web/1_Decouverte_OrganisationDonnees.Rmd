@@ -1,0 +1,110 @@
+---
+title: "Organisation des données du SNO-T"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectifs et contenu**</h4>
+  <p>Introduction aux concepts généraux d'organisation des données du SNO-T :</p>
+<p>- Description du cycle de vie des données du SNO-T,
+   - Description de l'organisation générale des données,
+   - Présentation des types de données du SNO-T.</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+<p>- Pour tout public souhaitant découvrir l'organisation du SNO-T,
+   - Pas de pré-requis.
+ </p>
+</div>
+
+# Le cycle de vie des données du SNO-T
+
+Les données collectées sur les sites du SNO-T suivent une chaîne de traitement qui permet aux données collectées sur le terrain d'être accessibles et compréhensibles pour tous. Entre ces deux étapes, une chaîne de traitement *plus ou moins complexe* en fonction du type de donnée est appliquée pour permettre un accès de qualité aux données.
+
+Dans ce cycle, les données sont stockées dans **2** espaces : 
+
+1. **le serveur FTP SRV-SO** : il stocke les différents fichiers générés durant le cycle de vie de la donnée,
+2. **la BDD du SI SNO-T** : la base de données de l'application web data-snot.cnrs.fr est conçue pour faciliter la diffusion, l'extraction et la compréhension des données diffusées du SNO-T.
+
+![](`r repfigures`/Diagramme_archifonctionnelle.png)
+
+Ces étapes sont classées dans le tableau ci-dessous. Le numéro de l'étape est un élément important dans l'organisation du stockage des données dans le serveur FTP `SRV-SO`.
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"/donnees_references_srvso/srvso_cycledevie.csv",sep=""),sep=";",colClasses = "character")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+# Organisation générale des données du SNO-T
+
+Les données collectées sont organisées selon **(1)** le lieu de la collecte, **(2)** la thématique de la donnée et **(3)** le type de donnée. Cette logique de gestion est utilisée pour organiser les données dans le serveur `FTP SRV-SO` et la `BDD du SI SNO-T`.
+
+Ainsi, une donnée collectée est organisée *au minimum* selon ces trois critères :
+
+`Site/Station > Thème de la donnée > Type de la donnée`
+
+avec : 
+
+- **Site/Station** : Combinaison du site et de la station (piézomètre, station météosol...) où a été réalisée la mesure. Le site correspond à l'un des 4 sites du SNO-T : Bernadouze, Frasne, La Guette et Landemarais.
+- **Thème** : Le thème est un ensemble cohérent de types de données regroupés dans une thématique scientifique. Les données collectées dans le SNO-T sont organisées au sein de 4 thèmes décrit plus bas.
+- **Type de donnée** : Un type de donnée est un ensemble de valeurs mesurées, calculées et/ou observées pour des variables qui correspondent à un même objet d'étude. Ces valeurs sont regroupées dans un même fichier qui respecte un format prédéfini : le fichier d'échange.
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**Pour aller plus loin**</h4>
+  <p>Dans le serveur FTP SRV-SO, ce niveau d'organisation est complété par d'autres critères liés au cycle de vie et au type de fichier. Pour plus de détails, consultez le document décrivant `r linkAlertCSS("l'arborescence du serveur FTP SRV-SO","https://sourcesup.renater.fr/si-snot/2_SRVSO_Arborescence.html")`.</p>
+<p>Dans la BDD du SI SNO-T, l'organisation s'appuie sur des "données de références" qui sont décrites dans cette `r linkAlertCSS("page","https://sourcesup.renater.fr/si-snot/2_BDD_SNOT_DonneesReference.html")`.</p>
+</div>
+
+# Les sites, thèmes et types de données du SNO-T
+
+## Sites et stations du SNO-T
+
+Le SNO-T regroupe actuellement 4 sites dont le niveau d'instrumentation n'est pas encore homogène. Pour plus d'information sur ces sites, vous pouvez consuler la page dédiée sur le site web du [SNO-T](https://www.sno-tourbieres.cnrs.fr/site-mesure-sno-tourbieres/). A chaque site est associé des stations (par exemple une station eddy-covariance) de mesure regroupant un ou plusieurs instruments qui sont également renseignés pour organiser les données.
+
+Ci-dessous, les sites du SNO-T et leurs stations de mesures associées :
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"/donnees_references_srvso/srvso_site.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling() %>%
+scroll_box(width = "100%", height = "350px")
+#kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+## Les thèmes de données du SNO-T
+
+Les thèmes de données du SNO-T comportent les 4 principales thématiques scientifiques de l'observatoire.
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"/donnees_references_srvso/srvso_themedonnees.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+## Les types de données du SNO-T
+
+Chacun des thèmes se décompose en types de données. Ils représentent un ensemble de valeurs mesurées, calculées et/ou observées pour des variables qui correspondent à un même objet d'étude. Ces valeurs doivent pouvoir être regroupées dans un même fichier respectant un format prédéfini (scénario d'échange).
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"/donnees_references_srvso/srvso_typedonnees.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+&nbsp;
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**Pour aller plus loin**</h4>
+  <p>Chacun des thèmes de données comportent une chaine de traitement spécifique (formatage des fichiers, traitements...). Ces éléments sont décrits dans des documents métiers décrivant le cycle de vie et le scénario d'échange des fichiers mobilisés durant le processus d'intégration et de diffusion des données :</p>
+<p>- `r linkAlertCSS("Document métier du type de données météo-sol","https://sourcesup.renater.fr/si-snot/3.0_Sce_eddycovariance.html")`
+   - `r linkAlertCSS("Document métier du type de données eddycovariance","https://sourcesup.renater.fr/si-snot/3.0_Sce_meteosol.html")`
+   - `r linkAlertCSS("Document métier du type de données piézomètre","https://sourcesup.renater.fr/si-snot/3.0_Sce_piezo.html")`
+   </p>
+</div>
+
+

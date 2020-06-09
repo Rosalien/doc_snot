@@ -1,0 +1,77 @@
+---
+title: "Le type de données `eddycovariance`"
+---
+
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectifs et contenu**</h4>
+  <p>Décrire le cycle de vie général du type de données `eddycovariance`</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Thématiciens et gestionnaires des données eddy-covariance,</p>
+  <p>Connaissance générale de l'organisation des données du SI SNO-T.</p>
+</div>
+
+# Le type de données `eddycovariance`
+
+```{r,evaL=TRUE,echo=FALSE}
+# Ici, nommer le code du type de données pour automatiser le nommage. Cette variable est également utilisée dans les tableaux pour filtrer par type de données
+v_tdo <- "eddycovariance"
+```
+
+Le type de données `eddycovariance` correspond à l'ensemble des données collectées sur les stations eddy-covariance du SNO-T.
+
+# Étape du cycle de vie
+
+Les étapes du cycle de vie du type de données `eddycovariance` sont présentées ci-dessous. La table complète avec d'autres attributs est accessible à cette [adresse.](https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_srvso/Caracteristiques_typedefichiers.csv)
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/Caracteristiques_typedefichiers.csv",sep=""),sep=";",colClasses = "character")
+colonneIn <- c("nom_etape","description","frequence","duree")
+metatable <- metatable[metatable$code_typedonnees %in% v_tdo,names(metatable)%in%colonneIn]
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling() %>%
+scroll_box(width = "100%", height = "400px")
+#kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+# Arborescence de stockage dans le serveur FTP `SRV-SO`
+
+Les données `eddycovariance` sont stockées dans le serveur FTP `SRV-SO` selon l'arborescence ci-dessous. Celle-ci est organisée selon les différentes étapes du cycle de vie de la donnée et porte le nom du type de fichier à stocker dans le répertoire. Le nom du répertoire est organisé selon le numéro de l'étape du cycle de vie et du type de fichier.
+
+```
+lgt
+└── ec1
+    └── eddycovariance
+        ├── 1_BRUTE_eddycovariance
+        ├── 2_TRAITEMENT_eddycovariance
+        ├── 3_ICOS_eddycovariance
+        ├── 3_SNOT_eddycovariance
+        │   ├── lgt-ec1_eddycovariance_sh_01-01-2018_31-12-2018.csv
+        │   └── lgt-ec1_eddycovariance_sh_20-01-2017_31-12-2017.csv
+        └── Readme.md
+```
+
+Avec :
+
+- ec1 : Le code de la station eddy-covariance 1
+- eddycovariance :  le code du type de données `eddycovariance`
+- 1_BRUTE_eddycovariance (obligatoire) : Fichiers bruts en provenance de la station eddy-covariance, **NE JAMAIS MODIFIER CES FICHIERS**
+- 2_TRAITEMENT_eddycovariance : Fichiers provenant du calcul des GES avec le logiciel EddyPro
+- 3_SNOT_eddycovariance : Stockage des fichiers au format du SI SNO-T pour intégration dans la BDD
+- 3_ICOS_eddycovariance : Fichiers bruts provenant de 1_BRUTE_eddycovariance formatés au format ICOS
+
+Pour plus de détails sur la logique construction de l'arborescence du serveur FTP `SRV-SO`, consultez cette [page](https://sourcesup.renater.fr/si-snot/2_SRVSO_Arborescence.html).
+
+# Pour aller plus loin
+
+Consulter les étapes du cycle de vie du type de données `eddycovariance` :
+
+* **[Collecte des données brutes](https://sourcesup.renater.fr/www/si-snot/3.1_Sce_eddycovariance.html)**
+* **[Intégration des données dans le SI SNO-T](https://sourcesup.renater.fr/www/si-snot/3.3_Sce_eddycovariance.html)**

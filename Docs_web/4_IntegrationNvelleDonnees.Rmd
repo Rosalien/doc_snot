@@ -1,0 +1,191 @@
+---
+title: "Comment intégrer une nouvelle donnée dans data-snot.cnrs.fr"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+  <p>Vous souhaitez intégrer une donnée provenant d'une station qui n'est pas encore décrite, cette aide est pour vous !</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Fournisseur de données du SI SNO-T</p>
+  <p>Pas de pré-requis spécifiques</p>
+</div>
+
+# Prendre connaissance des documents
+
+Avant d'intégrer les données, il est important de consulter plusieurs documents pour appréhender la manière dont doit être organisée les données que vous souhaitez intégrer dans le SI.
+
+## Quel thème et quel type données ?
+
+Pour connaître le thème et le type de données que vous souhaitez intégrer, rendez-vous sur cette [page](https://sourcesup.renater.fr/www/si-snot/1_Decouverte_OrganisationDonnees.html)
+
+## Le document métier
+
+En fonction du type de données, consulez le document métier associé. Par exemple, pour le type de données `piezo` issus des piézomètres automatiques, consultez ce [document](https://sourcesup.renater.fr/www/si-snot/3.0_Sce_piezo.html) et ses liens associés.
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**Important**</h4>
+  <p>L'ensemble de ces éléments est très important pour la construction et l'intégration des données de référence, prenez le temps de lire ces pages avant de vous lancer dans l'intégration !</p>
+</div>
+
+# Intégrer les données de référence dans [https://data-snot.cnrs.fr](https://data-snot.cnrs.fr)
+
+Dans un premier temps, vous devez intégrer les données de référence relatives à la station et à son type de données. L'intégration d'une donnée de référence peut être fait deux façson : 
+
+- par l'intégration d'un fichier lorsqu'il y a plusieurs stations à décrire par exemple,
+- soit à la main pour chaque station.
+
+Plus d'infos sur l'intégration des données de référence : [ici](https://sourcesup.renater.fr/www/si-snot/4_AdminDonnees.html)
+
+## Description de la station
+
+La description de la station est réalisée dans la donnée de référence `site` : Cliquez sur `Arborescence >> Sites`
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**Important**</h4>
+  <p>Vous devez respecter les règles de construction du code des stations. Plus d'infos `r linkAlertCSS("ici","https://sourcesup.renater.fr/www/si-snot/2_SRVSO_Arborescence.html")`</p>
+</div>
+
+![](`r repfigures`/SNOT_Sites.png)
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_snot/sites_description.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling() %>%
+scroll_box(width = "100%", height = "500px")
+```
+
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple de fichier pour l'intégration par fichier**</h4>
+  <p>Voici le fichier utilisé pour intégrer un certain nombre de station dans l'application. Adaptez-le en gardant l'en-tête : `r linkAlertCSS("sites","https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/sites.csv")`</p>
+</div>
+
+## Description du type de données par station
+
+Vous devez associer la station que vous venez de créer à un thème et un type de données (ces 2 données de référence sont déjà renseignées) : Cliquez sur `Arborescence >> Types de données par thèmes de sites`
+
+Si vous avez une seule station, le plus simple est de le faire dans l'application web "à la main" comme ci-dessous : 
+
+![](`r repfigures`/integration_stdt.png)
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple**</h4>
+  <p>Dans le cas de l'intégration du type de piezo pour un piézomètre de Frasne nommé par exemple frn/pz_tourbiere, il faudra rajouter : `frn/pz_tourbiere` pour le nom du site, `hydrocarto` pour le thème, et `piezo_infraj` pour le type de données.</p>
+</div>
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**Important**</h4>
+  <p>A la suite de l'intégration de ces données de référence. Un redémarrage est nécessaire pour voir la construction de l'arbre dans le gestionnaire des données d'observation</p>
+</div>
+
+## Description du jeu de données et des gestionnaires
+
+### Le jeu de données
+
+Le jeu de données représente la combinaison d'un site, d'un thème de donnée et d'un type de donnée. Ce niveau d'aggrégation est utilisé pour la construction des fiches de métadonnées.
+Pour alimenter un nouveau jeu de données : Cliquez sur `Métadonnées >> Jeux de données`
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_snot/jeu_description.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+&nbsp;
+
+<div class="alert alert-warning" style="font-weight: bold;"><p>Pour des raisons de visibilité, la description des jeux de données doit de préférence se faire en anglais.</p></div>
+
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple de fichier**</h4>
+  <p>Voici le fichier utilisé pour intégrer un certain nombre de jeu de données dans l'application. Adaptez-le en gardant l'en-tête :
+  `r linkAlertCSS("jeu.csv","https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/jeu.csv")`</p>
+</div>
+
+### Les gestionnaires du jeu de données
+
+La donnée de référence `gestionnaires du jeu de données` centralise les responsabilités des personnes physiques de l'observatoire SNO-T et des différents jeux de données. Cette donnée de référence est utilisée dans la construction des parties "contacts" des fiches de métadonnées. Au niveau des responsabilités, plusieurs rôles sont possibles :
+
+* **Rôles scientifiques :**
+    * **Principal investigator :** Référant scientifique du jeu de données (*obligatoire pour chaque jeu de données*)
+* **Rôles techniques :**
+    * **Data manager :** Personne qui assure le rôle de gestionnaire de données du jeu de donnée (*obligatoire pour chaque jeu de données*)
+
+Ces rôles sont utiles à la création de DOI ainsi qu’à la publication de fiche de métadonnées INSPIRE.
+
+Pour ajouter des gestionnaires d'un jeu de données : Cliquez sur `Métadonnées >> Gestionnaire de jeux de données`
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_snot/gestionnairejeu_description.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple de fichier**</h4>
+  <p>Voici le fichier utilisé pour intégrer un certain nombre de gestionnaire de jeu de données dans l'application. Adaptez-le en gardant l'en-tête : `r linkAlertCSS("gestionnairejeu.csv","https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/gestionnairejeu.csv")`</p>
+</div>
+
+## Variables par types de données
+
+Cette donnée de référence permet de relier les variables, les types de données ainsi que l'unité dans laquelle ces variables sont fournies. Il est également possible d'indiquer la valeur minimale et la valeur maximale dans laquelle la variable est communément comprise. Une variable peut ainsi être présente dans plusieurs type de données et exprimée dans des unités différentes.
+
+Pour alimenter cette donnée de référence, cliquez sur `Métrologie >> Variables par types de données`
+
+![](`r repfigures`/SNOT_stdtvu.png)
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_snot/variables_par_types_de_donnees_description.csv",sep=""),sep=";")
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+&nbsp;
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple de fichier**</h4>
+  <p>Voici le fichier utilisé pour intégrer un certain nombre de variables par types de donnees dans l'application. Adaptez-le en gardant l'en-tête. Il y a notamment des exemples avec le type de données piezo : `r linkAlertCSS("variables_par_types_de_donnees.csv","https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/variables_par_types_de_donnees.csv")`</p>
+</div>
+
+## Instruments et méthodes
+
+L'intégration de ces données de référence permet de documenter les données du SNO-T. Pour l'intégration de ces données de référence, vous devez effectuer les mêmes opérations que précédemment et dans l'ordre suivant : 
+
+- [Instruments](https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/instruments.csv) : Décrit les instruments (capteurs, analyseurs...) utilisés pour les mesures
+- [Méthodes](https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/methodecalcul.csv) : Indique la méthode (calcul, observation...)  utilisée pour produire les données d'observation
+- [Références](https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/references.csv) : Ensemble des références utilisées pour documenter les méthodes de calcul et les instruments utilisés.
+- [Références des instruments](https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/instrument_reference.csv) : Donnée de référence pour associer des références (DOI ou URL) aux instruments
+- [Références des méthodes](https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/methode_calcul_reference.csv) : Donnée de référence pour associer des références (DOI ou URL) à la méthode utilisée
+- [Périodes d'utilisation des instruments](https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/periode_utilisation_instrument.csv) : Décrit la relation entre le `[site/station]-[theme]-[type de données]-[variable]`, le jeu de données et la période d'utilisation des instruments
+- [Périodes d'application des méthodes](https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_PROD/periode_application_methode.csv) : Décrit la relation entre le `[site/station]-[theme]-[type de données]-[variable]` et la période d'application d'une méthode
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**Plus d'infos**</h4>
+  <p>Consultez pour plus d'information la `r linkAlertCSS("page","https://sourcesup.renater.fr/www/si-snot/2_BDD_SNOT_DonneesReference.html")` consacrée aux données de référence</p>
+</div>
+
+
+
+# Intégrer les données d'observation
+
+Une fois ces données de référence intégrées, vous pouvez intégrer les données d'observation **après une re-connexion** de l'application. L'application propose une interface pour la gestion de ces données en allant de la vérification du format du fichier d'échange au dépôt du fichier d’échange de données jusqu’à la publication des données du fichier en base. Pour celà, cliquez sur `Gestion des données d'observation` et suivez les étapes décrites dans ce [mode opératoire](https://sourcesup.renater.fr/www/si-snot/4_IntegrationDonnees.html)
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Rappel**</h4>
+  <p>Vous devez respecter le format d'échange du type de données pour pouvoir intégrer un fichier dans l'application. Pour plus d'info, consultez les documents métiers associés au type de données que vous souhaitez intégrer</p>
+</div>
+
+# Visualiser les données
+
+Une fois les données d'observation intégrées, vous pouvez les visualiser sur l'application [https://data-snot.cnrs.fr/data-access/](https://data-snot.cnrs.fr/data-access/)

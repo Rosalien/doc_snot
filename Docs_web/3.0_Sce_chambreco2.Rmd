@@ -1,0 +1,82 @@
+---
+title: "Le type de données des chambres CO2 `chambreco2`"
+---
+
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectifs et contenu**</h4>
+  <p>Décrire le cycle de vie général du type de données `chambreco2`</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Thématiciens et gestionnaires des données des GES,</p>
+  <p>Connaissance générale de l'organisation des données du SI SNO-T.</p>
+</div>
+
+# Le type de données `chambreco2`
+
+```{r,evaL=TRUE,echo=FALSE}
+# Ici, nommer le code du type de données pour automatiser le nommage. Cette variable est également utilisée dans les tableaux pour filtrer par type de données
+v_tdo <- "chambreco2"
+```
+
+Le type de données `chambreco2` correspond aux données collectées dans les chambres d'accumulation de CO2 de type Vaisala - GMP343.
+
+# Étapes du cycle de vie
+
+![](`r repfigures`/Diagramme_chambreco2.png)
+
+Les principales étapes du cycle de vie du type de données `chambreco2` sont présentées ci-dessous. La table complète avec d'autres attributs est accessible à cette [adresse.](https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_srvso/Caracteristiques_typedefichiers.csv)
+
+```{r,evaL=TRUE,echo=FALSE}
+metatable <- read.csv(paste(reptables,"donnees_references_srvso/Caracteristiques_typedefichiers.csv",sep=""),sep=";",colClasses = "character")
+colonneIn <- c("nom_etape","description","frequence","duree")
+metatable <- metatable[metatable$code_typedonnees %in% v_tdo,names(metatable)%in%colonneIn]
+kable(metatable, "html",row.names=FALSE) %>%
+kable_styling() %>%
+scroll_box(width = "100%", height = "300px")
+#kable_styling(bootstrap_options = c("striped", "hover", "condensed"),position = "float_left")
+```
+
+# Arborescence de stockage dans le serveur FTP `SRV-SO`
+
+Les données `chambreco2` sont stockées dans le serveur FTP `SRV-SO` selon l'arborescence ci-dessous. Celle-ci est organisée selon les différentes étapes du cycle de vie de la donnée et porte le nom du type de fichier à stocker dans le répertoire. Le nom du répertoire est organisé selon le numéro de l'étape du cycle de vie et du type de fichier.
+
+Voici un exemple d'arborescence pour des données de `chambreco2` collectées sur l'embase 1 de la tourbière de Bernadouze.
+
+```
+bdz
+└── ch1
+    ├── chambreco2
+    │   ├── 1_BRUTE_chambreco2
+    │   ├── 2_TRAITEMENT_chambreco2
+    │   └── 3_SNOT_chambreco2
+```
+
+Avec :
+
+- bdz : Le code du site de Bernadouze
+- ch1 : le code de l'embase pour les chambres d'accumulation ([rappel sur la logique de construction](https://sourcesup.renater.fr/si-snot/2_SRVSO_Arborescence.html))
+- chambreco2 : le code du type de données `chambreco2`
+- 1_BRUTE_chambreco2 (*recommandé*) : Fichiers bruts en provenance de l'embase 1 codée `ch1`
+- 2_TRAITEMENT_chambreco2 (*recommandé*) : Traitement des Fichiers bruts
+- 3_SNOT_chambreco2 (*obligatoire*) : Stockage des fichiers au format du SNOT pour intégration dans le SI SNO-T
+
+&nbsp;
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**Rappel sur la constuction de l'arborescence et des codes**</h4>
+  <p>Pour plus de détails sur la logique de construction de l'arborescence du serveur FTP `SRV-SO`, consultez cette `r linkAlertCSS("page","https://sourcesup.renater.fr/si-snot/2_SRVSO_Arborescence.html")`.</p>
+</div>
+
+# Pour aller plus loin
+
+Consulter les étapes du cycle de vie du type de données `chambreco2` :
+
+* **[Collecte des données brutes](https://sourcesup.renater.fr/www/si-snot/3.1_Sce_chambreco2.html)**
+* **[Intégration des données dans le SI SNO-T](https://sourcesup.renater.fr/www/si-snot/3.3_Sce_chambreco2.html)**

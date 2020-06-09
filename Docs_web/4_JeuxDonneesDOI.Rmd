@@ -1,0 +1,116 @@
+---
+title: "Mise à jour des données d'observation et création des DOI"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+  <p>Procédure associée à la mise à jour d'un jeu de données</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Administrateur, gestionnaire des données</p>
+  <p>Connaissance application data-snot.cnrs.fr</p>
+</div>
+
+# Les jeux de données dans le SI SNO-Tourbières
+
+Un jeu de donnée correspond à un type de donnée pour un site du SNO-Tourbières. Le code des jeux de données est composé de :
+
+`[code_site]-[theme]-[datatype]`
+
+Par exemple, les données de flux de gaz à effet de serre par eddy-covariance dans la tourbière de La Guette correspondent au jeu de données codé :
+
+`lgt-ges-eddycovariance`
+
+Cette granularité est présentée dans la figure ci-dessous : 
+
+![](`r repfigures`/Diagramme_DOI_SNOT.png)
+
+Pour assurer une démarche FAIR aux données diffusées du SNO-Tourbières, une procédure doit être respectée lors de la mise à jour des données. Cette procédure s'applique dès lors que les données d'observation dans [data-snot.cnrs.fr](https://data-snot.cnrs.fr) sont mises à jours, soit : 
+
+- l'ajout de nouvelles variables pour une même période de temps,
+- l'ajout de nouvelles chroniques,
+- la modification de données déjà publiées (même période, même variables) mais des valeurs différentes (suite à un nouveau traitement par exemple).
+
+Merci de respecter ces différentes étapes :
+
+![](`r repfigures`/Diagramme_updateJDD.png)
+
+# Création d'une archive 
+
+Dès lors que des données sont mises à jours et disponibles sur [data-access](https://data-snot.cnrs.fr/data-access), vous pouvez télécharger l'archive Zenodo du jeu de données associé sur l'application dédiée [dataset-archive](https://data-snot.cnrs.fr/dataset-archive). Cette archive contient un fichier json de métadonnées et un fichier csv de l'ensemble du jeu de données.
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Recommandation**</h4>
+  <p>Pensez également à mettre à jour les données de référence associées aux méthodes et instruments associées à la mise à jour des données</p>
+</div>
+
+# Création du DOI ou mise à jour du DOI
+
+La création ou la mise à jour d'un DOI est réalisée sur l'entrepot Zenodo avec le compte d'accès du SNO-Tourbières : `sno.tourbieres@gmail.com` (Demander le mot de passe via contact.sno-tourbieres@cnrs-orleans.fr)
+
+## Cas 1 : Création d'un DOI pour un nouveau jeu de données
+
+1. Cliquez sur 'Upload' et choisissez l'archive précédemment créée,
+2. Remplissez les champs descriptifs du jeu de données à déposer : 
+	- **Title** : Le titre est explicite et général,
+	- **Authors** : Principaux producteurs du jeu de données,
+	- **Description** : Vous pouvez vous inspirez des autres jeux de données précédemment créés,
+	- **Version** : si c'est un nouveau jeu de données, alors : 1.0
+	- **License** : `Open Access` avec `Creative Commons Attribution 4.0 International`
+	- **Related/alternate identifiers** :  Si un jeu de données a précédemment été créé et qu'il est associé au jeu de données du SNO-Tourbières, utilisez la propriété "is part of" et renseigné le DOI du jeu de données en question. Exemple : 
+
+	![](`r repfigures`/HasPartDOI.png)
+
+	- **Contributors** : Ici, vous pouvez associés le projet leader, le data collector, le data manager...
+	- **Autres champs** : Il est possible de rajouter une relation avec une publication, une thèse...n'hésitez pas à remplir ces champs au besoin.
+
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">**Important**</h4>
+  <p>Si vous n'êtes pas sûr de vous, vouv pouvez créer un DOI fictif sur le bas à sable de `r linkAlertCSS("Zenodo","https://sandbox.zenodo.org/")`. Gardez en tête que les champs descriptifs du DOI peuvent toujours être modifiés mais le contenu de l'archive déposée ne l'est pas.</p>
+</div>
+
+3. Publiez le jeu de données en cliquant sur `Publish`
+
+## Cas 2 : Mise à jour d'un DOI existant
+
+1. Sélectionnez le jeu de données à mettre à jour
+2. Cliquez sur `New version` et remplissez les champs comme précédemment :
+	- Authors : Vous pouvez conservez les auteurs précédent et ajouter de nouveau auteurs
+	- Versions : la logique de codification de la version s'appuie sur [la logique utilisée pour les logicielles](https://semver.org/). Le numéro de la version prend la forme X.Y ou X et Y sont deux entiers positifs : 
+		- X représente la version d'une année (exemple, toutes les données 2008-2019)
+		- Y représente les ajouts et correction apportées durant l'année
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple**</h4>
+  <p>La version 1.0 est la première version du jeu de données météosol de La Guette. Elle intègre une période de temps 2010 à 2019. La version 1.1 correspond à une correction apportée sur les données de la même période. En 2020, les données nouvellement intégrées dans le jeu de données porteront la version 2.0.</p>
+</div>
+
+3. Publiez le jeu de données en cliquant sur `Publish`
+
+# Mise à jour des données de référence
+
+Une fois le DOI publié, il est nécessaire de mettre à jour les données de référence sur [data-snot.cnrs.fr](https://data-snot.cnrs.fr/) : 
+
+## Mise à jour de la table jeu
+
+On veillera à mettre à jour les champs de la table jeu.
+Le champs DOI correspond au DOI de toutes les version du jeu de données. La citation correspond à la dernière citation de la version du jeu de données.
+Ces éléments sont présentés sur Zenodo une fois le jeu de données publié : 
+
+![](`r repfigures`/DOIEtCitations.png)
+
+## Mise à jour de la sous-jeu
+
+Si un jeu de données provenant d'un autre entrepôt est utilisé, il est nécessaire de renseigner la table sous-jeu. Exemple : 
+
+![](`r repfigures`/Sousjeu.png)
+
+# Création et envoi de l'archive pour le SI Theia/Ozcar
+
+Suivre la [procédure](https://sourcesup.renater.fr/www/si-snot/4_Echange_SITheiaOzcar.html) de dépôt d'une archive pour le SI Theia/Ozcar

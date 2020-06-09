@@ -1,0 +1,39 @@
+code_key;code_fr;code_en;nom_key;nom_fr;nom_en
+-;-;-;sans unité;sans unité;unit-less
+μmolCO2/m2/s;μmolCO2/m2/s;μmolCO2/m2/s;micromole de CO2 par mètre carré et par seconde;micromole de CO2 par mètre carré et par seconde;micromole of CO2 per square meter and per second
+µmol/mol;µmol/mol;µmol/mol;micromole par mole;micromole par mole;micromole per mole
+μmol/m2/s;μmol/m2/s;μmol/m2/s;micromole par mètre carré et par seconde;micromole par mètre carré et par seconde;micromole per square meter and per second
+mmol/mol;mmol/mol;mmol/mol;millimole par mole;millimole par mole;millimole per mole
+mmol/m2/s;mmol/m2/s;mmol/m2/s;millimole par mètre carré et par seconde;millimole par mètre carré et par seconde;millimole per square meter and per second
+gC/m2/1;gC/m2/1;gC/m2/1;gramme de carbone par mètre carré et par jour;gramme de carbone par mètre carré et par jour;grams of carbon per square meter and per day
+gC/m2/m;gC/m2/m;gC/m2/m;gramme de carbonne par mètre carré et par mois;gramme de carbonne par mètre carré et par mois;grams of carbon per square meter and per month
+J/m2/d;J/m2/d;J/m2/d;joule par mètre carré et par jour;joule par mètre carré et par jour;joule per square meter and per day
+J/m2/m;J/m2/m;J/m2/m;joule par mètre carré et par mois;joule par mètre carré et par mois;joule per square meter and per month
+W/m2;W/m2;W/m2;watt par mètre carré;watt par mètre carré;watt per square meter
+MJ/m2/d;MJ/m2/d;MJ/m2/d;mégajoule par mètre et par jour;mégajoule par mètre et par jour;megajoule per meter and per day
+MJ/m2/m;MJ/m2/m;MJ/m2/m;mégajoule par mètre et par mois;mégajoule par mètre et par mois;megajoule per meter and per month
+kg/m/s;kg/m/s;kg/m/s;kilogramme par mètre et par seconde;kilogramme par mètre et par seconde;kilogram per meter and per second
+m/s;m/s;m/s;mètre par seconde;mètre par seconde;meter per second
+ml/h;ml/h;ml/h;millilitre par heure;millilitre par heure;milliliter per hour
+l/m;l/m;l/m;litre par mois;litre par mois;liter per month
+W/m2/d;W/m2/d;W/m2/d;watt par mètre carré et par jour;watt par mètre carré et par jour;watt per square meter and per day
+W/m2/m;W/m2/m;W/m2/m;watt par mètre carré et par mois;watt par mètre carré et par mois;watt per square meter and per month
+W/m2;W/m2;W/m2;watt par mètre carré;watt par mètre carré;watt per square meter
+µmol/m2/d;µmol/m2/d;µmol/m2/d;micromole par mètre carré et par jour;micromole par mètre carré et par jour;micromole per square meter and per day
+µmol/m2/m;µmol/m2/m;µmol/m2/m;micromole par mètre carré et par mois;micromole par mètre carré et par mois;micromole per square meter and per month
+°C;°C;°C;degré Celsius;degré Celsius;degree Celsius
+kPa;kPa;kPa;kilopascal;kilopascal;kilopascal
+hPa;hPa;hPa;hectopascal;hectopascal;hectopascal
+Pa;Pa;Pa;pascal;pascal;pascal
+°;°;°;degré;degré;degree
+%;%;%;percentage;pourcentage;percentage
+mm;mm;mm;millimètre;millimètre;millimeter
+mg/L;mg/L;mg/L;milligramme par litre;milligramme par litre;milligram per liter
+m;m;m;mètre;mètre;meter
+nmol/m2/s;nmol/m2/s;nmol/m2/s;nanomole par mètre carré et par seconde;nanomole par mètre carré et par seconde;nanomole per square meter and per second
+m3/m3;m3/m3;m3/m3;mètre cube par mètre cube;mètre cube par mètre cube;cubic meter per cubic meter
+Sw;Sw;Sw;Stockage de chaleur dans la canopée;Stockage de chaleur dans la canopée;Heat storage in the canopy
+ml/d;ml/d;ml/d;millilitre par jour;millilitre par jour;milliliter per day
+mm/30min;mm/30min;mm/30min;millimètre par demi-heure;millimètre par demi-heure;millimeter per 30 minutes
+mm/h;mm/h;mm/h;millimètre par heure;millimètre par heure;millimeter per hour
+kW/m2;kW/m2;kW/m2;Kilo watt par mètre carré;Kilo watt par mètre carré;Kilo watt per square meter

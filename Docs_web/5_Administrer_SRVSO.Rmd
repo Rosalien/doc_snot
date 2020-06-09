@@ -1,0 +1,31 @@
+---
+title: "Administration le serveur FTP SRV-SO"
+---
+
+```{r options_communes, include=FALSE}
+source("options_communes.R")
+```
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">**Objectif et contenu**</h4>
+  <p>Caractéristique du serveur FTP SRV-SO</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Public visé et pré-requis**</h4>
+  <p>Administrateur du SI SNO-T</p>
+</div>
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy('')
+```
+
+Le serveur FTP SRV-SO est utilisé pour stocker l’ensemble des fichiers collectés sur les sites du SNO-T. Il a pour objectif d'assurer la traçabilité des traitements effectués pendant tout le cycle de vie des données.
+
+# Caractéristiques du serveur
+
+
+
+# Logique d'organisation
+
+La logique d'organisation du serveur est décrite [ici](https://sourcesup.renater.fr/www/si-snot/2_SRVSO_Arborescence.html). Il est primordial de conserver cette logique d'organisation pour faciliter la gestion des fichiers et mettre en place des traitements automatiques des données.

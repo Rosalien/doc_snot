@@ -1,0 +1,677 @@
+
+%-------------------------------- %   Chapitre 3   %--------------------------------- %
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%																					  %	
+%   		SNO Tourbières - Variables météorologique et physique du sol		      %
+%																					  %	
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+
+
+
+
+\chapter{Variables météorologique et physique du sol}\label{v_meteosol}
+
+S. Gogo, ...
+
+\section{Cadre et objectif des mesures}
+Le présent document porte sur toutes les mesures acquises par les stations d'acquisition, généralement des CR1000 (Campbell), présentes sur chaque site du service national d'observation (SNO) Tourbières et dédiées aux mesures météorologique et de la physique du sol. La majorité des informations proviennent des manuels d'utilisation fournis par le fabriquant ou le revendeur.
+
+Les indications de positionnement des capteurs doivent être suivies au mieux. Tout écart aux positionnement standard doivent être spécifiés pour évaluer la qualité des données.
+
+\textbf{L'objectif de ces mesures sont:}
+
+\
+
+		\begin{itemize}
+			\item \textbf{caractériser d'un point de vue climatique chaque site}
+			
+			\
+			
+			\item \textbf{compléter les mesures pour l'étude du bilan hydrologique de chaque site (pluviométrie, évapotranspiration)}
+			
+			\
+			
+			\item \textbf{fournir des données pour réaliser le "gap filling" des données acquises par le système d'Eddy Covariance}
+			
+			\
+			
+			\item \textbf{permettre le contrôle et l'assurance de la qualité des données acquises par le système d'Eddy Covariance}
+			
+			\
+			
+			\item \textbf{aider à l'interprétation des données acquises par le système d'Eddy Covariance}
+			
+			\
+			
+			\item \textbf{fournir des données pour la modélisation dans le cadre du SNO Tourbières ou de tout autre programme de recherche (mise à disposition des données)}
+		\end{itemize}
+
+\newpage
+
+\section{Organisation des équipements}
+
+
+\subsection{Nombre de station d'acquisition}
+Sur chaque site du réseau, il y aura un minimum de 2 stations d'acquisition pour les variables météorologique et physique du sol: la station \#001 pour les mesures météorologiques et un premier profil de sol et la station \#002 pour les mesures du deuxième profile de sol. Une troisième station est théoriquement prévue (\#003). Nous adopterons le nombre et la nomenclature des variables recommandées par ICOS pour les sites de niveau 2.
+
+\subsection{Installation des stations}
+Les capteurs météorologiques devront être installés en hauteur (environ 2m) et de manière à éviter le plus possible des perturbations (végétation de taille haute le plus loin possible). L'installation sur une plateforme est recommandée.
+
+Pour être représentatifs des conditions dans l'empreinte des mesures de flux par eddy covariance, les capteurs de physique du sol devront être installés sous la végétation dominante dans l'empreinte. Si l'empreinte est couverte à part égale de 2 types de végétations, une station sera mise dans chaque type de végétation.
+
+Pour des raisons pratiques, les capteurs de physique du sol du profil 1 seront branchées sur la station météorologiques (station météo-sol \#001, météo classique + sol). Egalement pour des raisons partiques, les capteurs du deuxième profil pourront être branchés sur une deuxième station d'acquisition (\#002)  installées sur le trépied supportant les capteurs de mesure de flux par eddy covariance.
+
+\newpage
+
+\section{Les variables: mesures, nomenclature, et capteurs}
+
+	
+Les détails des informations concernant les noms de fichier, le nombre et le type de variables et leur code sont disponibles dans le chapitre 1.
+
+Pour rappel voici la liste des variables cibles concernées par ce chapitre.
+
+
+	\textbf{code variable:}
+		\begin{itemize}	
+			\item 	\textbf{Pa} = pression atmosphérique
+			\item 	\textbf{P\_rain} = précipitation sous forme de pluie
+			\item 	\textbf{PPFD} = photosynthetic photon flux density
+			\item 	\textbf{WS} = vitesse du vent
+			\item 	\textbf{WD} = direction du vent
+			\item 	\textbf{RH} = humidité relative de l'air
+			\item 	\textbf{Ta} = température de l'air
+			\item 	\textbf{Ts} = température du sol
+			\item 	\textbf{SWC} = teneur en eau du sol
+			\item 	\textbf{G} = flux de chaleur dans le sol
+			\item 	\textbf{GWL} = niveau de la nappe d'eau	
+			\item 	\textbf{SWin} = ondes courtes entrantes
+			\item 	\textbf{SWout} = ondes courtes sortantes
+			\item 	\textbf{LWin} = ondes longues entrantes
+			\item 	\textbf{LWout} = ondes longues sortantes
+		\end{itemize}
+
+\
+
+Plusieurs variables peuvent être acquises par un même instrument, exemple: la vitesse et la direction du vent sont mesuré par un anémomètre (e.g. Wind Sonic de Gill).
+
+
+
+
+\subsection{Les capteurs}
+Même si compte-tenu des contraintes de tous ordres, l'uniformisation du parc analytique sera difficile, les membres du SNO Tourbières s'engage à tendre vers cette uniformisation  pour une meilleure comparaison entre site et pour diminuer la complexité de la gestion des équipements et des données (un équipement différent dans chaque site pour une même variables implique 4 fournisseur différents, etc...).
+
+\
+
+Les équipements dont on se propose l'installation sur les sites respectent au mieux les recommandations ICOS (tableau 3.1).
+
+
+\begin{table}
+%\begin{scriptsize}
+
+\caption{Liste des capteurs correspondant au variables cibles obligatoires et leur nombres dans une configuration minimale.}
+\label{Table 2.}
+
+		\begin{tabular}{lll1}
+			\hline
+			\textbf{Variable}&\textbf{Modèle}&\textbf{Marque}&\textbf{N}\\
+			\hline
+			Pression atmosphérique&PTU300&Vaisala&1 \\
+			Pluviométrie&ARG100&Campbell&1  \\
+			Rayonnement photosynthétique actif&SKP215&Campbell&1 \\
+			Vitesse du vent&Windsonic&Gill&1 \\
+			Direction du vent&Windsonic&Gill&1 \\
+			Humidité relative de l'air&HMP155A&Vaisala&1 \\
+			Température de l'air&HMP155A&Vaisala&1 \\
+			Température du sol&107&Campbell&16 \\
+			Teneur en eau du sol&CS650&Campbell&8  \\
+			Flux de chaleur dans le sol&HFP01SC&Hukseflux&4 \\
+			Niveau de la nappe d'eau&CS451&Campbell&2 \\
+			Ondes courtes entrantes&CNR4&Kipp-Zonen&1 \\
+			Ondes courtes sortantes&CNR4&Kipp-Zonen&1 \\
+			Ondes longues entrantes&CNR4&Kipp-Zonen&1 \\
+			Ondes longues sortantes&CNR4&Kipp-Zonen&1 \\			
+			\hline
+		\end{tabular}
+%\end{scriptsize}
+\end{table}
+
+
+%Tableau 2. Consommation électrique de chaque capteur et de la station d'acquisition dans les conditions de mesures établies (une mesure toutes les 15 secondes, moyenne sur 30 minutes).
+
+La suite du document détaille les principe de mesure de chaque capteurs, donne des précision éventuelles sur son positionnement et sa maintenance, ainsi que tous les calculs nécessaire à l'élaboration de la variable cible (signaux du capteurs, dérive, calibration)
+
+\newpage
+
+
+\section{Pression atmosphérique - Pa - PTU300}
+
+\subsection{Principe de mesure et unité}
+
+\subsection{Positionnement du capteur}
+
+\subsection{Maintenance du capteur}
+
+\subsection{Elaboration de la variable cible}
+
+\paragraph{Calibration et dérive du capteur}
+
+\paragraph{Calcul de la variable cible et autres variables}
+
+
+\newpage
+
+\section{Pluviométrie - P\_rain - ARG100}
+
+\subsection{Principe de mesure et unité}
+L'ARG100 est un pluviomètre à augets basculeurs. Il est constitué d'un entonnoir qui récupère la pluie et d'une base. La base est constitué de deux partie. La partie intérieure contient les augets (Fig.\ref{Fig.1}). La partie externe est fixé sur une plaque en fer installée sur un support stable. 
+
+La pluie qui entre dans l'entonnoir est dirigée vers un des deux augets. Quand celui-ci est rempli d'une quantité déterminée correspondant à 0.2 mm de précipitation, il bascule permettant sa vidange et le mise en position du deuxième auget qui se rempli à son tour. Un bras est fixé aux augets (Fig.\ref{Fig.1}) et à chaque bascule, le mouvement du bras force un aimant à passer devant un commutateur à lame souple (Fig.\ref{Fig.1}), créant un contact pendant quelques milisecondes. Le nombre de bascule est ainsi compté et enregistré par la centrale
+d'acquisition.
+
+L'unité de mesure est le millimètre, mm.
+	\begin{figure}[h] 
+		\includegraphics[width=14cm]{arg100complegende.jpg}
+		\caption{Partie intérieure de l'ARG100.}
+		\label{Fig.1}
+	\end{figure}
+
+\subsection{Positionnement du capteur}
+Le pluviomètre ARG100 doit être placé horizontalement grâce à un niveau à bulle placé dans le pluviomètre(Fig.\ref{Fig.1}). Un pluviomètre affecte la circulation de l'air (flux et turbulence augmentées). Cependant, l'ARG100 a un profil qui permet de limiter ces biais. Aucun obstacle autour du capteur ne doit être présent pour intercepter les précipitations. En règle générale, on estime que la distance entre un obstacle et le pluviomètre doit être au moins égale à deux fois la hauteur de l'obstacle.
+Afin d'obtenir des mesures comparables, les ARG100 du SNO Tourbières sont placés à une hauteur entre 1 et 2 m.
+
+
+\subsection{Maintenance du capteur}
+La maintenance sera effectuée tous les mois si possible ou au moins tous les 6 mois. Elle consistera en:
+	\begin{itemize}
+		\item vérifier que rien n'empêche la circulation de l'eau,
+		\item vérifier l'intégrité des câbles,
+		\item vérifier l'horizontalité du capteur grâce au niveau à bulle,
+		\item vérifier que la balance fonctionne bien en versant un volume connu d'eau et en comptant le nombre de bascule (à faire en même temps que la mesure de la dérive),
+		\item si besoin, ramener le capteur au laboratoire pour un nettoyage complet de l'extérieur et de l'intérieur (prolifération de micro-algues)
+	\end{itemize}
+
+\subsection{Calibration et dérive du capteur}
+L'ARG100 est calibré par le fabricant. Un facteur de calibration est donné sur un certificat et également inscrit dans la partie intérieur du pluviomètre (Fig.\ref{Fig.1}).
+
+La dérive du capteur est testée le plus fréquemment possible en même temps que l'inspection de la balance. Il s'agit de verser à une date connue une quantité connue d'eau dans le pluviomètre. La comparaison entre les millimètres d'eau apportés et les millimètres d'eau estimés par le pluviomètre permettra d'estimer une possible dérive de la mesure de l'appareil dans le temps.
+
+Si la dérive augmente avec le temps, une calibration en deux temps devra être réalisée: 
+	\begin{enumerate}
+		\item Ajustement et calibration statique: il s'agit de régler la bascule pour la quantité d'eau équivalente à 0.2 mm à l'aide des vices de calibration,
+		\item Calibration dynamique: il s'agit de faire passer dans le pluviomètre 810.4 cm$^3$ d'eau contenu dans un réservoir (à un dénit correspondant à 100 min pour vider le réservoir). A la fin, 80 bascules doit théoriquement se produire et le nombre exacte et obtenu par le datalogger en ajoutant la fraction restante dans un des deux augets. Si N est le nombre de bascule + fraction restante, le facteur de calibration sera: FC = 0.2 x 80/N. 
+	\end{enumerate}
+
+\newpage
+
+%\section{Hauteur de neige - P\_snow - SR50A}
+
+%\subsection{Principe de mesure et unité}
+
+%\subsection{Positionnement du capteur}
+
+%\subsection{Maintenance du capteur}
+
+%\subsection{Calibration et dérive du capteur}
+
+%\newpage
+
+\section{Les mesures de rayonnement - SWin, SWout, LWin, LWout - CNR4 }
+
+\subsection{Principe de mesure et unité}
+La mesure du rayonnement est basé sur le mesure simultanée de 4 capteurs : 2 pour le rayonnement solaire (ondes courtes ou short wave - SW) appelés pyranomètres (Fig. 4), 2 pour le rayonnement infrarouge lointain (ondes longues ou long wave - LW) pyrgéomètres (Fig. 4). 
+
+%		\begin{figure}[h] 
+		%	\includegraphics[width=10cm]{NetRad_1.jpg}
+			%\caption{Les 2 capteurs sur la gauche correspondent aux pyrgeomètres et les 2 sur la droite au pyranomètres. Les 2 capteurs orientés vers le haut enregistrent les rayonnement entrant et les 2 orientés vers le bas (caché par un bouclier de protection) mesurent le rayonnement sortant.}
+			%\label{Fig.4}
+		%\end{figure}
+
+Pour chaque type d'onde, un capteur est positionné vers le haut et le deuxième vers le bas. La séparation de tous les capteurs permet d'obtenir un large spectre de variable: 
+
+	\begin{itemize}
+		\item rayonnement solaire global ou ondes courtes entrantes: SW$_{in}$
+		\item rayonnement solaire réfléchi ou ondes courtes sortantes: SW$_{out}$
+		\item rayonnement infrarouge émis par le ciel ou ondes longues entrantes: LW$_{in}$
+		\item rayonnement infrarouge émis par le sol ou ondes longues sortantes: LW$_{out}$
+		\item SW "albedo"
+		\item "sky temperature"
+		\item "ground surface temperature"
+		\item rayonnement net: NetRad 
+	\end{itemize}
+	
+
+Pour calculer les rayonnement, il faut diviser les signaux transmis en volt: "U", par une constante "E" représentant la sensibilité du capteur. Le rayonnement net est ensuite calculé à partir des 4 composants mesurés (SW$_{in}$, SW$_{out}$, LW$_{in}$, LW$_{out}$) de la façon suivante\footnote[1]{La température T$_{pyrgeo}$ pour les formules suivantes doivent être en Kelvin. Si les températures mesurées sont en Celsius, ajouter 273.15}:
+
+\begin{align}
+$  SW$_{in}$ $&=$ U$_{pyrano, up}$/E$_{pyrano, up}$  $\\
+$  SW$_{out}$ $&=$ U$_{pyrano, down}$/E$_{pyrano, down}$  $\\
+$  LW$_{in}$ $&=$ (U$_{pyrgeo, up}$/E$_{pyrgeo, up}$) + 5.67 $10^{-8}$(T$_{pyrgeo}$)$^{4}$  $\\
+$  LW$_{out}$ $&=$ (U$_{pyrgeo, down}$/E$_{pyrgeo, down}$) + 5.67 $10^{-8}$(T$_{pyrgeo}$)  $\\
+$  SW$_{net}$ $&=$ U$_{pyrano, up}$/E$_{pyrano, up}$ - U$_{pyrano, down}$/E$_{pyrano, down}$  $\\
+$  LW$_{net}$ $&=$ U$_{pyrgeo, up}$/E$_{pyrgeo, up}$ - U$_{pyrgeo, down}$/E$_{pyrgeo, down}$  $\\
+$  NetRad $&=$ SW$_{net}$ + LW$_{net}$  $
+\end{align}
+
+En plus du rayonnement net, d'autre variables peuvent être calculées
+
+\begin{align}
+$  SW$_{albedo}$ $&=$ SW$_{out}$/SW$_{in}$  $\\
+$  T$_{surface}$ $&=$ (LW$_{out}$/5.67 $10^{-8}$)$^{1/4}$  $\\
+$  T$_{sky}$ $&=$ (LW$_{in}$/5.67 $10^{-8}$)$^{1/4}$  $
+\end{align}
+
+\subsection{Positionnement du capteur}
+
+\subsection{Maintenance du capteur}
+
+\subsection{Calibration et dérive du capteur}
+La qualité des données peut être suivie en analysant les tendances du signal absolu du SWin, de l'albedo, de la corrélation entre SW$_{in}$ et LW$_{in}$, SW pendant la nuit, et la corrélation entre LW$_{out}$ et la température de surface. 
+
+
+\subsection{Informations complémentaires}
+Les capteurs de rayonnement sont passifs et n'ont donc pas besoin d'être branchés à une batterie. Cependant, le pyrgéomètre peut être chauffé pour éviter la formation de buée.
+
+\newpage
+
+\section{Densité du flux de photons photosynthétiques - PPFD - SKP215}
+
+\subsection{Principe de mesure et unité}
+
+\subsection{Positionnement du capteur}
+
+\subsection{Maintenance du capteur}
+
+\subsection{Calibration et dérive du capteur}
+
+\newpage
+
+%\section{Normalized Difference Vegetation Index - NDVI - Orsay}
+
+%\subsection{Principe de mesure et unité}
+
+%\subsection{Positionnement du capteur}
+
+%\subsection{Maintenance du capteur}
+
+%\subsection{Calibration et dérive du capteur}
+
+%\newpage
+
+\section{Vitesse du vent - WS - WindSonic}
+
+\subsection{Principe de mesure et unité}
+Le capteur WindSonic (Gill) 2D mesure le temps mis par un pulse d'ultrason pour parcourir la distance entre le transducteur nord (N) et le transducteur sud (S) et il le compare avec le temps mis par un pulse d'ultrason pour parcourir la distance entre le transducteur sud (S) et le transducteur nord (N, Fig. 5). De même, les temps entre les transducteurs ouest (W) et l'est (E), et est et ouest sont comparés. La vitesse du vent peut alors être calculée à partir des différences de temps de vol sur chaque axe (Figure 6). Ce calcul est indépendant de la température.
+
+	\begin{figure}[h] 
+		\includegraphics[width=10cm]{WindSonic.jpg}
+		\caption{Positions des transducteurs sur le WindSonic.}
+		\label{Fig.5}
+	\end{figure}
+
+
+L'unité de mesure est le mètre par seconde, m.s$^{-1}$.
+
+L'étendue de mesure va de 0 à 60 m.s$^1$, avec une précision de l'ordre de 2\% (à 12 m.s$^{-1}$). La résolution de la mesure est de 0.01 m.s$^{-1}$.
+	
+
+\subsection{Positionnement du capteur}
+Avant l'installation sur le terrain, le bon fonctionnement du capteur devra être vérifié au laboratoire : cablage électrique, unité, acquisition. Sur le terrain, le capteur doit être placé sur un tube vertical de manière à réaliser une mesure horizontale.
+
+	\begin{figure}[h] 
+		\includegraphics[width=7cm]{WindSonic2.jpg}
+		\caption{Calcul de la vitesse du vent avec l'anémomètre à ultrasons.}
+		\label{Fig.6}
+	\end{figure}
+
+Une attention particulière sera donnée à la bonne orientation du capteur. Une flèche gravée sur le capteur indiquant le nord doit être placé en direction du \textbf {nord géographique}. Le nord magnétique ne correspond pas au nord  géographique. Le jour de l'installation du capteur, ll faut déterminer la déclinaison magnétique terrestre, soit l'angle en un point donné du globe entre le pôle nord magnétique et géographique. Cet angle peut être obtenu, pour la date d'installation du capteur, sur le site suivant: http://www.ngdc.\\noaa.gov/geomag-web/\#declination.
+
+La vitesse du vent intervient dans l'équation de Penman-Monteith pour calcul de l'évapotranspiration. Cette équation a pour présupposé que toutes les mesures des variables intervenant dans l'équation sont réalisées à 2 m au dessus de la surface du sol. Si possible, le capteur sera donc disposé à une hauteur de 2 m au dessus de la surface de chaque tourbière. Dans tous les cas, la hauteur à laquelle se trouve le capteur devra être mentionnée dans les métadonnées de cette variable.
+
+Il devra être vérifié que le transmission GPRS  et qu'aucun obstacle physique (autres partie de la station météo, arbres à proximité) n'affecte la mesure.
+
+\subsection{Maintenance du capteur}
+Il faut veiller à ce qu'il n'y est aucun obstacle sur le parcours des ultrasons entre les transducteurs. Ne pas enlever ou détériorer le capuchon en caoutchouc couvrant les transducteurs. S'il y a accumulation d'un dépôt quelconque sur le transducteur, il devra être retiré avec un tissu imbiber de détergent peu concentré. Il ne faut surtout pas utiliser de solvants et il faut éviter les rayures. Si le capteur est pris dans la glace, il faut laisser la glace fondre et ne surtout pas essayer d'enlever la glace ou la neige avec un outil.
+
+Il n'y a pas de partie amovible nécessitant une maintenance en routine. Il ne faut surtout pas démonter le capteur au risque de l'endommager et de perdre la garantie.
+
+En cas de mauvais fonctionnement, vérifier le cablage. Si le cablage est bon, ramener le capteur au laboratoire pour faire des tests. Si le problème persiste, il faut contacter le fournisseur.
+
+
+
+\subsection{Calibration et dérive du capteur}
+Le capteur de vitesse du vent WindSonic est calibré en usine et n'a pas besoin de quelconques ajustements.
+
+\newpage
+
+\section{Direction du vent - WD - Windsonic}
+
+\subsection{Principe de mesure et unité}
+
+
+
+L'unité est en degré, °.
+
+Les valeur vont de 0 à 359°, avec le 0 indiquant la direction du pôle nord géographique, et avec une précision de l'ordre de 3\% (à 12 m.s$^{-1}$). La résolution de la mesure est de 1 °. Les valeurs croissent dans le sens des aiguilles d'une montre (Fig. 7).
+
+	\begin{figure}[h] 
+		\includegraphics[width=14cm]{WindSonic3.jpg}
+		\caption{Correspondance entre les valeurs mesurées, la direction du vent et la polarité UV.}
+		\label{Fig.7}
+	\end{figure}
+
+\subsection{Positionnement du capteur}
+Idem 10.2
+
+\subsection{Maintenance du capteur}
+Idem 10.3
+
+\subsection{Calibration et dérive du capteur}
+Idem 10.4
+
+\subsection{Informations complémentaires}
+La direction du vent n'est pas calculée pour les vitesses de vent inférieures à 0.05 m.s$^{-1}$ et la valeur de direction restera bloquée sur la dernière valeur mesurée jusqu'à qu'une nouvelle direction puisse être calculée.
+
+\newpage
+
+\section{Humidité relative de l'air - RH - HUMICAP(r) (HMP155A)}
+
+\subsection{Principe de mesure et unité}
+Le capteur d'humidité se situe dans la sonde HMP155A qui mesure également la température (cf section 5)
+
+La mesure de l'humidité est réalisée par un capteur capacitif constitué d'un film fin de polymère HUMICAP(r) (3 dans Fig. 2). Le capteur contient un condensateur dont le diélectrique est sensible à l'humidité. Le capteur HMP155A mesure l'humidité relative de l'air sur une gamme allant de 0 à 100\%.
+
+L'unité est le pourcentage de saturation en eau de l'air, \%. 
+
+
+\subsection{Positionnement du capteur}
+Idem 5.2.
+
+\subsection{Maintenance du capteur}
+Le capteur d'humidité HUMICAP(r) peut être changé:
+	\begin{enumerate}
+		\item Enlever le filtre de la sonde.
+		\item Vérifier le joint torique, le changer si nécessaire.
+		\item enlever le capteur défectueux (3 dans Fig. 2) et le remplacer par un nouveau. ATTENTION : manipuler le nouveau capteur en le laissant dans son plastique, IL NE FAUT PAS TOUCHER LE CAPTEUR.
+		\item calibrer le capteur
+		\item mettre un nouveau filtre.
+	\end{enumerate}
+	
+Pour la maintenance de la sonde, voir 5.3.
+
+\subsection{Calibration et dérive du capteur}
+Le capteur HUMICAP(r) de la sonde HMP155A est calibré par le fabricant. Il est recommandé de renouveler la calibration tous les ans et que celle-ci soit réalisée par Vaisala (voir www.vaisala.com/returns).
+
+Cependant, la calibration peut être réalisée au laboratoire dans la condition standard de tempréature ($25\,^{\circ}\mathrm{C}$)avec la méthode de la solution en sel saturée. Une solution de sel saturé dans un container étanche à l'air a la propriété de maintenir une humidité de l'air approximativement constante. L'humidité atteinte dépend de la nature du sel: 11\% pour LiCl$_2$, 33\% pour MgCl$_2$, 43\% pour K$_2$CO$_3$, 75\% pour NaCl$_2$ et 97\% pour K$_2$SO$_4$. Les deux humidités relatives de calibration doivent avoir une différence d'au moins 30\%. La calibration peut se faire avec deux point de mesure comme suit:
+	\begin{enumerate}
+		\item Accéder aux boutons d'ajustement en dévissant le capuchon de protection (1 dans la Fig. 3) et le scellé de calibration.
+		\item relever le couvert de protection (5 dans la Fig. 3)pour voir les boutons d'ajustement (2, 3 et 4 dans la Fig. 3). Il y a également une LED à 2 couleurs.
+		\item Presser le bouton d'ajustement ADJ (celui correspondant au rectangle, 3 dans la Fig. 3) jusqu'à que la LED s'allume en vert. La sonde HMP155A est alors en mode calibration.
+		\item Enlever le filtre et insérer la sonde dans une chambre contenant la solution de calibration "sèche" (e.g. LiCl$_2$). ATTENTION : ne pas toucher le bouton d'ajustement avant la stabilisation des conditions. Cela peut prendre environ 30 minutes.
+		\item En utilisant les boutons + et -, réaliser l'ajustement du gain pour l'humidité basse pour s'assurer que le voltage A$_{out}$ est correct, puis appuyer sur le bouton ADJ. La LED verte s'éteint puis se rallume.
+		\item Insérer la sonde dans une chambre contenant la solution de calibration "humide" (e.g. NaCl$_2$). ATTENTION : ne pas toucher le bouton d'ajustement avant la stabilisation des conditions. Cela peut prendre environ 30 minutes.
+		\item En utilisant les boutons + et -, réaliser l'ajustement du gain pour l'humidité haute pour s'assurer que le voltage A$_{out}$ est correct. Pour finir la calibration, presser le bouton ADJ et la LED rouge s'allume.
+		\item Presser ensuite le bouton ADJ 2 fois et la lumière s'éteint. La sonde HMP155A quitte ainsi le mode calibration.
+	\end{enumerate}
+
+La dérive du capteur sur le terrain peut être suivie au moins une fois tous les 6 mois en effectuant le même mode opératoire que la calibration, mais sans réaliser les ajustements (ne pas mettre le capteur en mode calibration), c'est à dire en plaçant la sonde dans des containers contenant différentes solutions salines saturées et en réalisant une lecture simple de l'humidité de l'air des containers.
+
+\newpage
+
+\section{Température de l'air - Ta - Pt100 (HMP155A)}
+
+\subsection{Principe de mesure et unité}
+Le capteur de température se situe dans la sonde HMP155A qui mesure également l'humidité relative (cf section 6)
+
+La mesure de la température est réalisée par un thermomètre à résistance de platine (Pt100, 4 dans Fig. 2). Le principe de mesure de ce capteur est basé sur le fait que la résistivité électrique du platine varie avec la température.
+
+La sonde HMP155A mesure la température de l'air sur une gamme allant de $-80\,^{\circ}\mathrm{C}$ à $+60\,^{\circ}\mathrm{C}$.
+
+L'unité est de dégré Celsius, $^{\circ}\mathrm{C}$. 
+	
+	\begin{figure}[h] 
+		\includegraphics[width=8cm]{HMP155A_bis.jpg}
+		\caption{Les capteurs de la sonde HMP155A: 1 = filtre, 2 = joint torique, 3 = capteur d'humidité HUMICAP(r), 4 = capteur de température Pt100.}
+		\label{Fig.2}
+	\end{figure}
+
+\subsection{Positionnement du capteur}
+La sonde HMP155A doit être installé dans un abri de type DTR13 (possibilité d'ajouter une sonde de température supplémentaire) ou DTR503.
+
+L'ensemble capteur et abri doivent être placé dans une zone ouverte correspondant à une surface de 9 m de diamètre. La température de l'air intervient dans l'équation de Penman-Monteith pour calcul de l'évapotranspiration. Cette équation a pour présupposé que toutes les mesures des variables intervenant dans l'équation sont réalisées à 2 m au dessus de la surface du sol. Le capteur de température seront donc disposé à une hauteur de 2 m au dessus de la surface de chaque tourbière.
+
+\subsection{Maintenance de la sonde}
+Si la sonde doit être nettoyé, utilisez un chiffon non-pelucheux mouillé avec un détergent relativement faible.
+
+Si le filtre reste sale après le nettoyage, il faut le remplacer. Vérifiez que le joint torique est encore en bon état, sinon, changez-le.
+
+\subsection{Calibration et dérive du capteur}
+Le capteur Pt100 de la sonde HMP155A est calibré par le fabricant. Il est recommandé de renouveler la calibration tous les ans et que celle-ci soit réalisée par Vaisala (voir www.vaisala.com/returns).
+
+Cependant, la calibration peut être réalisée au laboratoire en utilisant une enceinte capable de réguler la température (e.g. phytotron). Les deux températures de calibration doivent avoir une différence d'au moins $30\,^{\circ}\mathrm{C}$. La calibration peut se faire comme suit:
+	\begin{enumerate}
+		\item Accéder aux boutons d'ajustement en dévissant le capuchon de protection (1 dans la Fig. 3) et le scellé de calibration.
+		\item relever le couvert de protection (5 dans la Fig. 3)pour voir les boutons d'ajustement (2, 3 et 4 dans la Fig. 3). Il y a également une LED à 2 couleurs.
+		\item Presser le bouton d'ajustement ADJ (celui correspondant au rectangle, 3 dans la Fig. 3) jusqu'à que la LED s'allume en vert. La sonde HMP155A est alors en mode calibration.
+		\item Enlever le filtre et insérer la sonde dans une enceinte dont la température est connue et laisser la lecture se stabiliser. ATTENTION : ne pas toucher le bouton d'ajustement avant la stabilisation des conditions.
+		\item En utilisant les boutons + et -, réaliser l'ajustement de la température en s'assurant que le voltage A$_{out}$ est correct, puis appuyer sur le bouton ADJ. La LED verte s'éteint puis se rallume.
+		\item Insérer la sonde dans une enceinte dont la température est différente de la première et laisser le température se stabiliser. ATTENTION : ne pas toucher le bouton d'ajustement avant la stabilisation des conditions.
+		\item En utilisant les boutons + et -, réaliser l'ajustement de la température en s'assurant que le voltage A$_{out}$ est correct. Pour finir la calibration, presser le bouton ADJ et la LED rouge s'allume.
+		\item Presser ensuite le bouton ADJ 2 fois et la lumière s'éteint. La sonde HMP155A quitte ainsi le mode calibration.
+	\end{enumerate}
+	
+
+	\begin{figure}[h] 
+		\includegraphics[width=10cm]{HMP155A_ter.jpg}
+		\caption{Les boutons d'ajustements pour la calibration des capteurs de la sonde HMP155A: 1 = capuchon de protection (dévissée), 2 = bouton pour diminuer, 3 = bouton ADJ, 4 = bouton pour augmenter, 5 = couvert de protection des bouton relevé.}
+		\label{Fig.3}
+	\end{figure}
+
+La dérive du capteur sur le terrain peut être suivie au moins une fois tous les 6 mois en effectuant des mesures de températures au même endroit et dans les même conditions avec un autre capteur (un autre HMP155A, une autre marque, voir un thermomètre à mercure).
+
+\subsection{Informations diverses}
+Le capteur consomme moins de 3 mA (courant à 12 V). Deux secondes de mise en chauffe sont nécessaires. Pour des vitesses d'acquisition plus lentes qu'une mesure toutes les 5 secondes, la sonde peut être commutée pour économiser la batterie.
+
+\newpage
+
+\section{Température du sol - Ts - 107}
+
+\subsection{Principe de mesure et unité}
+La sonde 107 utilise un thermistor pour mesurer la température. Un thermistor est une résistance dont la résistance est fonction de la température. Cette relation n'étant linéaire que sur une faible gamme de température, l'équation de Steinhart-Hart est préférée (polynome d'ordre 3). Dans le pire des cas, la précision atteind +/- 0.4°C sur la gamme -24°C - 48°C.
+
+La sonde applique une tension d'excitation V$_x$ de 2500 mV à un thermistor de 1 kohm et mesure la chute de tension (tension mesurée V$_s$). La résistance R$_s$ est calculée de la manière suivante:
+		\begin{equation}
+		V_s/V_x = 1000 /  (R_s + 249000 + 1000)
+		\end{equation} 
+		
+Ensuite, la résistance R$_s$ est convertie en température (°C) avec l'équation de Steinhart-Hart:
+		\begin{equation}
+		T = 1 /  (A + B(LnR_s) + C(LnR_s)^3) - 273.15
+		\end{equation}
+Avec:
+
+\
+
+A = 8.271111 x 10$^{-4}$
+
+\
+
+B = 2.088020 x 10$^{-4}$
+
+\
+
+C = 8.059200 x 10$^{-8}$
+		
+
+\subsection{Positionnement du capteur}
+La position des capteurs de physique du sol sont décrits dans la section ??.
+
+\subsection{Maintenance du capteur}
+La 107  n'a pas besoin d'une maintenance périodique.
+
+\subsection{Calibration et dérive du capteur}
+Il n'est pas nécessaire de faire de calibration.
+
+\newpage
+
+\section{Teneur en eau du sol - SWC - CS650}
+
+\subsection{Principe de mesure et unité}
+La sonde CS650 est une sonde multiparamètre permettant de mesurer la teneur volumétrique en eau, la conductivité électrique, la permittivité diélectrique et la température du sol dans lequel elle est placée. 
+
+La sonde est composée de 2 broches en acier inoxydable de 30 cm de longueur. La mesure est basée sur la sensibilité du capteur à la permittivité diélectrique du milieu entourant les broches. La teneur en eau est le principal facteur déterminant la permittivité diélectrique d'un milieu. Après une calibration, il est possible d'estimer une teneur en eau à partir de la permittivité diélectrique.
+
+La sonde CS650 est configurée de manière a fonctionner comme un réflectomètre, avec les 2 broches formant une ligne de transmission ouverte en partie terminale. Un signal électrique est émis, puis il est réfléchit lorsqu'il arrive au bout de la broche et il revient à son point initial. La vitesse à laquelle l'onde électromagnétique effectue l'aller-retour varie en fonction de la permittivité électrique du matériau atour du capteur. La permittivité augmente avec l'augmentation de la teneur en eau et diminue avec la diminution de la teneur en eau. La permittivité est mesuré en Farad par mètre (F m$^{-1}$).
+
+La conductivité électrique est mesurée en excitant une broche avec une onde de fréquence connue et en mesurant l'atténuation du signal. Elle est exprimée en Siemens par mètre (S m$^{-1}$).
+
+La température est mesurée avec une thermistance en contact avec une des broches. Elle est exprimée en degré Celsius (°C).
+
+Une fois calibré, la sonde peut donner des valeurs de teneur en eau du sol en mm$^3$ par mm$^3$.
+
+\subsection{Variable de sortie}
+Le capteur CS650 donne 6 variables de sorties:
+
+	\begin{enumerate}
+		\item Volumetric Water Content : VWC
+		\item Bulk Electrical Conductivity : EC (dS/m)
+		\item Soil temperature
+		\item Bulk Dielectric Permittivity : Ka
+		\item Period Average : PA ($µ$s)
+		\item Voltage Ratio : VR	
+	\end{enumerate}
+
+Ces variables de sorties seront stockées dans le dossier "Data brutes" placé sur le serveur ftp SNO Tourbières de l'OSUC. ATTENTION: la teneur en eau donnée par la sonde est indicative, mais elle n'est pas correcte, parce qu'elle a été calculée avec une courbe de calibration estimée avec des sols minéraux.
+
+
+\subsection{Positionnement du capteur}
+La position des capteurs de physique du sol sont décrits dans la section ??.
+
+\subsection{Maintenance du capteur}
+La sonde CS650  n'a pas besoin d'une maintenance périodique.
+
+\subsection{Calibration}
+L'équation de calibration utilisée par la sonde CS650 est l'équation de Topp et al. (1980). Cette équation marche bien pour les sols minéraux, mais sous-estime les teneurs en eau pour les sols organiques volcaniques et à fines textures. Dans le cadre du SNO, une calibration doit être réalisées pour obtenir une calibration spécifique. Elle permettra de relier les valeur de permittivité à la teneur en eau mesurée par une une méthode indépendante.
+
+Cette équation peut-être une équation linéaire ou quadratique ou un polynome d'ordre 3. Ces équations ont besoin d'un minimum de 2, 3 et 4 points de calibration, respectivement. Ces points doivent être choisis de manière à couvrir toute la gamme de valeur de teneur en eau: basses eaux, hautes eaux et intermédiaires.
+
+La teneur en eau des échantillons prélevé sur le terrain sera mesurée par gravimétrie au laboratoire selon le protocole suivant:
+
+	\begin{enumerate}
+		\item A proximité du profil de teneur en eau, une tranchée est creusée avec un front de taille "propre". 
+		\item Ensuite, avec un cylindre en fer de volume V et de masse connus, un échantillon est prélevé horizontalement dans le front de taille. 
+		\item 3 réplicats par profondeur sont prélevés (grande variabilité spatiale, surtout en surface).
+		\item Cette opération est répétées pour chaque profondeur où se trouve une CS650.
+		\item Le cylindre contenant l'échantillon est scéllé à ces extrémités pour ne pas perdre de l'eau.
+		\item Au laboratoire,l'échantillon humide est pesé: m$_humide$ (tourbe humide + cylindre).
+		\item L'échantillon est placé dans une étuve à 105°C.
+		\item Après 48 heures à l'étuve, l'échantillon est pesé de nouveau: m$_sec$ (tourbe sèche + cylindre).
+		\item La teneur en eau massique SWC$_m$ vaut: 
+				\begin{equation}
+				SWC_m = m_{humide} - m_{sec} /  m_{sec}
+				\end{equation}
+		\item La densité apparente vaut: 
+				\begin{equation}
+				\rho _{bulk} = m_{sec} / V
+				\end{equation}	
+		\item La teneur en eau volumique SWC$_v$ vaut: 
+				\begin{equation}
+				SWC_v = SWC_m * \rho _{bulk}
+				\end{equation}
+				
+	\end{enumerate}
+	
+Cette mesure de teneur en eau correspond à la variable obligatoire #49 "teneur en eau du sol, manuel" du tableau 1.3. Ces données seront stockées dans un fichier placé dans le dossier "Data corrigées". Les paramètres de la courbe de calibration seront stockés dans un fichier log situé dans le dossier "Log2". Une fois les paramètres de la courbe calculés, les teneurs en eau du sol pourront être calculées et stockées dans un fichier contnu dans le dossier "Data corrigées". Cette valeur correspond à la variable # 9 du tableau 1.3, "Teneur en eau du sol".
+	
+
+\subsection{Informations diverses}
+Les broches des CS650 font 30 cm de longueur. Cette taille permet d'échantillonner un grand volume de sol et d'avoir par conséquent une réduction de l'erreur de mesure. Le volume échantillonné s'étend à 7.5 cm autour des broches et 4.5 cm au delà de la fin des broche. Le volume total échantillonné est de 7800 cm$^3$. 
+
+\newpage
+
+\section{Flux de chaleur dans le sol - G - Hukseflux}
+
+\subsection{Principe de mesure et unité}
+
+\subsection{Positionnement du capteur}
+
+\subsection{Maintenance du capteur}
+
+\subsection{Calibration et dérive du capteur}
+
+\newpage
+
+\section{Niveau de la nappe d'eau - GWL - CS451}
+
+\subsection{Principe de mesure et unité}
+La mesure de niveau est réalisée à partir d'une mesure automatisée et fréquente de pression de la colonne d'eau sur le capteur situé dans le piézomètre et d'une mesure manuelle du niveau de la colonne d'eau. La pression de la colonne d'eau mesuré est corrigé en soustrayant la presison atmosphérique également enregistrée par le capteur.
+
+\subsection{Positionnement du capteur}
+Le capteur est situé dans un piézomètre crépiné. Celui-ci doit collecter seulement les eaux de la tourbière (attention, parfois un forage trop profond perçant une nappe sous-jacente induit des mesures erronées).
+
+\subsection{Maintenance du capteur}
+Inspecter visuellement le câblage, vérifier le dessicant, le remplacer si nécessaire.
+
+\subsection{Calibration et dérive du capteur}
+Le fabricant recommande une recalibration tous les 2 ans.
+
+\newpage
+
+\section{Positionnement des capteurs}
+
+\subsection{Mesures dans le sol}
+Le positionnement des sondes du sol correspond aux recommandations ICOS. Horizontalement, les sondes de températures et de teneurs en eau devront être disposées de part et d'autre de la sondes de flux de chaleur dans le sol et séparées de 30 cm au moins ou de 45 cm au plus (Fig. 3.7). Le piézomètre dans lequel sera installé la sonde de niveau d'eau se trouvera à 2 m de la sonde de flux de chaleur dans le sol (Fig. 3.7) 
+
+\
+
+	\begin{figure}[h] 
+		\includegraphics[width=14cm]{sonde_sol_horizontal.jpg}
+		\caption{Distribution horizontale des sondes du sol (protocole ICOS, 2015).}
+		\label{Fig.4}
+	\end{figure}
+
+\
+
+Pour les sites ICOS de niveau 2, au moins deux plots de mesures doivent être installés. Dans chaque plot, deux profils sont mis en place : un profil complet et un profil additionnel pour prendre en compte la variabilité spatiale des variables mesurées, notamment celle du flux de chaleur dans le sol.
+
+Pour le profil complet, seront installées (Fig. 3.8 a): 
+
+	\begin{itemize}
+		\item 5 sondes de températures : -2 cm, -5 cm, -10 cm, -25 cm et -60 cm,
+		\item 3 sondes de teneur en eau du sol : -5 cm, -10 cm et -25 cm,
+		\item 1 sonde de flux de chaleur dans le sol : -5 cm,
+		\item une sonde du niveau de la nappe d'eau.
+	\end{itemize}	
+		
+Des ajustements peuvent être fait selon les contraintes de chaque sites. Dans tous les cas, les profondeurs devront être notées dans le fichier log des variables (cf chapitre 1, dossier Log 1). La dernière sonde de température devrait être installée en dessous du niveau de nappe le plus bas. Les sondes ne sont pas nécessairement alignées. Il serait préférable de les installées en diagonale.
+
+Pour le profil additionnel, seront installées (Fig. 3.8 b) : 
+
+	\begin{itemize}
+		\item 3 sondes de températures : -2 cm, -5 cm et -10 cm, 
+		\item 1 sondes de teneur en eau du sol : -5 cm,
+		\item 1 sonde de flux de chaleur dans le sol : -5 cm,
+	\end{itemize}	
+
+
+\
+
+	\begin{figure}[h] 
+		\includegraphics[width=14cm]{profil_sol.jpg}
+		\caption{Distribution verticale des sondes du sol dans le profil complet (a) et additionnel(b; protocole ICOS, 2015).}
+		\label{Fig.5}
+	\end{figure}
+
+\
+
+
+
+\subsection{Mesures dans l'atmosphère}
+
+
+
+\newpage
+
+\section{Bibliographie}

@@ -1,0 +1,13 @@
+\@@addtocsec{htoc}{sec1}{0}{\@print{1}\quad{}Préambule{}}
+\@@addtocsec{htoc}{sec2}{0}{\@print{2}\quad{}Nature des données{}}
+\@@addtocsec{htoc}{sec3}{0}{\@print{3}\quad{}Définitions{}}
+\@@addtocsec{htoc}{sec4}{0}{\@print{4}\quad{}Propriété intellectuelle{}}
+\@@addtocsec{htoc}{sec5}{0}{\@print{5}\quad{}Modalité d'obtention des données et d'utilisation du système d'information{}}
+\@@addtocsec{htoc}{sec6}{1}{\@print{5.1}\quad{}Conditions d'accès{}}
+\@@addtocsec{htoc}{sec7}{1}{\@print{5.2}\quad{}Inscription{}}
+\@@addtocsec{htoc}{sec8}{0}{\@print{6}\quad{}Droits et obligations{}}
+\@@addtocsec{htoc}{sec9}{1}{\@print{6.1}\quad{}Droits et obligations de Data-SNOT{}}
+\@@addtocsec{htoc}{sec10}{1}{\@print{6.2}\quad{}Droits et obligations de l'Utilisateur{}}
+\@@addtocsec{htoc}{sec11}{0}{\@print{7}\quad{}Responsabilité{}}
+\@@addtocsec{htoc}{sec12}{0}{\@print{8}\quad{}Droit applicable et attribution de juridiction{}}
+\@@addtocsec{htoc}{sec13}{0}{\@print{9}\quad{}Contact et condition spécifiques{}}

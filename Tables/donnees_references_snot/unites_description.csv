@@ -1,0 +1,4 @@
+Nom de la colonne;Signification;Unique;Obligatoire
+code;Code de l'unité;oui;oui
+définition_fr;Définition (en français) de l'unité;non;non
+définition_en;Définition (en anglais) de l'unité;non;non
