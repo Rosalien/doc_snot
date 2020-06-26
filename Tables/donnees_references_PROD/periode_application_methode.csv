@@ -55,3 +55,15 @@ lgt/bm2-meteosol-meteosol_infraj-SWC_2_1_1;lgt-meteosol-meteosol;lgt_swc;30/09/2
 lgt/bm2-meteosol-meteosol_infraj-SWC_2_1_2;lgt-meteosol-meteosol;lgt_swc;30/09/2017;
 lgt/bm2-meteosol-meteosol_infraj-SWC_2_2_1;lgt-meteosol-meteosol;lgt_swc;30/09/2017;
 lgt/bm2-meteosol-meteosol_infraj-SWC_2_3_1;lgt-meteosol-meteosol;lgt_swc;30/09/2017;
+lgt/bm2-meteosol-meteosol_infraj-G_2_1_1;lgt-meteosol-meteosol;G_ICOS;30/09/2017;
+lgt/bm2-meteosol-meteosol_infraj-G_2_1_2;lgt-meteosol-meteosol;G_ICOS;30/09/2017;
+lgt/bm2-meteosol-meteosol_infraj-G_2_1_1;lgt-meteosol-meteosol;lgt_control_meteosol;30/09/2017;
+lgt/bm2-meteosol-meteosol_infraj-G_2_1_2;lgt-meteosol-meteosol;lgt_control_meteosol;30/09/2017;
+lgt/bm1-meteosol-meteosol_infraj-G_1_1_1;lgt-meteosol-meteosol;G_ICOS;03/02/2016;
+lgt/bm1-meteosol-meteosol_infraj-G_1_1_2;lgt-meteosol-meteosol;G_ICOS;03/02/2016;
+lgt/pz_do-hydrocarto-piezo_infraj-WTD;lgt-hydrocarto-piezo;lgt/pz_do_WTD;06/11/2008;
+lgt/pz_wo-hydrocarto-piezo_infraj-WTD;lgt-hydrocarto-piezo;lgt/pz_wo_WTD;18/11/2008;
+lgt/pz_cbdv_amont-hydrocarto-piezo_infraj-WTD;lgt-hydrocarto-piezo;lgt/pz_CBDV_amont_WTD;12/03/2014;
+lgt/pz_dc-hydrocarto-piezo_infraj-WTD;lgt-hydrocarto-piezo;lgt/pz_dc_WTD;15/06/2008;
+lgt/pz_wc-hydrocarto-piezo_infraj-WTD;lgt-hydrocarto-piezo;lgt/pz_wc_WTD;15/06/2008;
+lgt/pz_cbdv_aval-hydrocarto-piezo_infraj-WTD;lgt-hydrocarto-piezo;lgt/pz_CBDV_aval_WTD;12/03/2014;
