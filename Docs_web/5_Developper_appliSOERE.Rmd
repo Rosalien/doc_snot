@@ -53,18 +53,13 @@ Le SI des SOERE est conçu pour fournir des services de gestion, d'intégration,
 De même, l'intégration des données d'observation se veut le plus simple possible, elles sont intégrées sous forme de timeseries (date, valeur, variable).
 En conséquence, le SI SNO-Tourbières conserve seulement quelques modules par rapport au SI F-ORE-T : 
 
-- [snot-core-services-api](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/snot-core-services-api) : Implémentation des fonctionnalité du noyau du SI des SOERE, configuration des entités pour la base de données (contraintes, nom des champs...)
-- [snot-core-services-impl](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app/snot-core-services-impl) : JPA-DAO et recorder des données de référence et autres fonctionnalité du noyau.
-- [snot-core-ui-jsf](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/snot-core-ui-jsf) : Implémentation de l'inteface jsf/hibernate des fonctionnalités du noyau.
-- [snot-fluxmeteo-services-api](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/snot-fluxmeteo-services-api) : Implémentation des fonctionnalités d'intégration des données d'observation, configuration des tables d'intégration des données d'observation.
-- [snot-fluxmeteo-services-impl](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/snot-fluxmeteo-services-impl) : JPA-DAO,recorder et dataset-descriptor des données d'observation.
-- [snot-fluxmeteo-ui-jsf](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/snot-fluxmeteo-ui-jsf) : Implémentation de l'inteface jsf/hibernate des fonctionnalités du noyau pour l'intégration des données d'observation.
-- [snot-web](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/snot-web) : Contenu de l'application web (xhtml, css, configuration du thème primefaces...)
-
-Les deux modules d'extraction ont été conservés mais ne sont pas utilisés : 
-
-- [snot-fluxmeteo-extraction-impl](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/snot-fluxmeteo-extraction-impl) : Implémentation des fonctionnalités d'extration pour tous les types de données.
-- [snot-fluxmeteo-extraction-ui-jsf](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/snot-fluxmeteo-extraction-ui-jsf) : Implémentation de l'inteface jsf/hibernate des fonctionnalités du noyau pour l'extraction des données.
+- snot-core-services-api : Implémentation des fonctionnalité du noyau du SI des SOERE, configuration des entités pour la base de données (contraintes, nom des champs...)
+- snot-core-services-impl : JPA-DAO et recorder des données de référence et autres fonctionnalité du noyau.
+- snot-core-ui-jsf : Implémentation de l'inteface jsf/hibernate des fonctionnalités du noyau.
+- snot-fluxmeteo-services-api : Implémentation des fonctionnalités d'intégration des données d'observation, configuration des tables d'intégration des données d'observation.
+- snot-fluxmeteo-services-impl : JPA-DAO,recorder et dataset-descriptor des données d'observation.
+- snot-fluxmeteo-ui-jsf : Implémentation de l'inteface jsf/hibernate des fonctionnalités du noyau pour l'intégration des données d'observation.
+- snot-web : Contenu de l'application web (xhtml, css, configuration du thème primefaces...)
 
 ## Ajout de nouvelles données de référence 
 
@@ -170,11 +165,6 @@ langue par défaut qui est retournée par nextToken. Sinon cette valeur est stoc
 </dataset-descriptor>
 ```
 
-<div class="alert alert-info" role="alert">
-  <h4 class="alert-heading">**Exemple d'un dataset-descriptor**</h4>
-  <p>`r linkAlertCSS("dataset-descriptor-piezo-infra-journalier.xml","https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_snot/snot-fluxmeteo-services-impl/src/main/resources/org/cnrs/osuc/snot/dataset/fluxmeteo/impl/hydro/dataset-descriptor-piezo-infra-journalier.xml")`</p>
-</div>
-
 ## Modification des beans.xml
 
 Un bean.xml est présent dans chaque répertoire contenant les dataset-descriptor. Rajouter dans ce bean tous paramètres nécessaires. Dans tous les cas, on utilisera le **processRecord**, le **deleteRecord** et l'**expertEnTete** de meteosol infrajournalier : 
@@ -190,11 +180,6 @@ Un bean.xml est présent dans chaque répertoire contenant les dataset-descripto
         <property name="publicationDAO" ref="publicationMeteo_sh" />
     </bean>
 ```
-
-<div class="alert alert-info" role="alert">
-  <h4 class="alert-heading">**Exemple du bean hydro-beans.xml**</h4>
-  <p>`r linkAlertCSS("hydro-beans.xml","https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_snot/snot-fluxmeteo-services-impl/src/main/resources/org/cnrs/osuc/snot/dataset/fluxmeteo/impl/hydro/hydro-beans.xml")`</p>
-</div>
 
 ## Modification du dataset-snot-bean.xml
 
@@ -284,12 +269,12 @@ Il suffit de rajouter la nouvelle variable dans le fichier :
 
 # Mise à jour de l'application
 
-Il est possible de mettre à jour l'application en fonction **des évolutions mineures** apportées sur le noyau du SI des SOERE (correction de bug). Dans ce cas, il est simplement nécessaire de modifier la version du noyau dans le [pom.xml](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_snot/pom.xml) : 
+Il est possible de mettre à jour l'application en fonction **des évolutions mineures** apportées sur le noyau du SI des SOERE (correction de bug). Dans ce cas, il est simplement nécessaire de modifier la version du noyau dans le pom.xml :
 
 Modifier cette partie avec la nouvelle version : 
 
 ```{r, engine = 'xml',class.source='klippy',eval=FALSE}
-<kernel.version>1709.09</kernel.version>
+<kernel.version>1912.01</kernel.version>
 ```
 
 Ensuite, il sera nécessaire de recompiler l'application et de la déployer en suivant [ces recommandations](https://sourcesup.renater.fr/www/si-snot/5_Deploiement_appliSOERE.html).

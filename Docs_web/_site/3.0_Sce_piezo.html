@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Le type de données piezo</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Doc SNO-T</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-database"></span>
+     
+    Les données du SNO-T
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Découverture du SI SNO-T</li>
+    <li>
+      <a href="1_Decouverte_OrganisationDonnees.html">Organisation des données</a>
+    </li>
+    <li>
+      <a href="1_Decouverte_DonneesDiffusees.html">Les variables du SI SNO-T</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Stockage des données brutes</li>
+    <li>
+      <a href="2_SRVSO_Arborescence.html">Arborescence du serveur de stockage SRV-SO</a>
+    </li>
+    <li>
+      <a href="2_SRVSO_DonneesReferences.html">Les données de référence du SRV-SO</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Stockage et diffusion des données cibles</li>
+    <li>
+      <a href="2_BDD_SNOT_DonneesReference.html">Les données de référence du SI SNO-T</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-book"></span>
+     
+    GES &amp; météo-sol
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Type de données eddy-covariance</li>
+    <li>
+      <a href="3.0_Sce_eddycovariance.html">Cycle de vie des données eddy-covariance</a>
+    </li>
+    <li>
+      <a href="3.1_Sce_eddycovariance.html">1. Collecte des données brutes</a>
+    </li>
+    <li>
+      <a href="3.2a_Sce_eddycovariance.html">2a. Formatage au format ICOS</a>
+    </li>
+    <li>
+      <a href="3.2b_Sce_eddycovariance.html">2b. Calcul des flux de GES</a>
+    </li>
+    <li>
+      <a href="3.3_Sce_eddycovariance.html">3. Intégration dans data-snot.cnrs.fr</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Données des chambres CO2</li>
+    <li>
+      <a href="3.0_Sce_chambreco2.html">Cycle de vie des données des chambres CO2</a>
+    </li>
+    <li>
+      <a href="3.1_Sce_chambreco2.html">1. Collecte des données brutes</a>
+    </li>
+    <li>
+      <a href="3.3_Sce_chambreco2.html">3. Intégration dans data-snot.cnrs.fr</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Type de données météo-sol</li>
+    <li>
+      <a href="3.0_Sce_meteosol.html">Cycle de vie des données météo-sol</a>
+    </li>
+    <li>
+      <a href="3.1_Sce_meteosol.html">1. Collecte des données brutes</a>
+    </li>
+    <li>
+      <a href="3.2a_Sce_meteosol.html">2a. Formatage au format ICOS</a>
+    </li>
+    <li>
+      <a href="3.2b_Sce_meteosol.html">2b. Traitement des données météosol</a>
+    </li>
+    <li>
+      <a href="3.3_Sce_meteosol.html">3. Intégration dans data-snot.cnrs.fr</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-book"></span>
+     
+    Hydro &amp; Biogéochimie
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Type de données provenant des piézomètres</li>
+    <li>
+      <a href="3.0_Sce_piezo.html">Cycle de vie des données des piézomètres</a>
+    </li>
+    <li>
+      <a href="3.1_Sce_piezo.html">1. Collecte des données brutes</a>
+    </li>
+    <li>
+      <a href="3.3_Sce_piezo.html">3. Intégration dans data-snot.cnrs.fr</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Type de données Carbone Organique Dissous (DOC)</li>
+    <li>
+      <a href="3.0_Sce_doc.html">Cycle de vie des données DOC</a>
+    </li>
+    <li>
+      <a href="3.1_Sce_doc.html">1. Collecte des données brutes</a>
+    </li>
+    <li>
+      <a href="3.3_Sce_doc.html">3. Intégration dans data-snot.cnrs.fr</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-hand-o-right"></span>
+     
+    Aide
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Utiliser data-snot.cnrs.fr</li>
+    <li>
+      <a href="4_AdminDonnees.html">Gestion des données de référence</a>
+    </li>
+    <li>
+      <a href="4_IntegrationDonnees.html">Intégration des données d'observation</a>
+    </li>
+    <li>
+      <a href="4_IntegrationNvelleDonnees.html">Comment intégrer une nouvelle donnée ?</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Démarche suite</li>
+    <li>
+      <a href="4_JeuxDonneesDOI.html">Les jeux de données et les DOI</a>
+    </li>
+    <li>
+      <a href="4_Echange_SITheiaOzcar.html">L'échange avec le SI Theia/OZCAR</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Améliorer data-snot.cnrs.fr</li>
+    <li>
+      <a href="4_Forge.html">Utilisation de la Forge SNOT</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa fa fa-gears"></span>
+     
+    Procédures techniques
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Prendre en main le SI SNOT</li>
+    <li>
+      <a href="5_Architecture_SI-SNOT.html">Architecture du SI</a>
+    </li>
+    <li>
+      <a href="5_MO_VersionnementGit.html">Le Dépôt Git</a>
+    </li>
+    <li>
+      <a href="5_Administrer_SRVSO.html">Administrer le FTP SRV-SO</a>
+    </li>
+    <li>
+      <a href="5_Administrer_PostgresQL.html">Serveur de base de données</a>
+    </li>
+    <li>
+      <a href="5_Creation_documentation.html">Mise à jour de la documentation</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Administrer l'application data-snot.cnrs.fr</li>
+    <li>
+      <a href="5_Developper_appliSOERE.html">Guide de développement</a>
+    </li>
+    <li>
+      <a href="5_Deploiement_appliSOERE.html">Déployer data-snot.cnrs.fr</a>
+    </li>
+    <li>
+      <a href="5_Gestion_appliSOERE.html">Maintenance de data-snot.cnrs.fr</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Administrer les applications Shiny</li>
+    <li>
+      <a href="5_Administrer_shiny.html">Installer et administrer les applications Shiny</a>
+    </li>
+    <li>
+      <a href="5_Developper_shiny.html">Développer les applications Shiny</a>
+    </li>
+    <li>
+      <a href="5_Deploiement_shiny.html">Déployer les applications Shiny</a>
+    </li>
+    <li>
+      <a href="5_Probleme_shiny.html">Quoi faire en cas de problème sur les applications Shiny</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Métadonnées PIVOT (SI Theia/OZCAR)</li>
+    <li>
+      <a href="5_Developper_MetadataPivot.html">Développer le module de création des métadonnées PIVOT</a>
+    </li>
+    <li>
+      <a href="5_Deploiement_MetadataPivot.html">Déployer le module de création des métadonnées PIVOT</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Le type de données <code>piezo</code></h1>
+
+</div>
+
+
+<div class="alert alert-success" role="alert">
+<h4 class="alert-heading">
+<strong>Objectifs et contenu</strong>
+</h4>
+<p>
+Décrire le cycle de vie général du type de données <code>piezo</code>
+</p>
+</div>
+<div class="alert alert-info" role="alert">
+<h4 class="alert-heading">
+<strong>Public visé et pré-requis</strong>
+</h4>
+<p>
+Thématiciens et gestionnaires des données provenant des piézomètres,
+</p>
+<p>
+Connaissance générale de l'organisation des données du SI SNO-T.
+</p>
+</div>
+<div id="le-type-de-données-piezo" class="section level1">
+<h1><span class="header-section-number">1</span> Le type de données <code>piezo</code></h1>
+<p>Le type de données <code>piezo</code> correspond à l'ensemble des données collectées sur les piézomètres du SNOT.</p>
+</div>
+<div id="étape-du-cycle-de-vie" class="section level1">
+<h1><span class="header-section-number">2</span> Étape du cycle de vie</h1>
+<div class="figure">
+<img src="Fig/Diagramme_piezo.png" />
+
+</div>
+<p>Les étapes du cycle de vie du type de données <code>piezo</code> sont présentées ci-dessous. La table complète avec d'autres attributs est accessible à cette <a href="https://github.com/Rosalien/doc_snot/raw/master/Tables/donnees_references_srvso/Caracteristiques_typedefichiers.csv">adresse.</a></p>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+nom_etape
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+description
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+frequence
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+duree
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1_Collecte
+</td>
+<td style="text-align:left;">
+Collecte et stockage des données brutes des données piézométriques pour chacun des sites
+</td>
+<td style="text-align:left;">
+1/30min ou 1/60min
+</td>
+<td style="text-align:left;">
+variable
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2_Traitement
+</td>
+<td style="text-align:left;">
+Compilation, vérification des données et calcul des variables cibles (WTD et TW)
+</td>
+<td style="text-align:left;">
+1/30min ou 1/60min
+</td>
+<td style="text-align:left;">
+variable
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3_Integration
+</td>
+<td style="text-align:left;">
+Integration des données de débit et de hauteur de la nappe dans la BDD du SI SNO-T
+</td>
+<td style="text-align:left;">
+1/30min ou 1/60min
+</td>
+<td style="text-align:left;">
+variable
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="arborescence-de-stockage-dans-le-serveur-ftp-srv-so" class="section level1">
+<h1><span class="header-section-number">3</span> Arborescence de stockage dans le serveur FTP <code>SRV-SO</code></h1>
+<p>Les données <code>piezo</code> sont stockées dans le serveur FTP <code>SRV-SO</code> selon l'arborescence ci-dessous. Celle-ci est organisée selon les différentes étapes du cycle de vie de la donnée et porte le nom du type de fichier à stocker dans le répertoire. Le nom du répertoire est organisé selon le numéro de l'étape du cycle de vie et du type de fichier.</p>
+<pre><code>lgt
+├── pz_do
+    └── piezo
+        ├── 1_BRUTE_piezo
+        ├── 2_TRAITEMENT_piezo
+        │   ├── DO.csv
+        └── 3_SNOT_piezo
+            └── lgt-pz_do_piezo_infraj_06-11-2008_17-04-2019.csv</code></pre>
+<p>Avec :</p>
+<ul>
+<li>lgt : Le code du site de La Guette</li>
+<li>pz_do : le code du piézomètre (<a href="https://sourcesup.renater.fr/si-snot/2_SRVSO_Arborescence.html">rappel sur la logique de construction du code piézomètre</a>)</li>
+<li>piezo : le code du type de données <code>piezo</code></li>
+<li>1_BRUTE_piezo (<em>recommandé</em>) : Fichiers bruts en provenance du piézomètre codé <code>pz_do</code></li>
+<li>2_TRAITEMENT_piezo (<em>recommandé</em>) : Traitelent des Fichiers bruts</li>
+<li>3_SNOT_piezo (<em>obligatoire</em>) : Stockage des fichiers au format du SNOT pour intégration dans le SI SNO-T</li>
+</ul>
+<p> </p>
+<div class="alert alert-warning" role="alert">
+<h4 class="alert-heading">
+<strong>Rappel sur la constuction de l'arborescence et des codes</strong>
+</h4>
+<p>
+Pour plus de détails sur la logique de construction de l'arborescence du serveur FTP <code>SRV-SO</code>, consultez cette <a href=https://sourcesup.renater.fr/si-snot/2_SRVSO_Arborescence.html style="color: white;text-decoration:underline;font-weight:bold">page</a>.
+</p>
+</div>
+</div>
+<div id="pour-aller-plus-loin" class="section level1">
+<h1><span class="header-section-number">4</span> Pour aller plus loin</h1>
+<p>Consulter les étapes du cycle de vie du type de données <code>piezo</code> :</p>
+<ul>
+<li><strong><a href="https://sourcesup.renater.fr/www/si-snot/3.1_Sce_piezo.html">Collecte des données brutes</a></strong></li>
+<li><strong><a href="https://sourcesup.renater.fr/www/si-snot/3.3_Sce_piezo.html">Intégration des données dans le SI SNO-T</a></strong></li>
+</ul>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -35,7 +35,7 @@ Les données de référence du serveur FTP `SRV-SO` représentent les données c
 
 ## Convention de nommage, stockage et format des données de référence
 
-Les données de référence du `SRV-SO` sont stockées dans le repository git accessible à cette [adresse](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Documentation/Tables/donnees_references_snot).
+Les données de référence du `SRV-SO` sont stockées dans le dépôt Git de la documentation du projet accessible à cette [adresse](https://github.com/Rosalien/doc_snot.git).
 Les tables doivent être au format `.csv` avec les caractéristiques suivantes :
 
   - Séparateur de colonne : `;`

@@ -2,7 +2,6 @@
 #'
 #' @description Fonction pour charger les libraries, et les variables du projet
 #'
-#' @param dsn Paramètres de connexion vers la base de données (ex. "PG:dbname='sol_elevage' host='localhost' port='5432' user='jb'")
 #' @param repmaster Chemin vers la racine de la copie du dépôt Git en local (XX/XX/)
 #'
 #' @author Jean-Baptiste Paroissien
@@ -14,9 +13,11 @@
 # importparametres(repmaster="/media/sf_GIS_ED/Dev/Scripts/master/",dsn="PG:dbname='sol_elevage' host='localhost' port='5432' user='jb'")
 
 
-importparametres <- function(dsn,
-						repmaster)
+importparametres <- function(repmaster)
 {
+  assign("reptables",paste(repmaster,"/../Tables/",sep=""),.GlobalEnv)
+  assign("repfigures",paste(repmaster,"/Fig",sep=""),.GlobalEnv)
+}
 
 ipak <- function(pkg){
     new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
@@ -99,33 +100,6 @@ knit_hooks$set(plot = function(x, options) {
     
 })
 
-# Définition des principaux répertoires de travail #####################################
-
-##
-#assign("repmetadonnees",paste(repmaster,"Documentation/Metadonnees/",sep=""),.GlobalEnv)
-#assign("repfonctions",paste(repmaster,"Fonctions/",sep=""),.GlobalEnv)
-assign("reptables",paste(repmaster,"Tables/",sep=""),.GlobalEnv)
-assign("repfigures",paste(repmaster,"Docs_web/Fig/",sep=""),.GlobalEnv)
-#########################################
-#https://sourcesup.renater.fr/plugins/scmgit/cgi-bin/gitweb.cgi?p=si-snot.git;a=blob_plain;f=Documentation/Tables/donnees_references_snot/jeu.csv;hb=HEAD
-#https://sourcesup.renater.fr/plugins/scmgit/cgi-bin/gitweb.cgi?p=si-snot.git;a=blob_plain;f=Documentation/Tables/donnees_references_snot/information_complementaire_par_stdt_variable.csv;hb=HEAD
-# 
-forge_url <- "https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/entry/"
-assign("forge_url",forge_url,.GlobalEnv) #url du dépôt git dans la forge
-assign("mo_url",paste(forge_url,"Documentation/Modes_operatoires/",sep=""),.GlobalEnv) #url des modes opératoires
-
-
-# Mise en place de la connexion ODBC
-# assign("loc",odbcConnect("solelevage",case="postgresql", believeNRows=FALSE),.GlobalEnv)
-
-# Paramètres de connexion de la BDD
-# assign("dsn",dsn,.GlobalEnv)
-
-# Connexion avec RPostgreSQL
-# assign("m",dbDriver("PostgreSQL"),.GlobalEnv)
-# assign("con",dbConnect(m, dbname="sol_elevage"),.GlobalEnv)
-
-
 # Fonction très pratique pour remplacer une suite de charactères par une autre
 gsub2 <- function(pattern, replacement, x, ...) {
   for(i in 1:length(pattern))
@@ -176,6 +150,4 @@ readOgrSql = function (dsn, sql, ...) {
 }
 assign("readOgrSql",readOgrSql,.GlobalEnv)
 
-#return(list(grid_arrange_shared_legend,gsub2,fig=fig))
-}#Fin fonction
 

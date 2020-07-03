@@ -82,9 +82,9 @@ pg_restore --data-only -h localhost -p 5437 -d snotbdprod -U snotuserprod -t uti
 
 Pour le besoin de l'application [https://data-snot.cnrs.fr/data-access/](https://data-snot.cnrs.fr/data-access/), plusieurs vues matérialisées accompagnées de fonction trigger pour les mettre à jour ont été créées. Les scripts de création de ces vues sont accessibles ci-dessous :
 
-- [MaterializedView_Prod.sql](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_shiny/snapshot/module/sql/MaterializedView_Prod.sql) : Création des vues matérialisées
-- [TriggerMaterializedView_Prod.sql](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_shiny/snapshot/module/sql/TriggerMaterializedView_Prod.sql) : Fonction pour rafraichir la vue matérialisée `data_infraj_prod`
-- [TriggerDebouncePeriod.sql](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_shiny/snapshot/module/sql/TriggerDebouncePeriod.sql) : Ensemble des instructions pour rafraichir la vue matérialisée `carac_data_sensor_method_prod` avec un décalage de 10 minutes lorsque l'une des tables associées à la création de cette vue est mise à jour.
+- MaterializedView_Prod.sql : Création des vues matérialisées
+- TriggerMaterializedView_Prod.sql : Fonction pour rafraichir la vue matérialisée `data_infraj_prod`
+- TriggerDebouncePeriod.sql : Ensemble des instructions pour rafraichir la vue matérialisée `carac_data_sensor_method_prod` avec un décalage de 10 minutes lorsque l'une des tables associées à la création de cette vue est mise à jour.
 
 ### Mise à jour simple
 
@@ -106,7 +106,7 @@ Le script de création des tables et des triggers est accessible [ici](https://f
 [RefreshMaterializedView.sh](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_shiny/snapshot/module/sql/RefreshMaterializedView.sh) est lancé toutes les minutes dans le crontab du serveur tomcat avec cette configuration :
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-* * * * * tomcat /home/tomcat/devel/metadata/RefreshMaterializedView.sh
+* * * * * tomcat /home/tomcat/DataAccess_snot/sql/RefreshMaterializedView.sh
 ```
 
 Pour fonctionner, le `~/.pgpass` doit être configuré et `RefreshMaterializedView.sh` doit être executable : 

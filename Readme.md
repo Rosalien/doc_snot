@@ -10,8 +10,6 @@ Dépôt regroupant l'ensemble de la documentation du SI SNO-Tourbières :
 
 * **Docs_web** Site web de la [documentation du SNO-Tourbières](https://sourcesup.renater.fr/www/si-snot/)
 
-* **Procedures** Différentes procédures du SI SNO-Tourbières. Documents rédigés en LaTeX.
-
 * **Figures** Figures pour la documentation. Ces figures sont produites avec différents logiciels :
 	- *.yed* : [Yed](https://www.yworks.com/products/yed),
 	- *.svg* : [Inkscape](https://inkscape.org/fr/)

@@ -23,10 +23,18 @@ klippy::klippy('')
 
 # Configuration et déploiement
 
-Le module est compilé dans `Developpement/SI/app_snot/PivotMetadata` et le programme s'appelle : `jax-d-swarm.jar`. Le module est relancé automatiquement à chaque redémarrage du serveur 163.9.41.45 grâce à la configuration du /etc/crontab :
+## Dépot du logiciel
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-@reboot         tomcat    /opt/default-jdk/bin/java -jar /home/tomcat/devel/metadata/jax-d-swarm.jar
+git clone https://sourcesup.renater.fr/anonscm/git/si-snot/PivotMetadata_snot.git
+```
+
+## Déploiement
+
+Le module est compilé dans `~/PivotMetadata_snot/` et le programme s'appelle : `jax-d-swarm.jar`. Le module est relancé automatiquement à chaque redémarrage du serveur 163.9.41.45 grâce à la configuration du /etc/crontab :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+@reboot         tomcat    /opt/default-jdk/bin/java -jar ~/PivotMetadata_snot/jax-d-swarm.jar
 ``` 
 
 Dans le cas d'une modification du code, il sera nécessaire de :
@@ -42,18 +50,17 @@ Dans le cas d'une modification du code, il sera nécessaire de :
 
 ## Configuration du module
 
-Il est nécessaire de modifier les paramètres de connexion vers la base de données en production. Il faut s'appuyer sur le fichier `~/devel/conf/Main.java`. `Service.java` est également à modifier pour changer le répertoire des fichiers csv utilisés :
+Il est nécessaire de modifier les paramètres de connexion vers la base de données en production. Il faut s'appuyer sur le fichier `~/conf/Main.java`. `Service.java` est également à modifier pour changer le répertoire des fichiers csv utilisés :
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-cp ~/devel/conf/Main.java  ~/devel/prod/Developpement/SI/app_snot/PivotMetadata/src/main/java/entry/Main.java
-cp ~/devel/conf/Service.java ~/devel/prod/Developpement/SI/app_snot/PivotMetadata/src/main/java/moulinette/Service.java
+cp ~/conf/Main.java  ~/PivotMetadata_snot/src/main/java/entry/Main.java
+cp ~/conf/Service.java ~/PivotMetadata_snot/src/main/java/moulinette/Service.java
 ```
 
 ## Compilation du module
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-cd ~/devel/prod/Developpement/SI/app_snot/PivotMetadata/
-
+cd ~/PivotMetadata_snot/
 mvn clean install 
 ```
 
@@ -73,16 +80,8 @@ kill -9 <pid>
 
 ### Lancement du service
 
-**Copier/coller le jar dans son répertoire de lancement**
-
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-cp ~/devel/prod/Developpement/SI/app_snot/PivotMetadata/target/jax-d-swarm.jar /home/tomcat/devel/metadata/
-```
-
-**Executer le jar**
-
-```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-nohup java -jar /home/tomcat/devel/metadata/jax-d-swarm.jar &
+nohup java -jar ~/PivotMetadata_snot/jax-d-swarm.jar &
 ```
 
 ### En cas de problème

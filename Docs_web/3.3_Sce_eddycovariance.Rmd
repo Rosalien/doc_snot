@@ -121,7 +121,7 @@ La valeur **-9999** indique une donnée manquante.
 
 Il est recommandé de s'appuyer sur un exemple pour générer un fichier type `SNOT_eddycovariance` manuellement : 
 
-  - [lgt-ec1_eddycovariance_sh_01-07-2017_31-07-2017.csv](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_snot/src/test/resources/org/cnrs/osuc/snot/fichiers/dataset_for_tests/flux/semi-horaire/lgt-ec1_eddycovariance_sh_01-07-2017_31-07-2017.csv)
+  - [lgt-ec1_eddycovariance_sh_01-07-2017_31-07-2017.csv](https://github.com/Rosalien/doc_snot/raw/master/Data/lgt/ec1/eddycovariance/3_SNOT_eddycovariance/lgt-ec1_eddycovariance_sh_20-01-2017_31-12-2017.csv)
 
 <div class="alert alert-danger" role="alert">
   <h4 class="alert-heading">**Attention**</h4>

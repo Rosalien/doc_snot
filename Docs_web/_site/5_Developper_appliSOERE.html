@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Développement de l'application data-snot.cnrs.fr</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/clipboard-1.7.1/clipboard.min.js"></script>
+<link href="site_libs/primer-tooltips-1.4.0/build.css" rel="stylesheet" />
+<link href="site_libs/klippy-0.0.0.9500/css/klippy.min.css" rel="stylesheet" />
+<script src="site_libs/klippy-0.0.0.9500/js/klippy.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #303030; color: #cccccc; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #cccccc; background-color: #303030; }
+code > span.kw { color: #f0dfaf; } /* Keyword */
+code > span.dt { color: #dfdfbf; } /* DataType */
+code > span.dv { color: #dcdccc; } /* DecVal */
+code > span.bn { color: #dca3a3; } /* BaseN */
+code > span.fl { color: #c0bed1; } /* Float */
+code > span.ch { color: #dca3a3; } /* Char */
+code > span.st { color: #cc9393; } /* String */
+code > span.co { color: #7f9f7f; } /* Comment */
+code > span.ot { color: #efef8f; } /* Other */
+code > span.al { color: #ffcfaf; } /* Alert */
+code > span.fu { color: #efef8f; } /* Function */
+code > span.er { color: #c3bf9f; } /* Error */
+code > span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+code > span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code > span.sc { color: #dca3a3; } /* SpecialChar */
+code > span.vs { color: #cc9393; } /* VerbatimString */
+code > span.ss { color: #cc9393; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { } /* Variable */
+code > span.cf { color: #f0dfaf; } /* ControlFlow */
+code > span.op { color: #f0efd0; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code > span.at { } /* Attribute */
+code > span.do { color: #7f9f7f; } /* Documentation */
+code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Doc SNO-T</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-database"></span>
+     
+    Les données du SNO-T
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Découverture du SI SNO-T</li>
+    <li>
+      <a href="1_Decouverte_OrganisationDonnees.html">Organisation des données</a>
+    </li>
+    <li>
+      <a href="1_Decouverte_DonneesDiffusees.html">Les variables du SI SNO-T</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Stockage des données brutes</li>
+    <li>
+      <a href="2_SRVSO_Arborescence.html">Arborescence du serveur de stockage SRV-SO</a>
+    </li>
+    <li>
+      <a href="2_SRVSO_DonneesReferences.html">Les données de référence du SRV-SO</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Stockage et diffusion des données cibles</li>
+    <li>
+      <a href="2_BDD_SNOT_DonneesReference.html">Les données de référence du SI SNO-T</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-book"></span>
+     
+    GES &amp; météo-sol
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Type de données eddy-covariance</li>
+    <li>
+      <a href="3.0_Sce_eddycovariance.html">Cycle de vie des données eddy-covariance</a>
+    </li>
+    <li>
+      <a href="3.1_Sce_eddycovariance.html">1. Collecte des données brutes</a>
+    </li>
+    <li>
+      <a href="3.2a_Sce_eddycovariance.html">2a. Formatage au format ICOS</a>
+    </li>
+    <li>
+      <a href="3.2b_Sce_eddycovariance.html">2b. Calcul des flux de GES</a>
+    </li>
+    <li>
+      <a href="3.3_Sce_eddycovariance.html">3. Intégration dans data-snot.cnrs.fr</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Données des chambres CO2</li>
+    <li>
+      <a href="3.0_Sce_chambreco2.html">Cycle de vie des données des chambres CO2</a>
+    </li>
+    <li>
+      <a href="3.1_Sce_chambreco2.html">1. Collecte des données brutes</a>
+    </li>
+    <li>
+      <a href="3.3_Sce_chambreco2.html">3. Intégration dans data-snot.cnrs.fr</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Type de données météo-sol</li>
+    <li>
+      <a href="3.0_Sce_meteosol.html">Cycle de vie des données météo-sol</a>
+    </li>
+    <li>
+      <a href="3.1_Sce_meteosol.html">1. Collecte des données brutes</a>
+    </li>
+    <li>
+      <a href="3.2a_Sce_meteosol.html">2a. Formatage au format ICOS</a>
+    </li>
+    <li>
+      <a href="3.2b_Sce_meteosol.html">2b. Traitement des données météosol</a>
+    </li>
+    <li>
+      <a href="3.3_Sce_meteosol.html">3. Intégration dans data-snot.cnrs.fr</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-book"></span>
+     
+    Hydro &amp; Biogéochimie
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Type de données provenant des piézomètres</li>
+    <li>
+      <a href="3.0_Sce_piezo.html">Cycle de vie des données des piézomètres</a>
+    </li>
+    <li>
+      <a href="3.1_Sce_piezo.html">1. Collecte des données brutes</a>
+    </li>
+    <li>
+      <a href="3.3_Sce_piezo.html">3. Intégration dans data-snot.cnrs.fr</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Type de données Carbone Organique Dissous (DOC)</li>
+    <li>
+      <a href="3.0_Sce_doc.html">Cycle de vie des données DOC</a>
+    </li>
+    <li>
+      <a href="3.1_Sce_doc.html">1. Collecte des données brutes</a>
+    </li>
+    <li>
+      <a href="3.3_Sce_doc.html">3. Intégration dans data-snot.cnrs.fr</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-hand-o-right"></span>
+     
+    Aide
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Utiliser data-snot.cnrs.fr</li>
+    <li>
+      <a href="4_AdminDonnees.html">Gestion des données de référence</a>
+    </li>
+    <li>
+      <a href="4_IntegrationDonnees.html">Intégration des données d'observation</a>
+    </li>
+    <li>
+      <a href="4_IntegrationNvelleDonnees.html">Comment intégrer une nouvelle donnée ?</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Démarche suite</li>
+    <li>
+      <a href="4_JeuxDonneesDOI.html">Les jeux de données et les DOI</a>
+    </li>
+    <li>
+      <a href="4_Echange_SITheiaOzcar.html">L'échange avec le SI Theia/OZCAR</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Améliorer data-snot.cnrs.fr</li>
+    <li>
+      <a href="4_Forge.html">Utilisation de la Forge SNOT</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa fa fa-gears"></span>
+     
+    Procédures techniques
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Prendre en main le SI SNOT</li>
+    <li>
+      <a href="5_Architecture_SI-SNOT.html">Architecture du SI</a>
+    </li>
+    <li>
+      <a href="5_MO_VersionnementGit.html">Le Dépôt Git</a>
+    </li>
+    <li>
+      <a href="5_Administrer_SRVSO.html">Administrer le FTP SRV-SO</a>
+    </li>
+    <li>
+      <a href="5_Administrer_PostgresQL.html">Serveur de base de données</a>
+    </li>
+    <li>
+      <a href="5_Creation_documentation.html">Mise à jour de la documentation</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Administrer l'application data-snot.cnrs.fr</li>
+    <li>
+      <a href="5_Developper_appliSOERE.html">Guide de développement</a>
+    </li>
+    <li>
+      <a href="5_Deploiement_appliSOERE.html">Déployer data-snot.cnrs.fr</a>
+    </li>
+    <li>
+      <a href="5_Gestion_appliSOERE.html">Maintenance de data-snot.cnrs.fr</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Administrer les applications Shiny</li>
+    <li>
+      <a href="5_Administrer_shiny.html">Installer et administrer les applications Shiny</a>
+    </li>
+    <li>
+      <a href="5_Developper_shiny.html">Développer les applications Shiny</a>
+    </li>
+    <li>
+      <a href="5_Deploiement_shiny.html">Déployer les applications Shiny</a>
+    </li>
+    <li>
+      <a href="5_Probleme_shiny.html">Quoi faire en cas de problème sur les applications Shiny</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Métadonnées PIVOT (SI Theia/OZCAR)</li>
+    <li>
+      <a href="5_Developper_MetadataPivot.html">Développer le module de création des métadonnées PIVOT</a>
+    </li>
+    <li>
+      <a href="5_Deploiement_MetadataPivot.html">Déployer le module de création des métadonnées PIVOT</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Développement de l'application data-snot.cnrs.fr</h1>
+
+</div>
+
+
+<div class="alert alert-success" role="alert">
+<h4 class="alert-heading">
+<strong>Objectif et contenu</strong>
+</h4>
+<p>
+Documentation sur l'architecture technique data-snot.cnrs.fr
+</p>
+<p>
+Aide sur l'ajout d'un nouveau data-type dans l'application
+</p>
+</div>
+<div class="alert alert-info" role="alert">
+<h4 class="alert-heading">
+<strong>Public visé et pré-requis</strong>
+</h4>
+<p>
+Administrateur du SI SNO-T
+</p>
+<p>
+Connaissance environnement JAVA
+</p>
+</div>
+<script>
+  addKlippy('left', 'top', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<div id="développer-lapplication-data-snot.cnrs.fr" class="section level1">
+<h1><span class="header-section-number">1</span> Développer l'application data-snot.cnrs.fr</h1>
+<p>L'application data-snot.cnrs.fr s'appuie sur le noyau du SI des SOERE développé par l'équipe ECO-Informatic d'InfoSol (INRA Orléans). Pour plus d'informations sur le noyau et l'architecture du SI des SOERE, vous pouvez consulter la documentation du projet :</p>
+<ul>
+<li><p><a href="https://git.renater.fr/authscm/jbparoisien/gitweb/?p=si-soere-kernel/documentations.git;a=blob_plain;f=techniques/Architecture_si_ecoinformatique_soere.pdf;hb=HEAD">L'architecture fonctionnelle du noyau</a></p></li>
+<li><p><a href="https://git.renater.fr/authscm/jbparoisien/gitweb/?p=si-soere-kernel/documentations.git;a=blob_plain;f=techniques/guide_du_d%c3%a9veloppeur/guideDeveloppeurNoyau1709.odt;hb=HEAD">Le guide de développement</a></p></li>
+</ul>
+<p>Au besoin, il est possible de cloner la documentation :</p>
+<div class="sourceCode"><pre class="sourceCode bash klippy"><code class="sourceCode bash"><span class="fu">git</span> clone https://git.renater.fr/anonscm/git/si-soere-kernel/documentations.git </code></pre></div>
+</div>
+<div id="intégration-automatique-des-données-avec-un-service-web" class="section level1">
+<h1><span class="header-section-number">2</span> Intégration automatique des données avec un service web</h1>
+<p>Il est possible d'intégrer automatiquement des données via un service web. Ce service n'est pas exploité dans data-snot.cnrs.fr mais fonctionne parfaitement. Il pourra être mise en service en fonction des besoins :</p>
+<ul>
+<li><a href="https://git.renater.fr/authscm/jbparoisien/gitweb/?p=si-soere-kernel/documentations.git;a=blob;f=techniques/guide_du_d%C3%83%C2%A9veloppeur/1709+compl%C3%83%C2%A9ments/web+service+de+publication.odt;h=986283ed2cbe4092a8a4ba861d0c9dae8927c39e;hb=1bade26a75ed2c98c70960c497f9400f21c84b38">Web_service_de_publication.odt</a>.</li>
+</ul>
+</div>
+<div id="principales-modifications-apportées-pour-le-si-sno-tourbières" class="section level1">
+<h1><span class="header-section-number">3</span> Principales modifications apportées pour le SI SNO-Tourbières</h1>
+<p>Une grande partie du code est basé sur le <a href="https://si-foret-ecofor.fr/si_foret-prod/login.jsf">SI F-ORE-T</a>.</p>
+<div id="simplification-du-si-sno-tourbières" class="section level2">
+<h2><span class="header-section-number">3.1</span> Simplification du SI SNO-Tourbières</h2>
+<p>Le SI des SOERE est conçu pour fournir des services de gestion, d'intégration, d'extraction et de synthèse des données. Pour faciliter l'accès aux données, la version modifiée du SI SNO-Tourbières n'intègre que le volet de <strong>gestion et d'intégration des données</strong>. La partie d'extraction et de synthèse des données est intégrée dans une application dédiée <a href="https://data-snot.cnrs.fr/data-access/">data-access</a>. De même, l'intégration des données d'observation se veut le plus simple possible, elles sont intégrées sous forme de timeseries (date, valeur, variable). En conséquence, le SI SNO-Tourbières conserve seulement quelques modules par rapport au SI F-ORE-T :</p>
+<ul>
+<li>snot-core-services-api : Implémentation des fonctionnalité du noyau du SI des SOERE, configuration des entités pour la base de données (contraintes, nom des champs...)</li>
+<li>snot-core-services-impl : JPA-DAO et recorder des données de référence et autres fonctionnalité du noyau.</li>
+<li>snot-core-ui-jsf : Implémentation de l'inteface jsf/hibernate des fonctionnalités du noyau.</li>
+<li>snot-fluxmeteo-services-api : Implémentation des fonctionnalités d'intégration des données d'observation, configuration des tables d'intégration des données d'observation.</li>
+<li>snot-fluxmeteo-services-impl : JPA-DAO,recorder et dataset-descriptor des données d'observation.</li>
+<li>snot-fluxmeteo-ui-jsf : Implémentation de l'inteface jsf/hibernate des fonctionnalités du noyau pour l'intégration des données d'observation.</li>
+<li>snot-web : Contenu de l'application web (xhtml, css, configuration du thème primefaces...)</li>
+</ul>
+</div>
+<div id="ajout-de-nouvelles-données-de-référence" class="section level2">
+<h2><span class="header-section-number">3.2</span> Ajout de nouvelles données de référence</h2>
+<p>La principale évolution concerne l'ajout de la notion de &quot;Jeu de données&quot; dans l'organisation des données. Cette notion répond au besoin de regrouper les données d'un site, d'un thème et d'un type de données en vue de partager les données avec le SI Theia/OZCAR et d'assurer la visibilité des données à travers les DOI. Plus d'information dans cette <a href="https://sourcesup.renater.fr/www/si-snot/4_JeuxDonneesDOI.html">partie</a>.</p>
+<p>Pour répondre à ce besoin, 3 nouvelles données de référence ont été ajoutées pour gérer les jeux de données :</p>
+<ul>
+<li>jeu : descriptif des jeux de données (titre, doi, licence...)</li>
+<li>gestionnairejeu : Ensembles des gestionnaires de données</li>
+<li>sousjeu : Sous jeux de données associés aux jeux de données</li>
+</ul>
+<p>En plus de ces 3 nouvelles données de référence, les données de référence <code>variable par type de données</code>, <code>periodeapplicationmethode</code>, <code>periodeutilisationinstrument</code> ont été modifiées pour prendre en compte les jeux de données. A celà s'ajoute également des ajouts de champs dans la données de référence <code>site</code>.</p>
+</div>
+<div id="recorder-des-données-dobservation" class="section level2">
+<h2><span class="header-section-number">3.3</span> Recorder des données d'observation</h2>
+<p>Dans le SI F-ORE-T, plusieurs recorder sont utilisés pour intégrer les données en fonction du type de données et de la fréquence d'acquisition. Dans l'application du SNO-Tourbières, ce fonctionnement est simplifié. Deux recorder sont seulement utilisés et pour deux types de fréquences :</p>
+<ul>
+<li>Fréquence infra-journalières et tous les types de données exceptés les flux par eddy-covariance : <code>org.cnrs.osuc.snot.dataset.fluxmeteo.impl.meteo.ProcessRecordMeteo_if</code></li>
+<li>Fréquence semi-horaire et type de donnée des flux par eddy-covariance : <code>org.cnrs.osuc.snot.dataset.fluxmeteo.impl.flux.ProcessRecordFlux</code></li>
+</ul>
+<p>De cette façon, les données sont stockées dans deux tables dans la base de données :</p>
+<ul>
+<li>valeurs_meteo_sh_vms et mesures_meteo_sh_mms pour tous les types de données <strong>exceptés les flux par eddy-covariance</strong>.</li>
+<li>valeurs_flux_tour_vfs et mesures_flux_mfs uniquement pour les flux par eddy-covariance.</li>
+</ul>
+<div class="alert alert-danger" role="alert">
+<h4 class="alert-heading">
+<strong>Important</strong>
+</h4>
+<p>
+Cette logique doit être respectée lors de l'ajout d'un nouveau type de données. Voir ci-dessous pour la procédure à suivre lors de l'ajout d'un nouveau type de données.
+</p>
+</div>
+</div>
+<div id="modification-de-linterface" class="section level2">
+<h2><span class="header-section-number">3.4</span> Modification de l'interface</h2>
+<p>De nombreuses modifications (changement du thème primefaces notamment) ont été apportées au niveau de l'interface pour gagner en ergonomie.</p>
+</div>
+</div>
+<div id="ajouter-un-nouveau-type-de-données-dans-lapplication" class="section level1">
+<h1><span class="header-section-number">4</span> Ajouter un nouveau type de données dans l'application</h1>
+<p>L'ajout d'un nouveau type de données dans l'application data-snot.cnrs.fr demande la modification de nombreux fichiers. Voici les étapes à suivre pour créer un nouveau type de données.</p>
+<div id="création-du-dataset-descriptor.xml" class="section level2">
+<h2><span class="header-section-number">4.1</span> Création du dataset-descriptor.xml</h2>
+<p>Ce fichier placé dans les ressources du même package que le recorder décrit la structure du fichier data à déposer (le code des variables et le type de variable). Il doit être créé dans le module <code>snot-fluxmeteo-service-impl</code>, précisément dans :</p>
+<div class="sourceCode"><pre class="sourceCode bash klippy"><code class="sourceCode bash"><span class="ex">snot-fluxmeteo-services-impl/src/main/resources/org/cnrs/osuc/snot/dataset/fluxmeteosrc/main/resources/org/cnrs/osuc/snot/dataset/fluxmeteo/impl/</span></code></pre></div>
+<p>Les dataset-descriptor sont ensuite stockés dans les répertoires associés au thème de la donnée et leur nom suit la logique suivante :</p>
+<p><code>dataset-descriptor-[typedonnees]-[frequence]</code></p>
+<p>Vue de l'arborescence avec les différents dataset-descriptor :</p>
+<div class="sourceCode"><pre class="sourceCode bash klippy"><code class="sourceCode bash"><span class="ex">.</span>
+├── <span class="ex">biogeo</span>
+│   ├── <span class="ex">biogeo-beans.xml</span>
+│   └── <span class="ex">dataset-descriptor-doc-infra-journalier.xml</span>
+├── <span class="ex">flux</span>
+│   ├── <span class="ex">dataset-descriptor-journalier.xml</span>
+│   ├── <span class="ex">dataset-descriptor-mensuel.xml</span>
+│   ├── <span class="ex">dataset-descriptor-semi-horaire.xml</span>
+│   └── <span class="ex">flux-beans.xml</span>
+├── <span class="ex">hydro</span>
+│   ├── <span class="ex">dataset-descriptor-debit-infra-journalier.xml</span>
+│   ├── <span class="ex">dataset-descriptor-piezo-infra-journalier.xml</span>
+│   ├── <span class="ex">dataset-descriptor-piezo-semi-horaire.xml</span>
+│   └── <span class="ex">hydro-beans.xml</span>
+├── <span class="ex">messages_en.properties</span>
+├── <span class="ex">messages_fr.properties</span>
+└── <span class="ex">meteo</span>
+    ├── <span class="ex">dataset-descriptor-infra-journalier.xml</span>
+    ├── <span class="ex">dataset-descriptor-journalier.xml</span>
+    ├── <span class="ex">dataset-descriptor-mensuel.xml</span>
+    ├── <span class="ex">dataset-descriptor-semi-horaire.xml</span>
+    └── <span class="ex">meteo-beans.xml</span></code></pre></div>
+<p>Voici les règles de construction d'un dataset-descriptor</p>
+<div class="sourceCode"><pre class="sourceCode xml klippy"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;<span class="kw">?&gt;</span>
+<span class="kw">&lt;dataset-descriptor</span><span class="ot"> xmlns=</span><span class="st">&quot;http://orei.inra.fr/dataset-descriptor&quot;</span><span class="ot"> xmlns:xsi=</span><span class="st">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="ot"> xsi:schemaLocation=</span><span class="st">&quot;http://orei.inra.fr/dataset-descriptor http://orei.inra.fr/dataset-descriptor &quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;name&gt;</span>site<span class="kw">&lt;/name&gt;</span>
+<span class="er">&lt;</span> !-- undefined column représente le numéro de colonne à partir de laquelle les colonnes sont facultatives --&gt;
+    <span class="kw">&lt;undefined-column&gt;</span>4<span class="kw">&lt;undefined-column&gt;</span>
+<span class="er">&lt;</span> !-- un tag column par colonne obligatoire. Les colonnes internationnalisées sont définie dans un seul tag --&gt;
+    <span class="kw">&lt;column&gt;</span>
+        <span class="kw">&lt;name&gt;</span>nom du site<span class="kw">&lt;/name&gt;</span><span class="er">&lt;</span> !-- le nom de la colonne--&gt;
+        <span class="kw">&lt;not-null&gt;</span>true<span class="kw">&lt;/not-null&gt;</span><span class="er">&lt;</span> !-- si la colonne ne peut être vide --&gt;
+        <span class="kw">&lt;key&gt;</span>true<span class="kw">&lt;/key&gt;</span><span class="er">&lt;</span> !-- si la colonne est une clef crée une colonne nomcolonne_key c’est la valeur stockée en base et retournée par nextToken() --&gt;
+        <span class="kw">&lt;localizable</span><span class="ot"> fieldName=</span><span class="st">&quot;name&quot;</span><span class="kw">&gt;</span>true<span class="kw">&lt;/localizable&gt;</span><span class="er">&lt;</span> !--si la valeur est internationalisable. Les colonnes nomColonne_fr … sont crées en fonction des langues indiquées dans configuration.xml. Si la colonne key est absente alors c’est la valeur de la colonne de la
+langue par défaut qui est retournée par nextToken. Sinon cette valeur est stockées dans la table localisation. --&gt;
+    <span class="kw">&lt;/column&gt;</span>
+    <span class="kw">&lt;column&gt;</span>
+        <span class="kw">&lt;name&gt;</span>description du site<span class="kw">&lt;/name&gt;</span>
+        <span class="kw">&lt;localizable</span><span class="ot"> fieldName=</span><span class="st">&quot;description&quot;</span><span class="kw">&gt;</span>true<span class="kw">&lt;/localizable&gt;</span>
+    <span class="kw">&lt;/column&gt;</span>
+    <span class="kw">&lt;column&gt;</span>
+        <span class="kw">&lt;name&gt;</span>parent<span class="kw">&lt;/name&gt;</span>
+    <span class="kw">&lt;/column&gt;</span>
+<span class="kw">&lt;/dataset-descriptor&gt;</span></code></pre></div>
+</div>
+<div id="modification-des-beans.xml" class="section level2">
+<h2><span class="header-section-number">4.2</span> Modification des beans.xml</h2>
+<p>Un bean.xml est présent dans chaque répertoire contenant les dataset-descriptor. Rajouter dans ce bean tous paramètres nécessaires. Dans tous les cas, on utilisera le <strong>processRecord</strong>, le <strong>deleteRecord</strong> et l'<strong>expertEnTete</strong> de meteosol infrajournalier :</p>
+<div class="sourceCode"><pre class="sourceCode xml klippy"><code class="sourceCode xml">    <span class="co">&lt;!--processRecord et deleteRecordMeteo--&gt;</span> 
+    <span class="kw">&lt;bean</span><span class="ot"> id=</span><span class="st">&quot;processRecordMeteo&quot;</span><span class="ot"> class=</span><span class="st">&quot;org.cnrs.osuc.snot.dataset.fluxmeteo.impl.meteo.ProcessRecordMeteo&quot;</span><span class="ot"> parent=</span><span class="st">&quot;abstractProcessRecordFluxMeteo&quot;</span><span class="ot"> abstract=</span><span class="st">&quot;true&quot;</span><span class="kw">/&gt;</span>
+    <span class="co">&lt;!-- Pour Meteo_sh --&gt;</span>
+    <span class="kw">&lt;bean</span><span class="ot"> id=</span><span class="st">&quot;processRecordMeteo_if&quot;</span><span class="ot"> class=</span><span class="st">&quot;org.cnrs.osuc.snot.dataset.fluxmeteo.impl.meteo.ProcessRecordMeteo_if&quot;</span><span class="ot"> parent=</span><span class="st">&quot;processRecordMeteo&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;property</span><span class="ot"> name=</span><span class="st">&quot;mesureMeteoDAO&quot;</span><span class="ot"> ref=</span><span class="st">&quot;mesureMeteo_sh&quot;</span> <span class="kw">/&gt;</span>
+    <span class="kw">&lt;/bean&gt;</span>
+    <span class="kw">&lt;bean</span><span class="ot"> id=</span><span class="st">&quot;deleteRecordMeteo_if&quot;</span><span class="ot"> parent=</span><span class="st">&quot;deleteRecord&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;property</span><span class="ot"> name=</span><span class="st">&quot;publicationDAO&quot;</span><span class="ot"> ref=</span><span class="st">&quot;publicationMeteo_sh&quot;</span> <span class="kw">/&gt;</span>
+    <span class="kw">&lt;/bean&gt;</span></code></pre></div>
+</div>
+<div id="modification-du-dataset-snot-bean.xml" class="section level2">
+<h2><span class="header-section-number">4.3</span> Modification du dataset-snot-bean.xml</h2>
+<p>Dans le module snot-core-service-impl, le <code>dataset-snot-bean.xml</code> renseigne les différents types de données ajoutés dans l'application. Rajouter le nouveau type de données créé à la suite des autres dans la propriété <code>datatypesVersionFileHelpersMap</code>.</p>
+</div>
+<div id="ajout-du-nouveau-type-de-données-dans-configuration.xml" class="section level2">
+<h2><span class="header-section-number">4.4</span> Ajout du nouveau type de données dans configuration.xml</h2>
+<p>C'est le fichier de configuration de l'application. On pourra y mettre toutes les informations de portée &quot;application&quot; que l'on souhaite utiliser à un moment ou un autre. Le nouveau type de données doit être rajouté dans la section datatypeConfiguration. Il conviendra de renseigné le recorder configuré dans les étapes précédentes :</p>
+<p>Exemple pour le type de données <code>piezo_infraj</code>. Ce type de données utilise <code>recorderHydro_if</code> déclaré dans <code>hydro-beans.xml</code> et s'appuyant sur le dataset-descriptor <code>dataset-descriptor-piezo-infra-journalier.xml</code> :</p>
+<div class="sourceCode"><pre class="sourceCode xml klippy"><code class="sourceCode xml"><span class="kw">&lt;module&gt;</span>
+    <span class="kw">&lt;datatypeConfiguration&gt;</span>
+            <span class="kw">&lt;dataType&gt;</span>
+                <span class="kw">&lt;name</span><span class="ot"> language=</span><span class="st">&quot;key&quot;</span><span class="kw">&gt;</span>piezo_infraj<span class="kw">&lt;/name&gt;</span>
+                <span class="kw">&lt;name</span><span class="ot"> language=</span><span class="st">&quot;fr&quot;</span><span class="kw">&gt;</span>Profondeur et température de la nappe<span class="kw">&lt;/name&gt;</span>
+                <span class="kw">&lt;name</span><span class="ot"> language=</span><span class="st">&quot;en&quot;</span><span class="kw">&gt;</span>Depth and temperature of the groundwater<span class="kw">&lt;/name&gt;</span>
+                <span class="kw">&lt;description</span><span class="ot"> language=</span><span class="st">&quot;key&quot;</span><span class="kw">&gt;</span>gwd_infraj_desc<span class="kw">&lt;/description&gt;</span>
+                <span class="kw">&lt;description</span><span class="ot"> language=</span><span class="st">&quot;fr&quot;</span><span class="kw">&gt;</span>Profondeur de la nappe et température infra-journalière<span class="kw">&lt;/description&gt;</span>
+                <span class="kw">&lt;description</span><span class="ot"> language=</span><span class="st">&quot;en&quot;</span><span class="kw">&gt;</span>Infra-daily depth and temperature of the groundwater<span class="kw">&lt;/description&gt;</span>
+                <span class="kw">&lt;fileNameDateFormat&gt;</span>dd-MM-yyyy<span class="kw">&lt;/fileNameDateFormat&gt;</span>
+                <span class="kw">&lt;recorder&gt;</span>recorderHydro_if<span class="kw">&lt;/recorder&gt;</span>
+                <span class="kw">&lt;name-file-checkers&gt;</span>
+                    <span class="kw">&lt;class&gt;</span>fileNameCheckerSnotddmmyyyy<span class="kw">&lt;/class&gt;</span>
+                <span class="kw">&lt;/name-file-checkers&gt;</span>
+            <span class="kw">&lt;/dataType&gt;</span>
+    <span class="kw">&lt;/datatypeConfiguration&gt;</span>
+<span class="kw">&lt;/module&gt;</span></code></pre></div>
+</div>
+<div id="configuration-des-données-de-référence" class="section level2">
+<h2><span class="header-section-number">4.5</span> Configuration des données de référence</h2>
+<p>Une fois compilée et déployée, l'application peut intégrer le nouveau type de données. Il suffit alors de configurer les données de référence en suivant les instructions de ce mode opératoire par <a href="https://sourcesup.renater.fr/www/si-snot/4_IntegrationNvelleDonnees.html">exemple</a>.</p>
+</div>
+</div>
+<div id="ajouter-de-nouvelles-variables-pour-un-datatype" class="section level1">
+<h1><span class="header-section-number">5</span> Ajouter de nouvelles variables pour un datatype</h1>
+<p>Si de nouvelles variables sont associées à un datatype, outre la modification des données de référence dans l'application, il sera nécessaire de rajouter ces variables dans le dataset-descriptor du datatype. Les dataset-descriptors se trouvent dans le package <code>snot-fluxmeteo-services-impl</code> via ce chemin :</p>
+<div class="sourceCode"><pre class="sourceCode bash klippy"><code class="sourceCode bash"><span class="ex">snot-fluxmeteo-services-impl/src/main/resources/org/cnrs/osuc/snot/dataset/fluxmeteosrc/main/resources/org/cnrs/osuc/snot/dataset/fluxmeteo/impl/</span></code></pre></div>
+<p>Ils sont stockés dans les répertoires associés au thème de la donnée et leur nom suit la logique suivante :</p>
+<p><code>dataset-descriptor-[typedonnees]-[frequence]</code></p>
+<p>Vue de l'arborescence avec les différents dataset-descriptor :</p>
+<div class="sourceCode"><pre class="sourceCode bash klippy"><code class="sourceCode bash"><span class="ex">.</span>
+├── <span class="ex">biogeo</span>
+│   ├── <span class="ex">biogeo-beans.xml</span>
+│   └── <span class="ex">dataset-descriptor-doc-infra-journalier.xml</span>
+├── <span class="ex">flux</span>
+│   ├── <span class="ex">dataset-descriptor-journalier.xml</span>
+│   ├── <span class="ex">dataset-descriptor-mensuel.xml</span>
+│   ├── <span class="ex">dataset-descriptor-semi-horaire.xml</span>
+│   └── <span class="ex">flux-beans.xml</span>
+├── <span class="ex">hydro</span>
+│   ├── <span class="ex">dataset-descriptor-debit-infra-journalier.xml</span>
+│   ├── <span class="ex">dataset-descriptor-piezo-infra-journalier.xml</span>
+│   ├── <span class="ex">dataset-descriptor-piezo-semi-horaire.xml</span>
+│   └── <span class="ex">hydro-beans.xml</span>
+├── <span class="ex">messages_en.properties</span>
+├── <span class="ex">messages_fr.properties</span>
+└── <span class="ex">meteo</span>
+    ├── <span class="ex">dataset-descriptor-infra-journalier.xml</span>
+    ├── <span class="ex">dataset-descriptor-journalier.xml</span>
+    ├── <span class="ex">dataset-descriptor-mensuel.xml</span>
+    ├── <span class="ex">dataset-descriptor-semi-horaire.xml</span>
+    └── <span class="ex">meteo-beans.xml</span></code></pre></div>
+<p>Il suffit de rajouter la nouvelle variable dans le fichier :</p>
+<div class="sourceCode"><pre class="sourceCode xml klippy"><code class="sourceCode xml">    <span class="kw">&lt;column&gt;</span>
+        <span class="kw">&lt;name&gt;</span>Code de la variable<span class="kw">&lt;/name&gt;</span>
+        <span class="kw">&lt;not-null&gt;</span>false<span class="kw">&lt;/not-null&gt;</span>
+        <span class="kw">&lt;value-type&gt;</span>float<span class="kw">&lt;/value-type&gt;</span>
+        <span class="kw">&lt;variable&gt;</span>true<span class="kw">&lt;/variable&gt;</span>
+        <span class="kw">&lt;flag&gt;</span>false<span class="kw">&lt;/flag&gt;</span>
+        <span class="kw">&lt;flag-type&gt;</span>variable<span class="kw">&lt;/flag-type&gt;</span>
+    <span class="kw">&lt;/column&gt;</span></code></pre></div>
+</div>
+<div id="mise-à-jour-de-lapplication" class="section level1">
+<h1><span class="header-section-number">6</span> Mise à jour de l'application</h1>
+<p>Il est possible de mettre à jour l'application en fonction <strong>des évolutions mineures</strong> apportées sur le noyau du SI des SOERE (correction de bug). Dans ce cas, il est simplement nécessaire de modifier la version du noyau dans le pom.xml :</p>
+<p>Modifier cette partie avec la nouvelle version :</p>
+<div class="sourceCode"><pre class="sourceCode xml klippy"><code class="sourceCode xml"><span class="kw">&lt;kernel.version&gt;</span>1912.01<span class="kw">&lt;/kernel.version&gt;</span></code></pre></div>
+<p>Ensuite, il sera nécessaire de recompiler l'application et de la déployer en suivant <a href="https://sourcesup.renater.fr/www/si-snot/5_Deploiement_appliSOERE.html">ces recommandations</a>.</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -19,15 +19,15 @@ source("options_communes.R")
 
 # Présentation du module de génération des métadonnées `PivotMetadata`
 
-Le module de génération des métadonnées est accessible à cette [adresse](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/PivotMetadata). Basé sur une implementation (jax-D) de services web REST avec JAX-RS, il permet la génération de métadonnées à la volée grâce à des requêtes curl.
+Le module de génération des métadonnées est accessible sur ce [dépôt](https://git.renater.fr/anonscm/git/si-snot/PivotMetadata_snot.git). Basé sur une implementation (jax-D) de services web REST avec JAX-RS, il permet la génération de métadonnées à la volée grâce à des requêtes curl.
 La génération des métadonnées est au format json et respecte le modèle présenté dans la [documentation du SI Theia/OZCAR](https://theia-ozcar.gricad-pages.univ-grenoble-alpes.fr/doc-producer/producer-documentation.html).
 
 Le module contient ces principaux éléments : 
 
-- Les paramètres de connexion à la base de données sont gérés dans [Main.java](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_snot/PivotMetadata/src/main/java/entry/Main.java).
-- Les requêtes JPA ves la base de données sont dans [JPAQueryDAO.java](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_snot/PivotMetadata/src/main/java/moulinette/jpa/JPAQueryDAO.java).
-- Les constructeurs des 3 grandes parties de la métadonnée (Producer, Dataset, Observation) sont dans le [builder](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/PivotMetadata/src/main/java/moulinette/builder).
-- Les fichiers de description pour la partie `producer` sont dans le répertoire [inputs_files](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/show/Developpement/SI/app_snot/PivotMetadata/src/main/resources/inputs_files). Le fichier [Producer_snot.csv.csv](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_snot/PivotMetadata/src/main/resources/inputs_files/Producer_snot.csv) décrit les producteurs du SNO-Tourbières.
+- Les paramètres de connexion à la base de données sont gérés dans **Main.java**.
+- Les requêtes JPA ves la base de données sont dans **JPAQueryDAO.java**.
+- Les constructeurs des 3 grandes parties de la métadonnée (Producer, Dataset, Observation) sont dans le **builder**.
+- Les fichiers de description pour la partie `producer` sont dans le répertoire **inputs_files**]. Le fichier Producer_snot.csv décrit les producteurs du SNO-Tourbières.
 
 # Fonctionnement général
 

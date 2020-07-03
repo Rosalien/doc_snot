@@ -25,7 +25,7 @@ f_type <- "ICOS_meteosol"
 
 # Le traitement des données météosol
 
-Un ensemble de traitement est réalisé sur les données météosol avant leur intégration dans le SI SNO-T. Voici les principales étapes : 
+Un ensemble de traitement est réalisé sur les données météosol avant leur intégration dans le SI SNO-Tourbières. Voici les principales étapes : 
 
 - Calcul de la teneur en eau du sol SWC,
 - Calcul des flux de chaleur (G),

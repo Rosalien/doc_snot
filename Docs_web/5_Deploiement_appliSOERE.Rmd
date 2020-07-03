@@ -26,7 +26,7 @@ klippy::klippy('')
 ## Clone
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-git clone https://forge-osuc.cnrs-orleans.fr/git/sie-sno-tourbiere prod
+git clone https://sourcesup.renater.fr/anonscm/git/si-snot/Data_snot.git
 ```
 
 ## Mettre à jour le dépôt du serveur
@@ -69,13 +69,13 @@ Modifier le fichier `/home/tomcat/.m2/settings.xml` :
 
 ## Fichiers de configuration
 
-L'ensemble des fichiers de configuration sont stockés dans un répertoire `conf` non versionné à la racine du repertoire `devel` : `~/devel/conf`
+L'ensemble des fichiers de configuration sont stockés dans un répertoire `conf` non versionné à la racine du home de tomcat : `~/conf/`
 Il contient : 
 
-Main.java : Configuration des connexions vers la BDD pour la génération des métadonnées
-Service.java : Configuration du chemin vers un repertoire de travail pour la génération des métadonnées
-pom_dev.xml : Pom avec les paramètres de connexion pour la base de données snapshot
-pom_prod.xml  : Pom avec les paramètres de connexion pour la base de données en production
+- Main.java : Configuration des connexions vers la BDD pour la génération des métadonnées
+- Service.java : Configuration du chemin vers un repertoire de travail pour la génération des métadonnées
+- pom_dev.xml : Pom avec les paramètres de connexion pour la base de données snapshot
+- pom_prod.xml  : Pom avec les paramètres de connexion pour la base de données en production
 
 ## Compilation et déploiement de `data-snot.cnrs.fr` 
 
@@ -83,22 +83,22 @@ Tomcat est configuré avec deux instances pour la version en production et la ve
 
 ### Version production
 
-Lancer la commande suivante dans `~/devel/conf` :
+Lancer la commande suivante :
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-cp ~/devel/conf/pom_prod.xml ~/devel/prod/Developpement/SI/app_snot/pom.xml
+cp ~/conf/pom_prod.xml ~/Data_snot/pom.xml
 ```
 
 On compile ensuite l'application
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-cd ~/devel/prod/Developpement/SI/app_snot/
+cd ~/Data_snot/
 mvn clean install -D maven.test.skip.exec=true
 ```
 
 Pour déployer l'application une fois compilée, il faut copier/coller le `.war` dans le webapps de tomcat.
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-cp ~/devel/prod/Developpement/SI/app_snot/snot-web/target/snot-web-1902.01-SNAPSHOT.war /opt/tomcat8/webapps/snot.war
+cp ~/Data_snot/snot-web/target/snot-web-1902.01-SNAPSHOT.war /opt/tomcat8/webapps/snot.war
 ```
 
 Vérification du déploiement
@@ -112,20 +112,20 @@ tail -f /opt/tomcat8/logs/catalina.out
 Lancer la commande suivante dans `~/devel/conf` :
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-cp ~/devel/conf/pom_dev.xml ~/devel/dev/Developpement/SI/app_snot/pom.xml
+cp ~/conf/pom_dev.xml ~/Data_snot/pom.xml
 ```
 
 On compile ensuite l'application
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-cd ~/devel/dev/Developpement/SI/app_snot/
+cd ~/Data_snot/
 mvn clean install -D maven.test.skip.exec=true
 ```
 
 Dans le cas de la version snapshot, même opération mais en conservant le nom du war (avec SNAPSHOT).
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-cp ~/devel/dev/Developpement/SI/app_snot/snot-web/target/snot-web-1902.01-SNAPSHOT.war /opt/tomcat8/otherinstances/snapshot/webapps/snot-web-1902.01-SNAPSHOT.war
+cp ~/Data_snot/snot-web/target/snot-web-1902.01-SNAPSHOT.war /opt/tomcat8/otherinstances/snapshot/webapps/snot-web-1902.01-SNAPSHOT.war
 ```
 
 Vérification du déploiement

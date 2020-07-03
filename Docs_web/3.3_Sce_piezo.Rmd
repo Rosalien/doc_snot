@@ -20,7 +20,7 @@ f_type <- "SNOT_piezo"
 
 <div class="alert alert-info" role="alert">
   <h4 class="alert-heading">**Exemple pour gagner du temps**</h4>
-  <p>Voici un exemple de fichier type `SNOT_piezo` pour le piézomètre DO de la Guette pour la période du 12-03-2014 au 22-07-2019(données fictives) : `r linkAlertCSS("lgt-pz_cbdv_amont_piezo_infraj_12-03-2014_22-07-2019.csv","https://github.com/Rosalien/doc_snot/raw/master/Data/lgt/pz_cbdv_amont/piezo/3_SNOT_piezo/lgt-pz_cbdv_amont_piezo_infraj_12-03-2014_22-07-2019.csv")`
+  <p>Voici un exemple de fichier type `SNOT_piezo` pour le piézomètre DO de la Guette pour la période du 12-03-2014 au 22-07-2019(données fictives) : `r linkAlertCSS("lgt-pz_cbdv_amont_piezo_infraj_12-03-2014_22-07-2019.csv","https://raw.githubusercontent.com/Rosalien/doc_snot/master/Data/lgt/pz_cbdv_amont/piezo/3_SNOT_piezo/lgt-pz_cbdv_amont_piezo_infraj_12-03-2014_22-07-2019.csv")`
   </p>
 </div>
 
@@ -123,7 +123,7 @@ La valeur **-9999** indique une donnée manquante.
 
 Il est recommandé de s'appuyer sur un exemple pour générer un fichier type `SNOT_piezo` manuellement : 
 
-  - [lgt-pz_cbdv_amont_piezo_infraj_06-11-2008_16-04-2009.csv](https://github.com/Rosalien/doc_snot/raw/master/Data/lgt/pz_cbdv_amont/piezo/3_SNOT_piezo/lgt-pz_cbdv_amont_piezo_infraj_06-11-2008_16-04-2009.csv)
+  - [lgt-pz_cbdv_amont_piezo_infraj_06-11-2008_16-04-2009.csv](https://raw.githubusercontent.com/Rosalien/doc_snot/master/Data/lgt/pz_cbdv_amont/piezo/3_SNOT_piezo/lgt-pz_cbdv_amont_piezo_infraj_12-03-2014_22-07-2019.csv)
 
 <div class="alert alert-danger" role="alert">
   <h4 class="alert-heading">**Attention**</h4>

@@ -1,5 +1,6 @@
 code_jeu;nom du site;nom du type de données;nom de la variable;nom de l'unité;min;max;missingvalue
 frn-ges-eddycovariance;frn/ec1;eddycovariance_sh;FCH4;μmol/m2/s;;;-9999
+frn-ges-eddycovariance;frn/ec1;eddycovariance_sh;FCH4_GF;μmol/m2/s;;;-9999
 lgt-ges-eddycovariance;lgt/ec1;eddycovariance_sh;FC;μmolCO2/m2/s;;;-9999
 lgt-ges-eddycovariance;lgt/ec1;eddycovariance_sh;H;W/m2;;;-9999
 lgt-ges-eddycovariance;lgt/ec1;eddycovariance_sh;ETR;mm/h;;;-9999
@@ -14,6 +15,10 @@ frn-ges-eddycovariance;frn/ec1;eddycovariance_sh;FC;μmolCO2/m2/s;;;-9999
 frn-ges-eddycovariance;frn/ec1;eddycovariance_sh;H;W/m2;;;-9999
 frn-ges-eddycovariance;frn/ec1;eddycovariance_sh;ETR;mm/h;;;-9999
 frn-ges-eddycovariance;frn/ec1;eddycovariance_sh;LE;W/m2;;;-9999
+frn-ges-eddycovariance;frn/ec1;eddycovariance_sh;FC_GF;μmolCO2/m2/s;;;-9999
+frn-ges-eddycovariance;frn/ec1;eddycovariance_sh;H_GF;W/m2;;;-9999
+frn-ges-eddycovariance;frn/ec1;eddycovariance_sh;ETR_GF;mm/h;;;-9999
+frn-ges-eddycovariance;frn/ec1;eddycovariance_sh;LE_GF;W/m2;;;-9999
 lgt-meteosol-meteosol;lgt/bm2;meteosol_infraj;LW_IN_2_1_1;W/m2;;;-9999
 lgt-meteosol-meteosol;lgt/bm2;meteosol_infraj;LW_OUT_2_1_1;W/m2;;;-9999
 lgt-meteosol-meteosol;lgt/bm2;meteosol_infraj;SW_IN_2_1_1;W/m2;;;-9999

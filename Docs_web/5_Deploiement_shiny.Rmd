@@ -21,6 +21,20 @@ source("options_communes.R")
 klippy::klippy('')
 ```
 
+# Importation de l'application
+
+## Clone
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+git clone git clone https://sourcesup.renater.fr/anonscm/git/si-snot/DataAccess_snot.git
+```
+
+## Mettre à jour le dépôt du serveur
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+git pull origin master
+```
+
 # Déployer l'application
 
 Pour déployer l'application, suivre ces différentes étapes : 
@@ -66,11 +80,11 @@ git pull origin master
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
 # data-access en production
-cp -r ~/devel/prod/Developpement/SI/app_shiny/snapshot/module/* /srv/shiny-server/data-access/
+cp -r ~/DataAccess_snot/* /srv/shiny-server/data-access/
 # data-access en développement
-cp -r ~/devel/prod/Developpement/SI/app_shiny/snapshot/module/* /srv/shiny-server/data-access-snapshot/
+cp -r ~/DataAccess_snot/* /srv/shiny-server/data-access-snapshot/
 # dataset-archive en production
-cp -r ~/devel/prod/Developpement/SI/app_shiny/snapshot/module/* /srv/shiny-server/dataset-archive/
+cp -r ~/DataAccess_snot/* /srv/shiny-server/dataset-archive/
 ```
 
 ## Configurer les connexions vers la base de données `snotbdprod` :
@@ -80,9 +94,9 @@ Pour toutes les applications, il est nécessaire de configurer le fichier `confC
 ### Copier/coller le fichier de configuration confConnexion.R :
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-cp ~/devel/conf/confConnexion.R /srv/shiny-server/data-access/
-cp ~/devel/conf/confConnexion.R /srv/shiny-server/data-access-snapshot/
-cp ~/devel/conf/confConnexion.R /srv/shiny-server/dataset-archive/
+cp ~/conf/confConnexion.R /srv/shiny-server/data-access/
+cp ~/conf/confConnexion.R /srv/shiny-server/data-access-snapshot/
+cp ~/conf/confConnexion.R /srv/shiny-server/dataset-archive/
 ```
 
 ### Configurer la connexion en **prod** 

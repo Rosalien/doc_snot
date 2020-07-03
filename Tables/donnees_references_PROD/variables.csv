@@ -3,6 +3,11 @@ ER;Respiration de l'écosystème;Ecosystem respiration;https://w3id.org/ozcar-th
 ETR;Evapotranspiration réelle par eddy-covariance;Actual evapotranspiration by eddy-covariance;https://w3id.org/ozcar-theia/atmosphericChemistry
 FC;Flux de CO2 par eddy-covariance;CO2 flux measurements by eddy-covariance;https://w3id.org/ozcar-theia/atmosphericChemistry
 FCH4;Flux de CH4 par eddy-covariance;CH4 flux measurements by eddy-covariance;https://w3id.org/ozcar-theia/atmosphericChemistry
+ETR_GF;Evapotranspiration réelle par eddy-covariance estimé avec gap-filling;Actual evapotranspiration by eddy-covariance estimated with gap-filling;https://w3id.org/ozcar-theia/atmosphericChemistry
+FC_GF;Flux de CO2 par eddy-covariance estimé avec gap-filling;CO2 flux measurements by eddy-covariance estimated with gap-filling;https://w3id.org/ozcar-theia/atmosphericChemistry
+FCH4_GF;Flux de CH4 par eddy-covariance estimé avec gap-filling;CH4 flux measurements by eddy-covariance estimated with gap-filling;https://w3id.org/ozcar-theia/atmosphericChemistry
+H_GF;Flux de chaleur sensible estimé avec gap-filling;Sensitive heat flow by eddy-covariance estimated with gap-filling;https://w3id.org/ozcar-theia/atmosphericChemistry
+LE_GF;Flux de chaleur latente estimé avec gap-filling;Latent heat flow by eddy-covariance estimated with gap-filling;https://w3id.org/ozcar-theia/atmosphericChemistry
 FDOC;Flux du carbone organique dissous;Flux of dissolved organic carbon;https://w3id.org/ozcar-theia/surfaceWaterGlobalIndices
 G_1_1_1;Flux de chaleur dans le sol pour la position 1_1_1;Soil heat flux for profil 1_1_1 (depth 2 cm);https://w3id.org/ozcar-theia/surfaceFluxes
 G_1_1_2;Flux de chaleur dans le sol pour la position 1_1_2;Soil heat flux for profil 1_1_2 (depth 2 cm);https://w3id.org/ozcar-theia/surfaceFluxes
