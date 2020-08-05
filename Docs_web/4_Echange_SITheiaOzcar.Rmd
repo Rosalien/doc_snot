@@ -28,13 +28,7 @@ Cette documentation présente les principales étapes pour assurer le partage de
 
 # Documentation et procédures du SI Theia/Ozcar
 
-Le format des métadonnées et du format d'échange des fichiers à envoyer vers le SI Theia/Ozcar sont décrits dans les documents suivants :
-
-- [Schéma du format de métadonnées](https://theia-ozcar.gricad-pages.univ-grenoble-alpes.fr/doc-producer/_downloads/f290a9689a029512c7ade3f18fc7a66c/ClassDiagramPivotFormatV1.1.pdf)
-- [Format d'échange des fichiers de données](https://theia-ozcar.gricad-pages.univ-grenoble-alpes.fr/doc-producer/_downloads/cdf56201947d99a98976ac15f5e8ddc5/description_fichier_de_donnees_v1.1.pdf)
-- [Procédure de dépôt des données](https://theia-ozcar.gricad-pages.univ-grenoble-alpes.fr/doc-producer/_downloads/e64ac8c3acb597710601dfc2c7c8c248/depot_des_informations_v1.1.pdf)
-
-Pour plus d'information, voir la documentation du [SI Theia/Ozcar](https://theia-ozcar.gricad-pages.univ-grenoble-alpes.fr/doc-producer/producer-documentation.html).
+Le format des métadonnées et du format d'échange des fichiers à envoyer vers le SI Theia/Ozcar sont décrits dans les documents suivants accessible sur la documentation [SI Theia/Ozcar](https://theia-ozcar.gricad-pages.univ-grenoble-alpes.fr/doc-producer/producer-documentation.html).
 
 # Procédure pour générer les métadonnées et créer les fichiers de dépôt pour le SI Theia/Ozcar
 

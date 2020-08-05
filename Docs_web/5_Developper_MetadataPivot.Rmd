@@ -32,7 +32,7 @@ Le module contient ces principaux éléments :
 # Fonctionnement général
 
 ## Lancement du module 
-Le module est lancé dans le serveur `163.9.41.45` :
+Le module est lancé dans le serveur `***.*.41.45` :
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
 java -jar jax-d-swarm.jar

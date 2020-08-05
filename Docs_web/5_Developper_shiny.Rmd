@@ -19,6 +19,7 @@ source("options_communes.R")
 
 # Les applications Shiny
 
+
 2 applications Shiny sont développées : 
 
 - data-access : application grand public pour visualiser et extraire les données du SI SNOT. Adresse : [https://data-snot.cnrs.fr/data-access/](https://data-snot.cnrs.fr/data-access/). Cette application a également une version de développement : [https://data-snot.cnrs.fr/data-access-snapshot/](https://data-snot.cnrs.fr/data-access-snapshot/)

@@ -22,7 +22,7 @@ source("options_communes.R")
 L'application s'appuie sur deux machines virtuelles :
 
 - **VM data_snot** : serveur tomcat de l'application
-	- *Adresse* : 163.9.41.45
+	- *Adresse* : ***.*.41.45
 	- *Mémoire* : 8 Go
 	- *Espace disque* : 50Go
 - **VM postgres** : serveur de la bdd postgresQL
@@ -79,7 +79,7 @@ apt install postgresql-client`
 Redirection :
 ```
 # Avant certification
-/etc/apache2/sites-enabled/000-default.conf :         Redirect permanent / https://163.9.41.45/snot/
+/etc/apache2/sites-enabled/000-default.conf :         Redirect permanent / https://***.*.41.45/snot/
 # Après certification
 /etc/apache2/sites-enabled/000-default.conf :         Redirect permanent / https://data-snot.cnrs.fr
 ```

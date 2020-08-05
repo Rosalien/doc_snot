@@ -8,7 +8,7 @@ source("options_communes.R")
 
 <div class="alert alert-success" role="alert">
   <h4 class="alert-heading">**Objectif et contenu**</h4>
-  <p>Déploiement du module de génération des métadonnées PIVOT dans le serveur de production 163.9.41.45</p>
+  <p>Déploiement du module de génération des métadonnées PIVOT sur le serveur de production</p>
 </div>
 
 <div class="alert alert-info" role="alert">
@@ -29,12 +29,19 @@ klippy::klippy('')
 git clone https://sourcesup.renater.fr/anonscm/git/si-snot/PivotMetadata_snot.git
 ```
 
-## Déploiement
-
-Le module est compilé dans `~/PivotMetadata_snot/` et le programme s'appelle : `jax-d-swarm.jar`. Le module est relancé automatiquement à chaque redémarrage du serveur 163.9.41.45 grâce à la configuration du /etc/crontab :
+## Mise à jour du dépôt
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-@reboot         tomcat    /opt/default-jdk/bin/java -jar ~/PivotMetadata_snot/jax-d-swarm.jar
+git reset --hard
+git pull origin master
+```
+
+## Déploiement
+
+Le module est compilé dans `~/PivotMetadata_snot/` et le programme s'appelle : `jax-d-swarm.jar`. Le module est relancé automatiquement à chaque redémarrage du serveur `***.*.41.45` grâce à la configuration du /etc/crontab :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+@reboot         tomcat    /opt/default-jdk/bin/java -jar ~/PivotMetadata_snot/target/jax-d-swarm.jar
 ``` 
 
 Dans le cas d'une modification du code, il sera nécessaire de :
@@ -81,7 +88,7 @@ kill -9 <pid>
 ### Lancement du service
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-nohup java -jar ~/PivotMetadata_snot/jax-d-swarm.jar &
+nohup java -jar ~/PivotMetadata_snot/target/jax-d-swarm.jar &
 ```
 
 ### En cas de problème
@@ -91,7 +98,7 @@ Vous pouvez vérifier le fonctionnement en interrogeant le service web
 1. Lancer le jar en visible :
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-java -jar /home/tomcat/devel/metadata/jax-d-swarm.jar
+java -jar ~/PivotMetadata_snot/target/jax-d-swarm.jar
 ```
 
 2. Dans un autre terminal, lancer une commande curl. Des messages d'erreur apparaîtront dans le terminal où le jar est lancé

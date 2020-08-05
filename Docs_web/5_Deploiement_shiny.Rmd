@@ -47,10 +47,10 @@ git commit -m "message"
 git push origin master
 ```
 
-## Se connecter au serveur `163.9.41.45` :
+## Se connecter au serveur `***.*.41.45` :
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-ssh tomcat@163.9.41.45
+ssh tomcat@***.*.41.45
 ```
 
 ## Mettre à jour le dépôt du serveur
