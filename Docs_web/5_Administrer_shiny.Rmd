@@ -1,5 +1,5 @@
 ---
-title: "Administration et installation de l'application Shiny"
+title: "Installation et administration de shiny-server"
 ---
 
 ```{r options_communes, include=FALSE}
@@ -90,9 +90,10 @@ La configuration de shiny-server se fait dans le fichier `/etc/shiny-server/shin
 - Applications sur le port **3838** : Applications dédiées au grand public. Pour le moment, il s'agit de l'application `data-access` et de sa version de développement `data-access-snapshot` (pour visualiser et extraire les données du SNOT). Les applications sont stockées dans `/srv/shiny-server/nom_repertoire` et auront ce type d'url `https://data-snot.cnrs.fr/nom_repertoire/`. 
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+
 # Define a server that listens on port 3838
-# Pour conserver l'application active lors des téléchargements longs, 600s (par défaut, c'est 45s )
-http_keepalive_timeout 600;
+
+http_keepalive_timeout 1200;
 
 server {
   run_as :HOME_USER:;
@@ -101,13 +102,21 @@ server {
   # Define a location at the base URL
   location / {
     # Allow users to host their own apps in ~/ShinyApps
-    user_dirs; 
+    user_dirs;
+
+    # Optionally, you can restrict the privilege of hosting Shiny applications
+    # only to members of a particular Linux group.
+    # members_of shinyUsers;   
   }
 }
 
-# Define a server that listens on port 3939
+# Tell Shiny Server that we want to run as the user whose
+# home directory we find the application in.
+
+# Define a server that listens on port 3838
 server {
   run_as tomcat;
+
   listen 3838;
 
   # Define a location at the base URL
@@ -127,11 +136,21 @@ server {
     log_dir /var/log/shiny-server/;
   }
 
-# Pour éviter les problèmes avec Kaspersky
+  location /dataset-archive-snapshot {
+    site_dir /srv/shiny-server/dataset-archive-snapshot;
+    log_dir /var/log/shiny-server/;
+  }
+
+  # Just to test app
+  location /test {
+    site_dir /srv/shiny-server/test;
+    log_dir /var/log/shiny-server/;
+  }
+
 disable_protocols websocket xdr-polling xdr-streaming xhr-streaming iframe-eventsource iframe-htmlfile;
 sanitize_errors off;
-
 }
+
 ```
 
 <div class="alert alert-danger" role="alert">
@@ -206,6 +225,16 @@ RewriteRule /data-access-snapshot/(.*) http://localhost:3838/data-access-snapsho
 ProxyPass /data-access-snapshot/ http://localhost:3838/data-access-snapshot/
 ProxyPassReverse /data-access-snapshot/ http://localhost:3838/data-access-snapshot/
 Header edit Location ^/ /data-access-snapshot/
+
+RedirectMatch permanent ^/dataset-archive-snapshot$ /dataset-archive-snapshot/
+RewriteEngine on
+RewriteCond %{HTTP:Upgrade} =websocket
+RewriteRule /dataset-archive-snapshot/(.*) ws://localhost:3838/dataset-archive-snapshot/$1 [P,L]
+RewriteCond %{HTTP:Upgrade} !=websocket
+RewriteRule /dataset-archive-snapshot/(.*) http://localhost:3838/dataset-archive-snapshot/$1 [P,L]
+ProxyPass /dataset-archive-snapshot/ http://localhost:3838/dataset-archive-snapshot/
+ProxyPassReverse /dataset-archive-snapshot/ http://localhost:3838/dataset-archive-snapshot/
+Header edit Location ^/ /dataset-archive-snapshot/
 ```
 
 Puis recharger le fichier de configuration

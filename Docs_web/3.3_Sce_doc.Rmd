@@ -10,17 +10,17 @@ source("options_communes.R")
 ```{r,evaL=TRUE,echo=FALSE}
 # Ici, nommer le code du type de données pour automatiser le nommage. Cette variable est également utilisée dans les tableaux pour filtrer par type de données
 v_tdo <- "doc"
-f_type <- "SNOT_doc"
+f_type <- "SNOT_docpoc"
 ```
 
 <div class="alert alert-success" role="alert">
   <h4 class="alert-heading">**Objectifs et contenu**</h4>
-  <p>Décrire le format de fichier pour intégrer le type de données `doc` dans l'application web du SI SNO-T : `r linkAlertCSS("data-snot.cnrs.fr","https://data-snot.cnrs.fr/")`. Ce type de fichier est nommé `SNOT_doc`</p>
+  <p>Décrire le format de fichier pour intégrer le type de données `doc` dans l'application web du SI SNO-T : `r linkAlertCSS("data-snot.cnrs.fr","https://data-snot.cnrs.fr/")`. Ce type de fichier est nommé `SNOT_docpoc`</p>
 </div>
 
 <div class="alert alert-info" role="alert">
   <h4 class="alert-heading">**Exemple pour gagner du temps**</h4>
-  <p>Voici un exemple de fichier type `SNOT_doc` pour la station multiparamètre sm_exutoire de la Guette pour la période du 06-11-2008 au 16-04-2009 (données fictives) : `r linkAlertCSS("lgt-sm_exutoire_doc_infraj_06-11-2008_16-04-2009.csv","https://github.com/Rosalien/doc_snot/raw/master/Data/lgt/sm_exutoire/doc/3_SNOT_doc/lgt-sm_exutoire_doc_infraj_06-11-2008_16-04-2009.csv")`
+  <p>Voici un exemple de fichier type `SNOT_docpoc` pour la station multiparamètre sm_exutoire de la Guette pour la période du 06-11-2008 au 16-04-2009 (données fictives) : `r linkAlertCSS("lgt-sm_exutoire_doc_infraj_06-11-2008_16-04-2009.csv","https://github.com/Rosalien/doc_snot/raw/master/Data/lgt/sm_exutoire/doc/3_SNOT_docpoc/lgt-sm_exutoire_doc_infraj_06-11-2008_16-04-2009.csv")`
   </p>
 </div>
 
@@ -31,7 +31,7 @@ f_type <- "SNOT_doc"
   <p>`r linkAlertCSS("Gérer les données de référence","https://sourcesup.renater.fr/si-snot/4_AdminDonnees.html")`</p>
 </div>
 
-# Description du fichier `SNOT_doc`
+# Description du fichier `SNOT_docpoc`
 
 ## Format, encodage et convention de nommage
 
@@ -55,7 +55,7 @@ avec :
 
   - [code_site] : le code du site du SNO-T en **minuscule**,
   - [code_station] : le code de la station de mesure en **minuscule**,
-  - [code_typedonnees] : le code du type de données, ici il s'agit de **doc**,
+  - [code_typedonnees] : le code du type de données, ici il s'agit de **docpoc**,
   - [code_frequence] :
     - **infraj** : fréquence infra-journalier,
   - [datedebut] : la date de début de la mesure au format jj-mm-aaaa,
@@ -73,11 +73,11 @@ avec :
 <div class="alert alert-info" role="alert">
   <h4 class="alert-heading">**Exemple**</h4>
   <p>Les données infra-journalière de type `doc` provenant de la station multiparamètre codée `sm_exutoire` de la Guette collectées entre le 06-11-2008 et le 16-04-2009 sont stockées dans le fichier portant le nom :</p>
-  <p>lgt-sm_exutoire_doc_infraj_06-11-2008_16-04-2009.csv</p>
+  <p>lgt-sm_exutoire_docpoc_infraj_06-11-2008_16-04-2009.csv</p>
 </div>  
 
 
-# Description du contenu du fichier `SNOT_doc`
+# Description du contenu du fichier `SNOT_docpoc`
 
 ## En-tête de contextualisation
 
@@ -117,13 +117,13 @@ La valeur **-9999** indique une donnée manquante.
   <p>L'heure doit être calée sur l’heure **UTC+1** (heure française en hiver, pas de changement d’heure en été)</p>
 </div>
 
-# Création du fichier `SNOT_doc`
+# Création du fichier `SNOT_docpoc`
 
-## Modèle de fichier `SNOT_doc`
+## Modèle de fichier `SNOT_docpoc`
 
-Il est recommandé de s'appuyer sur un exemple pour générer un fichier type `SNOT_doc` manuellement : 
+Il est recommandé de s'appuyer sur un exemple pour générer un fichier type `SNOT_docpoc` manuellement : 
 
-  - [lgt-sm_exutoire_doc_infraj_06-11-2008_16-04-2009.csv](https://github.com/Rosalien/doc_snot/raw/master/Data/lgt/sm_exutoire/doc/3_SNOT_doc/lgt-sm_exutoire_doc_infraj_06-11-2008_16-04-2009.csv)
+  - [lgt-sm_exutoire_doc_infraj_06-11-2008_16-04-2009.csv](https://github.com/Rosalien/doc_snot/raw/master/Data/lgt/sm_exutoire/doc/3_SNOT_docpoc/lgt-sm_exutoire_doc_infraj_06-11-2008_16-04-2009.csv)
 
 <div class="alert alert-danger" role="alert">
   <h4 class="alert-heading">**Attention**</h4>

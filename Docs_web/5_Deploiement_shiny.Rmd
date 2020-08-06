@@ -21,12 +21,19 @@ source("options_communes.R")
 klippy::klippy('')
 ```
 
-# Importation de l'application
+# Importation des applications
 
 ## Clone
 
+Application [https://data-snot.cnrs.fr/data-access/](https://data-snot.cnrs.fr/data-access/) : 
+
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-git clone git clone https://sourcesup.renater.fr/anonscm/git/si-snot/DataAccess_snot.git
+git clone https://github.com/Rosalien/dataAccessApp.git
+```
+
+Application [https://data-snot.cnrs.fr/dataset-archive/](https://data-snot.cnrs.fr/dataset-archive/) : 
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+git clone https://github.com/Rosalien/datasetArchiveApp.git
 ```
 
 ## Mettre à jour le dépôt du serveur
@@ -35,7 +42,7 @@ git clone git clone https://sourcesup.renater.fr/anonscm/git/si-snot/DataAccess_
 git pull origin master
 ```
 
-# Déployer l'application
+# Déployer les applications
 
 Pour déployer l'application, suivre ces différentes étapes : 
 
@@ -80,31 +87,26 @@ git pull origin master
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
 # data-access en production
-cp -r ~/DataAccess_snot/* /srv/shiny-server/data-access/
+cp -r ~/dataAccessApp/* /srv/shiny-server/data-access/
 # data-access en développement
-cp -r ~/DataAccess_snot/* /srv/shiny-server/data-access-snapshot/
+cp -r ~/dataAccessApp/* /srv/shiny-server/data-access-snapshot/
 # dataset-archive en production
-cp -r ~/DataAccess_snot/* /srv/shiny-server/dataset-archive/
+cp -r ~/datasetArchiveApp/* /srv/shiny-server/dataset-archive/
+# dataset-archive en développement
+cp -r ~/datasetArchiveApp/* /srv/shiny-server/dataset-archive-snapshot/
 ```
 
 ## Configurer les connexions vers la base de données `snotbdprod` :
 
-Pour toutes les applications, il est nécessaire de configurer le fichier `confConnexion.R` pour se connecter à la bdd snotbdprod :
+Pour toutes les applications, il est nécessaire de rajouter le fichier `dbconfProd.yaml` pour se connecter à la bdd snotbdprod :
 
-### Copier/coller le fichier de configuration confConnexion.R :
-
-```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-cp ~/conf/confConnexion.R /srv/shiny-server/data-access/
-cp ~/conf/confConnexion.R /srv/shiny-server/data-access-snapshot/
-cp ~/conf/confConnexion.R /srv/shiny-server/dataset-archive/
-```
-
-### Configurer la connexion en **prod** 
-
-Modifier le fichier `dependanciesQuery.R` :
+### Copier/coller le fichier de configuration dbconfProd.yaml :
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-pool <- confConnexion(dbWork="prod")
+cp ~/conf/dbconfProd.yaml /srv/shiny-server/data-access/
+cp ~/conf/dbconfProd.yaml /srv/shiny-server/data-access-snapshot/
+cp ~/conf/dbconfProd.yaml /srv/shiny-server/dataset-archive/
+cp ~/conf/dbconfProd.yaml /srv/shiny-server/dataset-archive-snapshot/
 ```
 
 ### Passer la version snap-shot en version pro
@@ -122,3 +124,4 @@ cp -r * ../dataset-archive/
 - [https://data-snot.cnrs.fr/data-access/](https://data-snot.cnrs.fr/data-access/)
 - [https://data-snot.cnrs.fr/data-access-snapshot/](https://data-snot.cnrs.fr/data-access-snapshot/)
 - [https://data-snot.cnrs.fr/dataset-archive/](https://data-snot.cnrs.fr/dataset-archive/)
+- [https://data-snot.cnrs.fr/data-access-snapshot/](https://data-snot.cnrs.fr/dataset-archive/)
