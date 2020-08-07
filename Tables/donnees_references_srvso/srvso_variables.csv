@@ -220,7 +220,7 @@ WD;Direction du vent;meteosol;cible;SNOT_meteosol;°;Capteur
 WS;Vitesse du vent;meteosol;cible;SNOT_meteosol;m/s;Capteur
 dref;Distance entre le haut du piézomètre et le haut des sphaignes;piezo;auxiliaire;SNOT_piezo;;Constante qui varie avec le temps
 L_GWD;Distance entre le haut du piézomètre et le capteur de pression;piezo;auxiliaire;SNOT_piezo;;Constante qui varie avec le temps
-Q;Débit à l'éxutoire;debit;cible;SNOT_doc;m3/s;Estimation par une courbe de tarage (relation entre le niveau de l’eau à l’exutoire et le débit) et la mesure à haute fréquence du niveau de l’eau à l’exutoire
+Q;Débit à l'éxutoire;debit;cible;SNOT_doc;l/s;Estimation par une courbe de tarage (relation entre le niveau de l’eau à l’exutoire et le débit) et la mesure à haute fréquence du niveau de l’eau à l’exutoire
 code_ngf;Altitude moyenne du site pour calculer GWL;piezo;auxiliaire;SNOT_piezo;;Constante qui varie avec le temps
 GWL;Altitude de la nappe;piezo;auxiliaire;SNOT_piezo;;Calculée par la soustraction de l’altitude d’un point de référence noté Aref par la distance entre le capteur de pression () et le point de référence (L) et en y ajoutant l’épaisseur de la lame d’eau mesurée entre le capteur et le haut de la nappe (H)
 WTD;Water table depth;piezo;cible;SNOT_piezo;m;

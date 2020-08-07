@@ -5,6 +5,7 @@ Site;ldm;Tourbière de Landemarais;
 Site;bdz;Tourbière de Bernadouze;
 Station;bm1;Station météosol 1 de la tourbière de La Guette;lgt
 Station;bm2;Station météosol 2 de la tourbière de La Guette;lgt
+Station;sm_exutoire;Station multi-paramètre à l'exutoire de la tourbière de La Guette;lgt
 Station;ec1;Station eddy-covariance de la Guette;lgt
 Station;bm1;Station météosol 1 de la tourbière de Landemarais;ldm
 Station;ec1;Station eddy covariance de Landemarais;ldm

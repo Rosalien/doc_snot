@@ -30,7 +30,7 @@ datatable(metatable,rownames= FALSE,options = list(
 
 <div class="alert alert-warning" role="alert">
   <h4 class="alert-heading">**Pour aller plus loin**</h4>
-  <p>Vous pouvez visualiser les données disponibles également sur l'application `r linkAlertCSS("https://data-snot.cnrs.fr/data-access/","https://data-snot.cnrs.fr/data-access/")`.</p>
+  <p>Vous pouvez aussi visualiser les données disponibles sur l'application `r linkAlertCSS("https://data-snot.cnrs.fr/data-access/","https://data-snot.cnrs.fr/data-access/")`</p>
 </div>
 
 # Toutes les variables du SNO-T (auxilliaires & cibles)

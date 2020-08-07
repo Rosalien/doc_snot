@@ -1,12 +1,8 @@
 code_themedonnees;code_typedonnees;code_typefichier;Description
-hydrocarto;piezo;BRUTE_piezoauto;
-hydrocarto;piezo;TRAITEMENT_piezoauto;
-hydrocarto;piezo;SNOT_piezoauto;
-hydrocarto;piezo;OZCAR_piezoauto;
-hydrocarto;debit;BRUTE_debitmanuel;
-hydrocarto;debit;TRAITEMENT_debitmanuel;
-hydrocarto;debit;SNOT_debitmanuel;
-hydrocarto;debit;OZCAR_debitmanuel;
+hydrocarto;piezo;BRUTE_piezo;Données brutes provenant des piézo
+hydrocarto;piezo;TRAITEMENT_piezo;Données brutes provenant des piézo
+hydrocarto;piezo;SNOT_piezo;Fichier au format SNO-T dans le SI SNO-T
+hydrocarto;piezo;OZCAR_piezo;
 ges;eddycovariance;BRUTE_eddycovariance;Type de fichier en sortie d’une station eddycovariance LICOR
 ges;eddycovariance;ICOS_eddycovariance;Type de fichier des données BRUTEs eddycovariance respectant les recommandation ICOS
 ges;eddycovariance;TRAITEMENT_eddycovariance;Traitements réalisés avec EddyPro et expertise
@@ -23,10 +19,10 @@ meteosol;meteosol;ICOS_meteosol;Type de fichier météosol respectant les recomm
 meteosol;meteosol;TRAITEMENT_meteosol;Traitement des données météosol avant intégration dans le SI
 meteosol;meteosol;SNOT_meteosol;Type de fichier d’entrée dans le SI SNO-T pour les données météo-sol
 meteosol;meteosol;OZCAR_meteosol;Type de fichier météo-sol  pour le partage avec le SI Theia/OZCAR
-biogeo;biogeomanuel;BRUTE_biogeomanuel;
-biogeo;biogeomanuel;TRAITEMENT_biogeomanuel;
-biogeo;biogeomanuel;SNOT_biogeomanuel;
-biogeo;biogeomanuel;OZCAR_biogeomanuel;
+biogeo;docpoc;BRUTE_docpoc;
+biogeo;docpoc;TRAITEMENT_docpoc;
+biogeo;docpoc;SNOT_docpoc;
+biogeo;docpoc;OZCAR_biogeomanuel;
 biogeo;biogeofluo;BRUTE_biogeofluo;
 biogeo;biogeofluo;TRAITEMENT_biogeofluo;
 biogeo;biogeofluo;SNOT_biogeofluo;

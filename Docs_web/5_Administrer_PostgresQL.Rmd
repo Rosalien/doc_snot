@@ -20,11 +20,11 @@ source("options_communes.R")
 klippy::klippy('')
 ```
 
-# Le serveur 163.9.41.46
+# Le serveur ***.*.41.46
 
-Le serveur 163.9.41.46 (**VM postgres**) héberge un serveur postgresQL contenant les bases de données associées aux applications en production et en développement :
+Le serveur ***.*.41.46 (**VM postgres**) héberge un serveur postgresQL contenant les bases de données associées aux applications en production et en développement :
 
-	- Adresse : 163.9.41.46
+	- Adresse : ***.*.41.46
 	- Mémoire : 8 Go
 	- Espace disque : 50 Go
 
@@ -46,14 +46,14 @@ Paramétrer `postgresql.conf`
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
 sudo vim /etc/postgresql/10/main/postgresql.conf
-Modifer listen_addresses = 'localhost,163.9.41.46'
+Modifer listen_addresses = 'localhost,***.*.41.46'
 sudo /etc/init.d/postgresql restart
 ```
 
 Puis lancer une connexion ssh : 
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-ssh -L 5437:localhost:5432 snotadmin@163.9.41.46
+ssh -L 5437:localhost:5432 snotadmin@***.*.41.46
 ```
 
 Configurer la connexion sur pgadmin :

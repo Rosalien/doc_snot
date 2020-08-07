@@ -26,7 +26,7 @@ L'application s'appuie sur deux machines virtuelles :
 	- *Mémoire* : 8 Go
 	- *Espace disque* : 50Go
 - **VM postgres** : serveur de la bdd postgresQL
-	- *Adresse* : 163.9.41.46
+	- *Adresse* : ***.*.41.46
 	- *Mémoire* : 8 Go
 	- *Espace disque* : 50Go
 

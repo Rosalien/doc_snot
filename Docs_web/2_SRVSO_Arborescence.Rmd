@@ -26,7 +26,7 @@ Le serveur FTP `SRV-SO` est utilisé pour stocker l'ensemble des fichiers collec
 
 ## Règles à respecter
 
-1. Ne jamais modifier les Fichiers bruts,
+1. Ne jamais modifier les fichiers bruts,
 2. Les fichiers et les répertoires doivent être nommés sans espace, ni accents et caractères spéciaux,
 3. Créer des fichiers "ALire" pour décrire le contenu de l'arborescence et les nouveaux répertoires/fichiers créés.
 
