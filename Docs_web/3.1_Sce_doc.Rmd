@@ -19,7 +19,7 @@ source("options_communes.R")
 
 ```{r,evaL=TRUE,echo=FALSE}
 # Ici, nommer le code du type de données pour automatiser le nommage. Cette variable est également utilisée dans les tableaux pour filtrer par type de données
-v_tdo <- "doc"
+v_tdo <- "docpoc"
 ```
 
 # Protocole d'acquisition

@@ -21,12 +21,12 @@ source("options_communes.R")
 klippy::klippy('')
 ```
 
-Des applications Shiny sont utilisées pour faciliter l'accès aux données intégrer dans [https://data-snot.cnrs.fr/](https://data-snot.cnrs.fr/). Ces applications sont diffusées pour le moement via shiny-server. Celui-ci est installé sur la même VM que le serveur tomcat de l'application [https://data-snot.cnrs.fr/](https://data-snot.cnrs.fr/). Son IP est `***.*.41.45` et il est accessible avec l'utilisateur tomcat en ssh avec cette commande :
+Des applications Shiny sont utilisées pour faciliter l'accès aux données intégrer dans [https://data-snot.cnrs.fr/](https://data-snot.cnrs.fr/). Ces applications sont diffusées pour le moment via shiny-server. Celui-ci est installé sur la même VM que le serveur tomcat de l'application [https://data-snot.cnrs.fr/](https://data-snot.cnrs.fr/). Son IP est `***.*.41.45` et il est accessible avec l'utilisateur tomcat en ssh avec cette commande :
 
 ```
 ssh tomcat@***.*.41.45
 ```
-# Installation et configuration de l'application Shiny
+# Installation et configuration de Shiny-server
 
 ## Installation
 
@@ -86,8 +86,8 @@ Les droits pour lancer les commandes systemctl sont également modifiés dans `/
 
 La configuration de shiny-server se fait dans le fichier `/etc/shiny-server/shiny-server.conf`. La configuration ci-dessous permet de diffuser des applications sur différents ports :
 
-- Applications sur le port **3939** : ensemble des applications internes. Elles sont lancées par l'utilisateur *tomcat* dans le répertoire `~/ShinyApps/nom_repertoire` et auront comme url cette logique : `http://data-snot.cnrs.fr:3939/tomcat/nom_repertoire/`.
-- Applications sur le port **3838** : Applications dédiées au grand public. Pour le moment, il s'agit de l'application `data-access` et de sa version de développement `data-access-snapshot` (pour visualiser et extraire les données du SNOT). Les applications sont stockées dans `/srv/shiny-server/nom_repertoire` et auront ce type d'url `https://data-snot.cnrs.fr/nom_repertoire/`. 
+- Applications sur le port **3939** : ensemble des applications internes. Elles sont lancées par l'utilisateur *tomcat* dans le répertoire `~/ShinyApps/nom_repertoire` et auront comme url cette logique : `http://data-snot.cnrs.fr:3939/tomcat/nom_repertoire/`. **Actuellement, aucune application est lancée sur ce port**
+- Applications sur le port **3838** : Applications dédiées au grand public. Pour le moment, il s'agit de l'application `data-access` et `dataset-archive` ainsi que leur version de développement `data-access-snapshot` et `dataset-archive`. Les applications sont stockées dans `/srv/shiny-server/nom_repertoire` et auront ce type d'url `https://data-snot.cnrs.fr/nom_repertoire/`. 
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
 

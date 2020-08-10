@@ -1,5 +1,5 @@
 ---
-title: "Le type de données du Carbone Organique Dissous `doc`"
+title: "Le type de données des flux de Carbone Organique Dissous et Particulaire `docpoc`"
 ---
 
 
@@ -9,7 +9,7 @@ source("options_communes.R")
 
 <div class="alert alert-success" role="alert">
   <h4 class="alert-heading">**Objectifs et contenu**</h4>
-  <p>Décrire le cycle de vie général du type de données Carbone Organique Dissous `doc`</p>
+  <p>Décrire le cycle de vie général du type de données Carbone Organique Dissous et Particulaire `docpoc`</p>
 </div>
 
 <div class="alert alert-info" role="alert">
@@ -18,14 +18,14 @@ source("options_communes.R")
   <p>Connaissance générale de l'organisation des données du SI SNO-T.</p>
 </div>
 
-# Le type de données `doc`
+# Le type de données `docpoc`
 
 ```{r,evaL=TRUE,echo=FALSE}
 # Ici, nommer le code du type de données pour automatiser le nommage. Cette variable est également utilisée dans les tableaux pour filtrer par type de données
-v_tdo <- "doc"
+v_tdo <- "docpoc"
 ```
 
-Le type de données `doc` (pour Dissolved Organic Carbon) correspond aux données de flux de carbone organique dissous calculé à l'exutoire des tourbières du SNO-T.
+Le type de données `docpoc` correspond aux données utilisées pour calculter les flux de carbone organique dissous et particulaire calculé à l'exutoire des tourbières du SNO-T.
 
 # Étapes du cycle de vie
 
@@ -47,35 +47,35 @@ scroll_box(width = "100%", height = "300px")
 
 ## Spécificité du type de données `doc`
 
-Le calcul des flux de DOC nécessite l'acquisition de plusieurs types de données collectés à l'exutoire de la tourbière. Ces données sont également nécessaires pour le calcul du flux du carbone organique particulaire (FPOC). Pour faciliter la gestion de ces données, une gestion par station de mesure est privilégiée : 
+Le calcul des flux de docpoc nécessite l'acquisition de plusieurs types de données collectés à l'exutoire de la tourbière. Ces données sont également nécessaires pour le calcul du flux du carbone organique particulaire (FPOC). Pour faciliter la gestion de ces données, une gestion par station de mesure est privilégiée : 
 
-- les données du cycle de vie du doc sont stockées dans le répertoire `doc`,
+- les données du cycle de vie du docpoc sont stockées dans le répertoire `docpoc`,
 - les données associées à la fluorescence de la matière organique sont stockées dans le répertoire `fluo`,
 - les données de débit à l'exutoire sont stockées dans le répertoire `debit`.
 
-Voici un exemple d'arborescence du stockage dans le serveur FTP `SRV-SO` du type de données `doc` et des types de données complémentaires `fluo` et `debit` pour la station multiparamètres `sm_exutoire` de la tourbière de la Guette.
+Voici un exemple d'arborescence du stockage dans le serveur FTP `SRV-SO` du type de données `docpoc` et des types de données complémentaires `fluo` et `debit` pour la station multiparamètres `sm_exutoire` de la tourbière de la Guette.
 Le nom du répertoire est organisé selon le numéro de l'étape du cycle de vie et du type de fichier.
 
 ```
 lgt
 └── sm_exutoire
-    └── doc
-        ├── 1_BRUTE_doc
+    └── docpoc
+        ├── 1_BRUTE_docpoc
         │   ├── 1_BRUTE_fDOM
         │   ├── 1_BRUTE_hauteurEau
         │   └── 1_BRUTE_jaugeage
-        ├── 2_TRAITEMENT_doc
-        └── 3_SNOT_doc
+        ├── 2_TRAITEMENT_docpoc
+        └── 3_SNOT_docpoc
 ```
 
 Avec :
 
 - lgt : Le code du site de La Guette
 - sm_exutoire : le code de la station multiparamètre ([rappel sur la logique de construction](https://sourcesup.renater.fr/si-snot/2_SRVSO_Arborescence.html))
-- doc : le code du type de données `doc`
-- 1_BRUTE_doc (*recommandé*) : Fichiers bruts regroupant toutes les fichiers en provenance de la station sm_exutoire. Ce répertoire contient les différents types de données utilisés pour construire les variables cible
-- 2_TRAITEMENT_doc (*recommandé*) : Traitement des Fichiers bruts
-- 3_SNOT_doc (*obligatoire*) : Stockage des fichiers au format du SNOT pour intégration dans le SI SNO-T.
+- docpoc : le code du type de données `docpoc`
+- 1_BRUTE_docpoc (*recommandé*) : Fichiers bruts regroupant toutes les fichiers en provenance de la station sm_exutoire. Ce répertoire contient les différents types de données utilisés pour construire les variables cible
+- 2_TRAITEMENT_docpoc (*recommandé*) : Traitement des Fichiers bruts
+- 3_SNOT_docpoc (*obligatoire*) : Stockage des fichiers au format du SNOT pour intégration dans le SI SNO-T.
 
 &nbsp;
 

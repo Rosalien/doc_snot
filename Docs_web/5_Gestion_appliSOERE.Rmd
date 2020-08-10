@@ -83,3 +83,34 @@ Une forge pour le SI SNO-Tourbières permet de centraliser les anomalies rencont
   <p>Pour remonter un bug concernant le noyau, il est nécessaire de bien étudier l'origine de l'erreur, si celle-ci provient de dépendance du noyau, alors il est nécessaire de faire remonter le bug. Celui-ci profitera aux autres SI des SOERE.</p>
   <p>Les suggestions d'amélioration des fonctionnalités du noyau sont également les bienvenues!</p>
 </div>
+
+# Problèmes connus
+
+## Problème lors du redémarrage
+
+Lors du redémarrage du serveur, tomcat peut rencontré des difficultés de démarrage dont la cause semble être dû à un conflit d'adresse :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+06-Aug-2020 22:31:44.227 GRAVE [main] org.apache.catalina.core.StandardService.initInternal Failed to initialize connector [Connector[HTTP/1.1-8080]]
+ org.apache.catalina.LifecycleException: Failed to initialize component [Connector[HTTP/1.1-8080]]
+...
+Caused by: java.net.BindException: Address already in use
+```
+
+Pour résoudre ce problème, un script bash identifie si une erreur 503 est présente sur l'adresse `data-snot.cnrs.fr`. Si tel est le cas, un redémarrage est effectué :
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+#!/bin/sh                                                                                                            
+HTTP_STATUS=`lynx -head -source https://data-snot.cnrs.fr/ |head -1 |awk '{print $2}'`
+if [ "$HTTP_STATUS" = "503" ]
+then
+    /etc/init.d/tomcat8 stop
+    /etc/init.d/tomcat8 start
+fi
+```
+
+Ce script est lancé toutes les 15 minutes (cf config du crontab):
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+*/15 * * * *    root            /home/tomcat/conf/checkTomcat.sh
+```

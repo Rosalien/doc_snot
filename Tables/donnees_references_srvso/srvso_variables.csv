@@ -220,7 +220,8 @@ WD;Direction du vent;meteosol;cible;SNOT_meteosol;°;Capteur
 WS;Vitesse du vent;meteosol;cible;SNOT_meteosol;m/s;Capteur
 dref;Distance entre le haut du piézomètre et le haut des sphaignes;piezo;auxiliaire;SNOT_piezo;;Constante qui varie avec le temps
 L_GWD;Distance entre le haut du piézomètre et le capteur de pression;piezo;auxiliaire;SNOT_piezo;;Constante qui varie avec le temps
-Q;Débit à l'éxutoire;debit;cible;SNOT_doc;l/s;Estimation par une courbe de tarage (relation entre le niveau de l’eau à l’exutoire et le débit) et la mesure à haute fréquence du niveau de l’eau à l’exutoire
+Q;Débit à l'éxutoire;docpoc;cible;SNOT_docpoc;l/s;Estimation par une courbe de tarage (relation entre le niveau de l’eau à l’exutoire et le débit) et la mesure à haute fréquence du niveau de l’eau à l’exutoire
+TW ;Température de l’eau à l’exutoire;docpoc;cible;SNOT_docpoc;°C;
 code_ngf;Altitude moyenne du site pour calculer GWL;piezo;auxiliaire;SNOT_piezo;;Constante qui varie avec le temps
 GWL;Altitude de la nappe;piezo;auxiliaire;SNOT_piezo;;Calculée par la soustraction de l’altitude d’un point de référence noté Aref par la distance entre le capteur de pression () et le point de référence (L) et en y ajoutant l’épaisseur de la lame d’eau mesurée entre le capteur et le haut de la nappe (H)
 WTD;Water table depth;piezo;cible;SNOT_piezo;m;
@@ -230,12 +231,12 @@ especes;Nom de l’espèce en latin;rec;auxiliaire;Brute_rec;;
 Rec;Pourcentage de recouvrement de l’espèce dans la strate pour un réplicat donné;rec;cible;SNOT_rec;;
 replicat;Numéro du réplicat (1 à 10);rec;auxiliaire;Brute_rec;;
 strate;Numéro de la strate (1 à 3);rec;auxiliaire;Brute_rec;;
-FDOC;Flux de carbone organique dissous à l'exutoire;doc;cible;SNOT_doc;mg/L;
-FPOC;Flux de carbone organique particulaire à l'exutoire;poc;cible;SNOT_doc;;
+FDOC;Flux de carbone organique dissous à l'exutoire;docpoc;cible;SNOT_docpoc;mg/L;
+FPOC;Flux de carbone organique particulaire à l'exutoire;docpoc;cible;SNOT_docpoc;;
 pHm;pH manuel à l’exutoire;biogeo;cible;SNOT_biogeo;;
-FDOM;Fluorescence de la matière organique dissoute pour le calcul de FDOC;biogeo;auxiliaire;Brute_biogeo;;
-fDOM;Fluorescence de la matière organique dissoute;biogeo;auxiliaire;Brute_biogeo;;
-Turb;Turbidité pour le calcul de FPOX;biogeo;auxiliaire;Brute_biogeo;UTN;
-Cond;Conductivité à l’exutoire;biogeo;auxiliaire;Brute_biogeo;;
-DOCm;Mesure manuelle du carbone organique dissous ;biogeo;auxiliaire;Brute_biogeo;;
-Condm;Conductivité à l'exutoire;biogeo;auxiliaire;Brute_biogeo;;
+FDOM;Fluorescence de la matière organique dissoute pour le calcul de FDOC;docpoc;auxiliaire;Brute_docpoc ;;
+fDOM;Fluorescence de la matière organique dissoute;docpoc;auxiliaire;Brute_docpoc ;;
+Turb;Turbidité pour le calcul de FPOX;docpoc;auxiliaire;Brute_docpoc ;UTN;
+Cond;Conductivité à l’exutoire;docpoc;auxiliaire;Brute_docpoc ;;
+DOCm;Mesure manuelle du carbone organique dissous ;docpoc;auxiliaire;Brute_docpoc ;;
+Condm;Conductivité à l'exutoire;docpoc;auxiliaire;Brute_docpoc ;;

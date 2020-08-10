@@ -9,24 +9,24 @@ source("options_communes.R")
 
 ```{r,evaL=TRUE,echo=FALSE}
 # Ici, nommer le code du type de données pour automatiser le nommage. Cette variable est également utilisée dans les tableaux pour filtrer par type de données
-v_tdo <- "doc"
+v_tdo <- "docpoc"
 f_type <- "SNOT_docpoc"
 ```
 
 <div class="alert alert-success" role="alert">
   <h4 class="alert-heading">**Objectifs et contenu**</h4>
-  <p>Décrire le format de fichier pour intégrer le type de données `doc` dans l'application web du SI SNO-T : `r linkAlertCSS("data-snot.cnrs.fr","https://data-snot.cnrs.fr/")`. Ce type de fichier est nommé `SNOT_docpoc`</p>
+  <p>Décrire le format de fichier pour intégrer le type de données `docpoc` dans l'application web du SI SNO-T : `r linkAlertCSS("data-snot.cnrs.fr","https://data-snot.cnrs.fr/")`. Ce type de fichier est nommé `SNOT_docpoc`</p>
 </div>
 
 <div class="alert alert-info" role="alert">
   <h4 class="alert-heading">**Exemple pour gagner du temps**</h4>
-  <p>Voici un exemple de fichier type `SNOT_docpoc` pour la station multiparamètre sm_exutoire de la Guette pour la période du 06-11-2008 au 16-04-2009 (données fictives) : `r linkAlertCSS("lgt-sm_exutoire_doc_infraj_06-11-2008_16-04-2009.csv","https://github.com/Rosalien/doc_snot/raw/master/Data/lgt/sm_exutoire/doc/3_SNOT_docpoc/lgt-sm_exutoire_doc_infraj_06-11-2008_16-04-2009.csv")`
+  <p>Voici un exemple de fichier type `SNOT_docpoc` pour la station multiparamètre sm_exutoire de la Guette pour la période du 06-11-2008 au 16-04-2009 (données fictives) : `r linkAlertCSS("lgt-sm_exutoire_docpoc_infraj_07-09-2011_26-04-2012.csv","https://github.com/Rosalien/doc_snot/raw/master/Data/lgt/sm_exutoire/docpoc/3_SNOT_docpoc/lgt-sm_exutoire_docpoc_infraj_07-09-2011_26-04-2012.csv")`
   </p>
 </div>
 
 <div class="alert alert-danger" role="alert">
   <h4 class="alert-heading">**Attention**</h4>
-  <p>Avant d'intégrer des données d'observation comme le type `doc`, il est nécessaire d'ajouter les données de référence associées dans l'application `r linkAlertCSS("data-snot.cnrs.fr","https://data-snot.cnrs.fr/")`. Plus d'infos : </p>
+  <p>Avant d'intégrer des données d'observation comme le type `docpoc`, il est nécessaire d'ajouter les données de référence associées dans l'application `r linkAlertCSS("data-snot.cnrs.fr","https://data-snot.cnrs.fr/")`. Plus d'infos : </p>
   <p>`r linkAlertCSS("Liste des données de référence","https://sourcesup.renater.fr/si-snot/2_BDD_SNOT_DonneesReference.html")`</p>
   <p>`r linkAlertCSS("Gérer les données de référence","https://sourcesup.renater.fr/si-snot/4_AdminDonnees.html")`</p>
 </div>
@@ -123,7 +123,7 @@ La valeur **-9999** indique une donnée manquante.
 
 Il est recommandé de s'appuyer sur un exemple pour générer un fichier type `SNOT_docpoc` manuellement : 
 
-  - [lgt-sm_exutoire_doc_infraj_06-11-2008_16-04-2009.csv](https://github.com/Rosalien/doc_snot/raw/master/Data/lgt/sm_exutoire/doc/3_SNOT_docpoc/lgt-sm_exutoire_doc_infraj_06-11-2008_16-04-2009.csv)
+  - [lgt-sm_exutoire_docpoc_infraj_07-09-2011_26-04-2012.csv](https://github.com/Rosalien/doc_snot/raw/master/Data/lgt/sm_exutoire/docpoc/3_SNOT_docpoc/lgt-sm_exutoire_docpoc_infraj_07-09-2011_26-04-2012.csv)
 
 <div class="alert alert-danger" role="alert">
   <h4 class="alert-heading">**Attention**</h4>

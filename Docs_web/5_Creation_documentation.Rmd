@@ -25,6 +25,13 @@ Elle est construite en `R+markdown` (ou **Rmd**) et encodée en `UTF-8`. Il s'ag
 
 # Création et mise à jour de la documentation
 
+## Cloner le projet
+
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+git clone https://github.com/Rosalien/doc_snot.git
+```
+Le répertoire de travail de la documentation est `Docs_web`.
+
 ## Mise à jour de la documentation 
 
 Une fois une partie ajoutée et/ou modifiée, il est nécessaire de mettre à jour le fichier `index.Rmd` et le fichier `_site`.

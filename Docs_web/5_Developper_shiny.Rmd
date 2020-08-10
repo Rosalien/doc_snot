@@ -19,62 +19,27 @@ source("options_communes.R")
 
 # Les applications Shiny
 
-
 2 applications Shiny sont développées : 
 
-- data-access : application grand public pour visualiser et extraire les données du SI SNOT. Adresse : [https://data-snot.cnrs.fr/data-access/](https://data-snot.cnrs.fr/data-access/). Cette application a également une version de développement : [https://data-snot.cnrs.fr/data-access-snapshot/](https://data-snot.cnrs.fr/data-access-snapshot/)
-- dataset-archive : application pour extraires des archives au format Theia/OZCAR et ZENODO. Diffusée à cette adresse [https://data-snot.cnrs.fr/dataset-archive/](https://data-snot.cnrs.fr/dataset-archive/)
+- data-access : application grand public pour visualiser et extraire les données du SI SNOT. Adresse : [https://data-snot.cnrs.fr/data-access/](https://data-snot.cnrs.fr/data-access/). Version de développement [https://data-snot.cnrs.fr/data-access-snapshot/](https://data-snot.cnrs.fr/data-access-snapshot/)
+- dataset-archive : application pour extraire des archives au format Theia/OZCAR et ZENODO. Diffusée à cette adresse [https://data-snot.cnrs.fr/dataset-archive/](https://data-snot.cnrs.fr/dataset-archive/). Version de développement [https://data-snot.cnrs.fr/dataset-archive-snapshot/](https://data-snot.cnrs.fr/dataset-archive-snapshot/)
 
-# Organisation des applications
+## Cloner les projets
 
-## Arborescence de travail
-
-Pour le moment, ces applications sont développées au sein 3 modules constitués de nombreuses dépendances. Pour faciliter la maintenance de l'application, cette organisation sera amenée à évoluer. A terme, les 3 gros modules seront éclatés en plusieurs sous-modules et l'ensemble de l'application sera créé dans un paquet R.
-
-Voici l'arborescence actuelle de l'application :
-
-```
-.
-├── app.R
-├── confConnexion.R
-├── datatype_couleur.csv
-├── dependanciesCSS.R
-├── dependanciesGraph.R
-├── dependanciesQuery.R
-├── dependancies.R
-├── Fig
-├── mod_amelioration.R
-├── mod_carto.R
-├── mod_extractiondataset.R
-├── mod_extraction.R
-├── sous_module
-├── sql
-├── translation
-└── www
+```{r, engine = 'bash',class.source='klippy',eval=FALSE}
+git clone https://github.com/Rosalien/dataAccessApp
+git clone https://github.com/Rosalien/dataAccessApp
 ```
 
-avec :
+## Organisation de développement
 
-- app.R : Fichier principal contenant le lancement des modules et dépendances
-- mod_amelioration.R : Module pour rajouter améliorer l'application sur la forge
-- mod_carto.R : Module "Welcome" pour présenter la cartographie des sites, des stations et les données disponibles
-- mod_extractiondataset.R : Module pour extraire les jeux de données selon le standard PIVOT/OZCAR
-- mod_extraction.R : Module pour visualiser et extraire les données. *Ce module devra être eclaté en plusieurs sous-modules pour faciliter sa maintenance*
-- confConnexion.R : Paramètres de connexion vers les bases de données *Fichier sensible, ne pas versionner*
-- dependanciesCSS : Dépendances sur des aspects de styles pour l'appli (pour les figures, pour l'appli...)
-- dependanciesGraph : Ensemble de fonctions associées à la création des graphiques dans l'application
-- dependanciesQuery : Ensemble de fonctions pour lancer des requêtes vers la bdd
-- dependanciesData : Ensemble des fonctions pour manipuler les données
-- dependancies : Chargement de toutes les dépendances
-- sous_module : Répertoire contenant les sous-modules du module mod_extraction.R (*en cours de développement, non utilisé*)
-- sql : Répertoire contenant les requêtes sql pour construire les vues matérialisées utilisées 
-- translation : Répertoire contenant le fichier csv pour internationaliser l'application avec [Shiny.i18n](https://github.com/Appsilon/Shiny.i18n)
-- www : Répertoire contenant les figures, les fichiers markdown, les csv, les css...
+Les deux applications sont organisées sous forme de paquet R. La construction est basée sur le framework [golem](https://rtask.thinkr.fr/fr/demarrer-avec-golem/).
+Le fonctionnement des applications s'appuie sur un paquet développé pour stocker toutes les fonctions utiles : [toolboxApps](https://github.com/Rosalien/toolboxApps)
 
-## Modules des applications 
-
-L'application data-access est consituée du module `mod_extraction.R` et du module `mod_carto.R`.
-L'application dataset-archive est seulement constituée du module `mod_extractiondataset.R`.
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Pour info**</h4>
+  <p>Pour le moment, ces applications sont développées au sein de gros modules constitués de nombreuses dépendances. Pour faciliter la maintenance de l'application, cette organisation sera amenée à évoluer. A terme, ces modules seront éclatés en plusieurs sous-modules.</p>
+</div>
 
 # Fonctionnement générale
 
@@ -82,7 +47,7 @@ L'application dataset-archive est seulement constituée du module `mod_extractio
 
 Les données visualisées dans l'application proviennent de la base de données postgresQL en production (`snotbdprod`) administrée avec l'application `data-snot.cnrs.fr`.
 
-Les paramètres de connexion sont dans le fichier `confConnexion.R` et les requêtes vers `snotbdprod` sont réalisées dans les fonctions stockées dans `dependanciesQuery.R`. Le paquet `RPostgreSQL` est utilisé pour les connexions vers la base.
+Les paramètres de connexion sont dans un fichier `*.yaml` et les requêtes vers `snotbdprod` sont réalisées dans des fonctions du paquet  `toolboxApps`. Le paquet `RPostgreSQL` est utilisé pour les connexions vers la base.
 
 Pour accroitre la réactivité de l'application, 2 vues matérialisées ont été créées dans `snotbdprod` : 
 
@@ -91,19 +56,9 @@ Pour accroitre la réactivité de l'application, 2 vues matérialisées ont ét�
 
 Les requêtes pour générer ces vues matérialisées sont stockées dans `sql/`. La mise à jour de ces vues matérialisées est réalisée avec des fonctions triggers stockées également dans le répertoire `sql/`. Plus d'infos sur ces fonctions dans la [documentation sur la base de données](https://sourcesup.renater.fr/www/si-snot/5_Administrer_PostgresQL.html).
 
-## 3 modules
-
-L'application est organisée sur 3 modules indépendants :
-
-- mod_carto.R : Partie "Welcome" de l'appli `data-access` avec la présentation des sites et des données disponibles
-- mod_extraction.R : Partie "Access Data" de l'appli `data-access` avec la visualisation et le téléchargement des données
-- mod_extractiondataset.R : Application `dataset-archive` pour le téléchargement des archives pour Theia/OZCAR et ZENODO.
-
-Un dernier module comprend la partie "a propos" : `mod_about.R`
-
 ## Internationalisation
 
-L'application est pour le moment en anglais mais à terme il sera possible de basculer en français. L'internationalisation s'appuie sur le package [Shiny.i18n](https://github.com/Appsilon/Shiny.i18n) et le fichier pour basculer de `en` à `fr` est stocké dans `translation/translation_en.csv`.
+Les applications sont pour le moment en anglais mais à terme il sera possible de basculer en français. L'internationalisation s'appuie sur le package [Shiny.i18n](https://github.com/Appsilon/Shiny.i18n) et le fichier pour basculer de `en` à `fr` est stocké dans `translation/translation_en.csv`.
 
 <div class="alert alert-info" role="alert">
   <h4 class="alert-heading">**Pour info**</h4>
@@ -139,10 +94,11 @@ L'application Shiny s'appuie sur plusieurs paquets spécifiques :
 - [ShinyWidgets](http://Shinyapps.dreamrs.fr/ShinyWidgets/) : Plusieurs widgets améliorés (exemple avec dropdownButton)
 - [Shiny.i18n](https://github.com/Appsilon/Shiny.i18n) : pour l'internationalisation de l'application
 - [esquisse](http://shinyapps.dreamrs.fr/esquisse/) : pour la génération de graphiques ggplot2 personnalisé
+- [golem](https://github.com/ThinkR-open/golem) : pour la création d'un paquet R-shiny
 
 ### Autres
  
-- suncalc est très pratique pour calculer les paramètres jour/nuit en fonction d'un timestamp et de coordonnées géographiques
+- [suncalc](https://www.rdocumentation.org/packages/RAtmosphere/versions/1.1/topics/suncalc) est très pratique pour calculer les paramètres jour/nuit en fonction d'un timestamp et de coordonnées géographiques
 
 <div class="alert alert-danger" role="alert">
   <h4 class="alert-heading">**Attention**</h4>

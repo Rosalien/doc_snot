@@ -22,25 +22,18 @@ Les applications et la documentation du projet sont stockées et versionnées da
 
 ## Caractéristiques
 
-Les dépôts `Git` du projet sont hébergés sur la [forge sourceSup de Renater](https://sourcesup.renater.fr/projects/si-snot/) : 
+Les dépôts `Git` du projet sont hébergés sur [github](https://github.com/rosalien/) : 
 
-```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-git clone https://git.renater.fr/anonscm/git/si-snot/DataAccess_snot.git
-git clone https://git.renater.fr/anonscm/git/si-snot/Data_snot.git
-git clone https://git.renater.fr/anonscm/git/si-snot/PivotMetadata_snot.git
-git clone https://github.com/Rosalien/doc_snot.git
-```
-
-avec : 
-
-- DataAccess_snot : Les applications shiny [data-access](https://data-snot.cnrs.fr/data-access/) et [datasetArchive](https://data-snot.cnrs.fr/dataset-archive/)
-- Data_snot : L'application de gestion des données du SNO-Tourbières : [https://data-snot.cnrs.fr](https://data-snot.cnrs.fr)
-- PivotMetadata_snot : L'application de génération de métadonnées au format Pivot pour le SI Theia/Ozcar
+- [Documentation du projet](https://github.com/Rosalien/doc_snot)
+- [Génération des métadonnées](https://github.com/Rosalien/PivotMetadata_snot)
+- [Application data-snot.cnrs.fr](https://github.com/Rosalien/Data_snot)
+- [Application data-snot.cnrs.fr/data-access/](https://github.com/Rosalien/dataAccessApp)
+- [Application data-snot.cnrs.fr/dataset-archive/](https://github.com/Rosalien/datasetArchiveApp)
 
 # Règle d'organisation du dépôt
 
 Les dépôts sont organisés selon une arborescence qui respecte les règles suivantes :
 
-- chaque nœud de l'arborescence contient un fichier Readme.md (en [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)) qui présente brièvement les répertoires,
 - le nom des répertoires est le plus explicite possible et ne contient pas d'accents et d'espaces (remplacer par un souligné),
-- l'encodage des fichiers textes et des tables (type .csv) est en **UTF-8**.
+- l'encodage des fichiers textes et des tables (type .csv) est en **UTF-8**,
+- *dans la mesure du possible*, chaque nœud de l'arborescence contient un fichier Readme.md (en [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)) qui présente brièvement les répertoires,

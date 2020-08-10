@@ -67,8 +67,8 @@ navbar:
     - text: 3. Intégration dans data-snot.cnrs.fr
       href: 3.3_Sce_piezo.html
     - text: '---------'
-    - text: Type de données Carbone Organique Dissous (DOC)
-    - text: Cycle de vie des données DOC
+    - text: Type de données docpoc
+    - text: Cycle de vie des données docpoc
       href: 3.0_Sce_doc.html
     - text: 1. Collecte des données brutes
       href: 3.1_Sce_doc.html
@@ -118,7 +118,7 @@ navbar:
       href: 5_Gestion_appliSOERE.html
     - text: '---------'    
     - text: Administrer les applications Shiny
-    - text: Installer et administrer les applications Shiny
+    - text: Installation et administration de shiny-server
       href: 5_Administrer_shiny.html
     - text: Développer les applications Shiny
       href: 5_Developper_shiny.html
