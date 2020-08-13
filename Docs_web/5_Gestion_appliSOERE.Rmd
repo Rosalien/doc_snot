@@ -88,7 +88,7 @@ Une forge pour le SI SNO-Tourbières permet de centraliser les anomalies rencont
 
 ## Problème lors du redémarrage
 
-Lors du redémarrage du serveur, tomcat peut rencontré des difficultés de démarrage dont la cause semble être dû à un conflit d'adresse :
+Lors du redémarrage du serveur, tomcat peut rencontrer des difficultés de démarrage dont la cause semble être dûe à un conflit d'adresse :
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
 06-Aug-2020 22:31:44.227 GRAVE [main] org.apache.catalina.core.StandardService.initInternal Failed to initialize connector [Connector[HTTP/1.1-8080]]

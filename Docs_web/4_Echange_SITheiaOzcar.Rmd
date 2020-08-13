@@ -39,10 +39,12 @@ Une application Shiny a été développée pour générer une archive au bon for
 3. Une fois l'archive créée, lancer le dépôt avec une commande curl : 
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
-curl -u login:motdepasse -T NomArchive.zip http://in-situ.theia-land.fr/data/TOUR/new/
+curl -k -u login:motdepasse -T NomArchive.zip https://in-situ.theia-land.fr/data/TOUR/new/
 ```
 
 Le login et le mot de passe sont stockés dans `U:\SNOT_CORE\SI_SNOT\LiensUtiles`
+
+Si l'import est ok, le nouveau zip est déplacé dans [https://in-situ.theia-land.fr/data/TOUR/previous/](https://in-situ.theia-land.fr/data/TOUR/previous/).
 
 <div class="alert alert-info" role="alert">
   <h4 class="alert-heading">**Plus d'infos**</h4>
