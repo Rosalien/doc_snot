@@ -80,7 +80,7 @@ pg_restore --data-only -h localhost -p 5437 -d snotbdprod -U snotuserprod -t uti
 
 ## Vues matérialisées
 
-Pour le besoin de l'application [https://data-snot.cnrs.fr/data-access/](https://data-snot.cnrs.fr/data-access/), plusieurs vues matérialisées accompagnées de fonction trigger pour les mettre à jour ont été créées. Les scripts de création de ces vues sont accessibles ci-dessous :
+Pour le besoin de l'application [https://data-snot.cnrs.fr/data-access/](https://data-snot.cnrs.fr/data-access/), plusieurs vues matérialisées accompagnées de fonction trigger pour les mettre à jour ont été créées. Les scripts de création de ces vues sont accessibles dans ce [dépôt](https://github.com/Rosalien/dataAccessApp/tree/master/inst/app/www/sql) :
 
 - MaterializedView_Prod.sql : Création des vues matérialisées
 - TriggerMaterializedView_Prod.sql : Fonction pour rafraichir la vue matérialisée `data_infraj_prod`
@@ -101,9 +101,9 @@ execute procedure refresh_data_infraj_prod();
 
 Pour des raisons de performance, la vue matérialisée `carac_data_sensor_method_prod` est mise à jour 10 minutes après la modification des tables associées à la requête de création de la vue matérialisée. Ce décalage de mise à jour est réalisée grâce à une table retraçant les modifications apportées. La procédure est inspirée de ce [blog](https://onethingsimple.com/2017/10/sync-materialized-views-after-debounce-period/).
 
-Le script de création des tables et des triggers est accessible [ici](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_shiny/snapshot/module/sql/TriggerDebouncePeriod.sql).
+Le script de création des tables et des triggers est accessible [ici](https://raw.githubusercontent.com/Rosalien/dataAccessApp/master/inst/app/www/sql/TriggerDebouncePeriod.sql).
 
-[RefreshMaterializedView.sh](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/SI/app_shiny/snapshot/module/sql/RefreshMaterializedView.sh) est lancé toutes les minutes dans le crontab du serveur tomcat avec cette configuration :
+[RefreshMaterializedView.sh](https://raw.githubusercontent.com/Rosalien/dataAccessApp/master/inst/app/www/sql/RefreshMaterializedView.sh) est lancé toutes les minutes dans le crontab du serveur tomcat avec cette configuration :
 
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
 * * * * * tomcat /home/tomcat/DataAccess_snot/sql/RefreshMaterializedView.sh
@@ -114,7 +114,6 @@ Pour fonctionner, le `~/.pgpass` doit être configuré et `RefreshMaterializedVi
 ```{r, engine = 'bash',class.source='klippy',eval=FALSE}
 chmod +x RefreshMaterializedView.sh
 ```
-
 
 
 

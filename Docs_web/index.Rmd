@@ -34,7 +34,8 @@ Cette documentation s'adresse à tous les utilisateurs qui souhaitent comprendre
 * **Procédures** *(Administrateur)* Ensemble de procédures techniques pour la maintenance du SI
 	* **[Prendre en main le SI](https://sourcesup.renater.fr/www/si-snot/5_Architecture_SI-SNOT.html)**
 	* **[Administrer l'application data-snot.cnrs.fr](https://sourcesup.renater.fr/si-snot/5_Developper_appliSOERE.html)**
-	* **[Administrer les applications Shiny](https://sourcesup.renater.fr/si-snot/5_Administrer_shiny.html)**
+	* **[Administrer Shiny-server](https://sourcesup.renater.fr/si-snot/5_Administrer_shiny.html)**
+	* **[Déployer les applications Shiny](https://sourcesup.renater.fr/www/si-snot/5_Deploiement_shiny.html)**
 	* **[Déployer l'application de génération de métadonnées PIVOT](https://sourcesup.renater.fr/si-snot/5_Administrer_MetadataPivot.html)**
 	* **[Mettre à jour la documentation](https://sourcesup.renater.fr/www/si-snot/5_Creation_documentation.html)**
 

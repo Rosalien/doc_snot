@@ -99,11 +99,15 @@ Une fois le DOI publié, il est nécessaire de mettre à jour les données de r�
 
 ## Mise à jour de la table jeu
 
-On veillera à mettre à jour les champs de la table jeu.
-Le champs DOI correspond au DOI de toutes les version du jeu de données. La citation correspond à la dernière citation de la version du jeu de données.
-Ces éléments sont présentés sur Zenodo une fois le jeu de données publié : 
+Mettre à jour les champs **DOI** et **Citation** de la table jeu :
+
+- **DOI :** Correspond au DOI de toutes les version du jeu de données. **Une fois indiqué, il n'est pas nécessaire de le mettre à jour avec les nouvelles version de DOI car il pointe toujours sur la dernière version**.
 
 ![](`r repfigures`/DOIEtCitations.png)
+
+- **Citation :** Copier/Coller de la dernière citation de la version du jeu de données présenté sur Zenodo une fois le jeu de données publié :
+
+![](`r repfigures`/Citation_Zenodo.png)
 
 ## Mise à jour de la sous-jeu
 

@@ -12,6 +12,12 @@ source("options_communes.R")
 </div>
 
 <div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">**Exemple pour gagner du temps**</h4>
+  <p>Voici un exemple de fichier brute provenant de la station météosol de La Guette  : `r linkAlertCSS("FR_LGT_001_20_036_0000.csv","https://raw.githubusercontent.com/Rosalien/toolboxMeteosol/master/inst/extdata/FR_LGT_001_20_036_0000.csv")`
+  </p>
+</div>
+
+<div class="alert alert-info" role="alert">
   <h4 class="alert-heading">**Public visé et pré-requis**</h4>
   <p>Thématiciens et gestionnaire des données météo-sol,</p>
   <p>Connaissance générale de l'organisation des données du SI SNO-T.</p>

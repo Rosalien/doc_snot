@@ -35,15 +35,27 @@ Un ensemble de traitement est réalisé sur les données météosol avant leur i
   - Cohérence des valeurs d'humidité relative.
 - Aggrégation des valeurs sur une fréquence semi-horaire.
 
-# Fonction R `aggregateMeteoSolSNOT`
+# Paquet R `toolboxMeteosol`
 
-Pour reproduire facilement ces étapes, une fonction R a été développée `aggregateMeteoSolSNOT`, elle est accessible dans ce [fichier](https://forge-osuc.cnrs-orleans.fr/projects/sie-sno-tourbiere/repository/revisions/master/raw/Developpement/Scripts/F_fileSNOT.R).
+Pour reproduire facilement ces étapes, un paquet R a été développé `toolboxMeteosol`, il est accessible à cette [adresse](https://github.com/Rosalien/toolboxMeteosol).
 
-## Application de la fonction
+## Installation
 
-La fonction utilise comme paramètre d'entrée le chemin + le nom du Fichier brut meteosol à traiter. Pour le moment, la fonction est uniquement applicable aux stations météosol de La Guette. Elle pourra facilement être utilisée sur les autres sites si les Fichiers bruts sont similaires à ceux de la Guette.
+```r
+devtools::install_github("Rosalien\toolboxMeteosol")
+```
 
-Un exemple d'utilisation de cette fonction est accessible [ici](https://github.com/Rosalien/doc_snot/raw/master/Data/lgt/bm1/meteosol/2b_TRAITEMENT_meteosol/lgtMeteosolToSNOT_manuel.R).
+## Exemple
 
-Dans ce script, les fonctions `headerSNOT` et `fileSNOT` sont utilisées pour construire le fichier au format d'entrée SNOT.
+```r
+toolboxMeteosol::workflowMeteosolData(repFile=system.file("extdata", package = "toolboxMeteosol"),
+				repTraitement="~/",
+				repOut="~/",
+				yearsToIntegrate="20",
+				Site="lgt",
+				Station="bm1")
+```
 
+# Visualiser les données compilées
+
+Une fois les données compilées avec `toolboxMeteosol`, vous pouvez visualiser les chroniques en lancant une petite application disponible à cette [adresse](https://github.com/Rosalien/meteosolApp).
